@@ -222,9 +222,9 @@ public struct PGN: Equatable {
     // MARK: - Public Computed Properties and Functions
 
     /// The game outcome.
-    public var outcome: Game.Outcome? {
+    public var outcome: Outcome? {
         get {
-            return self[Tag.result].flatMap(Game.Outcome.init)
+            return self[Tag.result].flatMap(Outcome.init)
         }
         set {
             self[Tag.result] = newValue?.description
@@ -359,7 +359,7 @@ public extension String {
         return (tag, tokens[1])
     }
 
-    fileprivate func _moves() throws -> (moves: [String], outcome: Game.Outcome?) {
+    fileprivate func _moves() throws -> (moves: [String], outcome: Outcome?) {
         var stripped = ""
         var ravDepth = 0
         var startIndex = self.startIndex
@@ -384,7 +384,7 @@ public extension String {
         }
         let tokens = stripped.split(by: [" ", "."])
         let moves = tokens.filter({ $0.characters.first?.isDigit == false })
-        let outcome = tokens.last.flatMap(Game.Outcome.init)
+        let outcome = tokens.last.flatMap(Outcome.init)
         return (moves, outcome)
     }
 
