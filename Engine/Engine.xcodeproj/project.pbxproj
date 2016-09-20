@@ -22,6 +22,10 @@
 		52942EA91D56BF1900525598 /* BoardCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52942EA61D56BEF400525598 /* BoardCoordinate.swift */; };
 		52942EAA1D56BF1900525598 /* BoardCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52942EA61D56BEF400525598 /* BoardCoordinate.swift */; };
 		52AB81D71D917902002C7A0B /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D61D917902002C7A0B /* Outcome.swift */; };
+		52AB81D91D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
+		52AB81DA1D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
+		52AB81DB1D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
+		52AB81DC1D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
 		52B595221D539C8700E1D543 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE63311D3D83BC0022618B /* Engine.framework */; };
 		52B595311D539C9800E1D543 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE63581D3D83FC0022618B /* Engine.framework */; };
 		52B595401D539CA300E1D543 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE634B1D3D83D90022618B /* Engine.framework */; };
@@ -142,6 +146,7 @@
 		528797CB1D90B040009671AC /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		52942EA61D56BEF400525598 /* BoardCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCoordinate.swift; sourceTree = "<group>"; };
 		52AB81D61D917902002C7A0B /* Outcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
+		52AB81D81D917986002C7A0B /* HistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
 		52B5951D1D539C8700E1D543 /* EngineTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EngineTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B5952C1D539C9800E1D543 /* EngineTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EngineTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B5953B1D539CA300E1D543 /* EngineTests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EngineTests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -279,6 +284,7 @@
 			children = (
 				52B595931D53AB7700E1D543 /* InternalTypes.swift */,
 				52B5954D1D539FC700E1D543 /* Game.swift */,
+				52AB81D81D917986002C7A0B /* HistoryItem.swift */,
 				52AB81D61D917902002C7A0B /* Outcome.swift */,
 				528797CB1D90B040009671AC /* Position.swift */,
 				52B595521D53A02D00E1D543 /* Player.swift */,
@@ -659,6 +665,7 @@
 				528288291D6168FE0014B105 /* Geometry.swift in Sources */,
 				52B595621D53A5CF00E1D543 /* Piece.swift in Sources */,
 				52B5954E1D539FC700E1D543 /* Game.swift in Sources */,
+				52AB81D91D917986002C7A0B /* HistoryItem.swift in Sources */,
 				52B595761D53A72600E1D543 /* Square.swift in Sources */,
 				52B595941D53AB7700E1D543 /* InternalTypes.swift in Sources */,
 				52AB81D71D917902002C7A0B /* Outcome.swift in Sources */,
@@ -675,6 +682,7 @@
 				52942EA81D56BF1800525598 /* BoardCoordinate.swift in Sources */,
 				52B5957C1D53A84100E1D543 /* Move.swift in Sources */,
 				52B595861D53A90F00E1D543 /* PGN.swift in Sources */,
+				52AB81DA1D917986002C7A0B /* HistoryItem.swift in Sources */,
 				52B595B31D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */,
 				52B595CC1D5512FD00E1D543 /* Board+View.swift in Sources */,
 				52B5955E1D53A16F00E1D543 /* Bitboard.swift in Sources */,
@@ -703,6 +711,7 @@
 				52942EAA1D56BF1900525598 /* BoardCoordinate.swift in Sources */,
 				52B5957D1D53A84100E1D543 /* Move.swift in Sources */,
 				52B595871D53A90F00E1D543 /* PGN.swift in Sources */,
+				52AB81DB1D917986002C7A0B /* HistoryItem.swift in Sources */,
 				52B595B41D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */,
 				52B595CD1D5512FD00E1D543 /* Board+View.swift in Sources */,
 				52B5955F1D53A16F00E1D543 /* Bitboard.swift in Sources */,
@@ -731,6 +740,7 @@
 				52942EA91D56BF1900525598 /* BoardCoordinate.swift in Sources */,
 				52B5957E1D53A84100E1D543 /* Move.swift in Sources */,
 				52B595881D53A90F00E1D543 /* PGN.swift in Sources */,
+				52AB81DC1D917986002C7A0B /* HistoryItem.swift in Sources */,
 				52B595B51D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */,
 				52B595601D53A16F00E1D543 /* Bitboard.swift in Sources */,
 				52B595BA1D54F9D800E1D543 /* AsciiConvertible.swift in Sources */,
