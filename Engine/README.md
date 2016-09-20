@@ -1,2 +1,2 @@
 # Chess
-A pre Swift chess engine
+A pure Swift chess engine
