@@ -43,7 +43,7 @@ public class Game {
     // MARK: - Private Stored Properties
 
     /// All of the conducted moves in the game.
-    private var _moveHistory: Array<HistoryItem>
+    private var _history: Array<HistoryItem>
 
     /// Attackers to the current player's king. This property is computed 
     /// and updated after every turn.
@@ -66,7 +66,7 @@ public class Game {
         self.playerTurn = .white
         self.castlingRights = .all
         self.halfmoves = 0
-        self._moveHistory = []
+        self._history = []
         self._attackersToKing = 0x0
         self._undoHistory = []
     }
@@ -84,31 +84,31 @@ public class Game {
         self.playerTurn = game.playerTurn
         self.castlingRights = game.castlingRights
         self.halfmoves = game.halfmoves
-        self._moveHistory = game._moveHistory
+        self._history = game._history
         self._attackersToKing = game._attackersToKing
         self._undoHistory = game._undoHistory
     }
 
     // MARK: - Public Computed Properties
 
-    public var moveHistory: Array<HistoryItem> {
-        return _moveHistory
+    public var history: Array<HistoryItem> {
+        return _history
     }
 
     /// The number of executed moves.
     public var moveCount: Int {
-        return _moveHistory.count
+        return _history.count
     }
 
     /// All of the moves played in the game.
     public var playedMoves: [Move] {
-        return _moveHistory.map({ $0.move })
+        return _history.map({ $0.move })
     }
 
     /// The target square of an en passant.
     public var enPassantTarget: Square? {
         guard
-            let historyItem = _moveHistory.last,
+            let historyItem = _history.last,
             historyItem.piece.kind.isPawn,
             abs(historyItem.move.rankChange) == 2
         else { return nil }
@@ -124,7 +124,7 @@ public class Game {
     ///
     /// - returns: A String representation of the half-move.
     public func sanMove(at index: Int) -> String {
-        return sanMove(for: _moveHistory[index])
+        return sanMove(for: _history[index])
     }
 
     /// The current fullmove number.
@@ -135,7 +135,7 @@ public class Game {
 
     /// The captured piece for the last move.
     public var captureForLastMove: Piece? {
-        return _moveHistory.last?.capture
+        return _history.last?.capture
     }
 
     /// The current position for `self`.
@@ -282,13 +282,13 @@ public class Game {
         delegate?.game(self, didExecute: move)
 
         if isKingInCheck {
-            guard var historyItem = _moveHistory.popLast() else { fatalError() }
+            guard var historyItem = _history.popLast() else { fatalError() }
             if availableMoves().count == 0 {
                 historyItem.setKingStatus(newStatus: .checkmated)
             } else {
                 historyItem.setKingStatus(newStatus: .checked)
             }
-            _moveHistory.append(historyItem)
+            _history.append(historyItem)
         }
     }
 
@@ -392,7 +392,7 @@ public class Game {
             disambiguation: disambiguation,
             kingStatus: .safe)
 
-        _moveHistory.append(newHistoricalMove)
+        _history.append(newHistoricalMove)
 
         if let capture = capture {
             board[capture][captureSquare] = false
@@ -423,7 +423,7 @@ public class Game {
 
     /// Returns the last move on the move stack, if any.
     public func moveToUndo() -> Move? {
-        return _moveHistory.last?.move
+        return _history.last?.move
     }
 
     /// Returns the last move on the undo stack, if any.
@@ -436,8 +436,8 @@ public class Game {
     /// Undoes the previous move and returns it, if any.
     private func _undoMove() -> Move? {
         // TODO: disambiguation.
-        guard let lastHistoricalMove = _moveHistory.popLast() else { return nil }
-        //        guard let (move, piece, capture, attackers, halfmoves, rights, _, _) = _moveHistory.popLast() else {
+        guard let lastHistoricalMove = _history.popLast() else { return nil }
+        //        guard let (move, piece, capture, attackers, halfmoves, rights, _, _) = _history.popLast() else {
         //            return nil
         //        }
         var captureSquare = lastHistoricalMove.move.target
@@ -633,7 +633,7 @@ public class Game {
      Returns
      */
     public func sanMove(for historicalIndex: Int) -> String {
-        return sanMove(for: moveHistory[historicalIndex])
+        return sanMove(for: history[historicalIndex])
     }
 
     /**
@@ -652,7 +652,7 @@ public class Game {
      Returns the PGN representation of `self`.
      */
     public var pgn: PGN {
-        return PGN(tagPairs: tagPairs(), moves: _moveHistory.map(sanMove))
+        return PGN(tagPairs: tagPairs(), moves: _history.map(sanMove))
     }
     
 }

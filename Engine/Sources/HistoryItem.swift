@@ -8,7 +8,7 @@
 
 // MARK: -
 
-/// The type of the element stored in a `game`'s `moveHistory` property.
+/// The type of the element stored in a `game`'s `history` property.
 public struct HistoryItem: Equatable {
 
     // MARK: Stored Properties
