@@ -135,12 +135,10 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
     ///
     /// - parameter variant: The variant to populate the board for. Won't 
     ///   populate if `nil`. Default is `Standard`.
-    public init(variant: Variant? = .standard) {
+    public init() {
         _bitboards = Array(repeating: 0, count: 12)
-        if variant != nil {
-            for piece in Piece.all {
-                _bitboards[piece.hashValue] = piece.startingPositions
-            }
+        for piece in Piece.all {
+            _bitboards[piece.hashValue] = piece.startingPositions
         }
     }
 
@@ -150,7 +148,7 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
     /// Characters beyond the 8x8 area are ignored. Empty spaces are denoted 
     /// with a whitespace or period.
     public init?(pieces: [[Character]]) {
-        self.init(variant: nil)
+        self.init()
         for rankIndex in pieces.indices {
             guard let rank = Rank(index: rankIndex)?.opposite() else { break }
             for fileIndex in pieces[rankIndex].indices {
@@ -284,13 +282,7 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
 
     /// Clears all the pieces from `self`.
     public mutating func clear() {
-        self = Board(variant: nil)
-    }
-
-    /// Populates `self` with with all of the pieces at their proper locations
-    /// for the given chess variant.
-    public mutating func populate(for variant: Variant = .standard) {
-        self = Board(variant: variant)
+        self = Board()
     }
 
     /// Returns the bitboard for `piece`.
@@ -513,7 +505,7 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
         guard parts.count == 8 else {
             return nil
         }
-        var board = Board(variant: nil)
+        var board = Board()
         for (rank, part) in zip(ranks, parts) {
             guard let pieces = pieces(for: part) else {
                 return nil

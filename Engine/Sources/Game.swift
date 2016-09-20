@@ -25,9 +25,6 @@ public class Game {
     /// The black player.
     public var blackPlayer: Player
 
-    /// The game's variant.
-    public let variant: Variant
-
     /// The game's board.
     public private(set) var board: Board
 
@@ -62,11 +59,10 @@ public class Game {
     /// - parameter whitePlayer: The game's white player. Default is a nameless human.
     /// - parameter blackPlayer: The game's black player. Default is a nameless human.
     /// - parameter variant: The game's chess variant. Default is standard.
-    public init(whitePlayer: Player = Player(), blackPlayer: Player = Player(), variant: Variant = .standard) {
+    public init(whitePlayer: Player = Player(), blackPlayer: Player = Player()) {
         self.whitePlayer = whitePlayer
         self.blackPlayer = blackPlayer
-        self.variant = variant
-        self.board = Board(variant: variant)
+        self.board = Board()
         self.playerTurn = .white
         self.castlingRights = .all
         self.halfmoves = 0
@@ -83,7 +79,6 @@ public class Game {
     private init(game: Game) {
         self.whitePlayer = game.whitePlayer
         self.blackPlayer = game.blackPlayer
-        self.variant = game.variant
         self.board = game.board
         self.outcome = game.outcome
         self.playerTurn = game.playerTurn
