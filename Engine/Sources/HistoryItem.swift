@@ -9,7 +9,7 @@
 // MARK: -
 
 /// The type of the element stored in a `game`'s `moveHistory` property.
-public struct HistoricalMove: Equatable {
+public struct HistoryItem: Equatable {
 
     // MARK: Stored Properties
 
@@ -25,7 +25,7 @@ public struct HistoricalMove: Equatable {
     // MARK: Public Functions
 
     mutating func setKingStatus(newStatus: KingStatus) {
-        self = HistoricalMove(
+        self = HistoryItem(
             move: self.move,
             piece: self.piece,
             capture: self.capture,
@@ -38,8 +38,8 @@ public struct HistoricalMove: Equatable {
 
     // MARK: - Equatable Protocol Conformance
 
-    /// Returns `true` iff the two `HistoricalMove` instances are the same.
-    public static func == (lhs: HistoricalMove, rhs: HistoricalMove) -> Bool {
+    /// Returns `true` iff the two `HistoryItem` instances are the same.
+    public static func == (lhs: HistoryItem, rhs: HistoryItem) -> Bool {
         return lhs.move == rhs.move &&
             lhs.piece == rhs.piece &&
             lhs.capture == rhs.capture &&

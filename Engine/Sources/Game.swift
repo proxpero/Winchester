@@ -46,7 +46,7 @@ public class Game {
     // MARK: - Private Stored Properties
 
     /// All of the conducted moves in the game.
-    private var _moveHistory: Array<HistoricalMove>
+    private var _moveHistory: Array<HistoryItem>
 
     /// Attackers to the current player's king. This property is computed 
     /// and updated after every turn.
@@ -96,7 +96,7 @@ public class Game {
 
     // MARK: - Public Computed Properties
 
-    public var moveHistory: Array<HistoricalMove> {
+    public var moveHistory: Array<HistoryItem> {
         return _moveHistory
     }
 
@@ -113,12 +113,12 @@ public class Game {
     /// The target square of an en passant.
     public var enPassantTarget: Square? {
         guard
-            let historicalMove = _moveHistory.last,
-            historicalMove.piece.kind.isPawn,
-            abs(historicalMove.move.rankChange) == 2
+            let historyItem = _moveHistory.last,
+            historyItem.piece.kind.isPawn,
+            abs(historyItem.move.rankChange) == 2
         else { return nil }
 
-        return Square(file: historicalMove.move.origin.file, rank: historicalMove.move.isUpward ? 3 : 6)
+        return Square(file: historyItem.move.origin.file, rank: historyItem.move.isUpward ? 3 : 6)
     }
 
     /// Algebraic representation of the half-move at `index`, where index 0 is
@@ -287,13 +287,13 @@ public class Game {
         delegate?.game(self, didExecute: move)
 
         if isKingInCheck {
-            guard var historicalMove = _moveHistory.popLast() else { fatalError() }
+            guard var historyItem = _moveHistory.popLast() else { fatalError() }
             if availableMoves().count == 0 {
-                historicalMove.setKingStatus(newStatus: .checkmated)
+                historyItem.setKingStatus(newStatus: .checkmated)
             } else {
-                historicalMove.setKingStatus(newStatus: .checked)
+                historyItem.setKingStatus(newStatus: .checked)
             }
-            _moveHistory.append(historicalMove)
+            _moveHistory.append(historyItem)
         }
     }
 
@@ -387,7 +387,7 @@ public class Game {
 
         }
 
-        let newHistoricalMove = HistoricalMove(
+        let newHistoricalMove = HistoryItem(
             move: move,
             piece: piece,
             capture: capture,
@@ -597,32 +597,32 @@ public class Game {
     }
 
     /// Returns the Standard Algebraic Notation string representation of the
-    /// provided `HistoricalMove`.
-    public func sanMove(for historicalMove: HistoricalMove) -> String {
+    /// provided `HistoryItem`.
+    public func sanMove(for historyItem: HistoryItem) -> String {
 
-        if historicalMove.move.isCastle() {
-            return historicalMove.move.isRightward ? "O-O" : "O-O-O"
+        if historyItem.move.isCastle() {
+            return historyItem.move.isRightward ? "O-O" : "O-O-O"
         }
 
         var result = ""
-        let isCapture = historicalMove.capture != nil
+        let isCapture = historyItem.capture != nil
 
-        if let c = historicalMove.piece.kind.character {
+        if let c = historyItem.piece.kind.character {
             result.append(c)
-            if let disambiguation = historicalMove.disambiguation {
+            if let disambiguation = historyItem.disambiguation {
                 result += disambiguation
             }
         } else if isCapture {
-            result.append(historicalMove.move.origin.file.character)
+            result.append(historyItem.move.origin.file.character)
         }
 
         if isCapture{
             result.append("x")
         }
 
-        result += historicalMove.move.target.description
+        result += historyItem.move.target.description
 
-        switch historicalMove.kingStatus {
+        switch historyItem.kingStatus {
         case .checked:
             result += "+"
         case .checkmated:
