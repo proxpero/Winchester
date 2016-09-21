@@ -442,7 +442,7 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
         let attackingPieces = Piece.pieces(for: color)
         let defendingPieces = Piece.pieces(for: color.inverse())
         let attacks = defendingPieces.map({ piece in
-            square.attacks(for: piece, stoppers: all)
+            square.attacks(for: piece, obstacles: all)
         })
         let queens = (attacks[2] | attacks[3]) & self[Piece(queen: color)]
         return zip(attackingPieces, attacks)
@@ -455,7 +455,7 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
      attacking the same square, useful for discovering ambiguities.
      */
     public func attacks(by piece: Piece, to square: Square) -> Bitboard {
-        return square.attacks(for: piece, stoppers: occupiedSpaces) & bitboard(for: piece)
+        return square.attacks(for: piece, obstacles: occupiedSpaces) & bitboard(for: piece)
     }
 
     /// Returns the attackers to the king for `color`.
@@ -472,8 +472,12 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
     }
 
     /// Returns `true` if the king for `color` is in check.
-    public func isKingChecked(for color: Color) -> Bool {
+    public func isKingInCheck(for color: Color) -> Bool {
         return attackersToKing(for: color) != 0
+    }
+
+    public func isKingInMultipleCheck(for color: Color) -> Bool {
+        return attackersToKing(for: color).count > 1
     }
 
     // MARK: - FEN
