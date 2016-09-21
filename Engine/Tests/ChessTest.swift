@@ -204,301 +204,10 @@ class ChessTest: XCTestCase {
 
     // MARK: Board Tests:
 
-    func testBoardInitializer() {
 
-        let boardFromCharacters = Board(pieces: [["r", "n", "b", "q", "k", "b", "n", "r"],
-                                                 ["p", "p", "p", "p", "p", "p", "p", "p"],
-                                                 [" ", " ", " ", " ", " ", " ", " ", " "],
-                                                 [" ", " ", " ", " ", " ", " ", " ", " "],
-                                                 [" ", " ", " ", " ", " ", " ", " ", " "],
-                                                 [" ", " ", " ", " ", " ", " ", " ", " "],
-                                                 ["P", "P", "P", "P", "P", "P", "P", "P"],
-                                                 ["R", "N", "B", "Q", "K", "B", "N", "R"]])
-        XCTAssertNotNil(boardFromCharacters)
-        XCTAssert(Board() == boardFromCharacters!)
-
-        let fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
-        let fenBoard = Board(fen: fen)
-        XCTAssertNotNil(fen)
-        XCTAssert(fenBoard! == boardFromCharacters!)
-        XCTAssertEqual(boardFromCharacters!.fen(), fen)
-        
-    }
-
-    func testBoardEquality() {
-
-        let b1 = Board()
-        let b2 = Board()
-
-        XCTAssertEqual(b1, b2)
-        var board = Board()
-        board.removePiece(at: .a1)
-        XCTAssertFalse(b1 == board)
-
-    }
-
-    func testBoardPieces() {
-
-        let board = Board()
-
-        XCTAssert(board.pieces.count == 32)
-        XCTAssert(Set(board.pieces) == Set(Piece.all))
-
-        let white = board.whitePieces
-        XCTAssert(white.count == 16)
-        XCTAssert(Set(white) == Set(Piece.whitePieces))
-
-        let black = board.blackPieces
-        XCTAssert(black.count == 16)
-        XCTAssert(Set(black) == Set(Piece.blackPieces))
-
-        XCTAssert(board.occupiedSpaces.count == 32)
-        XCTAssert(board.occupiedSpaces == board.bitboard(for: .white) | board.bitboard(for: .black))
-        
-    }
-
-    func testBoardIterator() {
-
-        let board = Board()
-        let spaces = Array(board)
-        let pieces = spaces.flatMap { $0.piece }
-        let whites = pieces.filter { $0.color.isWhite }
-        let blacks = pieces.filter { $0.color.isBlack }
-        let unoccupied = spaces.filter { $0.piece == nil }
-        XCTAssertEqual(spaces.count, 64)
-        XCTAssertEqual(pieces.count, 32)
-        XCTAssertEqual(whites.count, 16)
-        XCTAssertEqual(blacks.count, 16)
-        XCTAssertEqual(unoccupied.count, 32)
-        for (index, space) in spaces.enumerated() {
-            XCTAssert(space.square == Square(rawValue: index))
-        }
-
-    }
-
-    func testBoardSubscript() {
-
-        var board = Board()
-        XCTAssertEqual(Piece(pawn: .white), board[.e2])
-        XCTAssertEqual(Piece(knight: .black), board[.g8])
-        let blackpawn = Piece(pawn: .black)
-        let location = ("A", 3) as Location
-        XCTAssertNil(board[location])
-        board[location] = blackpawn
-        XCTAssertNotNil(board[location])
-        XCTAssertEqual(blackpawn, board[location])
-        board[location] = nil
-        XCTAssertNil(board[location])
-
-    }
-
-    func testBoardSwap() {
-
-        let start = Board()
-        var board = start
-        let loc1 = ("D", 1) as Location
-        let loc2 = ("F", 2) as Location
-        board.swap(loc1, loc2)
-        XCTAssertEqual(start[loc1], board[loc2])
-        XCTAssertEqual(start[loc2], board[loc1])
-
-    }
-
-    func testSpace() {
-
-        let file = File.e
-        let rank = Rank.four
-        let location = Location(file: file, rank: rank)
-        let square = Square(file: file, rank: rank)
-        let space = Board.Space(square: square)
-        XCTAssert(space == Board.Space(file: file, rank: rank))
-        XCTAssert(space == Board.Space(location: location))
-
-        XCTAssert(space.location == location)
-        XCTAssert(space.square == square)
-
-        let piece = Piece(knight: .white)
-        var knightSpace = Board.Space(piece: piece, square: square)
-        XCTAssertNotNil(knightSpace.piece)
-        XCTAssert(knightSpace.piece! == piece)
-
-        let knight = knightSpace.clear()
-        XCTAssertNil(knightSpace.piece)
-        XCTAssert(piece == knight)
-
-    }
 
     // MARK: Board Attacks:
 
-    func testAttackers_To_Square_Color() {
-
-        typealias TestCase = (
-            fen: String,
-            square: Square,
-            color: Color,
-            result: Bitboard
-        )
-
-        /*
-               Case 1
-              +-----------------+
-            8 | Q . . . . . . Q |
-            7 | . . . . . . . . |
-            6 | . . . . . . . . |
-            5 | . . . . . . . . |
-            4 | . . . . . . . . |
-            3 | . . . . . . . . |
-            2 | . . . . . . . . |
-            1 | Q . . . . . . . |
-              +-----------------+
-                a b c d e f g h
-         */
-
-        let case1: TestCase = (
-            "Q6Q/8/8/8/8/8/8/Q7",
-            .h1,
-            .white,
-            Square.a1.bitmask | Square.a8.bitmask | Square.h8.bitmask
-        )
-
-        /*
-               Case 2
-              +-----------------+
-            8 | Q . . . . . . Q |
-            7 | . . . . . . . . |
-            6 | . . . . . . . . |
-            5 | . . . . . . . . |
-            4 | . . . . . . . . |
-            3 | . . . . . . . . |
-            2 | . . . . . . . . |
-            1 | Q . . . . . r . |
-              +-----------------+
-                a b c d e f g h
-         */
-
-        let case2: TestCase = (
-            "Q6Q/8/8/8/8/8/8/Q5r1",
-            .h1,
-            .white,
-            Square.a8.bitmask | Square.h8.bitmask
-        )
-
-        let testCases = [case1, case2]
-
-        for testCase in testCases {
-            let board = Board(fen: testCase.fen)!
-            XCTAssertEqual(board.attackers(targeting: testCase.square, color: testCase.color), testCase.result)
-        }
-
-    }
-
-    func testAttacksByPieceToSquare() {
-
-        typealias TestCase = (
-            fen: String,
-            square: Square,
-            color: Color,
-            result: Bitboard
-        )
-
-        /*
-            Case 1
-           +-----------------+
-         8 | . . . . . . . . |
-         7 | . . . . . . . . |
-         6 | . . . . . . . . |
-         5 | . . . p . . . . |
-         4 | . . . . . N . . |
-         3 | . . N . . . . . |
-         2 | . . . . . . . . |
-         1 | . . . . . . . . |
-           +-----------------+
-             a b c d e f g h
-         */
-
-        let expected = (Square.c3.bitmask | Square.f4.bitmask)
-        let result = Board(fen: "8/8/8/3p4/5N2/2N5/8/8")!.attacks(by: Piece(knight: .white), to: .d5)
-
-        XCTAssertEqual(expected, result)
-
-    }
-
-    func testAttackersToKingForColor() {
-
-        typealias TestCase = (fen: String, color: Color, squares: Array<Square>)
-
-        /*
-               Case 1
-              +-----------------+
-            8 | B . . . R . . . |
-            7 | . . . . . . . . |
-            6 | . . . . . . . . |
-            5 | . . . . . . . . |
-            4 | Q . . . k . . . |
-            3 | . . . P . . N . |
-            2 | . . . . . . . . |
-            1 | . . . . . . . . |
-              +-----------------+
-                a b c d e f g h
-         */
-
-        let case1: TestCase = (
-            "B3R3/8/8/8/Q3k3/3P2N1/8/8",
-            .black,
-            [.a8, .e8, .a4, .d3, .e8, .g3]
-        )
-
-        /*
-                Case 2
-               +-----------------+
-             8 | . . . . . . . . |
-             7 | . . . . . . . . |
-             6 | . . . q . q . . |
-             5 | . . p . R . . . |
-             4 | . . . K . . q r |
-             3 | . . p . P . . . |
-             2 | . . . . . . . . |
-             1 | b . . . . . . . |
-               +-----------------+
-                 a b c d e f g h
-         */
-
-        let case2: TestCase = (
-            "8/8/3q1q2/2p1R3/3K2qr/2p1P3/8/b7",
-            .white,
-            [.c5, .d6, .g4]
-        )
-
-        /*
-                Case 3
-              +-----------------+
-            8 | . Q . . . . . . |
-            7 | . . . Q . . . . |
-            6 | . . . . Q . . . |
-            5 | Q Q . k Q . . . |
-            4 | . . . . . . . . |
-            3 | . Q . . . . . . |
-            2 | Q . . Q . . . . |
-            1 | . . . . . . . Q |
-              +-----------------+
-                a b c d e f g h
-         */
-
-        let case3: TestCase = (
-            "1Q6/3Q4/4Q3/QQ1kQ3/8/1Q6/12Q4/7Q",
-            .black,
-            [.b3, .b5, .d7, .e6, .e5, .d2, .h1]
-        )
-
-        let testCases = [case1, case2, case3]
-
-        for testCase in testCases {
-            let board = Board(fen: testCase.fen)!
-            let result = testCase.squares.reduce(Bitboard()) { $0 | $1.bitmask }
-            XCTAssertEqual(board.attackersToKing(for: testCase.color), result)
-        }
-
-    }
 
     // MARK: Bitboard Tests:
 
@@ -1001,7 +710,7 @@ class GamePositionTests: XCTestCase {
 
 // MARK: -
 
-class GameOutcomeTests: XCTestCase {
+class OutcomeTests: XCTestCase {
 
     static let ww = "1-0"
     static let bw = "0-1"
@@ -1033,7 +742,7 @@ class GameOutcomeTests: XCTestCase {
     }
 
     func testDescription() {
-        let results = [GameOutcomeTests.ww, GameOutcomeTests.bw, GameOutcomeTests.dr]
+        let results = [OutcomeTests.ww, OutcomeTests.bw, OutcomeTests.dr]
         for (outcome, desc) in zip(outcomes, results) {
             XCTAssertEqual(outcome?.description, desc)
         }
@@ -1044,10 +753,6 @@ class GameOutcomeTests: XCTestCase {
 // MARK: -
 
 class PlayerTests: XCTestCase {
-
-}
-
-class BoardTests: XCTestCase {
 
 }
 

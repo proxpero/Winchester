@@ -53,7 +53,33 @@ class PositionTests: XCTestCase {
         }
     }
 
-    
+    func testCanExecute() {
+
+        /*
+           +-----------------+
+         8 | r n b q k b n r |
+         7 | p p p p p p p p |
+         6 | . . . . . . . . |
+         5 | . . . . . . . . |
+         4 | . . . . . . . . |
+         3 | . . . . . . . . |
+         2 | P P P P P P P P |
+         1 | R N B Q K B N R |
+           +-----------------+
+             a b c d e f g h
+         */
+        let p = Position()
+        XCTAssertTrue(p._canExecute(move: Move(origin: .d2, target: .d4)))
+
+    }
+
+    func testLegalTargetSquares() {
+
+    }
+
+    func testExecuteMove() {
+        
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

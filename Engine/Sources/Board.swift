@@ -162,6 +162,45 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
         }
     }
 
+    /// Create a chess board from a valid FEN position.
+    public init?(fen: String) {
+        func pieces(for string: String) -> [Piece?]? {
+            var pieces: [Piece?] = []
+            for char in string.characters {
+                guard pieces.count < 8 else {
+                    return nil
+                }
+                if let piece = Piece(character: char) {
+                    pieces.append(piece)
+                } else if let num = Int(String(char)) {
+                    guard 1...8 ~= num else { return nil }
+                    pieces += Array(repeating: nil, count: num)
+                } else {
+                    return nil
+                }
+            }
+            return pieces
+        }
+        guard !fen.characters.contains(" ") else {
+            return nil
+        }
+        let parts = fen.characters.split(separator: "/").map(String.init)
+        let ranks = Rank.all.reversed()
+        guard parts.count == 8 else {
+            return nil
+        }
+        var board = Board()
+        for (rank, part) in zip(ranks, parts) {
+            guard let pieces = pieces(for: part) else {
+                return nil
+            }
+            for (file, piece) in zip(File.all, pieces) {
+                board[(file, rank)] = piece
+            }
+        }
+        self = board
+    }
+
     // MARK: - Public Subscripts
 
     /// Gets and sets the bitboard for `piece`.
@@ -228,6 +267,30 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
     /// The board's black pieces.
     public var blackPieces: [Piece] {
         return pieces.filter({ $0.color.isBlack })
+    }
+
+    /// Returns the FEN string for the board.
+    public var fen: String {
+        func fen(forRank rank: Rank) -> String {
+            var fen = ""
+            var accumulator = 0
+            for space in spaces(at: rank) {
+                if let piece = space.piece {
+                    if accumulator > 0 {
+                        fen += String(accumulator)
+                        accumulator = 0
+                    }
+                    fen += String(piece.character)
+                } else {
+                    accumulator += 1
+                    if space.file == .h {
+                        fen += String(accumulator)
+                    }
+                }
+            }
+            return fen
+        }
+        return Rank.all.reversed().map(fen).joined(separator: "/")
     }
 
     // MARK: - Board Population.
@@ -412,7 +475,7 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
 
     /// A textual representation of `self`.
     public var description: String {
-        return "Board(\(fen()))"
+        return "Board(\(fen))"
     }
 
     /// The hash value.
@@ -432,6 +495,22 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
     private var _bitboards: Array<Bitboard>
 
     // MARK: - Attackers
+
+    internal func _execute(move: Move, isEnPassant: Bool) -> Board {
+        var board = self
+        if move.isCastle() {
+            let (rookOrigin, rookTarget) = move._castleSquares()
+            board[rookTarget] = board[rookOrigin]
+            board[rookOrigin] = nil
+        }
+        if isEnPassant {
+            let captureSquare = Square(file: move.target.file, rank: move.origin.rank)
+            board[captureSquare] = nil
+        }
+        board[move.target] = board[move.origin]
+        board[move.origin] = nil
+        return board
+    }
 
     /// Returns the attackers to `square` corresponding to `color`.
     ///
@@ -510,69 +589,5 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
         return result
     }
 
-    // MARK: - FEN
-
-    /// Create a chess board from a valid FEN position.
-    public init?(fen: String) {
-        func pieces(for string: String) -> [Piece?]? {
-            var pieces: [Piece?] = []
-            for char in string.characters {
-                guard pieces.count < 8 else {
-                    return nil
-                }
-                if let piece = Piece(character: char) {
-                    pieces.append(piece)
-                } else if let num = Int(String(char)) {
-                    guard 1...8 ~= num else { return nil }
-                    pieces += Array(repeating: nil, count: num)
-                } else {
-                    return nil
-                }
-            }
-            return pieces
-        }
-        guard !fen.characters.contains(" ") else {
-            return nil
-        }
-        let parts = fen.characters.split(separator: "/").map(String.init)
-        let ranks = Rank.all.reversed()
-        guard parts.count == 8 else {
-            return nil
-        }
-        var board = Board()
-        for (rank, part) in zip(ranks, parts) {
-            guard let pieces = pieces(for: part) else {
-                return nil
-            }
-            for (file, piece) in zip(File.all, pieces) {
-                board[(file, rank)] = piece
-            }
-        }
-        self = board
-    }
-
-    /// Returns the FEN string for the board.
-    public func fen() -> String {
-        func fen(forRank rank: Rank) -> String {
-            var fen = ""
-            var accumulator = 0
-            for space in spaces(at: rank) {
-                if let piece = space.piece {
-                    if accumulator > 0 {
-                        fen += String(accumulator)
-                        accumulator = 0
-                    }
-                    fen += String(piece.character)
-                } else {
-                    accumulator += 1
-                    if space.file == .h {
-                        fen += String(accumulator)
-                    }
-                }
-            }
-            return fen
-        }
-        return Rank.all.reversed().map(fen).joined(separator: "/")
-    }
 
 }

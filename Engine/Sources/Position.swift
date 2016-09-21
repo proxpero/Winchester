@@ -102,7 +102,7 @@ public struct Position: Equatable, CustomStringConvertible {
     /// Returns the FEN string for the position.
     public var fen: String {
         let transform = { "\($0 as Square)".lowercased() }
-        return board.fen()
+        return board.fen
             + " \(playerTurn.isWhite ? "w" : "b") \(castlingRights.description) "
             + (enPassantTarget.map(transform) ?? "-")
             + " \(halfmoves) \(fullmoves)"
@@ -146,7 +146,7 @@ public struct Position: Equatable, CustomStringConvertible {
         return board.bitboard(for: color).reduce(0) { $0 | _legalTargetSquares(from: $1, considerHalfmoves: considerHalfmoves).bitmask }
     }
 
-    internal func _legalTargetSquares(for color: Color, considerHalfmoves: Bool) -> [Square] {
+    internal func _legalTargetSquares(for color: Color, considerHalfmoves: Bool = false) -> [Square] {
         return _legalTargetsBitboard(for: color, considerHalfmoves: considerHalfmoves).map { $0 }
     }
 
@@ -166,7 +166,7 @@ public struct Position: Equatable, CustomStringConvertible {
     }
 
     internal func _undefendedSquares(for color: Color) -> [Square] {
-        return _legalTargetSquares(for: color, considerHalfmoves: false)
+        return []
     }
 
     internal func _legalCaptures(for color: Color) -> [Square] {
@@ -177,7 +177,7 @@ public struct Position: Equatable, CustomStringConvertible {
     }
 
     /// Returns the moves bitboard currently available for the piece at `square`, if any.
-    internal func _legalTargetSquares(from origin: Square, considerHalfmoves: Bool) -> [Square] {
+    internal func _legalTargetSquares(from origin: Square, considerHalfmoves: Bool = false) -> [Square] {
 
         if considerHalfmoves && halfmoves >= 100 {
             return []
@@ -228,7 +228,10 @@ public struct Position: Equatable, CustomStringConvertible {
         }
 
         func isLegal(target: Square) -> Bool {
-            return _canExecute(move: Move(origin: origin, target: target))
+            let move = Move(origin: origin, target: target)
+            let isEnPassant = (enPassantTarget != nil) && (enPassantTarget! == target)
+            let newBoard = board._execute(move: move, isEnPassant: isEnPassant)
+            return newBoard.attackersToKing(for: playerTurn).count == 0
         }
 
         return movesBitboard.filter(isLegal)
@@ -283,6 +286,10 @@ public struct Position: Equatable, CustomStringConvertible {
         newBoard[endPiece][move.target] = true
         if let capture = capture {
             newBoard[capture][captureSquare] = false
+        }
+
+        guard newBoard.attackersToKing(for: playerTurn).count == 0 else {
+            return nil
         }
 
         let enPassant: Square? = {
