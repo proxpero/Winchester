@@ -9,27 +9,33 @@
 /// A game position.
 public struct Position: Equatable, CustomStringConvertible {
 
-    // MARK: Stored Properties
+    // MARK: - Stored Properties
 
     /// The board for the position.
-    public var board: Board
+    public private(set) var board: Board
 
     /// The active player turn.
-    public var playerTurn: PlayerTurn
+    public private(set) var playerTurn: PlayerTurn
 
     /// The castling rights.
-    public var castlingRights: CastlingRights
+    public private(set) var castlingRights: CastlingRights
 
     /// The en passant target location.
-    public var enPassantTarget: Square?
+    public private(set) var enPassantTarget: Square?
 
     /// The halfmove number.
-    public var halfmoves: UInt
+    public private(set) var halfmoves: UInt
 
     /// The fullmove clock.
-    public var fullmoves: UInt
+    public private(set) var fullmoves: UInt
 
-    // MARK: Initializers
+
+    public private(set) var _attackersToKing: Bitboard = 0
+
+    /// The outcome of the position.
+    public private(set) var outcome: Outcome?
+
+    // MARK: - Public Initializers
 
     /// Create a position.
     public init(board: Board = Board(),
@@ -44,6 +50,8 @@ public struct Position: Equatable, CustomStringConvertible {
         self.enPassantTarget = enPassantTarget
         self.halfmoves = halfmoves
         self.fullmoves = fullmoves
+        self._attackersToKing = board.attackersToKing(for: playerTurn)
+        self.outcome = _outcome
     }
 
     /// Create a position from a valid FEN string.
@@ -80,17 +88,24 @@ public struct Position: Equatable, CustomStringConvertible {
                   enPassantTarget: ep,
                   halfmoves: halfmoves,
                   fullmoves: fullmoves)
+        self.outcome = _outcome
+        self._attackersToKing = board.attackersToKing(for: playerTurn)
     }
 
-    // MARK: Computed Properties and Functions
+    // MARK: - Public Computed Properties and Functions
 
-    /// A textual representation of `self`.
-    public var description: String {
-        return fen()
+    /// Returns `true` if the current player's king is in check.
+    public var isKingInCheck: Bool {
+        return board.isKingInCheck(for: playerTurn)
+    }
+
+    /// Returns `true` if the current player's king is checked by two or more pieces.
+    public var isKingInMultipleCheck: Bool {
+        return board.isKingInMultipleCheck(for: playerTurn)
     }
 
     /// Returns the FEN string for the position.
-    public func fen() -> String {
+    public var fen: String {
         let transform = { "\($0 as Square)".lowercased() }
         return board.fen()
             + " \(playerTurn.isWhite ? "w" : "b") \(castlingRights.description) "
@@ -98,16 +113,45 @@ public struct Position: Equatable, CustomStringConvertible {
             + " \(halfmoves) \(fullmoves)"
     }
 
+    // MARK: - Private Computed Properties and Functions
+
+    private var _outcome: Outcome? {
+        let inCheck = board.isKingInCheck(for: playerTurn)
+        let canMove = _legalTargets(considerHalfmoves: true).count == 0
+
+        switch (canMove, inCheck) {
+        case (false, true): return Outcome.win(playerTurn.inverse())
+        case (false, false): return Outcome.draw
+        default:
+            return nil
+        }
+    }
+
+    internal var _kingStatus: KingStatus {
+        let checked = board.isKingInCheck(for: playerTurn)
+        let mated = _legalTargets(considerHalfmoves: true).count == 0
+        switch (checked, mated) {
+        case (true, true): return .checkmated
+        case (true, false): return .checked
+        default: return .safe
+        }
+    }
+
+    // MARK: - CustomStringConvertible Protocol Conformance
+
+    public var description: String {
+        return fen
+    }
+
     // MARK: - Equatable Protocol Conformance
 
-    /// Returns `true` iff the two positions are the same.
     public static func == (lhs: Position, rhs: Position) -> Bool {
-        return lhs.playerTurn == rhs.playerTurn
-            && lhs.castlingRights == rhs.castlingRights
-            && lhs.halfmoves == rhs.halfmoves
-            && lhs.fullmoves == rhs.fullmoves
-            && lhs.enPassantTarget == rhs.enPassantTarget
-            && lhs.board == rhs.board
+        return lhs.playerTurn == rhs.playerTurn &&
+                lhs.castlingRights == rhs.castlingRights &&
+                lhs.halfmoves == rhs.halfmoves &&
+                lhs.fullmoves == rhs.fullmoves &&
+                lhs.enPassantTarget == rhs.enPassantTarget &&
+                lhs.board == rhs.board
     }
 
 }
