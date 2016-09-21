@@ -296,16 +296,6 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
         return (file.index & 1 != rank.index & 1) ? .white : .black
     }
 
-    /// Returns moves from the squares in `squares` to `self`.
-//    public func targeted<S: Sequence>(by squares: S) -> [Move] where S.Iterator.Element == Square {
-//        return squares.moves(to: self)
-//    }
-
-    /// Returns moves from `self` to the squares in `squares`.
-//    public func moves<S: Sequence>(to squares: S) -> [Move] where S.Iterator.Element == Square {
-//        return squares.moves(from: self)
-//    }
-
     // MARK: - Attacks
 
     /// Returns a bitboard mask of attacks for a king at `self`.
@@ -321,10 +311,10 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
     /// Returns a bitboard mask of attacks for a piece at `self`.
     ///
     /// - parameter piece: The piece for the attacks.
-    /// - parameter stoppers: The pieces stopping a sliding move. The returned bitboard includes the stopped space.
+    /// - parameter obstacles: The pieces stopping a sliding move. The returned bitboard includes the stopped space.
     ///
-    /// - seealso: `attackMoves(for:stoppers:)`
-    public func attacks(for occupyingPiece: Piece, stoppers: Bitboard = 0) -> Bitboard {
+    /// - seealso: `attackMoves(for:obstacles:)`
+    public func attacks(for occupyingPiece: Piece, obstacles: Bitboard = 0) -> Bitboard {
         switch occupyingPiece.kind {
         case .king:
             return kingAttacks()
@@ -333,51 +323,9 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
         case .pawn:
             return _pawnAttackTable(for: occupyingPiece.color)[rawValue]
         default:
-            return bitmask._attacks(for: occupyingPiece, stoppers: stoppers)
+            return bitmask._attacks(for: occupyingPiece, obstacles: obstacles)
         }
     }
-
-//    /// Returns an array of attack moves for a piece at `self`.
-//    ///
-//    /// - seealso: `attacks(for:stoppers:)`
-//    public func attackMoves(for piece: Piece, stoppers: Bitboard = 0) -> [Move] {
-//        return attacks(for: piece, stoppers: stoppers).moves(from: self)
-//    }
-//
-//    /// returns the pushes available to a pawn occupying `self`.
-//    private func availablePawnPushes(for color: Color, empty: Bitboard) -> Bitboard {
-//        return bitmask._pawnPushes(for: color, empty: empty)
-//    }
-//
-//    /// Returns the attacks available to a pawn occupying `self`.
-//    private func availablePawnAttacks(for color: Color) -> Bitboard {
-//        return bitmask._pawnAttacks(for: color)
-//    }
-//
-//    /// returns the attacks available to a knight occupying `self`.
-//    private func availableKnightAttacks() -> Bitboard {
-//        return bitmask._knightAttacks()
-//    }
-//
-//    /// Returns the attacks available to a bishop occupying `self`.
-//    private func availableBishopAttacks(stoppers bitboard: Bitboard = 0) -> Bitboard {
-//        return bitmask._bishopAttacks(stoppers: bitboard)
-//    }
-//
-//    /// Return the attacks available to a rook occupying `self`.
-//    private func availableRookAttacks(stoppers bitboard: Bitboard = 0) -> Bitboard {
-//        return bitmask._rookAttacks(stoppers: bitboard)
-//    }
-//
-//    /// Return the attacks available to a queen occupying `self`.
-//    private func availableQueenAttacks(stoppers bitboard: Bitboard = 0) -> Bitboard {
-//        return bitmask._queenAttacks(stoppers: bitboard)
-//    }
-//
-//    /// Returns the attacks available to a king occupying `self`.
-//    private func availableKingAttacks() -> Bitboard {
-//        return bitmask._kingAttacks()
-//    }
 
     // MARK: - Static Properties and Functions
 
@@ -391,4 +339,10 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
         return "\(file)\(rank)"
     }
 
+}
+
+extension Sequence where Iterator.Element == Square {
+    var bitmask: Bitboard {
+        return self.reduce(0) { $0 | $1.bitmask }
+    }
 }
