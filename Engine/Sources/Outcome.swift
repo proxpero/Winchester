@@ -17,6 +17,9 @@ public enum Outcome: CustomStringConvertible, Hashable  {
     /// A draw.
     case draw
 
+    /// An indeterminant outcome.
+    case undetermined
+
     // MARK: Initializers
 
     /// Creates an `Outcome` from a string representation. Trims whitespace.
@@ -28,6 +31,7 @@ public enum Outcome: CustomStringConvertible, Hashable  {
         case Outcome.whiteWin: self = .win(.white)
         case Outcome.blackWin: self = .win(.black)
         case Outcome.drawnGame: self = .draw
+        case Outcome.indeterminantGame: self = .undetermined
         default:
             return nil
         }
@@ -48,7 +52,11 @@ public enum Outcome: CustomStringConvertible, Hashable  {
 
     /// Returns `true` if `self` is a draw?
     public var isDraw: Bool {
-        return !isWin
+        if case .draw = self { return true } else { return false }
+    }
+
+    public var isUndetermined: Bool {
+        if case .undetermined = self { return true } else { return false }
     }
 
     /// The point value for a player. The default values are: win: 1.0, loss: 0.0, draw: 0.5.
@@ -65,10 +73,13 @@ public enum Outcome: CustomStringConvertible, Hashable  {
 
     /// A textual representation of `self`.
     public var description: String {
-        if let color = winningColor {
+        switch self {
+        case .win(let color):
             return color.isWhite ? Outcome.whiteWin : Outcome.blackWin
-        } else {
+        case .draw:
             return Outcome.drawnGame
+        case .undetermined:
+            return Outcome.indeterminantGame
         }
     }
 
@@ -76,6 +87,7 @@ public enum Outcome: CustomStringConvertible, Hashable  {
     public static let whiteWin = "1-0"
     public static let blackWin = "0-1"
     public static let drawnGame = "1/2-1/2"
+    public static let indeterminantGame = "*"
     public static let winValue = 1.0
     public static let lossValue = 0.0
     public static let drawValue = 0.5
