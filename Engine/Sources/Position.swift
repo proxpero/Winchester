@@ -12,25 +12,25 @@ public struct Position: Equatable, CustomStringConvertible {
     // MARK: - Stored Properties
 
     /// The board for the position.
-    public private(set) var board: Board
+    internal private(set) var board: Board
 
     /// The active player turn.
-    public private(set) var playerTurn: PlayerTurn
+    internal private(set) var playerTurn: PlayerTurn
 
     /// The castling rights.
-    public private(set) var castlingRights: CastlingRights
+    internal private(set) var castlingRights: CastlingRights
 
     /// The en passant target location.
-    public private(set) var enPassantTarget: Square?
+    internal private(set) var enPassantTarget: Square?
 
     /// The halfmove number.
-    public private(set) var halfmoves: UInt
+    internal private(set) var halfmoves: UInt
 
     /// The fullmove clock.
-    public private(set) var fullmoves: UInt
+    internal private(set) var fullmoves: UInt
 
-
-    public private(set) var _attackersToKing: Bitboard = 0
+    ///
+    internal private(set) var _attackersToKing: Bitboard = 0
 
     // MARK: - Public Initializers
 
@@ -148,6 +148,21 @@ public struct Position: Equatable, CustomStringConvertible {
 
     internal func _legalTargetSquares(for color: Color, considerHalfmoves: Bool) -> [Square] {
         return _legalTargetsBitboard(for: color, considerHalfmoves: considerHalfmoves).map { $0 }
+    }
+
+    internal var _uncheckedGuardingMoves: [Move] {
+        return board._uncheckedGuardingMoves(for: playerTurn)
+    }
+
+    /// An array of `Square`s currently occupied by `color` and which can
+    /// be retaken in the event that one is captured. 
+    ///
+    /// - parameter color: The color whose position is under consideration.
+    ///
+    /// - returns: An array of `Square`s which can be seized by `color`
+    /// - warning: The resulting `Square`s are not necessarily unique.
+    internal var _uncheckedGuardedSquares: [Square] {
+        return _uncheckedGuardingMoves.map { $0.target }
     }
 
     internal func _undefendedSquares(for color: Color) -> [Square] {

@@ -480,9 +480,11 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
         return attackersToKing(for: color).count > 1
     }
 
-    internal func _uncheckedGuardedSquaresBitboard(for color: Color) -> [Square] {
+    /// Returns an array of moves which the player for `color` might execute
+    /// to retake a lost piece.
+    internal func _uncheckedGuardingMoves(for color: Color) -> [Move] {
 
-        var result: [Square] = []
+        var result: [Move] = []
 
         let currentBits = bitboard(for: color)
         let enemyBits = bitboard(for: color.inverse())
@@ -493,9 +495,14 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
             guard let piece = self[candidate] else { fatalError("Expected a piece at \(candidate.description)") }
 
             for origin in newBits {
-                let attacks = origin.bitmask._attacks(for: piece, obstacles: occupiedBits)
-                if attacks.contains(candidate) {
-                    result.append(candidate)
+                let isDefender = origin.bitmask._attacks(for: piece, obstacles: occupiedBits).contains(candidate)
+                let exposesKing: Bool = {
+                    var newBoard = self
+                    newBoard[origin] = nil
+                    return newBoard.attackersToKing(for: color).count > 0
+                }()
+                if isDefender && !exposesKing {
+                    result.append(Move(origin: origin, target: candidate))
                 }
             }
         }

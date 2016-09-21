@@ -37,10 +37,23 @@ class PositionTests: XCTestCase {
 
     func testInitialization() {
         for fen in sampleFens {
-            _ = Position(fen: fen)
-            print(fen)
+            let p = Position(fen: fen)
+            XCTAssertNotNil(p)
         }
     }
+
+    func testEquality() {
+        XCTAssertEqual(Position(), Position())
+    }
+
+    func testFen() {
+        for fen in sampleFens {
+            let p = Position(fen: fen)!
+            XCTAssertEqual(p.fen, fen)
+        }
+    }
+
+    
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
