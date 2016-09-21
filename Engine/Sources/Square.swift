@@ -312,8 +312,6 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
     ///
     /// - parameter piece: The piece for the attacks.
     /// - parameter obstacles: The pieces stopping a sliding move. The returned bitboard includes the stopped space.
-    ///
-    /// - seealso: `attackMoves(for:obstacles:)`
     public func attacks(for occupyingPiece: Piece, obstacles: Bitboard = 0) -> Bitboard {
         switch occupyingPiece.kind {
         case .king:
