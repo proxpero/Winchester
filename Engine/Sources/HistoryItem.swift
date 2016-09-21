@@ -13,41 +13,24 @@ public struct HistoryItem: Equatable {
 
     // MARK: Stored Properties
 
+    let position: Position
     let move: Move
     let piece: Piece
     let capture: Piece?
-    let kingAttackers: Bitboard
-    let halfmoves: UInt
-    let rights: CastlingRights
-    let disambiguation: String?
-    let kingStatus: KingStatus
+    let sanMove: String
 
     // MARK: Public Functions
-
-    mutating func setKingStatus(newStatus: KingStatus) {
-        self = HistoryItem(
-            move: self.move,
-            piece: self.piece,
-            capture: self.capture,
-            kingAttackers: self.kingAttackers,
-            halfmoves: self.halfmoves,
-            rights: self.rights,
-            disambiguation: self.disambiguation,
-            kingStatus: newStatus)
-    }
 
     // MARK: - Equatable Protocol Conformance
 
     /// Returns `true` iff the two `HistoryItem` instances are the same.
     public static func == (lhs: HistoryItem, rhs: HistoryItem) -> Bool {
-        return lhs.move == rhs.move &&
+        return
+            lhs.position == rhs.position &&
+            lhs.move == rhs.move &&
             lhs.piece == rhs.piece &&
             lhs.capture == rhs.capture &&
-            lhs.kingAttackers == rhs.kingAttackers &&
-            lhs.halfmoves == rhs.halfmoves &&
-            lhs.rights == rhs.rights &&
-            lhs.disambiguation == rhs.disambiguation &&
-            lhs.kingStatus == rhs.kingStatus
+            lhs.sanMove == rhs.sanMove
     }
 
 }
@@ -59,38 +42,14 @@ public enum KingStatus {
     case safe
     case checked
     case checkmated
-}
 
-// MARK: - Execution Error Type
-
-/// An error in move execution.
-///
-/// Thrown by the `execute(move:promotion:)` or `execute(uncheckedMove:promotion:)` method for a `Game` instance.
-public enum ExecutionError: Error {
-
-    // MARK: Cases
-
-    /// Missing piece at a square.
-    case missingPiece(Square)
-
-    /// Attempted illegal move.
-    case illegalMove(Move, Color, Board)
-
-    /// Could not promote with a piece kind.
-    case invalidPromotion(Piece.Kind)
-
-    // MARK: Computed Properties and Functions
-
-    /// The error message
-    public var message: String {
+    var algebraicAnnotation: String {
         switch self {
-        case let .missingPiece(square):
-            return "Missing piece: \(square)"
-        case let .illegalMove(move, color, board):
-            return "Illegal move: \(move) for \(color) on \(board)"
-        case let .invalidPromotion(pieceKind):
-            return "Invalid promoton: \(pieceKind)"
+        case .checkmated:
+            return "#"
+        case .checked: return "+"
+        default:
+            return ""
         }
     }
-
 }
