@@ -480,6 +480,29 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
         return attackersToKing(for: color).count > 1
     }
 
+    internal func _uncheckedGuardedSquaresBitboard(for color: Color) -> [Square] {
+
+        var result: [Square] = []
+
+        let currentBits = bitboard(for: color)
+        let enemyBits = bitboard(for: color.inverse())
+
+        for candidate in currentBits {
+            let newBits = currentBits & ~candidate.bitmask
+            let occupiedBits = newBits | enemyBits
+            guard let piece = self[candidate] else { fatalError("Expected a piece at \(candidate.description)") }
+
+            for origin in newBits {
+                let attacks = origin.bitmask._attacks(for: piece, obstacles: occupiedBits)
+                if attacks.contains(candidate) {
+                    result.append(candidate)
+                }
+            }
+        }
+
+        return result
+    }
+
     // MARK: - FEN
 
     /// Create a chess board from a valid FEN position.
