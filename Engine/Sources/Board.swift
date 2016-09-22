@@ -132,9 +132,6 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
     // MARK: - Public Initializers
 
     /// Create a chess board.
-    ///
-    /// - parameter variant: The variant to populate the board for. Won't 
-    ///   populate if `nil`. Default is `Standard`.
     public init() {
         _bitboards = Array(repeating: 0, count: 12)
         for piece in Piece.all {
