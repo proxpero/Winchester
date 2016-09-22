@@ -125,7 +125,6 @@ public class Game {
         return _history.map({ $0.move })
     }
 
-
     // MARK: - Move Undo/Redo: Public Functions
 
     /// Undoes the previous move and returns it, if any.
