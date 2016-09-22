@@ -55,25 +55,115 @@ class PositionTests: XCTestCase {
 
     func testCanExecute() {
 
-        /*
-           +-----------------+
-         8 | r n b q k b n r |
-         7 | p p p p p p p p |
-         6 | . . . . . . . . |
-         5 | . . . . . . . . |
-         4 | . . . . . . . . |
-         3 | . . . . . . . . |
-         2 | P P P P P P P P |
-         1 | R N B Q K B N R |
-           +-----------------+
-             a b c d e f g h
-         */
-        let p = Position()
-        XCTAssertTrue(p._canExecute(move: Move(origin: .d2, target: .d4)))
+        struct Sample {
+            let position: Position
+            let trueMoves: [Move]
+            let falseMoves: [Move]
+            func performTest() {
+                for move in trueMoves {
+                    XCTAssertTrue(position._canExecute(move: move))
+                }
+
+                for move in falseMoves {
+                    XCTAssertFalse(position._canExecute(move: move))
+                }
+            }
+        }
+
+        let position1: Sample = {
+
+            /*
+               +-----------------+
+             8 | r n b q k b n r |
+             7 | p p p p p p p p |
+             6 | . . . . . . . . |
+             5 | . . . . . . . . |
+             4 | . . . . . . . . |
+             3 | . . . . . . . . |
+             2 | P P P P P P P P |
+             1 | R N B Q K B N R |
+               +-----------------+
+                 a b c d e f g h
+             */
+
+            let p1 = Position()
+
+            let trueMoves = [
+                Move(origin: .d2, target: .d3),
+                Move(origin: .d2, target: .d4),
+                Move(origin: .g1, target: .f3)
+            ]
+
+            let falseMoves = [
+                Move(origin: .d2, target: .d5),
+                Move(origin: .d3, target: .d4)
+            ]
+
+            return Sample(position: p1, trueMoves: trueMoves, falseMoves: falseMoves)
+
+        }()
+
+        position1.performTest()
 
     }
 
     func testLegalTargetSquares() {
+
+        struct Sample {
+            let origin: Square
+            let trueTargets: [Square]
+            let falseTargets: [Square]
+        }
+
+        struct TestPositon {
+            let position: Position
+            let samples: [Sample]
+            func performTest() {
+                for sample in samples {
+                    for target in sample.trueTargets {
+                        XCTAssertTrue(position._legalTargetSquares(from: sample.origin).contains(target), "\(target.description) is a legal target from \(sample.origin.description)")
+                    }
+                    for target in sample.falseTargets {
+                        XCTAssertFalse(position._legalTargetSquares(from: sample.origin).contains(target), "\(target.description) is NOT a legal target from \(sample.origin.description)")
+                    }
+                }
+            }
+        }
+
+        let position1: TestPositon = {
+
+            /*
+               +-----------------+
+             8 | r n b q k b n r |
+             7 | p p p p p p p p |
+             6 | . . . . . . . . |
+             5 | . . . . . . . . |
+             4 | . . . . . . . . |
+             3 | . . . . . . . . |
+             2 | P P P P P P P P |
+             1 | R N B Q K B N R |
+               +-----------------+
+                 a b c d e f g h
+             */
+
+            let p1 = Position()
+
+            let sample1 = Sample(
+                origin: .d2,
+                trueTargets: [.d3, .d4],
+                falseTargets: [.d5, .e3]
+            )
+
+            let sample2 = Sample(
+                origin: .b1,
+                trueTargets: [.a3, .c3],
+                falseTargets: [.d2]
+            )
+
+            return TestPositon(position: p1, samples: [sample1, sample2])
+        }()
+
+        position1.performTest()
 
     }
 
