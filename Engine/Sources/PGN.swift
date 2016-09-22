@@ -177,7 +177,7 @@ public struct PGN: Equatable {
     private var _tagPairs: [Tag: String]
 
     /// The moves in standard algebraic notation.
-    private var _algebraicMoves: [String]
+    private var _sanMoves: [String]
 
     // MARK: - Initializers
 
@@ -195,7 +195,7 @@ public struct PGN: Equatable {
             } else if line.characters.first != "%" {
                 let stripped = try line._commentsStripped(strings: false)
                 let (moves, outcome) = try stripped._moves()
-                self._algebraicMoves += moves
+                self._sanMoves += moves
                 if let outcome = outcome {
                     self.outcome = outcome
                 }
@@ -205,7 +205,7 @@ public struct PGN: Equatable {
 
     // Create PGN with `tagPairs` and `moves`.
     public init(tagPairs: [Tag: String] = [:], moves: [String] = []) {
-        self._algebraicMoves = moves
+        self._sanMoves = moves
         self._tagPairs = tagPairs
     }
 
@@ -232,7 +232,7 @@ public struct PGN: Equatable {
     }
 
     public var sanMoves: [String] {
-        return _algebraicMoves
+        return _sanMoves
     }
 
     public var tagPairs: [Tag: String] {
@@ -267,11 +267,11 @@ public struct PGN: Equatable {
 
     public var fullMoves: [String] {
         var result = [String]()
-        for num in stride(from: 0, to: _algebraicMoves.endIndex, by: 2) {
+        for num in stride(from: 0, to: _sanMoves.endIndex, by: 2) {
             let moveNumber = (num + 2) / 2
-            var moveString = "\(moveNumber). \(_algebraicMoves[num])"
-            if num + 1 < _algebraicMoves.endIndex {
-                moveString += " \(_algebraicMoves[num+1])"
+            var moveString = "\(moveNumber). \(_sanMoves[num])"
+            if num + 1 < _sanMoves.endIndex {
+                moveString += " \(_sanMoves[num+1])"
             }
             result.append(moveString)
         }
@@ -331,7 +331,7 @@ public struct PGN: Equatable {
     /// Returns a Boolean value indicating whether two values are equal.
     public static func == (lhs: PGN, rhs: PGN) -> Bool {
         return lhs._tagPairs == rhs._tagPairs
-            && lhs._algebraicMoves == rhs._algebraicMoves
+            && lhs._sanMoves == rhs._sanMoves
         
     }
 
