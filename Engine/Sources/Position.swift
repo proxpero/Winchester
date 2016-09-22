@@ -6,6 +6,8 @@
 //
 //
 
+import Foundation
+
 /// A game position.
 public struct Position: Equatable, CustomStringConvertible {
 
@@ -99,6 +101,87 @@ public struct Position: Equatable, CustomStringConvertible {
         return board.isKingInMultipleCheck(for: playerTurn)
     }
 
+    public func move(forSan move: String) -> Move? {
+
+        let san = move.trimmingCharacters(in: CharacterSet(charactersIn: "+=!?#"))
+
+        if san == "O-O" { return Move(castle: playerTurn, side: .kingside) }
+        if san == "O-O-O" { return Move(castle: playerTurn, side: .queenside) }
+
+        let index = san.index(san.endIndex, offsetBy: -2)
+        guard let target = Square(san.substring(from: index)) else {
+            return nil
+        }
+
+        var candidate = san.substring(to: index)
+
+        if
+            candidate.isEmpty,
+            let start = origin(for: Piece(pawn: playerTurn), target: target, candidates: target.file.bitmask)
+        {
+            return Move(origin: start, target: target)
+        }
+
+        candidate = candidate.trimmingCharacters(in: CharacterSet(charactersIn: "x"))
+
+        if candidate.characters.count == 1, let char = candidate.characters.first {
+
+            // Regular move
+            if let kind = Piece.Kind(character: char) {
+                let piece = Piece(kind: kind, color: playerTurn)
+                if let start = origin(for: piece, target: target, candidates: board.bitboard(for: piece)) {
+                    return Move(origin: start, target: target)
+                }
+            }
+
+            // Pawn capture
+            if
+                let file = File(char), let start = origin(for: Piece(pawn: playerTurn), target: target, candidates: file.bitmask) {
+                return Move(origin: start, target: target)
+            }
+
+        }
+
+        if
+            candidate.characters.count == 2,
+            let char = candidate.characters.first,
+            let kind = Piece.Kind(character: char)
+        {
+            let disambiguation = candidate.characters[candidate.index(after: candidate.startIndex)]
+
+            if
+                let file = File(disambiguation),
+                let start = origin(for: Piece(kind: kind, color: playerTurn), target: target, candidates: file.bitmask)
+            {
+                return Move(start, target)
+            }
+
+            if
+                let num = Int(String(disambiguation)),
+                let rank = Rank(num),
+                let start = origin(for: Piece(kind: kind, color: playerTurn), target: target, candidates: rank.bitmask)
+            {
+                return Move(start, target)
+            }
+        }
+        return nil
+    }
+
+    /// Returns the square a piece must have originated from to have arrived at
+    /// the target square. This is useful when reconstructing a game from a list
+    /// of moves.
+    ///
+    /// - parameter piece: the `Piece` that made the move.
+    /// - parameter target: the `Square` that `piece` moved to.
+    /// - parameter candidates: a bitboard holding a set of the possible squares
+    ///   the piece might have originated from. This function uses the bitboard
+    ///   to disambiguate possible origins. This function already filters for
+    ///   pieces. The caller should filter for files or ranks, for example, to
+    ///   help disambiguate.
+    public func origin(for piece: Piece, target: Square, candidates: Bitboard = Bitboard.full) -> Square? {
+        return (board.bitboard(for: piece) & candidates).filter { _canExecute(move: Move(origin: $0, target: target)) }.first
+    }
+
     /// Returns the FEN string for the position.
     public var fen: String {
         let transform = { "\($0 as Square)".lowercased() }
@@ -171,7 +254,7 @@ public struct Position: Equatable, CustomStringConvertible {
 
     internal func _legalCaptures(for color: Color) -> [Square] {
         let moves = board.bitboard(for: color)
-            .reduce(0) { $0 | _legalTargetSquares(from: $1, considerHalfmoves: false).bitmask }
+            .reduce(0) { $0 | _legalTargetSquares(from: $1).bitmask }
         let opponents = board.bitboard(for: color.inverse())
         return (moves & opponents).map { $0 }
     }
