@@ -27,6 +27,11 @@ public struct Move: Hashable, CustomStringConvertible {
         self.target = target
     }
 
+    public init(_ origin: Square, _ target: Square) {
+        self.origin = origin
+        self.target = target
+    }
+
     /// Create a move with origin and target locations.
     public init(origin: Location, target: Location) {
         self.origin = Square(location: origin)
