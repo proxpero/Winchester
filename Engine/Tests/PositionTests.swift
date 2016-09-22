@@ -53,6 +53,161 @@ class PositionTests: XCTestCase {
         }
     }
 
+    func testMoveForSanMove() {
+
+        /*
+           +-----------------+
+         8 | . . b k . . . r |
+         7 | N . . . N . . . |
+         6 | . . . . . . . . |
+         5 | . . . . . p P . |
+         4 | . . . . p . . . |
+         3 | P . . P . . . . |
+         2 | . P P . . . . . |
+         1 | R . . . K . . R |
+           +-----------------+
+             a b c d e f g h
+         */
+
+        let fen = "2bk3r/N3N3/8/5pP1/4p3/P2P4/1PP5/R3K2R w KQkq f6 0 1"
+        let position = Position(fen: fen)
+        XCTAssertNotNil(position)
+
+//        let moves: [(String, Move)] = [
+//            ("Ra2", Move(.a1, .a2)),   // regular
+//            ("gxf6", Move(.g5, .f6)),  // en passant
+//            ("Kd2", Move(.e1, .d2)),   // regular
+//            ("dxe4", Move(.d3, .e4)),  // pawn capture
+//            ("O-O-O", Move(.e1, .c1)), // Castle queenside
+//            ("O-O", Move(.e1, .g1)),   // Castle kingside
+//            ("Nec6", Move(.e7, .c6)),  // disambiguated move
+//            ("Nexc8", Move(.e7, .c8))  // disambiguated capture
+//        ]
+//
+//        for (san, move) in moves {
+//            let result = position!.move(forSan: san)
+//            XCTAssertNotNil(result, "San: \(san) returned nil.")
+//            XCTAssertEqual(move, result!)
+//        }
+
+        let nils: [(String, Move)] = [
+            ("Rg2", Move(.h1, .g2))
+        ]
+
+        for (san, _) in nils {
+            let result = position!.move(forSan: san)
+            XCTAssertNil(result, "san: \(san) should have returned nil. returned: \(result!)")
+        }
+    }
+
+    struct ExecutableTest {
+        let position: Position
+        let trueMoves: [Move]
+        let falseMoves: [Move]
+        func perform() {
+            for move in trueMoves {
+                XCTAssertTrue(position._canExecute(move: move))
+            }
+
+            for move in falseMoves {
+                XCTAssertFalse(position._canExecute(move: move))
+            }
+        }
+    }
+
+    struct LegalityTest {
+        struct Example {
+            let origin: Square
+            let trueTargets: [Square]
+            let falseTargets: [Square]
+        }
+        let position: Position
+        let examples: [Example]
+        func performTest() {
+            for example in examples {
+                for target in example.trueTargets {
+                    XCTAssertTrue(position._legalTargetSquares(from: example.origin).contains(target), "\(target.description) is a legal target from \(example.origin.description)")
+                }
+                for target in example.falseTargets {
+                    XCTAssertFalse(position._legalTargetSquares(from: example.origin).contains(target), "\(target.description) is NOT a legal target from \(example.origin.description)")
+                }
+            }
+        }
+    }
+
+    struct ExecutionTest {
+        typealias Example = (move: Move, promotion: Piece?, expectedFen: String)
+        let position: Position
+        let trueExamples: [Example]
+        let falseExamples: [Example]
+        func performTest() {
+            for example in trueExamples {
+                let item = position._execute(uncheckedMove: example.move, promotion: example.promotion)
+                XCTAssertNotNil(item)
+                XCTAssertEqual(example.expectedFen, item!.position.fen)
+            }
+            for example in falseExamples {
+                let item = position._execute(uncheckedMove: example.move, promotion: example.promotion)
+                XCTAssertNil(item)
+            }
+        }
+    }
+
+    struct PositionTest {
+        let position: Position
+        let executables: [ExecutableTest]
+        let legalities: [LegalityTest]
+        let executions: [ExecutionTest]
+    }
+
+    func testSamplePositions() {
+
+//        let sample1: PositionTest = {
+//
+//            /*
+//               +-----------------+
+//             8 | r n b q k b n r |
+//             7 | p p p p p p p p |
+//             6 | . . . . . . . . |
+//             5 | . . . . . . . . |
+//             4 | . . . . . . . . |
+//             3 | . . . . . . . . |
+//             2 | P P P P P P P P |
+//             1 | R N B Q K B N R |
+//               +-----------------+
+//                 a b c d e f g h
+//             */
+//
+//            let position = Position()
+//
+//            let executable1: ExecutableTest = {
+//
+//                let trueMoves = [
+//                    Move(.d2, .d3),
+//                    Move(.d2, .d4),
+//                    Move(.g1, .f3)
+//                ]
+//
+//                let falseMoves = [
+//                    Move(.d2, .d5),
+//                    Move(.d3, .d4)
+//                ]
+//
+//                return ExecutableTest(
+//                    position: position,
+//                    trueMoves: trueMoves,
+//                    falseMoves: falseMoves
+//                )
+//
+//            }()
+//
+//
+//
+//        }()
+
+
+    }
+
     func testCanExecute() {
 
         struct Sample {
@@ -70,7 +225,7 @@ class PositionTests: XCTestCase {
             }
         }
 
-        let position1: Sample = {
+        let sample1: Sample = {
 
             /*
                +-----------------+
@@ -89,81 +244,297 @@ class PositionTests: XCTestCase {
             let p1 = Position()
 
             let trueMoves = [
-                Move(origin: .d2, target: .d3),
-                Move(origin: .d2, target: .d4),
-                Move(origin: .g1, target: .f3)
+                Move(.d2, .d3),
+                Move(.d2, .d4),
+                Move(.g1, .f3)
             ]
 
             let falseMoves = [
-                Move(origin: .d2, target: .d5),
-                Move(origin: .d3, target: .d4)
+                Move(.d2, .d5),
+                Move(.d3, .d4)
             ]
 
             return Sample(position: p1, trueMoves: trueMoves, falseMoves: falseMoves)
 
         }()
 
-        position1.performTest()
-
-    }
-
-    func testLegalTargetSquares() {
-
-        struct Sample {
-            let origin: Square
-            let trueTargets: [Square]
-            let falseTargets: [Square]
-        }
-
-        struct TestPositon {
-            let position: Position
-            let samples: [Sample]
-            func performTest() {
-                for sample in samples {
-                    for target in sample.trueTargets {
-                        XCTAssertTrue(position._legalTargetSquares(from: sample.origin).contains(target), "\(target.description) is a legal target from \(sample.origin.description)")
-                    }
-                    for target in sample.falseTargets {
-                        XCTAssertFalse(position._legalTargetSquares(from: sample.origin).contains(target), "\(target.description) is NOT a legal target from \(sample.origin.description)")
-                    }
-                }
-            }
-        }
-
-        let position1: TestPositon = {
+        let sample2: Sample = {
 
             /*
+             
                +-----------------+
-             8 | r n b q k b n r |
-             7 | p p p p p p p p |
+             8 | k . . . . . . . |
+             7 | . . . . . . b b |
+             6 | . . . . . . . . |
+             5 | . . . . . . . . |
+             4 | . . . . . . . . |
+             3 | . . . . . . . . |
+             2 | P P . . . . . . |
+             1 | K . . . . . . . |
+               +-----------------+
+                 a b c d e f g h
+
+             */
+
+            let fen = "k7/6bb/8/8/8/8/PP6/K7 w - - 0 1"
+            let p2 = Position(fen: fen)
+            XCTAssertNotNil(p2)
+
+            let trueMoves = [
+                Move(.a2, .a3),
+                Move(.a2, .a3)
+            ]
+            let falseMoves = [
+                Move(.b2, .b3),
+                Move(.b2, .b4),
+                Move(.a1, .b1)
+            ]
+
+            return Sample(
+                position: p2!,
+                trueMoves: trueMoves,
+                falseMoves: falseMoves
+                )
+        }()
+
+        let sample3: Sample = {
+
+            /*
+             
+               +-----------------+
+             8 | . . . . k . . . |
+             7 | . . . . . . . . |
              6 | . . . . . . . . |
              5 | . . . . . . . . |
              4 | . . . . . . . . |
              3 | . . . . . . . . |
              2 | P P P P P P P P |
-             1 | R N B Q K B N R |
+             1 | R . . . K . . R |
                +-----------------+
                  a b c d e f g h
+
              */
 
-            let p1 = Position()
+            let fen = "4k3/8/8/8/8/8/PPPPPPPP/R3K2R w KQkq - 0 1"
+            let p3 = Position(fen: fen)
+            XCTAssertNotNil(p3)
 
-            let sample1 = Sample(
-                origin: .d2,
-                trueTargets: [.d3, .d4],
-                falseTargets: [.d5, .e3]
-            )
+            let trueMoves = [
+                Move(.e1, .g1),
+                Move(.e1, .c1)
+            ]
 
-            let sample2 = Sample(
-                origin: .b1,
-                trueTargets: [.a3, .c3],
-                falseTargets: [.d2]
-            )
+            return Sample(position: p3!, trueMoves: trueMoves, falseMoves: [])
 
-            return TestPositon(position: p1, samples: [sample1, sample2])
         }()
 
-        position1.performTest()
+        let sample4: Sample = {
+
+            /*
+
+               +-----------------+
+             8 | . . . k . . . . |
+             7 | . . . . . . . . |
+             6 | . . . . . . . . |
+             5 | . . . . . . . . |
+             4 | . . . P p P p . |
+             3 | . . . . . . . . |
+             2 | P P P . P . P P |
+             1 | . . . K . . . . |
+               +-----------------+
+                 a b c d e f g h
+
+             */
+
+            let fen = "3k4/8/8/8/3PpPp1/8/PPP1P1PP/3K4 b KQkq f3 0 1"
+            let p4 = Position(fen: fen)
+            XCTAssertNotNil(p4)
+
+            let trueMoves = [
+                Move(.e4, .f3),
+                Move(.g4, .f3)
+            ]
+
+            let falseMoves = [
+                Move(.e4, .d3),
+                Move(.e4, .e2)
+            ]
+
+            return Sample(position: p4!, trueMoves: trueMoves, falseMoves: falseMoves)
+
+        }()
+
+        sample1.performTest()
+        sample2.performTest()
+        sample3.performTest()
+        sample4.performTest()
+        
+    }
+
+    func testLegalTargetSquares() {
+
+//        struct Sample {
+//            let Square
+//            let trueTargets: [Square]
+//            let falseTargets: [Square]
+//        }
+//
+//        struct TestPositon {
+//            let position: Position
+//            let samples: [Sample]
+//            func performTest() {
+//                for sample in samples {
+//                    for target in sample.trueTargets {
+//                        XCTAssertTrue(position._legalTargetSquares(from: sample.origin).contains(target), "\(target.description) is a legal target from \(sample.origin.description)")
+//                    }
+//                    for target in sample.falseTargets {
+//                        XCTAssertFalse(position._legalTargetSquares(from: sample.origin).contains(target), "\(target.description) is NOT a legal target from \(sample.origin.description)")
+//                    }
+//                }
+//            }
+//        }
+//
+//        let position1: TestPositon = {
+//
+//            /*
+//               +-----------------+
+//             8 | r n b q k b n r |
+//             7 | p p p p p p p p |
+//             6 | . . . . . . . . |
+//             5 | . . . . . . . . |
+//             4 | . . . . . . . . |
+//             3 | . . . . . . . . |
+//             2 | P P P P P P P P |
+//             1 | R N B Q K B N R |
+//               +-----------------+
+//                 a b c d e f g h
+//             */
+//
+//            let p1 = Position()
+//
+//            let sample1 = Sample(
+//                origin: .d2,
+//                trueTargets: [.d3, .d4],
+//                falseTargets: [.d5, .e3]
+//            )
+//
+//            let sample2 = Sample(
+//                origin: .b1,
+//                trueTargets: [.a3, .c3],
+//                falseTargets: [.d2]
+//            )
+//
+//            return TestPositon(position: p1, samples: [sample1, sample2])
+//        }()
+//
+//        let position2: TestPositon = {
+//
+//            /*
+//
+//             +-----------------+
+//             8 | k . . . . . . . |
+//             7 | . . . . . . b b |
+//             6 | . . . . . . . . |
+//             5 | . . . . . . . . |
+//             4 | . . . . . . . . |
+//             3 | . . . . . . . . |
+//             2 | P P . . . . . . |
+//             1 | K . . . . . . . |
+//             +-----------------+
+//             a b c d e f g h
+//
+//             */
+//
+//            let fen = "k7/6bb/8/8/8/8/PP6/K7 w - - 0 1"
+//            let p2 = Position(fen: fen)
+//            XCTAssertNotNil(p2)
+//
+//            let trueMoves = [
+//                Move(.a2, .a3),
+//                Move(.a2, .a3)
+//            ]
+//            let falseMoves = [
+//                Move(.b2, .b3),
+//                Move(.b2, .b4),
+//                Move(.a1, .b1)
+//            ]
+//
+//            return Sample(
+//                position: p2!,
+//                trueMoves: trueMoves,
+//                falseMoves: falseMoves
+//            )
+//        }()
+//
+//        let sample3: Sample = {
+//
+//            /*
+//
+//             +-----------------+
+//             8 | . . . . k . . . |
+//             7 | . . . . . . . . |
+//             6 | . . . . . . . . |
+//             5 | . . . . . . . . |
+//             4 | . . . . . . . . |
+//             3 | . . . . . . . . |
+//             2 | P P P P P P P P |
+//             1 | R . . . K . . R |
+//             +-----------------+
+//             a b c d e f g h
+//
+//             */
+//
+//            let fen = "4k3/8/8/8/8/8/PPPPPPPP/R3K2R w KQkq - 0 1"
+//            let p3 = Position(fen: fen)
+//            XCTAssertNotNil(p3)
+//
+//            let trueMoves = [
+//                Move(.e1, .g1),
+//                Move(.e1, .c1)
+//            ]
+//
+//            return Sample(position: p3!, trueMoves: trueMoves, falseMoves: [])
+//
+//        }()
+//
+//        let sample4: Sample = {
+//
+//            /*
+//
+//             +-----------------+
+//             8 | . . . k . . . . |
+//             7 | . . . . . . . . |
+//             6 | . . . . . . . . |
+//             5 | . . . . . . . . |
+//             4 | . . . P p P p . |
+//             3 | . . . . . . . . |
+//             2 | P P P . P . P P |
+//             1 | . . . K . . . . |
+//             +-----------------+
+//             a b c d e f g h
+//
+//             */
+//
+//            let fen = "3k4/8/8/8/3PpPp1/8/PPP1P1PP/3K4 b KQkq f3 0 1"
+//            let p4 = Position(fen: fen)
+//            XCTAssertNotNil(p4)
+//
+//            let trueMoves = [
+//                Move(.e4, .f3),
+//                Move(.g4, .f3)
+//            ]
+//
+//            let falseMoves = [
+//                Move(.e4, .d3),
+//                Move(.e4, .e2)
+//            ]
+//            
+//            return Sample(position: p4!, trueMoves: trueMoves, falseMoves: falseMoves)
+//            
+//        }()
+//
+//
+//        position1.performTest()
 
     }
 
