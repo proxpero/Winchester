@@ -92,10 +92,7 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
 
     /// The number of bits set in `self`.
     public var count: Int {
-        var n = rawValue
-        n = n - ((n >> 1) & 0x5555555555555555)
-        n = (n & 0x3333333333333333) + ((n >> 2) & 0x3333333333333333)
-        return Int((((n + (n >> 4)) & 0xF0F0F0F0F0F0F0F) &* 0x101010101010101) >> 56)
+        return rawValue.count
     }
 
     /// `true` if `self` is empty.
@@ -537,3 +534,17 @@ internal let _kingAttackTable = Array(Square.all.map { square in
 internal let _knightAttackTable = Array(Square.all.map { square in
     return square.bitmask._knightAttacks()
 })
+
+// MARK: - Helpers
+
+extension UInt64 {
+    /// The number of 1s in the binary representation of `self`
+    /// http://stackoverflow.com/a/109025/277905
+    public var count: Int {
+        var n = self
+        n = n - ((n >> 1) & 0x5555555555555555)
+        n = (n & 0x3333333333333333) + ((n >> 2) & 0x3333333333333333)
+        return Int((((n + (n >> 4)) & 0xF0F0F0F0F0F0F0F) &* 0x101010101010101) >> 56)
+    }
+}
+
