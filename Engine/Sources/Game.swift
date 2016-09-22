@@ -182,37 +182,8 @@ public class Game {
         self.init(game: game)
     }
 
-    // MARK: Public Functions
-
-    /// Returns the square a piece must have originated from to have arrived at 
-    /// the target square. This is useful when reconstructing a game from a list
-    /// of moves.
-    ///
-    /// - parameter piece: the `Piece` that made the move.
-    /// - parameter target: the `Square` that `piece` moved to.
-    /// - parameter candidates: a bitboard holding a set of the possible squares
-    ///   the piece might have originated from. This function uses the bitboard 
-    ///   to disambiguate possible origins. This function already filters for 
-    ///   pieces. The caller should filter for files or ranks, for example, to 
-    ///   help disambiguate.
-    public func origin(for piece: Piece, target: Square, candidates: Bitboard = Bitboard.full) -> Square? {
-        return nil
-//        return (currentPosition.board.bitboard(for: piece) & candidates).filter { currentPosition._canExecute(move: Move(origin: $0, target: target)) }.first
-    }
-
-    /// Returns the `Move` represented by `pgnMove` or nil if no move is possible.
-    ///
-    /// - parameter pgnMove: a string representation of the moving piece, the
-    ///   target square, and any annotations. For example, given "e3" or "Bf6+".
-    public func interpolate(target pgnString: String) -> Move? {
-        return nil
-
-    }
-
-    /**
-     Returns a `Dictionary` where `Key` = `PGN.Tag` and `Value` = `String` of
-     the PGN tag pairs describing `self`.
-     */
+    /// Returns a `Dictionary` where `Key` = `PGN.Tag` and `Value` = `String` of
+    /// the PGN tag pairs describing `self`.
     public func tagPairs() -> Dictionary<String, String> {
         var pairs: Dictionary<String, String> = [:]
         pairs[PGN.Tag.white.rawValue] = whitePlayer.name
