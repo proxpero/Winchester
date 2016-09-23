@@ -113,7 +113,6 @@ class BoardTests: XCTestCase {
     }
 
     func testBoardSubscript() {
-
         var board = Board()
         XCTAssertEqual(Piece(pawn: .white), board[.e2])
         XCTAssertEqual(Piece(knight: .black), board[.g8])
@@ -125,11 +124,9 @@ class BoardTests: XCTestCase {
         XCTAssertEqual(blackpawn, board[location])
         board[location] = nil
         XCTAssertNil(board[location])
-
     }
 
     func testBoardSwap() {
-
         let start = Board()
         var board = start
         let loc1 = ("D", 1) as Location
@@ -137,11 +134,9 @@ class BoardTests: XCTestCase {
         board.swap(loc1, loc2)
         XCTAssertEqual(start[loc1], board[loc2])
         XCTAssertEqual(start[loc2], board[loc1])
-
     }
 
     func testSpace() {
-
         let file = File.e
         let rank = Rank.four
         let location = Location(file: file, rank: rank)
@@ -161,7 +156,99 @@ class BoardTests: XCTestCase {
         let knight = knightSpace.clear()
         XCTAssertNil(knightSpace.piece)
         XCTAssert(piece == knight)
-        
+    }
+}
+
+class BoardAttacks: XCTestCase {
+
+    func testAttacksForPiece() {
+        /*
+           +-----------------+
+         8 | . . . . . . . . |
+         7 | . . . . . . . . |
+         6 | . . . . . . . . |
+         5 | . . . Q . P . . |
+         4 | . . . . . . . . |
+         3 | . . . . . . . . |
+         2 | . . . . . . . . |
+         1 | . . . . . . . . |
+           +-----------------+
+             a b c d e f g h
+
+           +-----------------+
+         8 | 1 . . 1 . . 1 . |
+         7 | . 1 . 1 . 1 . . |
+         6 | . . 1 1 1 . . . |
+         5 | 1 1 1 . 1 1 . . |
+         4 | . . 1 1 1 . . . |
+         3 | . 1 . 1 . 1 . . |
+         2 | 1 . . 1 . . 1 . |
+         1 | . . . 1 . . . 1 |
+           +-----------------+
+             a b c d e f g h
+         */
+        let board = Board(fen: "8/8/8/3Q1P2/8/8/8/8")!
+        XCTAssertEqual(board._attacks(for: Piece.init(queen: .white), obstacles: Square.f5.bitmask), Bitboard(rawValue: 0x492a1c371c2a4988))
+    }
+
+    func testAttacksForColor() {
+        /*
+           +-----------------+
+         8 | . . . . . . . . |
+         7 | . . . . . . . . |
+         6 | . . . . . . . . |
+         5 | . . . Q . P . . |
+         4 | . . . . . . . . |
+         3 | . . . . . . . . |
+         2 | . . . . . . . . |
+         1 | . . . . . . . . |
+           +-----------------+
+             a b c d e f g h
+
+           +-----------------+
+         8 | 1 . . 1 . . 1 . |
+         7 | . 1 . 1 . 1 . . |
+         6 | . . 1 1 1 . 1 . |
+         5 | 1 1 1 . 1 1 . . |
+         4 | . . 1 1 1 . . . |
+         3 | . 1 . 1 . 1 . . |
+         2 | 1 . . 1 . . 1 . |
+         1 | . . . 1 . . . 1 |
+           +-----------------+
+             a b c d e f g h
+         */
+        let board = Board(fen: "8/8/8/3Q1P2/8/8/8/8")!
+        XCTAssertEqual(board._attacks(for: .white), Bitboard(rawValue: 0x492a5c371c2a4988))
+    }
+
+    func testDefendedSquares() {
+        /*
+          +-----------------+
+         8 | . . . . . . . . |
+         7 | . . . . . . . . |
+         6 | . . . . . . . . |
+         5 | . . . Q . P . . |
+         4 | . . . . . . . . |
+         3 | . . . . . . . . |
+         2 | . . . . . . . . |
+         1 | . . . . . . . . |
+           +-----------------+
+             a b c d e f g h
+
+           +-----------------+
+         8 | 1 . . 1 . . 1 . |
+         7 | . 1 . 1 . 1 . . |
+         6 | . . 1 1 1 . 1 . |
+         5 | 1 1 1 . 1 1 . . |
+         4 | . . 1 1 1 . . . |
+         3 | . 1 . 1 . 1 . . |
+         2 | 1 . . 1 . . 1 . |
+         1 | . . . 1 . . . 1 |
+           +-----------------+
+             a b c d e f g h
+         */
+        let board = Board(fen: "8/8/8/3Q1P2/8/8/8/8")!
+        XCTAssertEqual(board._defendedSquares(for: .white), Square.f5.bitmask)
     }
 
     func testAttackers_To_Square_Color() {
@@ -175,7 +262,7 @@ class BoardTests: XCTestCase {
 
         /*
          Case 1
-         +-----------------+
+           +-----------------+
          8 | Q . . . . . . Q |
          7 | . . . . . . . . |
          6 | . . . . . . . . |
@@ -184,8 +271,8 @@ class BoardTests: XCTestCase {
          3 | . . . . . . . . |
          2 | . . . . . . . . |
          1 | Q . . . . . . . |
-         +-----------------+
-         a b c d e f g h
+           +-----------------+
+             a b c d e f g h
          */
 
         let case1: TestCase = (
@@ -332,13 +419,6 @@ class BoardTests: XCTestCase {
             XCTAssertEqual(board.attackersToKing(for: testCase.color), result)
         }
 
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
     
 }
