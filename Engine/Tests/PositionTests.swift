@@ -579,10 +579,21 @@ class PositionTests: XCTestCase {
 
             let position = Position()
 
-            let sample1 = Sa
+            let sample1 = Test.Sample(
+                move: Move(.e2, .e4),
+                promotion: nil,
+                expectedFen: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"
+            )
+
+            return Test(
+                position: position,
+                trueSamples: [sample1],
+                falseSamples: []
+            )
 
         }()
 
+        test1.perform()
 
     }
 
