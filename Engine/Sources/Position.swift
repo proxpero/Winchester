@@ -101,12 +101,25 @@ public struct Position: Equatable, CustomStringConvertible {
         return board.isKingInMultipleCheck(for: playerTurn)
     }
 
-    public func move(forSan move: String) -> Move? {
+    public func move(forSan input: String) -> (Move, Piece?)? {
 
-        let san = move.trimmingCharacters(in: CharacterSet(charactersIn: "+=!?#"))
+        if input == "O-O" { return (Move(castle: playerTurn, side: .kingside), nil) }
+        if input == "O-O-O" { return (Move(castle: playerTurn, side: .queenside), nil) }
 
-        if san == "O-O" { return Move(castle: playerTurn, side: .kingside) }
-        if san == "O-O-O" { return Move(castle: playerTurn, side: .queenside) }
+        var promotion: Piece? = nil
+
+        if
+            input.characters.count > 2,
+            input.substring(from: input.index(before: input.lastIndex)).hasPrefix("="),
+            let char = input.characters.last,
+            let piece = Piece(character: char),
+            piece.kind == .pawn
+        {
+            promotion = piece
+        }
+
+        let san = input.trimmingCharacters(in: CharacterSet(charactersIn: "+=!?#"))
+
 
         let index = san.index(san.endIndex, offsetBy: -2)
         guard let target = Square(san.substring(from: index)) else {
@@ -119,7 +132,7 @@ public struct Position: Equatable, CustomStringConvertible {
             candidate.isEmpty,
             let start = origin(for: Piece(pawn: playerTurn), target: target, candidates: target.file.bitmask)
         {
-            return Move(origin: start, target: target)
+            return (Move(origin: start, target: target), promotion)
         }
 
         candidate = candidate.trimmingCharacters(in: CharacterSet(charactersIn: "x"))
@@ -130,14 +143,14 @@ public struct Position: Equatable, CustomStringConvertible {
             if let kind = Piece.Kind(character: char) {
                 let piece = Piece(kind: kind, color: playerTurn)
                 if let start = origin(for: piece, target: target, candidates: board.bitboard(for: piece)) {
-                    return Move(origin: start, target: target)
+                    return (Move(origin: start, target: target), promotion)
                 }
             }
 
             // Pawn capture
             if
                 let file = File(char), let start = origin(for: Piece(pawn: playerTurn), target: target, candidates: file.bitmask) {
-                return Move(origin: start, target: target)
+                return (Move(origin: start, target: target), promotion)
             }
 
         }
@@ -153,7 +166,7 @@ public struct Position: Equatable, CustomStringConvertible {
                 let file = File(disambiguation),
                 let start = origin(for: Piece(kind: kind, color: playerTurn), target: target, candidates: file.bitmask)
             {
-                return Move(start, target)
+                return (Move(start, target), promotion)
             }
 
             if
@@ -161,7 +174,7 @@ public struct Position: Equatable, CustomStringConvertible {
                 let rank = Rank(num),
                 let start = origin(for: Piece(kind: kind, color: playerTurn), target: target, candidates: rank.bitmask)
             {
-                return Move(start, target)
+                return (Move(start, target), promotion)
             }
         }
         return nil
@@ -184,10 +197,9 @@ public struct Position: Equatable, CustomStringConvertible {
 
     /// Returns the FEN string for the position.
     public var fen: String {
-        let transform = { "\($0 as Square)".lowercased() }
         return board.fen
             + " \(playerTurn.isWhite ? "w" : "b") \(castlingRights.description) "
-            + (enPassantTarget.map(transform) ?? "-")
+            + (enPassantTarget?.description ?? "-")
             + " \(halfmoves) \(fullmoves)"
     }
 
@@ -377,7 +389,7 @@ public struct Position: Equatable, CustomStringConvertible {
 
         let enPassant: Square? = {
             guard
-                let piece = board[move.target],
+                let piece = board[move.origin],
                 piece.kind.isPawn,
                 abs(move.rankChange) == 2
                 else { return nil }
@@ -456,6 +468,11 @@ public struct Position: Equatable, CustomStringConvertible {
             capture: capture,
             sanMove: sanMove(with: newPosition)
         )
+    }
+
+    func _execute(sanMove: String) -> HistoryItem? {
+        guard let (move, promotion) = move(forSan: sanMove) else { return nil }
+        return _execute(uncheckedMove: move, promotion: promotion)
     }
 
     // MARK: - CustomStringConvertible Protocol Conformance
