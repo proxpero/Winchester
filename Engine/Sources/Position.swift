@@ -182,6 +182,16 @@ public struct Position: Equatable, CustomStringConvertible {
         return nil
     }
 
+    /// Returns `true` if the `move` is a promotion.
+    public func isPromotion(for move: Move) -> Bool {
+        guard
+            move.target.rank == Rank(endFor: playerTurn),
+            let piece = board[move.origin],
+            piece.kind == .pawn
+        else { return false }
+        return true
+    }
+
     /// Returns the square a piece must have originated from to have arrived at
     /// the target square. This is useful when reconstructing a game from a list
     /// of moves.
@@ -320,10 +330,13 @@ public struct Position: Equatable, CustomStringConvertible {
             movesBitboard |= attacks & ~playerBits
         }
 
-        if piece.kind.isKing && squareBit == piece.startingPositions {
+        if piece.kind.isKing && squareBit == piece.startingPositions && !isKingInCheck {
             for right in castlingRights {
-                // FIXME: Also take care that empty spaces are not attacked.
-                if right.color == playerTurn && occupiedBits & right.emptySquares == 0 {
+
+                if right.color == playerTurn
+                    && occupiedBits & right.emptySquares == 0
+                    && (board._attacks(for: playerTurn.inverse()) & right.emptySquares) == 0
+                {
                     movesBitboard |= right.castleSquare.bitmask
                 }
             }
@@ -332,7 +345,7 @@ public struct Position: Equatable, CustomStringConvertible {
         func isLegal(target: Square) -> Bool {
             let move = Move(origin: origin, target: target)
             let isEnPassant = (enPassantTarget != nil) && (enPassantTarget! == target)
-            let newBoard = board._execute(move: move, isEnPassant: isEnPassant)
+            guard let (newBoard, _) = board._execute(uncheckedMove: move, for: playerTurn, isEnPassant: isEnPassant, promotion: Piece(queen: playerTurn)) else { return false }
             return newBoard.attackersToKing(for: playerTurn).count == 0
         }
 
@@ -345,25 +358,13 @@ public struct Position: Equatable, CustomStringConvertible {
             return nil
         }
 
-        var newBoard = board
-        var endPiece = piece
-        var captureSquare = move.target
-        var capture = board[captureSquare]
+//        var newBoard = board
+//        var endPiece = piece
+//        var captureSquare = move.target
+//        var capture = board[captureSquare]
         var rights = castlingRights
 
-        if piece.kind.isPawn {
-            if move.target.rank == Rank(endFor: playerTurn) {
-                guard
-                    let promo = promotion,
-                    promo.kind.isPromotionType() else {
-                        fatalError("Unexpected Promotion: \(promotion)")
-                }
-                endPiece = Piece(kind: promo.kind, color: playerTurn)
-            } else if move.target == enPassantTarget {
-                capture = Piece(pawn: playerTurn.inverse())
-                captureSquare = Square(file: move.target.file, rank: move.origin.rank)
-            }
-        } else if piece.kind.isRook {
+        if piece.kind.isRook {
             switch move.origin {
             case .a1: rights.remove(.whiteQueenside)
             case .h1: rights.remove(.whiteKingside)
@@ -376,23 +377,52 @@ public struct Position: Equatable, CustomStringConvertible {
             for option in castlingRights where option.color == playerTurn {
                 rights.remove(option)
             }
-            if move.isCastle(for: playerTurn) {
-                let (old, new) = move._castleSquares()
-                let rook = Piece(rook: playerTurn)
-                newBoard[rook][old] = false
-                newBoard[rook][new] = true
-            }
         }
 
-        newBoard[piece][move.origin] = false
-        newBoard[endPiece][move.target] = true
-        if let capture = capture {
-            newBoard[capture][captureSquare] = false
-        }
+        guard let (newBoard, capture) = board._execute(uncheckedMove: move, for: playerTurn, isEnPassant: move.target == enPassantTarget, promotion: promotion) else { return nil }
 
-        guard newBoard.attackersToKing(for: playerTurn).count == 0 else {
-            return nil
-        }
+//        if piece.kind.isPawn {
+//            if move.target.rank == Rank(endFor: playerTurn) {
+//                guard
+//                    let promo = promotion,
+//                    promo.kind.isPromotionType() else {
+//                        fatalError("Unexpected Promotion: \(promotion)")
+//                }
+//                endPiece = Piece(kind: promo.kind, color: playerTurn)
+//            } else if move.target == enPassantTarget {
+//                capture = Piece(pawn: playerTurn.inverse())
+//                captureSquare = Square(file: move.target.file, rank: move.origin.rank)
+//            }
+//        } else if piece.kind.isRook {
+//            switch move.origin {
+//            case .a1: rights.remove(.whiteQueenside)
+//            case .h1: rights.remove(.whiteKingside)
+//            case .a8: rights.remove(.blackQueenside)
+//            case .h8: rights.remove(.blackKingside)
+//            default:
+//                break
+//            }
+//        } else if piece.kind.isKing {
+//            for option in castlingRights where option.color == playerTurn {
+//                rights.remove(option)
+//            }
+//            if move.isCastle(for: playerTurn) {
+//                let (old, new) = move._castleSquares()
+//                let rook = Piece(rook: playerTurn)
+//                newBoard[rook][old] = false
+//                newBoard[rook][new] = true
+//            }
+//        }
+//
+//        newBoard[piece][move.origin] = false
+//        newBoard[endPiece][move.target] = true
+//        if let capture = capture {
+//            newBoard[capture][captureSquare] = false
+//        }
+
+//        guard newBoard.attackersToKing(for: playerTurn).count == 0 else {
+//            return nil
+//        }
 
         let enPassant: Square? = {
             guard

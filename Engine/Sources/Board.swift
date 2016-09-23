@@ -266,6 +266,10 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
         return pieces.filter({ $0.color.isBlack })
     }
 
+    public func pieces(for color: Color) -> [Piece]{
+        return pieces.filter({ $0.color == color })
+    }
+
     /// Returns the FEN string for the board.
     public var fen: String {
         func fen(forRank rank: Rank) -> String {
@@ -493,20 +497,53 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
 
     // MARK: - Attackers
 
-    internal func _execute(move: Move, isEnPassant: Bool) -> Board {
-        var board = self
-        if move.isCastle() {
-            let (rookOrigin, rookTarget) = move._castleSquares()
-            board[rookTarget] = board[rookOrigin]
-            board[rookOrigin] = nil
+    internal func _execute(uncheckedMove move: Move, for color: PlayerTurn, isEnPassant: Bool, promotion: Piece?) -> (Board, Piece?)? {
+
+        guard let piece = self[move.origin] else { return nil }
+
+        var newBoard = self
+        var endPiece = piece
+        var captureSquare = move.target
+        var capture = self[captureSquare]
+
+        if piece.kind.isPawn {
+            if move.target.rank == Rank(endFor: color)  {
+                guard
+                    let promo = promotion,
+                    promo.kind.isPromotionType() else {
+                        fatalError("Unexpected Promotion: \(promotion)")
+                }
+                endPiece = Piece(kind: promo.kind, color: color)
+            } else if isEnPassant {
+                capture = Piece(pawn: color.inverse())
+                captureSquare = Square(file: move.target.file, rank: move.origin.rank)
+            }
+        } else if piece.kind.isKing {
+            if move.isCastle() {
+                let (old, new) = move._castleSquares()
+                let rook = Piece(rook: color)
+                newBoard[rook][old] = false
+                newBoard[rook][new] = true
+            }
         }
-        if isEnPassant {
-            let captureSquare = Square(file: move.target.file, rank: move.origin.rank)
-            board[captureSquare] = nil
+
+        newBoard[piece][move.origin] = false
+        newBoard[endPiece][move.target] = true
+        if let capture = capture {
+            newBoard[capture][captureSquare] = false
         }
-        board[move.target] = board[move.origin]
-        board[move.origin] = nil
-        return board
+
+        return (newBoard, capture)
+    }
+
+    /// Return the attacks that can be made by `piece`
+    public func _attacks(for piece: Piece, obstacles: Bitboard) -> Bitboard {
+        return self[piece]._attacks(for: piece, obstacles: obstacles)
+    }
+
+    /// Returns the attacks that can be made by `color`
+    public func _attacks(for color: Color) -> Bitboard {
+        return Piece.pieces(for: color).reduce(0) { $0 | _attacks(for: $1, obstacles: occupiedSpaces) }
     }
 
     /// Returns the attackers to `square` corresponding to `color`.
@@ -586,5 +623,10 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
         return result
     }
 
+    internal func _defendedSquares(for color: Color) -> Bitboard {
+        let mine = pieces(for: color).reduce(0) { $0 | self[$1] }
+//        let enemy = pieces(for: color.inverse()).reduce(0) { $0 | self[$1] }
+        return _attacks(for: color) & mine
+    }
 
 }
