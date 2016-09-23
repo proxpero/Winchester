@@ -58,7 +58,7 @@ class PositionTests: XCTestCase {
         /*
            +-----------------+
          8 | . . b k . . . r |
-         7 | N . . . N . . . |
+         7 | N . . . N P P . |
          6 | . . . . . . . . |
          5 | . . . . . p P . |
          4 | . . . . p . . . |
@@ -69,26 +69,31 @@ class PositionTests: XCTestCase {
              a b c d e f g h
          */
 
-        let fen = "2bk3r/N3N3/8/5pP1/4p3/P2P4/1PP5/R3K2R w KQkq f6 0 1"
+        let fen = "2bk3r/N3NPP1/8/5pP1/4p3/P2P4/1PP5/R3K2R w KQkq f6 0 1"
         let position = Position(fen: fen)
         XCTAssertNotNil(position)
 
-//        let moves: [(String, Move)] = [
-//            ("Ra2", Move(.a1, .a2)),   // regular
-//            ("gxf6", Move(.g5, .f6)),  // en passant
-//            ("Kd2", Move(.e1, .d2)),   // regular
-//            ("dxe4", Move(.d3, .e4)),  // pawn capture
-//            ("O-O-O", Move(.e1, .c1)), // Castle queenside
-//            ("O-O", Move(.e1, .g1)),   // Castle kingside
-//            ("Nec6", Move(.e7, .c6)),  // disambiguated move
-//            ("Nexc8", Move(.e7, .c8))  // disambiguated capture
-//        ]
-//
-//        for (san, move) in moves {
-//            let result = position!.move(forSan: san)
-//            XCTAssertNotNil(result, "San: \(san) returned nil.")
-//            XCTAssertEqual(move, result!)
-//        }
+        let moves: [(String, Move, Piece?)] = [
+            ("Ra2", Move(.a1, .a2), nil),   // regular
+            ("gxf6", Move(.g5, .f6), nil),  // en passant
+            ("Kd2", Move(.e1, .d2), nil),   // regular
+            ("a4", Move(.a3, .a4), nil),    // pawn push
+            ("b4", Move(.b2, .b4), nil),    // double pawn push
+            ("dxe4", Move(.d3, .e4), nil),  // pawn capture
+            ("O-O-O", Move(.e1, .c1), nil), // Castle queenside
+            ("O-O", Move(.e1, .g1), nil),   // Castle kingside
+            ("Nec6", Move(.e7, .c6), nil),  // disambiguated move
+            ("Nexc8", Move(.e7, .c8), nil),  // disambiguated capture
+            ("f8=Q", Move(.f7, .f8), Piece(queen: .white)), // pawn promotion
+            ("gxh8=N", Move(.g7, .h8), Piece(knight: .white)) // pawn capture + promotion
+        ]
+
+        for (san, move, promotion) in moves {
+            let result = position!.move(forSan: san)
+            XCTAssertNotNil(result, "San: \(san) returned nil.")
+            XCTAssertEqual(move, result!.0)
+            XCTAssertEqual(promotion, result!.1)
+        }
 
         let nils: [(String, Move)] = [
             ("Rg2", Move(.h1, .g2))
