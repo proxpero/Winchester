@@ -84,11 +84,19 @@ class ChessTest: XCTestCase {
 
         let game = Game()
         do {
-            game.execute(move: Move(origin: .c2, target: .c4))
-            game.execute(move: Move(origin: .c7, target: .c6))
-            game.execute(move: Move(origin: .c4, target: .c5))
-            game.execute(move: Move(origin: .d7, target: .d5))
-            game.execute(move: Move(origin: .c5, target: .d6))
+            print(game.currentPosition.fen)
+            try game.execute(move: Move(origin: .c2, target: .c4))
+            print(game.currentPosition.fen)
+            try game.execute(move: Move(origin: .c7, target: .c6))
+            print(game.currentPosition.fen)
+            try game.execute(move: Move(origin: .c4, target: .c5))
+            print(game.currentPosition.fen)
+            try game.execute(move: Move(origin: .d7, target: .d5))
+            print(game.currentPosition.fen)
+            try game.execute(move: Move(origin: .c5, target: .d6))
+            print(game.currentPosition.fen)
+        } catch {
+            XCTFail()
         }
 
     }
