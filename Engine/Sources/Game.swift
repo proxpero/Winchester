@@ -62,6 +62,8 @@ public class Game {
         self._undoHistory = game._undoHistory
     }
 
+    // MARK: - Subscripts
+
     // MARK: - Public API
 
     public func availableTargets(for color: Color) -> [Square] {
@@ -92,7 +94,13 @@ public class Game {
         return []
     }
 
-    public func execute(move: Move, promotion: Piece? = nil) {
+    public func execute(sanMove: String) throws {
+        guard let (move, promotion) = currentPosition.move(forSan: sanMove)
+        else { fatalError("I should throw an error") }
+        try execute(move: move, promotion: promotion)
+    }
+
+    public func execute(move: Move, promotion: Piece? = nil) throws {
 
         // execute move
         guard let newHistoryItem = currentPosition._execute(uncheckedMove: move, promotion: promotion) else {
@@ -125,41 +133,12 @@ public class Game {
         return _history.map({ $0.move })
     }
 
+    public var sanMoves: [String] {
+        return _history.map { $0.sanMove }
+    }
+
     // MARK: - Move Undo/Redo: Public Functions
 
-    /// Undoes the previous move and returns it, if any.
-    @discardableResult
-    public func undoMove() -> Move? {
-        return _undoMove()
-    }
-
-    /// Redoes the previous undone move and returns it, if any.
-    @discardableResult
-    public func redoMove() -> Move? {
-        return _redoMove()
-    }
-
-    /// Returns the last move on the move stack, if any.
-    public func moveToUndo() -> Move? {
-        return _history.last?.move
-    }
-
-    /// Returns the last move on the undo stack, if any.
-    public func moveToRedo() -> Move? {
-        return _undoHistory.last?.move
-    }
-
-    // MARK: - Move Undo/Redo: Private Functions
-
-    /// Undoes the previous move and returns it, if any.
-    private func _undoMove() -> Move? {
-        return nil
-    }
-
-    /// Redoes the previous undone move and returns it, if any.
-    private func _redoMove() -> Move? {
-        return nil
-    }
 
     // MARK: - PGN
     // MARK: Public Initializer
@@ -174,10 +153,9 @@ public class Game {
         game.whitePlayer = Player(name: pgn[PGN.Tag.white], kind: pgn[PGN.Tag.whiteType], elo: pgn[PGN.Tag.whiteElo])
         game.blackPlayer = Player(name: pgn[PGN.Tag.black], kind: pgn[PGN.Tag.blackType], elo: pgn[PGN.Tag.blackElo])
 
-//        for pgnMove in pgn.algebraicMoves {
-//            guard let move = game.interpolate(target: pgnMove) else { fatalError() }
-//            try! game.execute(move: move)
-//        }
+        for sanMove in pgn.sanMoves {
+
+        }
 
         self.init(game: game)
     }
