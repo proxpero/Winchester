@@ -101,11 +101,12 @@ public struct Position: Equatable, CustomStringConvertible {
         return board.isKingInMultipleCheck(for: playerTurn)
     }
 
-    public func move(forSan input: String) -> (Move, Piece?)? {
+    public func move(forSan string: String) -> (Move, Piece?)? {
 
-        if input == "O-O" { return (Move(castle: playerTurn, side: .kingside), nil) }
-        if input == "O-O-O" { return (Move(castle: playerTurn, side: .queenside), nil) }
+        if string == "O-O" { return (Move(castle: playerTurn, side: .kingside), nil) }
+        if string == "O-O-O" { return (Move(castle: playerTurn, side: .queenside), nil) }
 
+        var input: String = string
         var promotion: Piece? = nil
 
         if
@@ -113,9 +114,10 @@ public struct Position: Equatable, CustomStringConvertible {
             input.substring(from: input.index(before: input.lastIndex)).hasPrefix("="),
             let char = input.characters.last,
             let piece = Piece(character: char),
-            piece.kind == .pawn
+            piece.kind.isPromotionType()
         {
             promotion = piece
+            input = input.substring(to: input.index(before: input.lastIndex))
         }
 
         let san = input.trimmingCharacters(in: CharacterSet(charactersIn: "+=!?#"))
@@ -201,6 +203,11 @@ public struct Position: Equatable, CustomStringConvertible {
             + " \(playerTurn.isWhite ? "w" : "b") \(castlingRights.description) "
             + (enPassantTarget?.description ?? "-")
             + " \(halfmoves) \(fullmoves)"
+    }
+
+    /// An ascii representation of the board.
+    public var ascii: String {
+        return board.ascii
     }
 
     // MARK: - Internal Computed Properties and Functions
