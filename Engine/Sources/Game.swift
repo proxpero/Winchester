@@ -154,7 +154,11 @@ public class Game {
         game.blackPlayer = Player(name: pgn[PGN.Tag.black], kind: pgn[PGN.Tag.blackType], elo: pgn[PGN.Tag.blackElo])
 
         for sanMove in pgn.sanMoves {
-
+            do {
+                try game.execute(sanMove: sanMove)
+            } catch {
+                fatalError("could not parse san move: \(sanMove)")
+            }
         }
 
         self.init(game: game)
