@@ -221,7 +221,7 @@ class BoardAttacks: XCTestCase {
         XCTAssertEqual(board._attacks(for: .white), Bitboard(rawValue: 0x492a5c371c2a4988))
     }
 
-    func testDefendedSquares() {
+    func testDefendedOccupations() {
         /*
           +-----------------+
          8 | . . . . . . . . |
@@ -248,7 +248,7 @@ class BoardAttacks: XCTestCase {
              a b c d e f g h
          */
         let board = Board(fen: "8/8/8/3Q1P2/8/8/8/8")!
-        XCTAssertEqual(board._defendedSquares(for: .white), Square.f5.bitmask)
+        XCTAssertEqual(board._defendedOccupations(for: .white), Square.f5.bitmask)
     }
 
     func testAttackers_To_Square_Color() {
