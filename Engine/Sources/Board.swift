@@ -577,7 +577,7 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
     ///
     /// - returns: A bitboard of all attackers, or 0 if the king does not exist
     ///   or if there are no pieces attacking the king.
-    public func attackersToKing(for color: Color) -> Bitboard {
+    internal func attackersToKing(for color: Color) -> Bitboard {
         guard let square = squareForKing(for: color) else {
             return 0
         }
@@ -585,48 +585,30 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
     }
 
     /// Returns `true` if the king for `color` is in check.
-    public func isKingInCheck(for color: Color) -> Bool {
+    internal func isKingInCheck(for color: Color) -> Bool {
         return attackersToKing(for: color) != 0
     }
 
-    public func isKingInMultipleCheck(for color: Color) -> Bool {
+    internal func isKingInMultipleCheck(for color: Color) -> Bool {
         return attackersToKing(for: color).count > 1
     }
 
-    /// Returns an array of moves which the player for `color` might execute
-    /// to retake a lost piece.
-    internal func _uncheckedGuardingMoves(for color: Color) -> [Move] {
-
-        var result: [Move] = []
-
-        let currentBits = bitboard(for: color)
-        let enemyBits = bitboard(for: color.inverse())
-
-        for candidate in currentBits {
-            let newBits = currentBits & ~candidate.bitmask
-            let occupiedBits = newBits | enemyBits
-            guard let piece = self[candidate] else { fatalError("Expected a piece at \(candidate.description)") }
-
-            for origin in newBits {
-                let isDefender = origin.bitmask._attacks(for: piece, obstacles: occupiedBits).contains(candidate)
-                let exposesKing: Bool = {
-                    var newBoard = self
-                    newBoard[origin] = nil
-                    return newBoard.attackersToKing(for: color).count > 0
-                }()
-                if isDefender && !exposesKing {
-                    result.append(Move(origin: origin, target: candidate))
-                }
-            }
-        }
-
-        return result
-    }
-
-    internal func _defendedSquares(for color: Color) -> Bitboard {
+    internal func _defendedOccupations(for color: Color) -> Bitboard {
         let mine = pieces(for: color).reduce(0) { $0 | self[$1] }
-//        let enemy = pieces(for: color.inverse()).reduce(0) { $0 | self[$1] }
         return _attacks(for: color) & mine
     }
 
+    internal func _attackedOccupations(for color: Color) -> Bitboard {
+        let mine = pieces(for: color).reduce(0) { $0 | self[$1] }
+        return _attacks(for: color.inverse()) & mine
+    }
+
+    internal func _threatenedEnemies(for color: Color) -> Bitboard {
+        let enemies = pieces(for: color.inverse()).reduce(0) { $0 | self[$1] }
+        return _attacks(for: color) & enemies
+    }
+
+    internal func _undefendedOccupations(for color: Color) -> Bitboard {
+        return _threatenedEnemies(for: color) & ~_defendedOccupations(for: color.inverse())
+    }
 }
