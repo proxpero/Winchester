@@ -136,6 +136,17 @@ public struct PGN: Equatable {
             return rawValue
         }
 
+        public static var roster: [(tag: Tag, default: String)] {
+            return [
+                (.event, "?"),
+                (.site, "?"),
+                (.date, "????.??.??"),
+                (.round, "?"),
+                (.white, "?"),
+                (.black, "?"),
+                (.result, "?")]
+        }
+
     }
 
     // MARK: -
@@ -242,16 +253,7 @@ public struct PGN: Equatable {
     public var exportTagPairs: String {
         var result = ""
         var tagPairs = self._tagPairs
-        let sevenTagRoster = [
-            (Tag.event,  "?"),
-            (Tag.site,   "?"),
-            (Tag.date,   "????.??.??"),
-            (Tag.round,  "?"),
-            (Tag.white,  "?"),
-            (Tag.black,  "?"),
-            (Tag.result, "*")
-        ]
-        for (tag, defaultValue) in sevenTagRoster {
+        for (tag, defaultValue) in Tag.roster {
             if let value = tagPairs[tag] {
                 tagPairs[tag] = nil
                 result += "[\(tag.rawValue) \"\(value)\"]\n"
