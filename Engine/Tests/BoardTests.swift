@@ -420,5 +420,25 @@ class BoardAttacks: XCTestCase {
         }
 
     }
-    
+
+    func testIsKingInCheck() {
+
+        let fens = [
+            "k7/8/q6K/8/8/8/8/8",
+            "8/5r2/4K1q1/4p3/3k4/8/8/8",
+            "8/8/4K1q1/8/3k4/8/8/8",
+            "8/5r2/4K1q1/8/3k4/8/8/8",
+            "8/5r2/4K1q1/4p3/3k4/8/8/8",
+            "7n/5p2/4K3/4p3/3k4/8/8/8",
+            "k/8/8/8/3K1q2/8/8/8",
+            "8/5r2/5Kq1/8/3k4/8/8/8",
+            "8/5r2/5Kq1/4p3/3k4/8/8/8"
+        ]
+
+        for fen in fens {
+            let board = Board(fen: fen)!
+            XCTAssert(board.isKingInCheck(for: .white), fen)
+        }
+
+    }
 }
