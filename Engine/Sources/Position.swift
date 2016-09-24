@@ -222,7 +222,7 @@ public struct Position: Equatable, CustomStringConvertible {
 
     // MARK: - Internal Computed Properties and Functions
 
-    private var _outcome: Outcome {
+    internal var _outcome: Outcome {
         let inCheck = board.isKingInCheck(for: playerTurn)
         let canMove = _legalTargetsBitboard(for: playerTurn, considerHalfmoves: true).count > 0
 
@@ -262,23 +262,24 @@ public struct Position: Equatable, CustomStringConvertible {
         return _legalTargetsBitboard(for: color, considerHalfmoves: considerHalfmoves).map { $0 }
     }
 
-    internal var _uncheckedGuardingMoves: [Move] {
-        return board._uncheckedGuardingMoves(for: playerTurn)
+    internal func _attackedOccupations(for color: Color) -> [Square] {
+        return board._attackedOccupations(for: color).map { $0 }
     }
 
-    /// An array of `Square`s currently occupied by `color` and which can
-    /// be retaken in the event that one is captured. 
-    ///
-    /// - parameter color: The color whose position is under consideration.
-    ///
-    /// - returns: An array of `Square`s which can be seized by `color`
-    /// - warning: The resulting `Square`s are not necessarily unique.
-    internal var _uncheckedGuardedSquares: [Square] {
-        return _uncheckedGuardingMoves.map { $0.target }
+    internal func _defendedOccupations(for color: Color) -> [Square] {
+        return board._defendedOccupations(for: color).map { $0 }
     }
 
-    internal func _undefendedSquares(for color: Color) -> [Square] {
-        return []
+    internal func _undefendedOccupations(for color: Color) -> [Square] {
+        return board._undefendedOccupations(for: color).map { $0 }
+    }
+
+    internal func _threatenedEnemies(for color: Color) -> [Square] {
+        return board._threatenedEnemies(for: color).map { $0 }
+    }
+
+    internal func _attackers(targeting square: Square, for color: Color) -> [Square] {
+        return board.attackers(targeting: square, color: color).map { $0 }
     }
 
     internal func _legalCaptures(for color: Color) -> [Square] {
