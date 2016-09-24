@@ -334,7 +334,6 @@ public struct PGN: Equatable {
     public static func == (lhs: PGN, rhs: PGN) -> Bool {
         return lhs._tagPairs == rhs._tagPairs
             && lhs._sanMoves == rhs._sanMoves
-        
     }
 
 }
