@@ -34,7 +34,7 @@ public class Game {
     private var _history: Array<HistoryItem>
 
     /// All of the undone moves in the game.
-    private var _undoHistory: [(move: Move, promotion: Piece.Kind?, kingAttackers: Bitboard)]
+    private var _undoHistory: Array<HistoryItem>
 
     // MARK: - Public Initializers
 
@@ -82,16 +82,24 @@ public class Game {
         return currentPosition._attackersToKing.map { $0 }
     }
 
-    public func guardingMoves(for square: Square) -> [Move] {
-        return currentPosition._uncheckedGuardingMoves
+    public func attackedOccupations(for color: Color) -> [Square] {
+        return currentPosition._attackedOccupations(for: color)
     }
 
-    public var gaurdedSquares: [Square] {
-        return currentPosition._uncheckedGuardedSquares
+    public func defendedOccupations(for color: Color) -> [Square] {
+        return currentPosition._defendedOccupations(for: color)
     }
 
-    public func undefended(by color: Color) -> [Square] {
-        return []
+    public func undefendedOccupations(for color: Color) -> [Square] {
+        return currentPosition._undefendedOccupations(for: color)
+    }
+
+    public func threatenedEnemies(for color: Color) -> [Square] {
+        return currentPosition._threatenedEnemies(for: color)
+    }
+
+    public func attackers(targeting square: Square, for color: Color) -> ([Square]) {
+        return currentPosition._attackers(targeting: square, for: color)
     }
 
     public func execute(sanMove: String) throws {
@@ -137,8 +145,29 @@ public class Game {
         return _history.map { $0.sanMove }
     }
 
+    public var outcome: Outcome {
+        return currentPosition._outcome
+    }
+    
     // MARK: - Move Undo/Redo: Public Functions
 
+    @discardableResult
+    public func undo() -> HistoryItem? {
+        if let last = _history.popLast() {
+            _undoHistory.append(last)
+            return last
+        }
+        return nil
+    }
+
+    @discardableResult
+    public func redo() -> HistoryItem? {
+        if let last = _undoHistory.popLast() {
+            _history.append(last)
+            return last
+        }
+        return nil
+    }
 
     // MARK: - PGN
     // MARK: Public Initializer
@@ -170,16 +199,16 @@ public class Game {
         var pairs: Dictionary<String, String> = [:]
         pairs[PGN.Tag.white.rawValue] = whitePlayer.name
         pairs[PGN.Tag.black.rawValue] = blackPlayer.name
-//        pairs[PGN.Tag.result.rawValue] = currentPosition.outcome.description
+        pairs[PGN.Tag.result.rawValue] = outcome.description
         return pairs
     }
     
     /**
      Returns the PGN representation of `self`.
      */
-//    public var pgn: PGN {
-//        return PGN(tagPairs: tagPairs(), moves: _history.map(sanMove))
-//    }
+    public var pgn: PGN {
+        return PGN(tagPairs: tagPairs(), moves: _history.map({ $0.sanMove }))
+    }
 
 }
 
