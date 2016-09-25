@@ -40,6 +40,55 @@
 		521D1F751D8B133C00A0A0E6 /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */; };
 		521D1F761D8B137100A0A0E6 /* GameScene+TouchUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */; };
 		521EDDFD1D669B4200BD7355 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521EDDFC1D669B4200BD7355 /* HistoryViewController.swift */; };
+		5237A65A1D96D7C400BAC16E /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5237A6591D96D7C400BAC16E /* Engine.framework */; };
+		5237A6601D9709AB00BAC16E /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5237A6591D96D7C400BAC16E /* Engine.framework */; };
+		5237A6631D970B7C00BAC16E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6611D970B7C00BAC16E /* Main.storyboard */; };
+		5237A6651D9711B400BAC16E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6641D9711B400BAC16E /* MenuViewController.swift */; };
+		5237A6761D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */; };
+		5237A6771D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */; };
+		5237A6781D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */; };
+		5237A6791D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6681D97691A00BAC16E /* 40H-openings_8moves.epd */; };
+		5237A67A1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6681D97691A00BAC16E /* 40H-openings_8moves.epd */; };
+		5237A67B1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6681D97691A00BAC16E /* 40H-openings_8moves.epd */; };
+		5237A67C1D97691A00BAC16E /* cc01.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6691D97691A00BAC16E /* cc01.pgn */; };
+		5237A67D1D97691A00BAC16E /* cc01.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6691D97691A00BAC16E /* cc01.pgn */; };
+		5237A67E1D97691A00BAC16E /* cc01.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6691D97691A00BAC16E /* cc01.pgn */; };
+		5237A67F1D97691A00BAC16E /* cc02.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66A1D97691A00BAC16E /* cc02.pgn */; };
+		5237A6801D97691A00BAC16E /* cc02.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66A1D97691A00BAC16E /* cc02.pgn */; };
+		5237A6811D97691A00BAC16E /* cc02.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66A1D97691A00BAC16E /* cc02.pgn */; };
+		5237A6821D97691A00BAC16E /* gm1830.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66B1D97691A00BAC16E /* gm1830.pgn */; };
+		5237A6831D97691A00BAC16E /* gm1830.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66B1D97691A00BAC16E /* gm1830.pgn */; };
+		5237A6841D97691A00BAC16E /* gm1830.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66B1D97691A00BAC16E /* gm1830.pgn */; };
+		5237A6851D97691A00BAC16E /* gm1931.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66C1D97691A00BAC16E /* gm1931.pgn */; };
+		5237A6861D97691A00BAC16E /* gm1931.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66C1D97691A00BAC16E /* gm1931.pgn */; };
+		5237A6871D97691A00BAC16E /* gm1931.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66C1D97691A00BAC16E /* gm1931.pgn */; };
+		5237A6881D97691A00BAC16E /* gm1981.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66D1D97691A00BAC16E /* gm1981.pgn */; };
+		5237A6891D97691A00BAC16E /* gm1981.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66D1D97691A00BAC16E /* gm1981.pgn */; };
+		5237A68A1D97691A00BAC16E /* gm1981.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66D1D97691A00BAC16E /* gm1981.pgn */; };
+		5237A68B1D97691A00BAC16E /* gm2006.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66E1D97691A00BAC16E /* gm2006.pgn */; };
+		5237A68C1D97691A00BAC16E /* gm2006.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66E1D97691A00BAC16E /* gm2006.pgn */; };
+		5237A68D1D97691A00BAC16E /* gm2006.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66E1D97691A00BAC16E /* gm2006.pgn */; };
+		5237A68E1D97691A00BAC16E /* mateIn1.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66F1D97691A00BAC16E /* mateIn1.epd */; };
+		5237A68F1D97691A00BAC16E /* mateIn1.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66F1D97691A00BAC16E /* mateIn1.epd */; };
+		5237A6901D97691A00BAC16E /* mateIn1.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66F1D97691A00BAC16E /* mateIn1.epd */; };
+		5237A6911D97691A00BAC16E /* mateIn2.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6701D97691A00BAC16E /* mateIn2.epd */; };
+		5237A6921D97691A00BAC16E /* mateIn2.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6701D97691A00BAC16E /* mateIn2.epd */; };
+		5237A6931D97691A00BAC16E /* mateIn2.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6701D97691A00BAC16E /* mateIn2.epd */; };
+		5237A6941D97691A00BAC16E /* mateIn3.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6711D97691A00BAC16E /* mateIn3.epd */; };
+		5237A6951D97691A00BAC16E /* mateIn3.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6711D97691A00BAC16E /* mateIn3.epd */; };
+		5237A6961D97691A00BAC16E /* mateIn3.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6711D97691A00BAC16E /* mateIn3.epd */; };
+		5237A6971D97691A00BAC16E /* mateIn4.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6721D97691A00BAC16E /* mateIn4.epd */; };
+		5237A6981D97691A00BAC16E /* mateIn4.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6721D97691A00BAC16E /* mateIn4.epd */; };
+		5237A6991D97691A00BAC16E /* mateIn4.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6721D97691A00BAC16E /* mateIn4.epd */; };
+		5237A69A1D97691A00BAC16E /* mateIn5.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6731D97691A00BAC16E /* mateIn5.epd */; };
+		5237A69B1D97691A00BAC16E /* mateIn5.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6731D97691A00BAC16E /* mateIn5.epd */; };
+		5237A69C1D97691A00BAC16E /* mateIn5.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6731D97691A00BAC16E /* mateIn5.epd */; };
+		5237A69D1D97691A00BAC16E /* mateIn6.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6741D97691A00BAC16E /* mateIn6.epd */; };
+		5237A69E1D97691A00BAC16E /* mateIn6.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6741D97691A00BAC16E /* mateIn6.epd */; };
+		5237A69F1D97691A00BAC16E /* mateIn6.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6741D97691A00BAC16E /* mateIn6.epd */; };
+		5237A6A01D97691A00BAC16E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6751D97691A00BAC16E /* README.md */; };
+		5237A6A11D97691A00BAC16E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6751D97691A00BAC16E /* README.md */; };
+		5237A6A21D97691A00BAC16E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6751D97691A00BAC16E /* README.md */; };
 		524058631D63757A000A925C /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528288241D6118910014B105 /* BoardViewController.swift */; };
 		524058681D638114000A925C /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528288241D6118910014B105 /* BoardViewController.swift */; };
 		5240586A1D638328000A925C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528287F41D6103720014B105 /* AppDelegate.swift */; };
@@ -86,8 +135,6 @@
 		52D6DEC41D8C67F700CF8880 /* ChessGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DEC31D8C67F700CF8880 /* ChessGameViewController.swift */; };
 		52D6DEC61D8C682A00CF8880 /* ChessGamesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DEC51D8C682A00CF8880 /* ChessGamesListViewController.swift */; };
 		52D6DECD1D8C8EA400CF8880 /* GameHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DECC1D8C8EA400CF8880 /* GameHistory.swift */; };
-		52DE578B1D81E0D7007E46A9 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5292EF091D73482600F1C93D /* Engine.framework */; };
-		52DE578C1D81E0D7007E46A9 /* Engine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5292EF091D73482600F1C93D /* Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52E354E11D7C5957006EAEA6 /* GameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E354E01D7C5957006EAEA6 /* GameCell.xib */; };
 		52E354E31D7C8FBB006EAEA6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E354E21D7C8FBB006EAEA6 /* TableViewController.swift */; };
 		52E354E51D7C99C0006EAEA6 /* UIImage+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E354E41D7C99C0006EAEA6 /* UIImage+View.swift */; };
@@ -138,17 +185,6 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52DE578D1D81E0D7007E46A9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				52DE578C1D81E0D7007E46A9 /* Engine.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +200,24 @@
 		521D1F611D8B0EE400A0A0E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		521D1F631D8B0EE400A0A0E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		521EDDFC1D669B4200BD7355 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		5237A6591D96D7C400BAC16E /* Engine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Engine.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-iphonesimulator/Engine.framework"; sourceTree = "<group>"; };
+		5237A6621D970B7C00BAC16E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOS/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		5237A6641D9711B400BAC16E /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "40H-openings_6moves.epd"; sourceTree = "<group>"; };
+		5237A6681D97691A00BAC16E /* 40H-openings_8moves.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "40H-openings_8moves.epd"; sourceTree = "<group>"; };
+		5237A6691D97691A00BAC16E /* cc01.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cc01.pgn; sourceTree = "<group>"; };
+		5237A66A1D97691A00BAC16E /* cc02.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cc02.pgn; sourceTree = "<group>"; };
+		5237A66B1D97691A00BAC16E /* gm1830.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gm1830.pgn; sourceTree = "<group>"; };
+		5237A66C1D97691A00BAC16E /* gm1931.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gm1931.pgn; sourceTree = "<group>"; };
+		5237A66D1D97691A00BAC16E /* gm1981.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gm1981.pgn; sourceTree = "<group>"; };
+		5237A66E1D97691A00BAC16E /* gm2006.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gm2006.pgn; sourceTree = "<group>"; };
+		5237A66F1D97691A00BAC16E /* mateIn1.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn1.epd; sourceTree = "<group>"; };
+		5237A6701D97691A00BAC16E /* mateIn2.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn2.epd; sourceTree = "<group>"; };
+		5237A6711D97691A00BAC16E /* mateIn3.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn3.epd; sourceTree = "<group>"; };
+		5237A6721D97691A00BAC16E /* mateIn4.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn4.epd; sourceTree = "<group>"; };
+		5237A6731D97691A00BAC16E /* mateIn5.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn5.epd; sourceTree = "<group>"; };
+		5237A6741D97691A00BAC16E /* mateIn6.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn6.epd; sourceTree = "<group>"; };
+		5237A6751D97691A00BAC16E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		524058541D63749E000A925C /* Endgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5240586C1D638483000A925C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOS/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		5240586E1D638483000A925C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOS/Base.lproj/Game.storyboard; sourceTree = SOURCE_ROOT; };
@@ -214,6 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5237A65A1D96D7C400BAC16E /* Engine.framework in Frameworks */,
 				521D1F5A1D8B0EE400A0A0E6 /* Messages.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +312,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52DE578B1D81E0D7007E46A9 /* Engine.framework in Frameworks */,
+				5237A6601D9709AB00BAC16E /* Engine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +347,29 @@
 			path = ChessWire;
 			sourceTree = "<group>";
 		};
+		5237A6661D97691A00BAC16E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */,
+				5237A6681D97691A00BAC16E /* 40H-openings_8moves.epd */,
+				5237A6691D97691A00BAC16E /* cc01.pgn */,
+				5237A66A1D97691A00BAC16E /* cc02.pgn */,
+				5237A66B1D97691A00BAC16E /* gm1830.pgn */,
+				5237A66C1D97691A00BAC16E /* gm1931.pgn */,
+				5237A66D1D97691A00BAC16E /* gm1981.pgn */,
+				5237A66E1D97691A00BAC16E /* gm2006.pgn */,
+				5237A66F1D97691A00BAC16E /* mateIn1.epd */,
+				5237A6701D97691A00BAC16E /* mateIn2.epd */,
+				5237A6711D97691A00BAC16E /* mateIn3.epd */,
+				5237A6721D97691A00BAC16E /* mateIn4.epd */,
+				5237A6731D97691A00BAC16E /* mateIn5.epd */,
+				5237A6741D97691A00BAC16E /* mateIn6.epd */,
+				5237A6751D97691A00BAC16E /* README.md */,
+			);
+			name = Data;
+			path = ../Data;
+			sourceTree = "<group>";
+		};
 		524058551D63749E000A925C /* tvOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,13 +397,14 @@
 				528287F41D6103720014B105 /* AppDelegate.swift */,
 				52E354E21D7C8FBB006EAEA6 /* TableViewController.swift */,
 				52E354E81D7C9BF0006EAEA6 /* CollectionViewController.swift */,
+				5237A6641D9711B400BAC16E /* MenuViewController.swift */,
 				52E354E61D7C99DE006EAEA6 /* GameCell.swift */,
 				5286ABC11D8862A1001AD9C4 /* GameListViewController.swift */,
 				5286ABC51D886D9C001AD9C4 /* GameListViewControllerModel.swift */,
-				525560B81D64C3BF00985809 /* GameViewController.swift */,
 				5246E61F1D665A5300219C8C /* TitleViewController.swift */,
 				528288241D6118910014B105 /* BoardViewController.swift */,
 				521EDDFC1D669B4200BD7355 /* HistoryViewController.swift */,
+				525560B81D64C3BF00985809 /* GameViewController.swift */,
 				5240587B1D63893E000A925C /* GameScene.swift */,
 				52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */,
 				524058841D638B2F000A925C /* GameLayer.swift */,
@@ -343,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				5240586B1D638483000A925C /* LaunchScreen.storyboard */,
+				5237A6611D970B7C00BAC16E /* Main.storyboard */,
 				5240586D1D638483000A925C /* Game.storyboard */,
 				521D1F251D8AF1A900A0A0E6 /* GameTitleViewController.xib */,
 				52E354E01D7C5957006EAEA6 /* GameCell.xib */,
@@ -364,6 +444,7 @@
 		5282881F1D6117270014B105 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5237A6591D96D7C400BAC16E /* Engine.framework */,
 				5292EF091D73482600F1C93D /* Engine.framework */,
 				528288221D6117BB0014B105 /* Engine.framework */,
 				521D1F591D8B0EE400A0A0E6 /* Messages.framework */,
@@ -381,6 +462,7 @@
 				524058551D63749E000A925C /* tvOS */,
 				5240588C1D638C8D000A925C /* macOS */,
 				521D1F5B1D8B0EE400A0A0E6 /* ChessWire */,
+				5237A6661D97691A00BAC16E /* Data */,
 				528287FD1D6103720014B105 /* Tests */,
 				52BAE0931D5FD555006E2652 /* Products */,
 				5282881F1D6117270014B105 /* Frameworks */,
@@ -516,7 +598,6 @@
 				52BAE08E1D5FD555006E2652 /* Sources */,
 				52BAE08F1D5FD555006E2652 /* Frameworks */,
 				52BAE0901D5FD555006E2652 /* Resources */,
-				52DE578D1D81E0D7007E46A9 /* Embed Frameworks */,
 				521D1F6A1D8B0EE400A0A0E6 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -617,10 +698,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5237A6801D97691A00BAC16E /* cc02.pgn in Resources */,
+				5237A68F1D97691A00BAC16E /* mateIn1.epd in Resources */,
 				521D1F201D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn in Resources */,
+				5237A67A1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
+				5237A69E1D97691A00BAC16E /* mateIn6.epd in Resources */,
+				5237A67D1D97691A00BAC16E /* cc01.pgn in Resources */,
+				5237A6771D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */,
+				5237A68C1D97691A00BAC16E /* gm2006.pgn in Resources */,
+				5237A6831D97691A00BAC16E /* gm1830.pgn in Resources */,
+				5237A6981D97691A00BAC16E /* mateIn4.epd in Resources */,
+				5237A6891D97691A00BAC16E /* gm1981.pgn in Resources */,
 				521D1F281D8AF1A900A0A0E6 /* GameTitleViewController.xib in Resources */,
 				521D1F231D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */,
+				5237A6861D97691A00BAC16E /* gm1931.pgn in Resources */,
+				5237A69B1D97691A00BAC16E /* mateIn5.epd in Resources */,
 				524058751D6384AB000A925C /* Assets.xcassets in Resources */,
+				5237A6951D97691A00BAC16E /* mateIn3.epd in Resources */,
+				5237A6921D97691A00BAC16E /* mateIn2.epd in Resources */,
 				521D1F1D1D8ACEF900A0A0E6 /* karpov v kasparov.pgn in Resources */,
 				524058781D6384C6000A925C /* Main.storyboard in Resources */,
 				521D1F1A1D8ACEF900A0A0E6 /* fischer v fine.pgn in Resources */,
@@ -631,10 +726,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5237A6811D97691A00BAC16E /* cc02.pgn in Resources */,
+				5237A6901D97691A00BAC16E /* mateIn1.epd in Resources */,
 				521D1F211D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn in Resources */,
+				5237A67B1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
+				5237A69F1D97691A00BAC16E /* mateIn6.epd in Resources */,
+				5237A67E1D97691A00BAC16E /* cc01.pgn in Resources */,
+				5237A6781D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */,
+				5237A68D1D97691A00BAC16E /* gm2006.pgn in Resources */,
+				5237A6841D97691A00BAC16E /* gm1830.pgn in Resources */,
+				5237A6991D97691A00BAC16E /* mateIn4.epd in Resources */,
+				5237A68A1D97691A00BAC16E /* gm1981.pgn in Resources */,
 				521D1F291D8AF1A900A0A0E6 /* GameTitleViewController.xib in Resources */,
 				521D1F241D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */,
+				5237A6871D97691A00BAC16E /* gm1931.pgn in Resources */,
+				5237A69C1D97691A00BAC16E /* mateIn5.epd in Resources */,
 				5240589F1D638E05000A925C /* Assets.xcassets in Resources */,
+				5237A6961D97691A00BAC16E /* mateIn3.epd in Resources */,
+				5237A6931D97691A00BAC16E /* mateIn2.epd in Resources */,
 				521D1F1E1D8ACEF900A0A0E6 /* karpov v kasparov.pgn in Resources */,
 				524058D71D63FB74000A925C /* Main.storyboard in Resources */,
 				521D1F1B1D8ACEF900A0A0E6 /* fischer v fine.pgn in Resources */,
@@ -667,14 +776,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				521D1F1C1D8ACEF900A0A0E6 /* karpov v kasparov.pgn in Resources */,
+				5237A69A1D97691A00BAC16E /* mateIn5.epd in Resources */,
+				5237A6881D97691A00BAC16E /* gm1981.pgn in Resources */,
+				5237A67C1D97691A00BAC16E /* cc01.pgn in Resources */,
+				5237A6631D970B7C00BAC16E /* Main.storyboard in Resources */,
 				524058701D638483000A925C /* Game.storyboard in Resources */,
+				5237A68E1D97691A00BAC16E /* mateIn1.epd in Resources */,
+				5237A6911D97691A00BAC16E /* mateIn2.epd in Resources */,
 				524058741D6384AB000A925C /* Assets.xcassets in Resources */,
+				5237A6971D97691A00BAC16E /* mateIn4.epd in Resources */,
+				5237A6821D97691A00BAC16E /* gm1830.pgn in Resources */,
 				521D1F191D8ACEF900A0A0E6 /* fischer v fine.pgn in Resources */,
 				5240586F1D638483000A925C /* LaunchScreen.storyboard in Resources */,
 				521D1F1F1D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn in Resources */,
+				5237A6791D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
+				5237A68B1D97691A00BAC16E /* gm2006.pgn in Resources */,
+				5237A67F1D97691A00BAC16E /* cc02.pgn in Resources */,
 				52E354E11D7C5957006EAEA6 /* GameCell.xib in Resources */,
+				5237A6941D97691A00BAC16E /* mateIn3.epd in Resources */,
 				521D1F271D8AF1A900A0A0E6 /* GameTitleViewController.xib in Resources */,
+				5237A6761D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */,
 				521D1F221D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */,
+				5237A69D1D97691A00BAC16E /* mateIn6.epd in Resources */,
+				5237A6851D97691A00BAC16E /* gm1931.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +836,7 @@
 			files = (
 				524058831D638977000A925C /* PieceNode.swift in Sources */,
 				524058861D638B2F000A925C /* GameLayer.swift in Sources */,
+				5237A6A11D97691A00BAC16E /* README.md in Sources */,
 				5240587D1D63893E000A925C /* GameScene.swift in Sources */,
 				5240586A1D638328000A925C /* AppDelegate.swift in Sources */,
 				5286ABC31D8862A1001AD9C4 /* GameListViewController.swift in Sources */,
@@ -728,6 +853,7 @@
 			files = (
 				524058D31D63FB24000A925C /* AppDelegate.swift in Sources */,
 				5240589B1D638DD6000A925C /* GameScene.swift in Sources */,
+				5237A6A21D97691A00BAC16E /* README.md in Sources */,
 				5240589C1D638DDE000A925C /* GameLayer.swift in Sources */,
 				5240589E1D638DE6000A925C /* PieceNode.swift in Sources */,
 				5286ABC41D8862A1001AD9C4 /* GameListViewController.swift in Sources */,
@@ -768,6 +894,7 @@
 			files = (
 				525560B91D64C3BF00985809 /* GameViewController.swift in Sources */,
 				52E354E31D7C8FBB006EAEA6 /* TableViewController.swift in Sources */,
+				5237A6A01D97691A00BAC16E /* README.md in Sources */,
 				524058821D638977000A925C /* PieceNode.swift in Sources */,
 				52E354E71D7C99DE006EAEA6 /* GameCell.swift in Sources */,
 				52E354E91D7C9BF0006EAEA6 /* CollectionViewController.swift in Sources */,
@@ -780,6 +907,7 @@
 				5246E6201D665A5300219C8C /* TitleViewController.swift in Sources */,
 				52E354E51D7C99C0006EAEA6 /* UIImage+View.swift in Sources */,
 				5240587F1D63896F000A925C /* SquareNode.swift in Sources */,
+				5237A6651D9711B400BAC16E /* MenuViewController.swift in Sources */,
 				52BE98971D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
 				5286ABC21D8862A1001AD9C4 /* GameListViewController.swift in Sources */,
 				5246E64A1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
@@ -827,6 +955,14 @@
 				521D1F5F1D8B0EE400A0A0E6 /* Base */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		5237A6611D970B7C00BAC16E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5237A6621D970B7C00BAC16E /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		5240586B1D638483000A925C /* LaunchScreen.storyboard */ = {
