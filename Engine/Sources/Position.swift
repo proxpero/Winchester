@@ -31,7 +31,7 @@ public struct Position: Equatable, CustomStringConvertible {
     /// The fullmove clock.
     internal private(set) var fullmoves: UInt
 
-    ///
+    /// Attackers to king
     internal private(set) var _attackersToKing: Bitboard = 0
 
     // MARK: - Public Initializers
@@ -219,7 +219,7 @@ public struct Position: Equatable, CustomStringConvertible {
     public var ascii: String {
         return board.ascii
     }
-
+    
     // MARK: - Internal Computed Properties and Functions
 
     internal var _outcome: Outcome {
@@ -381,49 +381,6 @@ public struct Position: Equatable, CustomStringConvertible {
         }
 
         guard let (newBoard, capture) = board._execute(uncheckedMove: move, for: playerTurn, isEnPassant: move.target == enPassantTarget, promotion: promotion) else { return nil }
-
-//        if piece.kind.isPawn {
-//            if move.target.rank == Rank(endFor: playerTurn) {
-//                guard
-//                    let promo = promotion,
-//                    promo.kind.isPromotionType() else {
-//                        fatalError("Unexpected Promotion: \(promotion)")
-//                }
-//                endPiece = Piece(kind: promo.kind, color: playerTurn)
-//            } else if move.target == enPassantTarget {
-//                capture = Piece(pawn: playerTurn.inverse())
-//                captureSquare = Square(file: move.target.file, rank: move.origin.rank)
-//            }
-//        } else if piece.kind.isRook {
-//            switch move.origin {
-//            case .a1: rights.remove(.whiteQueenside)
-//            case .h1: rights.remove(.whiteKingside)
-//            case .a8: rights.remove(.blackQueenside)
-//            case .h8: rights.remove(.blackKingside)
-//            default:
-//                break
-//            }
-//        } else if piece.kind.isKing {
-//            for option in castlingRights where option.color == playerTurn {
-//                rights.remove(option)
-//            }
-//            if move.isCastle(for: playerTurn) {
-//                let (old, new) = move._castleSquares()
-//                let rook = Piece(rook: playerTurn)
-//                newBoard[rook][old] = false
-//                newBoard[rook][new] = true
-//            }
-//        }
-//
-//        newBoard[piece][move.origin] = false
-//        newBoard[endPiece][move.target] = true
-//        if let capture = capture {
-//            newBoard[capture][captureSquare] = false
-//        }
-
-//        guard newBoard.attackersToKing(for: playerTurn).count == 0 else {
-//            return nil
-//        }
 
         let enPassant: Square? = {
             guard

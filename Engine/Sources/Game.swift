@@ -189,7 +189,6 @@ public class Game {
                 fatalError("could not parse san move: \(sanMove)")
             }
         }
-
         self.init(game: game)
     }
 

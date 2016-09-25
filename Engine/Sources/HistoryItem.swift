@@ -13,13 +13,11 @@ public struct HistoryItem: Equatable {
 
     // MARK: Stored Properties
 
-    let position: Position
-    let move: Move
-    let piece: Piece
-    let capture: Piece?
-    let sanMove: String
-
-    // MARK: Public Functions
+    public let position: Position
+    public let move: Move
+    public let piece: Piece
+    public let capture: Piece?
+    public let sanMove: String
 
     // MARK: - Equatable Protocol Conformance
 
