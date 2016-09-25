@@ -9,7 +9,7 @@
 import UIKit
 import Engine
 
-internal final class TitleViewContoller: UIViewController {
+internal final class TitleViewContoller: ViewController {
 
     @IBOutlet var white: UILabel!
     @IBOutlet var black: UILabel!
@@ -17,9 +17,9 @@ internal final class TitleViewContoller: UIViewController {
 
     var model: (white: String?, black: String?, outcome: String) = (nil, nil, "vs")
 
-    init(white: String, black: String, outcome: Game.Outcome?) {
+    init(white: String, black: String, outcome: Outcome) {
         super.init(nibName: "TitleViewController", bundle: nil)
-        model = (white, black, outcome?.description ?? "vs")
+        model = (white, black, outcome.description)
     }
     
     required public init?(coder aDecoder: NSCoder) {

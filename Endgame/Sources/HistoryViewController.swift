@@ -118,7 +118,7 @@ final class HistoryCell: UICollectionViewCell {
             else if row.isNumberRow() { self = .number(row.numberIndex()) }
             else {
                 guard let game = game else { fatalError() }
-                self = .move(game.algebraic(for: row.moveIndex()))
+                self = .move(game.history[row.moveIndex()].sanMove)
             }
         }
 

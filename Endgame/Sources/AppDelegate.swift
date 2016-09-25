@@ -64,7 +64,7 @@ final class App {
         let white = game.whitePlayer.name ?? "?"
         let black = game.blackPlayer.name ?? "?"
         cell.textLabel?.text = "\(white) vs. \(black)"
-        cell.imageView?.image = UIImage(view: game.board.view(edge: cell.bounds.height))
+        cell.imageView?.image = UIImage(view: game.currentPosition.thumbnail(edge: cell.bounds.height))
     }
 
     func showGame(game: Game) {

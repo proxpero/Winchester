@@ -26,7 +26,7 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
         case .title:
             guard let vc = segue.destination as? TitleViewContoller else { fatalError() }
-            let outcome = game.outcome?.description ?? "vs"
+            let outcome = game.outcome.description
             vc.model = (game.whitePlayer.name, game.blackPlayer.name, outcome)
 
         case .board:
@@ -45,8 +45,8 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
     }
 
-    func availableMoves(from origin: Square) -> Bitboard {
-        return game.moves(from: origin)
+    func availableMoves(from origin: Square) -> [Square] {
+        return game.availableTargets(forPieceAt: origin)
     }
 
     func execute(move: Move) -> Bool {
@@ -60,7 +60,7 @@ public final class GameViewController: UIViewController, SegueHandlerType {
     }
 
     func selectMove(at index: Int) {
-        print(game.moveHistory[index])
+        print(game.history[index])
         let moves: [Move] = []
         // Get the diff between current board and new board
         update(moves)

@@ -12,9 +12,10 @@ import UIKit
 class GameListViewController: UITableViewController {
 
     enum Section: Int {
-        case newGame = 0
-        case userGames = 1
-        case historicGames = 2
+        case newGame
+        case userGames
+        case greatGames
+        case puzzles
 
         init(at indexPath: IndexPath) {
             self.init(rawValue: indexPath.section)!
@@ -24,21 +25,38 @@ class GameListViewController: UITableViewController {
             self.init(rawValue: section)!
         }
 
-        static let count = 3
+        static let count = Section.all.count
 
         var title: String {
             switch self {
             case .newGame: return "New Game"
             case .userGames: return "My Games"
-            case .historicGames: return "Saved Games"
+            case .greatGames: return "Great Games"
+            case .puzzles: return "Puzzles"
             }
         }
+
+        static var all: [Section] {
+            return [.newGame, .userGames, .greatGames, .puzzles]
+        }
     }
+
+    var userGames
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return Section.count
     }
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch Section(section) {
+        case .newGame: return 1
+        case .userGames: return 2
+        case .greatGames: return 4
+        case .puzzles: return 67
+        default:
+            <#code#>
+        }
+    }
 
     /*
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

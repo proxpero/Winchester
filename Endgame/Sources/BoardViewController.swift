@@ -20,7 +20,7 @@ import SpriteKit
 internal final class BoardViewController: ViewController {
 
     // MARK: Delegate
-    var availableMoves: (_ origin: Square) -> Bitboard = { _ in 0x0 }
+    var availableMoves: (_ origin: Square) -> [Square] = { _ in [] }
     var execute: (Move) -> Bool = { _ in false }
     
 

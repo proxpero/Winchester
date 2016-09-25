@@ -95,8 +95,8 @@ public final class SquaresLayer: SKSpriteNode, GameLayer {
             .forEach { $0.highlightType = .none }
     }
 
-    public func squareNodes(for bitboard: Bitboard) -> [SquareNode] {
-        return bitboard.map(squareNode)
+    public func squareNodes(for squares: [Square]) -> [SquareNode] {
+        return squares.map(squareNode)
     }
 
     public func squareNode(for square: Square) -> SquareNode {
