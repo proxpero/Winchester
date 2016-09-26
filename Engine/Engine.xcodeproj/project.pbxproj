@@ -17,6 +17,14 @@
 		5237A65D1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
 		5237A65E1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
 		5237A65F1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
+		5237A6A41D98218600BAC16E /* ECO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6A31D98218600BAC16E /* ECO.txt */; };
+		5237A6A51D98218600BAC16E /* ECO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6A31D98218600BAC16E /* ECO.txt */; };
+		5237A6A61D98218600BAC16E /* ECO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6A31D98218600BAC16E /* ECO.txt */; };
+		5237A6A71D98218600BAC16E /* ECO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6A31D98218600BAC16E /* ECO.txt */; };
+		5237A6A91D98233500BAC16E /* ECO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6A81D98233500BAC16E /* ECO.swift */; };
+		5237A6AA1D98233500BAC16E /* ECO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6A81D98233500BAC16E /* ECO.swift */; };
+		5237A6AB1D98233500BAC16E /* ECO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6A81D98233500BAC16E /* ECO.swift */; };
+		5237A6AC1D98233500BAC16E /* ECO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6A81D98233500BAC16E /* ECO.swift */; };
 		528288291D6168FE0014B105 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528288281D6168FE0014B105 /* Geometry.swift */; };
 		5282882D1D622BCB0014B105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5282882C1D622BCB0014B105 /* Assets.xcassets */; };
 		5282882E1D622BCB0014B105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5282882C1D622BCB0014B105 /* Assets.xcassets */; };
@@ -31,6 +39,9 @@
 		52942EA81D56BF1800525598 /* BoardCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52942EA61D56BEF400525598 /* BoardCoordinate.swift */; };
 		52942EA91D56BF1900525598 /* BoardCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52942EA61D56BEF400525598 /* BoardCoordinate.swift */; };
 		52942EAA1D56BF1900525598 /* BoardCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52942EA61D56BEF400525598 /* BoardCoordinate.swift */; };
+		5295DD511D98A94A0036144D /* ECO Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD501D98A94A0036144D /* ECO Tests.swift */; };
+		5295DD521D98A94A0036144D /* ECO Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD501D98A94A0036144D /* ECO Tests.swift */; };
+		5295DD531D98A94A0036144D /* ECO Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD501D98A94A0036144D /* ECO Tests.swift */; };
 		52AB81D71D917902002C7A0B /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D61D917902002C7A0B /* Outcome.swift */; };
 		52AB81D91D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
 		52AB81DA1D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
@@ -234,11 +245,14 @@
 		5212A36E1D9319E2008F2957 /* BoardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
 		522324C31D3DEDC70034E292 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5237A65B1D97033200BAC16E /* Position+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Position+View.swift"; sourceTree = "<group>"; };
+		5237A6A31D98218600BAC16E /* ECO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ECO.txt; sourceTree = "<group>"; };
+		5237A6A81D98233500BAC16E /* ECO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECO.swift; sourceTree = "<group>"; };
 		528288281D6168FE0014B105 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		5282882C1D622BCB0014B105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		528797BE1D905FAC009671AC /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
 		528797CB1D90B040009671AC /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		52942EA61D56BEF400525598 /* BoardCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCoordinate.swift; sourceTree = "<group>"; };
+		5295DD501D98A94A0036144D /* ECO Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ECO Tests.swift"; sourceTree = "<group>"; };
 		52AB81D61D917902002C7A0B /* Outcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
 		52AB81D81D917986002C7A0B /* HistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
 		52B5951D1D539C8700E1D543 /* EngineTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EngineTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -368,6 +382,7 @@
 				52DB54981D961281008B6F72 /* RankTests.swift */,
 				52DB549C1D9612FC008B6F72 /* MoveTests.swift */,
 				52DB54A01D961349008B6F72 /* OutcomeTests.swift */,
+				5295DD501D98A94A0036144D /* ECO Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -375,6 +390,7 @@
 		52DB54BC1D96D3D9008B6F72 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				5237A6A31D98218600BAC16E /* ECO.txt */,
 				52DB54BD1D96D3D9008B6F72 /* 40H-openings_6moves.epd */,
 				52DB54BE1D96D3D9008B6F72 /* 40H-openings_8moves.epd */,
 				52DB54BF1D96D3D9008B6F72 /* cc01.pgn */,
@@ -447,6 +463,7 @@
 				52B5957F1D53A8D900E1D543 /* CastlingRights.swift */,
 				52B595841D53A90F00E1D543 /* PGN.swift */,
 				52B595891D53A93F00E1D543 /* EPD.swift */,
+				5237A6A81D98233500BAC16E /* ECO.swift */,
 				52B5958E1D53AB1E00E1D543 /* Sequence+Chess.swift */,
 				52B595FC1D5645D200E1D543 /* String+Chess.swift */,
 				528288281D6168FE0014B105 /* Geometry.swift */,
@@ -744,6 +761,7 @@
 				52DB54E41D96D3D9008B6F72 /* gm1981.pgn in Resources */,
 				52DB54F41D96D3D9008B6F72 /* mateIn3.epd in Resources */,
 				52DB54D41D96D3D9008B6F72 /* cc01.pgn in Resources */,
+				5237A6A41D98218600BAC16E /* ECO.txt in Resources */,
 				52DB54EC1D96D3D9008B6F72 /* mateIn1.epd in Resources */,
 				52DB54CC1D96D3D9008B6F72 /* 40H-openings_6moves.epd in Resources */,
 				52DB54DC1D96D3D9008B6F72 /* gm1830.pgn in Resources */,
@@ -766,6 +784,7 @@
 				52DB54E51D96D3D9008B6F72 /* gm1981.pgn in Resources */,
 				52DB54F51D96D3D9008B6F72 /* mateIn3.epd in Resources */,
 				52DB54D51D96D3D9008B6F72 /* cc01.pgn in Resources */,
+				5237A6A51D98218600BAC16E /* ECO.txt in Resources */,
 				52DB54ED1D96D3D9008B6F72 /* mateIn1.epd in Resources */,
 				52DB54CD1D96D3D9008B6F72 /* 40H-openings_6moves.epd in Resources */,
 				52DB54DD1D96D3D9008B6F72 /* gm1830.pgn in Resources */,
@@ -788,6 +807,7 @@
 				52DB54E61D96D3D9008B6F72 /* gm1981.pgn in Resources */,
 				52DB54F61D96D3D9008B6F72 /* mateIn3.epd in Resources */,
 				52DB54D61D96D3D9008B6F72 /* cc01.pgn in Resources */,
+				5237A6A61D98218600BAC16E /* ECO.txt in Resources */,
 				52DB54EE1D96D3D9008B6F72 /* mateIn1.epd in Resources */,
 				52DB54CE1D96D3D9008B6F72 /* 40H-openings_6moves.epd in Resources */,
 				52DB54DE1D96D3D9008B6F72 /* gm1830.pgn in Resources */,
@@ -810,6 +830,7 @@
 				52DB54E71D96D3D9008B6F72 /* gm1981.pgn in Resources */,
 				52DB54F71D96D3D9008B6F72 /* mateIn3.epd in Resources */,
 				52DB54D71D96D3D9008B6F72 /* cc01.pgn in Resources */,
+				5237A6A71D98218600BAC16E /* ECO.txt in Resources */,
 				52DB54EF1D96D3D9008B6F72 /* mateIn1.epd in Resources */,
 				52DB54CF1D96D3D9008B6F72 /* 40H-openings_6moves.epd in Resources */,
 				52DB54DF1D96D3D9008B6F72 /* gm1830.pgn in Resources */,
@@ -827,6 +848,7 @@
 				52DB549D1D9612FC008B6F72 /* MoveTests.swift in Sources */,
 				52DB54951D961259008B6F72 /* FileTests.swift in Sources */,
 				52DB54A11D961349008B6F72 /* OutcomeTests.swift in Sources */,
+				5295DD511D98A94A0036144D /* ECO Tests.swift in Sources */,
 				5212A36F1D9319E2008F2957 /* BoardTests.swift in Sources */,
 				52DB54911D960903008B6F72 /* GameTests.swift in Sources */,
 				52DB54991D961281008B6F72 /* RankTests.swift in Sources */,
@@ -841,6 +863,7 @@
 				52DB549E1D9612FC008B6F72 /* MoveTests.swift in Sources */,
 				52DB54961D961259008B6F72 /* FileTests.swift in Sources */,
 				52DB54A21D961349008B6F72 /* OutcomeTests.swift in Sources */,
+				5295DD521D98A94A0036144D /* ECO Tests.swift in Sources */,
 				5212A3701D9319E2008F2957 /* BoardTests.swift in Sources */,
 				52DB54921D960903008B6F72 /* GameTests.swift in Sources */,
 				52DB549A1D961281008B6F72 /* RankTests.swift in Sources */,
@@ -855,6 +878,7 @@
 				52DB549F1D9612FC008B6F72 /* MoveTests.swift in Sources */,
 				52DB54971D961259008B6F72 /* FileTests.swift in Sources */,
 				52DB54A31D961349008B6F72 /* OutcomeTests.swift in Sources */,
+				5295DD531D98A94A0036144D /* ECO Tests.swift in Sources */,
 				5212A3711D9319E2008F2957 /* BoardTests.swift in Sources */,
 				52DB54931D960903008B6F72 /* GameTests.swift in Sources */,
 				52DB549B1D961281008B6F72 /* RankTests.swift in Sources */,
@@ -884,6 +908,7 @@
 				52B5956C1D53A6D100E1D543 /* File.swift in Sources */,
 				528288291D6168FE0014B105 /* Geometry.swift in Sources */,
 				52B595621D53A5CF00E1D543 /* Piece.swift in Sources */,
+				5237A6A91D98233500BAC16E /* ECO.swift in Sources */,
 				52B5954E1D539FC700E1D543 /* Game.swift in Sources */,
 				52AB81D91D917986002C7A0B /* HistoryItem.swift in Sources */,
 				52B595761D53A72600E1D543 /* Square.swift in Sources */,
@@ -918,6 +943,7 @@
 				52B595FE1D5645D200E1D543 /* String+Chess.swift in Sources */,
 				52B5956D1D53A6D100E1D543 /* File.swift in Sources */,
 				52DB55131D96D5B9008B6F72 /* Geometry.swift in Sources */,
+				5237A6AA1D98233500BAC16E /* ECO.swift in Sources */,
 				52B595631D53A5CF00E1D543 /* Piece.swift in Sources */,
 				52B5954F1D539FC700E1D543 /* Game.swift in Sources */,
 				52B595771D53A72600E1D543 /* Square.swift in Sources */,
@@ -952,6 +978,7 @@
 				52B595FF1D5645D200E1D543 /* String+Chess.swift in Sources */,
 				52B5956E1D53A6D100E1D543 /* File.swift in Sources */,
 				52DB55141D96D5BA008B6F72 /* Geometry.swift in Sources */,
+				5237A6AB1D98233500BAC16E /* ECO.swift in Sources */,
 				52B595641D53A5CF00E1D543 /* Piece.swift in Sources */,
 				52B595501D539FC700E1D543 /* Game.swift in Sources */,
 				52B595781D53A72600E1D543 /* Square.swift in Sources */,
@@ -986,6 +1013,7 @@
 				52B5956F1D53A6D100E1D543 /* File.swift in Sources */,
 				52B595651D53A5CF00E1D543 /* Piece.swift in Sources */,
 				52DB55151D96D5BA008B6F72 /* Geometry.swift in Sources */,
+				5237A6AC1D98233500BAC16E /* ECO.swift in Sources */,
 				52B595511D539FC700E1D543 /* Game.swift in Sources */,
 				52B595791D53A72600E1D543 /* Square.swift in Sources */,
 				52C4DF4C1D83494B00385459 /* Board+View.swift in Sources */,

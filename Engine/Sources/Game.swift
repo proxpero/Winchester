@@ -25,6 +25,8 @@ public class Game {
     /// The black player.
     public var blackPlayer: Player
 
+    public var eco: ECO?
+
     // MARK: - Private Stored Properties
 
     /// The starting position.
@@ -63,6 +65,9 @@ public class Game {
     }
 
     // MARK: - Subscripts
+    public subscript(index: Int) -> HistoryItem {
+        return _history[index]
+    }
 
     // MARK: - Public API
 
@@ -102,10 +107,12 @@ public class Game {
         return currentPosition._attackers(targeting: square, for: color)
     }
 
-    public func execute(sanMove: String) throws {
-        guard let (move, promotion) = currentPosition.move(forSan: sanMove)
-        else { fatalError("I should throw an error") }
-        try execute(move: move, promotion: promotion)
+    public func execute(sanMoves: String) throws {
+        for sanMove in sanMoves.components(separatedBy: " ") {
+            guard let (move, promotion) = currentPosition.move(forSan: sanMove)
+            else { fatalError("I should throw an error") }
+            try execute(move: move, promotion: promotion)
+        }
     }
 
     public func execute(move: Move, promotion: Piece? = nil) throws {
@@ -115,6 +122,11 @@ public class Game {
             fatalError("Could not execute move: \(move.description)")
         }
         _history.append(newHistoryItem)
+
+        if let e = ECO.codes[sanMoves.joined(separator: " ")] {
+            eco = e
+        }
+
         self.delegate?.game(self, didExecute: move, withPromotion: promotion)
     }
 
@@ -182,12 +194,10 @@ public class Game {
         game.whitePlayer = Player(name: pgn[PGN.Tag.white], kind: pgn[PGN.Tag.whiteType], elo: pgn[PGN.Tag.whiteElo])
         game.blackPlayer = Player(name: pgn[PGN.Tag.black], kind: pgn[PGN.Tag.blackType], elo: pgn[PGN.Tag.blackElo])
 
-        for sanMove in pgn.sanMoves {
-            do {
-                try game.execute(sanMove: sanMove)
-            } catch {
-                fatalError("could not parse san move: \(sanMove)")
-            }
+        do {
+            try game.execute(sanMoves: pgn.sanMoves.joined(separator: " "))
+        } catch {
+            fatalError("could not parse san move: \(pgn.sanMoves)")
         }
         self.init(game: game)
     }
