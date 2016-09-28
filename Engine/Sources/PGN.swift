@@ -233,12 +233,12 @@ public struct PGN: Equatable {
     // MARK: - Public Computed Properties and Functions
 
     /// The game outcome.
-    public var outcome: Outcome? {
+    public var outcome: Outcome {
         get {
-            return self[Tag.result].flatMap(Outcome.init)
+            return self[Tag.result].flatMap(Outcome.init) ?? .undetermined
         }
         set {
-            self[Tag.result] = newValue?.description
+            self[Tag.result] = newValue.description
         }
     }
 
@@ -285,7 +285,7 @@ public struct PGN: Equatable {
         var line: String = ""
         func append(line: String) { result += (result.isEmpty ? "" : "\n") + line }
         func append(element: String) { line += (line.isEmpty ? "" : " ") + element }
-        for element in fullMoves + [self.outcome?.description ?? ""] {
+        for element in fullMoves + [self.outcome.description] {
             if line.characters.count + element.characters.count < 80 {
                 append(element: element)
             } else {
