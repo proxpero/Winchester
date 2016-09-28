@@ -497,14 +497,14 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
 
     // MARK: - Attackers
 
-    internal func _execute(uncheckedMove move: Move, for color: PlayerTurn, isEnPassant: Bool, promotion: Piece?) -> (Board, Piece?)? {
+    internal func _execute(uncheckedMove move: Move, for color: PlayerTurn, isEnPassant: Bool, promotion: Piece?) -> (Board, Capture?)? {
 
         guard let piece = self[move.origin] else { return nil }
 
         var newBoard = self
         var endPiece = piece
         var captureSquare = move.target
-        var capture = self[captureSquare]
+        var capturePiece = self[captureSquare]
 
         if piece.kind.isPawn {
             if move.target.rank == Rank(endFor: color)  {
@@ -515,7 +515,7 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
                 }
                 endPiece = Piece(kind: promo.kind, color: color)
             } else if isEnPassant {
-                capture = Piece(pawn: color.inverse())
+                capturePiece = Piece(pawn: color.inverse())
                 captureSquare = Square(file: move.target.file, rank: move.origin.rank)
             }
         } else if piece.kind.isKing {
@@ -527,10 +527,13 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
             }
         }
 
+        var capture: Capture?
+
         newBoard[piece][move.origin] = false
         newBoard[endPiece][move.target] = true
-        if let capture = capture {
-            newBoard[capture][captureSquare] = false
+        if let capturePiece = capturePiece {
+            newBoard[capturePiece][captureSquare] = false
+            capture = Capture(piece: capturePiece, square: captureSquare)
         }
 
         return (newBoard, capture)

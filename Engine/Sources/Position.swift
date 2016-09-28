@@ -359,10 +359,6 @@ public struct Position: Equatable, CustomStringConvertible {
             return nil
         }
 
-//        var newBoard = board
-//        var endPiece = piece
-//        var captureSquare = move.target
-//        var capture = board[captureSquare]
         var rights = castlingRights
 
         if piece.kind.isRook {
@@ -430,7 +426,7 @@ public struct Position: Equatable, CustomStringConvertible {
                 result.append(move.origin.file.character)
             }
 
-            if isCapture{
+            if isCapture {
                 result.append("x")
             }
 

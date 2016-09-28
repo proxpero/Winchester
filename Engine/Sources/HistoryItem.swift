@@ -16,7 +16,7 @@ public struct HistoryItem: Equatable {
     public let position: Position
     public let move: Move
     public let piece: Piece
-    public let capture: Piece?
+    public let capture: Capture?
     public let sanMove: String
 
     // MARK: - Equatable Protocol Conformance
@@ -27,7 +27,8 @@ public struct HistoryItem: Equatable {
             lhs.position == rhs.position &&
             lhs.move == rhs.move &&
             lhs.piece == rhs.piece &&
-            lhs.capture == rhs.capture &&
+            lhs.capture?.piece == rhs.capture?.piece &&
+            lhs.capture?.square == rhs.capture?.square &&
             lhs.sanMove == rhs.sanMove
     }
 
