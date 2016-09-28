@@ -150,7 +150,6 @@ public class Game {
         }
 
         delegate?.game(self, didExecute: move, with: newHistoryItem.capture, with: promotion)
-
     }
 
     // MARK: - Public Computed Properties
