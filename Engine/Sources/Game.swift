@@ -16,9 +16,6 @@ public class Game {
     
     // MARK: - Public Stored Properties
 
-    /// The game's delegate.
-    public var delegate: GameDelegate?
-
     /// The white player.
     public var whitePlayer: Player
 
@@ -44,10 +41,10 @@ public class Game {
     ///
     /// - parameter whitePlayer: The game's white player. Default is a nameless human.
     /// - parameter blackPlayer: The game's black player. Default is a nameless human.
-    /// - parameter variant: The game's chess variant. Default is standard.
     public init(whitePlayer: Player = Player(), blackPlayer: Player = Player(), startingPosition: Position = Position()) {
         self.whitePlayer = whitePlayer
         self.blackPlayer = blackPlayer
+        self.outcome = .undetermined
         self._startingPosition = startingPosition
         self._history = []
         self._undoHistory = []
@@ -59,6 +56,7 @@ public class Game {
     private init(game: Game) {
         self.whitePlayer = game.whitePlayer
         self.blackPlayer = game.blackPlayer
+        self.outcome = game.outcome
         self._startingPosition = game._startingPosition
         self._history = game._history
         self._undoHistory = game._undoHistory
@@ -70,6 +68,30 @@ public class Game {
     }
 
     // MARK: - Public API
+
+    public weak var delegate: GameDelegate?
+
+    public var outcome: Outcome = .undetermined
+
+    public var startIndex: Int {
+        return _history.startIndex
+    }
+
+    public var lastIndex: Int {
+        return _undoHistory.endIndex
+    }
+
+    public func reverse(to index: Int) {
+        guard index >= 0 else { return }
+        let items = stride(from: _history.count, to: index, by: -1).flatMap { _ in undo() }
+        delegate?.game(self, didReverse: items)
+    }
+
+    public func advance(to index: Int) {
+        guard index <= _undoHistory.count else { return }
+        let items = (0 ..< index).flatMap { _ in redo() }
+        delegate?.game(self, didAdvance: items)
+    }
 
     public func availableTargets(for color: Color) -> [Square] {
         return currentPosition._legalTargetSquares(for: color, considerHalfmoves: false)
@@ -127,7 +149,8 @@ public class Game {
             eco = e
         }
 
-        self.delegate?.game(self, didExecute: move, withPromotion: promotion)
+        delegate?.game(self, didExecute: move, with: newHistoryItem.capture, with: promotion)
+
     }
 
     // MARK: - Public Computed Properties
@@ -141,6 +164,10 @@ public class Game {
 
     public var history: Array<HistoryItem> {
         return _history
+    }
+
+    public var undoHistory: Array<HistoryItem> {
+        return _undoHistory
     }
 
     /// The number of executed moves.
@@ -157,10 +184,6 @@ public class Game {
         return _history.map { $0.sanMove }
     }
 
-    public var outcome: Outcome {
-        return currentPosition._outcome
-    }
-    
     // MARK: - Move Undo/Redo: Public Functions
 
     @discardableResult
@@ -193,6 +216,7 @@ public class Game {
 
         game.whitePlayer = Player(name: pgn[PGN.Tag.white], kind: pgn[PGN.Tag.whiteType], elo: pgn[PGN.Tag.whiteElo])
         game.blackPlayer = Player(name: pgn[PGN.Tag.black], kind: pgn[PGN.Tag.blackType], elo: pgn[PGN.Tag.blackElo])
+        game.outcome = pgn.outcome
 
         do {
             try game.execute(sanMoves: pgn.sanMoves.joined(separator: " "))
@@ -202,6 +226,12 @@ public class Game {
         self.init(game: game)
     }
 
+    private static var dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy.MM.dd"
+        return df
+    }()
+
     /// Returns a `Dictionary` where `Key` = `PGN.Tag` and `Value` = `String` of
     /// the PGN tag pairs describing `self`.
     public func tagPairs() -> Dictionary<String, String> {
@@ -209,6 +239,10 @@ public class Game {
         pairs[PGN.Tag.white.rawValue] = whitePlayer.name
         pairs[PGN.Tag.black.rawValue] = blackPlayer.name
         pairs[PGN.Tag.result.rawValue] = outcome.description
+        if let eco = eco {
+            pairs[PGN.Tag.eco.rawValue] = eco.code.rawValue
+        }
+        pairs[PGN.Tag.date.rawValue] = Game.dateFormatter.string(from: Date())
         return pairs
     }
     
@@ -221,9 +255,10 @@ public class Game {
 
 }
 
-// MARK: -
-// MARK: Game Delegate
+// MARK: - Game Delegate
 
-public protocol GameDelegate {
-    func game(_: Game, didExecute move: Move, withPromotion: Piece?) -> ()
+public protocol GameDelegate: class {
+    func game(_: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) -> ()
+    func game(_: Game, didAdvance items: [HistoryItem]) -> ()
+    func game(_: Game, didReverse items: [HistoryItem]) -> ()
 }
