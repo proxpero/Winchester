@@ -13,14 +13,22 @@ internal final class HistoryViewController: UICollectionViewController, UICollec
 
     var moveSelectionHandler: (Int) -> () = { _ in }
 
-    var game: Game? {
-        didSet {
-            guard let game = game else { return }
-            let moves = game.playedMoves.count
-            rows = 1 + moves + (moves % 2 == 0 ? moves/2 : (moves + 1)/2)
+    var game: Game? // {
+//        didSet {
+//            guard let game = game else { return }
+//            let moves = game.history.count + game.undoHistory.count
+//            rows = 1 + moves + (moves % 2 == 0 ? moves/2 : (moves + 1)/2)
+//        }
+//    }
+
+    var rows: Int {
+        guard let game = game else {
+            return 0
         }
+        let moves = game.history.count + game.undoHistory.count
+        let rows = 1 + moves + (moves % 2 == 0 ? moves/2 : (moves + 1)/2)
+        return rows
     }
-    var rows = 0
 
     override func viewDidAppear(_ animated: Bool) {
         let indexPath = IndexPath(row: 0, section: 0)
@@ -56,8 +64,7 @@ internal final class HistoryViewController: UICollectionViewController, UICollec
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let game = game else { return 0 }
-        let moves = game.playedMoves.count
-        return 1 + moves + (moves % 2 == 0 ? moves/2 : (moves + 1)/2)
+        return 1 + rows
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -118,6 +125,7 @@ final class HistoryCell: UICollectionViewCell {
             else if row.isNumberRow() { self = .number(row.numberIndex()) }
             else {
                 guard let game = game else { fatalError() }
+                let moveIndex = row.moveIndex()
                 self = .move(game.history[row.moveIndex()].sanMove)
             }
         }

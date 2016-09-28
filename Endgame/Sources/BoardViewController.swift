@@ -86,7 +86,7 @@ internal final class BoardViewController: ViewController {
      }
 
     func update(with moves: [Move]) {
-
+        
     }
 }
 

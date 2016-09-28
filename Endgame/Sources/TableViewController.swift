@@ -65,12 +65,3 @@ final class TableViewController<Item>: UITableViewController {
 
 }
 
-public protocol Reusable: class {
-    static func reuseIdentifier() -> String
-}
-
-extension Reusable {
-    public static func reuseIdentifier() -> String {
-        return "\(Self.self)"
-    }
-}

@@ -11,8 +11,7 @@ import Engine
 
 public final class GameViewController: UIViewController, SegueHandlerType {
 
-    var game = Game()
-    var update: ([Move]) -> () = { _ in }
+    var game: Game!
 
     enum SegueIdentifier: String {
         case title = "TitleViewControllerSegueIdentifier"
@@ -33,7 +32,6 @@ public final class GameViewController: UIViewController, SegueHandlerType {
             guard let vc = segue.destination as? BoardViewController else { fatalError() }
             vc.availableMoves = availableMoves
             vc.execute = execute
-            update = vc.update
 
         case .history:
             guard let vc = segue.destination as? HistoryViewController else { fatalError() }
@@ -60,10 +58,10 @@ public final class GameViewController: UIViewController, SegueHandlerType {
     }
 
     func selectMove(at index: Int) {
-        print(game.history[index])
+
+        let changes = game.move(to: index)
         let moves: [Move] = []
-        // Get the diff between current board and new board
-        update(moves)
+
     }
 
     var didSelect: (Game) -> () = { _ in }

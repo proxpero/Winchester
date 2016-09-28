@@ -19,9 +19,6 @@
 		521D1F221D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F181D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn */; };
 		521D1F231D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F181D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn */; };
 		521D1F241D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F181D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn */; };
-		521D1F271D8AF1A900A0A0E6 /* GameTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F251D8AF1A900A0A0E6 /* GameTitleViewController.xib */; };
-		521D1F281D8AF1A900A0A0E6 /* GameTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F251D8AF1A900A0A0E6 /* GameTitleViewController.xib */; };
-		521D1F291D8AF1A900A0A0E6 /* GameTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F251D8AF1A900A0A0E6 /* GameTitleViewController.xib */; };
 		521D1F5A1D8B0EE400A0A0E6 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521D1F591D8B0EE400A0A0E6 /* Messages.framework */; };
 		521D1F5D1D8B0EE400A0A0E6 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D1F5C1D8B0EE400A0A0E6 /* MessagesViewController.swift */; };
 		521D1F601D8B0EE400A0A0E6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F5E1D8B0EE400A0A0E6 /* MainInterface.storyboard */; };
@@ -41,7 +38,6 @@
 		521D1F761D8B137100A0A0E6 /* GameScene+TouchUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */; };
 		521EDDFD1D669B4200BD7355 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521EDDFC1D669B4200BD7355 /* HistoryViewController.swift */; };
 		5237A65A1D96D7C400BAC16E /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5237A6591D96D7C400BAC16E /* Engine.framework */; };
-		5237A6601D9709AB00BAC16E /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5237A6591D96D7C400BAC16E /* Engine.framework */; };
 		5237A6631D970B7C00BAC16E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6611D970B7C00BAC16E /* Main.storyboard */; };
 		5237A6651D9711B400BAC16E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6641D9711B400BAC16E /* MenuViewController.swift */; };
 		5237A6761D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */; };
@@ -124,12 +120,9 @@
 		526ACC111D8C582700D0D1A9 /* NewChessGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526ACC101D8C582700D0D1A9 /* NewChessGameCell.swift */; };
 		526ACC131D8C587500D0D1A9 /* ChessGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526ACC121D8C587500D0D1A9 /* ChessGameCell.swift */; };
 		528287FE1D6103720014B105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528287F41D6103720014B105 /* AppDelegate.swift */; };
-		5286ABC21D8862A1001AD9C4 /* GameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286ABC11D8862A1001AD9C4 /* GameListViewController.swift */; };
-		5286ABC31D8862A1001AD9C4 /* GameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286ABC11D8862A1001AD9C4 /* GameListViewController.swift */; };
-		5286ABC41D8862A1001AD9C4 /* GameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286ABC11D8862A1001AD9C4 /* GameListViewController.swift */; };
-		5286ABC61D886D9C001AD9C4 /* GameListViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286ABC51D886D9C001AD9C4 /* GameListViewControllerModel.swift */; };
-		5286ABC71D886D9C001AD9C4 /* GameListViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286ABC51D886D9C001AD9C4 /* GameListViewControllerModel.swift */; };
-		5286ABC81D886D9C001AD9C4 /* GameListViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286ABC51D886D9C001AD9C4 /* GameListViewControllerModel.swift */; };
+		5295DD551D999C4C0036144D /* RecentGamesConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD541D999C4C0036144D /* RecentGamesConfiguration.swift */; };
+		52A485451D9C3620004AB5A6 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5237A6591D96D7C400BAC16E /* Engine.framework */; };
+		52A485461D9C3620004AB5A6 /* Engine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5237A6591D96D7C400BAC16E /* Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52BE98971D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */; };
 		52BE989E1D80BC17005A0BB2 /* GameScene+TouchUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */; };
 		52D6DEC41D8C67F700CF8880 /* ChessGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DEC31D8C67F700CF8880 /* ChessGameViewController.swift */; };
@@ -171,6 +164,13 @@
 			remoteGlobalIDString = 5240588A1D638C8D000A925C;
 			remoteInfo = "Endgame macOS";
 		};
+		52678A581D9C24F100AB1B9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52678A541D9C24F000AB1B9E /* GameViewDemo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 52678A3F1D9C24F000AB1B9E;
+			remoteInfo = GameViewDemo;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -185,6 +185,17 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52A485471D9C3620004AB5A6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				52A485461D9C3620004AB5A6 /* Engine.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -192,7 +203,6 @@
 		521D1F161D8ACEF900A0A0E6 /* karpov v kasparov.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "karpov v kasparov.pgn"; sourceTree = "<group>"; };
 		521D1F171D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "nakamura v fluvia_poyatos.pgn"; sourceTree = "<group>"; };
 		521D1F181D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shirov v judit_polgar.pgn"; sourceTree = "<group>"; };
-		521D1F261D8AF1A900A0A0E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = iOS/Base.lproj/GameTitleViewController.xib; sourceTree = SOURCE_ROOT; };
 		521D1F581D8B0EE400A0A0E6 /* ChessWire.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ChessWire.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		521D1F591D8B0EE400A0A0E6 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		521D1F5C1D8B0EE400A0A0E6 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +250,7 @@
 		5246E61F1D665A5300219C8C /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		5246E6491D6669C000219C8C /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		525560B81D64C3BF00985809 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		52678A541D9C24F000AB1B9E /* GameViewDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GameViewDemo.xcodeproj; path = Demos/GameViewDemo/GameViewDemo.xcodeproj; sourceTree = "<group>"; };
 		526ACC101D8C582700D0D1A9 /* NewChessGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChessGameCell.swift; sourceTree = "<group>"; };
 		526ACC121D8C587500D0D1A9 /* ChessGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChessGameCell.swift; sourceTree = "<group>"; };
 		528287F41D6103720014B105 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -247,9 +258,8 @@
 		5282880E1D6113310014B105 /* EndgameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndgameTests.swift; sourceTree = "<group>"; };
 		528288221D6117BB0014B105 /* Engine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Engine.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-eammzrehpcciejebhazhrqzcqegs/Build/Products/Debug-iphonesimulator/Engine.framework"; sourceTree = "<group>"; };
 		528288241D6118910014B105 /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
-		5286ABC11D8862A1001AD9C4 /* GameListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameListViewController.swift; sourceTree = "<group>"; };
-		5286ABC51D886D9C001AD9C4 /* GameListViewControllerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameListViewControllerModel.swift; sourceTree = "<group>"; };
 		5292EF091D73482600F1C93D /* Engine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Engine.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-eammzrehpcciejebhazhrqzcqegs/Build/Products/Debug-iphoneos/Engine.framework"; sourceTree = "<group>"; };
+		5295DD541D999C4C0036144D /* RecentGamesConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentGamesConfiguration.swift; path = iOS/RecentGamesConfiguration.swift; sourceTree = SOURCE_ROOT; };
 		52BAE0921D5FD555006E2652 /* Endgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISwipeGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameScene+TouchUI.swift"; sourceTree = "<group>"; };
@@ -312,7 +322,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5237A6601D9709AB00BAC16E /* Engine.framework in Frameworks */,
+				52A485451D9C3620004AB5A6 /* Engine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +401,14 @@
 			path = "Endgame macOS";
 			sourceTree = "<group>";
 		};
+		52678A551D9C24F000AB1B9E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52678A591D9C24F100AB1B9E /* GameViewDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		528287F31D6103720014B105 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,13 +416,12 @@
 				52E354E21D7C8FBB006EAEA6 /* TableViewController.swift */,
 				52E354E81D7C9BF0006EAEA6 /* CollectionViewController.swift */,
 				5237A6641D9711B400BAC16E /* MenuViewController.swift */,
+				5295DD541D999C4C0036144D /* RecentGamesConfiguration.swift */,
+				525560B81D64C3BF00985809 /* GameViewController.swift */,
 				52E354E61D7C99DE006EAEA6 /* GameCell.swift */,
-				5286ABC11D8862A1001AD9C4 /* GameListViewController.swift */,
-				5286ABC51D886D9C001AD9C4 /* GameListViewControllerModel.swift */,
 				5246E61F1D665A5300219C8C /* TitleViewController.swift */,
 				528288241D6118910014B105 /* BoardViewController.swift */,
 				521EDDFC1D669B4200BD7355 /* HistoryViewController.swift */,
-				525560B81D64C3BF00985809 /* GameViewController.swift */,
 				5240587B1D63893E000A925C /* GameScene.swift */,
 				52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */,
 				524058841D638B2F000A925C /* GameLayer.swift */,
@@ -424,7 +441,6 @@
 				5240586B1D638483000A925C /* LaunchScreen.storyboard */,
 				5237A6611D970B7C00BAC16E /* Main.storyboard */,
 				5240586D1D638483000A925C /* Game.storyboard */,
-				521D1F251D8AF1A900A0A0E6 /* GameTitleViewController.xib */,
 				52E354E01D7C5957006EAEA6 /* GameCell.xib */,
 				524058711D638497000A925C /* Info.plist */,
 			);
@@ -455,6 +471,7 @@
 		52BAE0891D5FD555006E2652 = {
 			isa = PBXGroup;
 			children = (
+				52678A541D9C24F000AB1B9E /* GameViewDemo.xcodeproj */,
 				528288041D6104210014B105 /* Endgame.playground */,
 				521D1F141D8ACEF900A0A0E6 /* PGN */,
 				528287F31D6103720014B105 /* Sources */,
@@ -599,6 +616,7 @@
 				52BAE08F1D5FD555006E2652 /* Frameworks */,
 				52BAE0901D5FD555006E2652 /* Resources */,
 				521D1F6A1D8B0EE400A0A0E6 /* Embed App Extensions */,
+				52A485471D9C3620004AB5A6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -671,6 +689,12 @@
 			mainGroup = 52BAE0891D5FD555006E2652;
 			productRefGroup = 52BAE0931D5FD555006E2652 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 52678A551D9C24F000AB1B9E /* Products */;
+					ProjectRef = 52678A541D9C24F000AB1B9E /* GameViewDemo.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				52BAE0911D5FD555006E2652 /* Endgame iOS */,
@@ -683,6 +707,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		52678A591D9C24F100AB1B9E /* GameViewDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = GameViewDemo.app;
+			remoteRef = 52678A581D9C24F100AB1B9E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		521D1F561D8B0EE400A0A0E6 /* Resources */ = {
@@ -709,7 +743,6 @@
 				5237A6831D97691A00BAC16E /* gm1830.pgn in Resources */,
 				5237A6981D97691A00BAC16E /* mateIn4.epd in Resources */,
 				5237A6891D97691A00BAC16E /* gm1981.pgn in Resources */,
-				521D1F281D8AF1A900A0A0E6 /* GameTitleViewController.xib in Resources */,
 				521D1F231D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */,
 				5237A6861D97691A00BAC16E /* gm1931.pgn in Resources */,
 				5237A69B1D97691A00BAC16E /* mateIn5.epd in Resources */,
@@ -737,7 +770,6 @@
 				5237A6841D97691A00BAC16E /* gm1830.pgn in Resources */,
 				5237A6991D97691A00BAC16E /* mateIn4.epd in Resources */,
 				5237A68A1D97691A00BAC16E /* gm1981.pgn in Resources */,
-				521D1F291D8AF1A900A0A0E6 /* GameTitleViewController.xib in Resources */,
 				521D1F241D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */,
 				5237A6871D97691A00BAC16E /* gm1931.pgn in Resources */,
 				5237A69C1D97691A00BAC16E /* mateIn5.epd in Resources */,
@@ -794,7 +826,6 @@
 				5237A67F1D97691A00BAC16E /* cc02.pgn in Resources */,
 				52E354E11D7C5957006EAEA6 /* GameCell.xib in Resources */,
 				5237A6941D97691A00BAC16E /* mateIn3.epd in Resources */,
-				521D1F271D8AF1A900A0A0E6 /* GameTitleViewController.xib in Resources */,
 				5237A6761D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */,
 				521D1F221D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */,
 				5237A69D1D97691A00BAC16E /* mateIn6.epd in Resources */,
@@ -839,9 +870,7 @@
 				5237A6A11D97691A00BAC16E /* README.md in Sources */,
 				5240587D1D63893E000A925C /* GameScene.swift in Sources */,
 				5240586A1D638328000A925C /* AppDelegate.swift in Sources */,
-				5286ABC31D8862A1001AD9C4 /* GameListViewController.swift in Sources */,
 				524058801D63896F000A925C /* SquareNode.swift in Sources */,
-				5286ABC71D886D9C001AD9C4 /* GameListViewControllerModel.swift in Sources */,
 				524058631D63757A000A925C /* BoardViewController.swift in Sources */,
 				5246E64B1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
 			);
@@ -856,9 +885,7 @@
 				5237A6A21D97691A00BAC16E /* README.md in Sources */,
 				5240589C1D638DDE000A925C /* GameLayer.swift in Sources */,
 				5240589E1D638DE6000A925C /* PieceNode.swift in Sources */,
-				5286ABC41D8862A1001AD9C4 /* GameListViewController.swift in Sources */,
 				5240589D1D638DE3000A925C /* SquareNode.swift in Sources */,
-				5286ABC81D886D9C001AD9C4 /* GameListViewControllerModel.swift in Sources */,
 				5240589A1D638D29000A925C /* BoardViewController.swift in Sources */,
 				5246E64C1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
 			);
@@ -899,8 +926,8 @@
 				52E354E71D7C99DE006EAEA6 /* GameCell.swift in Sources */,
 				52E354E91D7C9BF0006EAEA6 /* CollectionViewController.swift in Sources */,
 				524058851D638B2F000A925C /* GameLayer.swift in Sources */,
-				5286ABC61D886D9C001AD9C4 /* GameListViewControllerModel.swift in Sources */,
 				52BE989E1D80BC17005A0BB2 /* GameScene+TouchUI.swift in Sources */,
+				5295DD551D999C4C0036144D /* RecentGamesConfiguration.swift in Sources */,
 				5240587C1D63893E000A925C /* GameScene.swift in Sources */,
 				521EDDFD1D669B4200BD7355 /* HistoryViewController.swift in Sources */,
 				524058681D638114000A925C /* BoardViewController.swift in Sources */,
@@ -909,7 +936,6 @@
 				5240587F1D63896F000A925C /* SquareNode.swift in Sources */,
 				5237A6651D9711B400BAC16E /* MenuViewController.swift in Sources */,
 				52BE98971D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
-				5286ABC21D8862A1001AD9C4 /* GameListViewController.swift in Sources */,
 				5246E64A1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
 				528287FE1D6103720014B105 /* AppDelegate.swift in Sources */,
 			);
@@ -941,14 +967,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		521D1F251D8AF1A900A0A0E6 /* GameTitleViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				521D1F261D8AF1A900A0A0E6 /* Base */,
-			);
-			name = GameTitleViewController.xib;
-			sourceTree = "<group>";
-		};
 		521D1F5E1D8B0EE400A0A0E6 /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1295,7 +1313,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
 				PRODUCT_NAME = Endgame;
@@ -1311,7 +1329,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
 				PRODUCT_NAME = Endgame;

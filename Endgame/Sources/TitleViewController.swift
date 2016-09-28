@@ -15,7 +15,7 @@ internal final class TitleViewContoller: ViewController {
     @IBOutlet var black: UILabel!
     @IBOutlet var outcome: UILabel!
 
-    var model: (white: String?, black: String?, outcome: String) = (nil, nil, "vs")
+    var model: (white: String?, black: String?, outcome: String) = (nil, nil, "*")
 
     init(white: String, black: String, outcome: Outcome) {
         super.init(nibName: "TitleViewController", bundle: nil)
