@@ -16,13 +16,22 @@ public class Game {
     
     // MARK: - Public Stored Properties
 
+    public weak var delegate: GameDelegate?
+
+    /// The game's move index.
+    public var moveIndex: Int
+
     /// The white player.
     public var whitePlayer: Player
 
     /// The black player.
     public var blackPlayer: Player
 
+    /// The game's eco. https://en.wikipedia.org/wiki/Encyclopaedia_of_Chess_Openings
     public var eco: ECO?
+
+    /// The game's outcome.
+    public var outcome: Outcome
 
     // MARK: - Private Stored Properties
 
@@ -41,9 +50,11 @@ public class Game {
     ///
     /// - parameter whitePlayer: The game's white player. Default is a nameless human.
     /// - parameter blackPlayer: The game's black player. Default is a nameless human.
-    public init(whitePlayer: Player = Player(), blackPlayer: Player = Player(), startingPosition: Position = Position()) {
+    /// - parameter startingPosition: The games's starting position. Default is standard.
+    public init(whitePlayer: Player = Player(), blackPlayer: Player = Player(), startingPosition: Position = Position(), moveIndex: Int = 0) {
         self.whitePlayer = whitePlayer
         self.blackPlayer = blackPlayer
+        self.moveIndex = moveIndex
         self.outcome = .undetermined
         self._startingPosition = startingPosition
         self._history = []
@@ -57,21 +68,24 @@ public class Game {
         self.whitePlayer = game.whitePlayer
         self.blackPlayer = game.blackPlayer
         self.outcome = game.outcome
+        self.moveIndex = game.moveIndex
         self._startingPosition = game._startingPosition
         self._history = game._history
         self._undoHistory = game._undoHistory
     }
 
-    // MARK: - Subscripts
-    public subscript(index: Int) -> HistoryItem {
-        return _history[index]
-    }
-
     // MARK: - Public API
 
-    public weak var delegate: GameDelegate?
-
-    public var outcome: Outcome = .undetermined
+    @discardableResult
+    public func move(to index: Int) -> [HistoryItem] {
+        let diff = _history.count - index
+        if diff == 0 { return [] }
+        if diff > 0 {
+            return _reverse(to: index)
+        } else {
+            return _advance(to: index)
+        }
+    }
 
     public var startIndex: Int {
         return _history.startIndex
@@ -81,16 +95,14 @@ public class Game {
         return _undoHistory.endIndex
     }
 
-    public func reverse(to index: Int) {
-        guard index >= 0 else { return }
-        let items = stride(from: _history.count, to: index, by: -1).flatMap { _ in undo() }
-        delegate?.game(self, didReverse: items)
+    private func _reverse(to index: Int) -> [HistoryItem] {
+        guard index >= 0 else { fatalError() }
+        return stride(from: _history.count, to: index, by: -1).flatMap { _ in undo() }
     }
 
-    public func advance(to index: Int) {
-        guard index <= _undoHistory.count else { return }
-        let items = (0 ..< index).flatMap { _ in redo() }
-        delegate?.game(self, didAdvance: items)
+    private func _advance(to index: Int) -> [HistoryItem] {
+        guard index <= _undoHistory.count else { fatalError() }
+        return (0 ..< index).flatMap { _ in redo() }
     }
 
     public func availableTargets(for color: Color) -> [Square] {
