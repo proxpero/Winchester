@@ -7,8 +7,8 @@
 //
 
 public struct Capture {
-    let piece: Piece
-    let square: Square
+    public let piece: Piece
+    public let square: Square
 }
 
 extension Capture: Equatable {

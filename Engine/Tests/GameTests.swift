@@ -10,7 +10,79 @@ import XCTest
 @testable import Engine
 
 class GameTests: XCTestCase {
-    
+
+    func testItemAtIndex() {
+        let moves = "1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 b5 5.Bxb5 Nf6 6.Nf3 Qh6"
+        let pgn = try! PGN(parse: moves)
+        let game = Game(pgn: pgn)
+
+        func test(index: Int, result: String?) {
+            XCTAssertEqual(game.item(at: index)?.sanMove, result)
+        }
+
+        test(index: game.startIndex, result: nil)
+        test(index: 1, result: Optional("e4"))
+        test(index: 2, result: Optional("e5"))
+        test(index: 3, result: Optional("f4"))
+        test(index: 4, result: Optional("exf4"))
+        test(index: 5, result: Optional("Bc4"))
+        test(index: 6, result: Optional("Qh4+"))
+        test(index: 7, result: Optional("Kf1"))
+        test(index: 8, result: Optional("b5"))
+        test(index: 9, result: Optional("Bxb5"))
+        test(index: 10, result: Optional("Nf6"))
+        test(index: 11, result: Optional("Nf3"))
+        test(index: 12, result: Optional("Qh6"))
+
+        test(index: 6, result: Optional("Qh4+"))
+        test(index: 12, result: Optional("Qh6"))
+        test(index: 2, result: Optional("e5"))
+        test(index: game.lastIndex, result: Optional("Qh6"))
+        test(index: game.startIndex, result: nil)
+
+    }
+
+    func testMoveToIndex() {
+        let moves = "1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 b5 5.Bxb5 Nf6 6.Nf3 Qh6"
+        let pgn = try! PGN(parse: moves)
+        let game = Game(pgn: pgn)
+
+        game.move(to: game.startIndex)
+        XCTAssertTrue(game.history.isEmpty)
+
+        let items1 = game.move(to: 5)
+        XCTAssertEqual(items1.direction, Direction.forward(5))
+        XCTAssertEqual(items1.items.map { $0.sanMove }, ["e4", "e5", "f4", "exf4", "Bc4"])
+
+        let items2 = game.move(to: 2)
+        XCTAssertEqual(items2.direction, Direction.backward(3))
+        XCTAssertEqual(items2.items.map { $0.sanMove }, ["Bc4", "exf4", "f4"])
+
+        XCTAssertEqual(game.lastIndex, 12)
+        let items3 = game.move(to: 12)
+        XCTAssertEqual(items3.direction, Direction.forward(10))
+        XCTAssertEqual(items3.items.map { $0.sanMove }, ["f4", "exf4", "Bc4", "Qh4+", "Kf1", "b5", "Bxb5", "Nf6", "Nf3", "Qh6"])
+
+        let items4 = game.move(to: game.startIndex)
+        XCTAssertEqual(items4.direction, Direction.backward(12))
+        XCTAssertEqual(items4.items.map { $0.sanMove }, ["Qh6", "Nf3", "Nf6", "Bxb5", "b5", "Kf1", "Qh4+", "Bc4", "exf4", "f4", "e5", "e4"])
+
+        let items5 = game.move(to: 7)
+        XCTAssertEqual(items5.direction, Direction.forward(7))
+        XCTAssertEqual(items5.items.map { $0.sanMove }, ["e4", "e5", "f4", "exf4", "Bc4", "Qh4+", "Kf1"])
+
+        let items6 = game.move(to: game.lastIndex)
+        XCTAssertEqual(items6.direction, Direction.forward(5))
+        XCTAssertEqual(items6.items.map { $0.sanMove }, ["b5", "Bxb5", "Nf6", "Nf3", "Qh6"])
+
+        let items7 = game.move(to: game.startIndex)
+        XCTAssertEqual(items7.direction, Direction.backward(12))
+        XCTAssertEqual(items7.items.map { $0.sanMove }, ["Qh6", "Nf3", "Nf6", "Bxb5", "b5", "Kf1", "Qh4+", "Bc4", "exf4", "f4", "e5", "e4"])
+
+        let items8 = game.move(to: game.lastIndex)
+        XCTAssertEqual(items8.direction, Direction.forward(12))
+        XCTAssertEqual(items8.items.map { $0.sanMove }, ["e4", "e5", "f4", "exf4", "Bc4", "Qh4+", "Kf1", "b5", "Bxb5", "Nf6", "Nf3", "Qh6"])
+    }
 
 }
 
@@ -110,7 +182,7 @@ class PGNTests: XCTestCase {
                 XCTAssertEqual(pgn[PGN.Tag.white]!, white)
                 XCTAssertEqual(pgn[PGN.Tag.black]!, black)
                 XCTAssertEqual(pgn.sanMoves.count, count)
-                XCTAssertEqual(pgn.outcome!, outcome)
+                XCTAssertEqual(pgn.outcome, outcome)
             } catch {
                 XCTFail(error.localizedDescription)
             }

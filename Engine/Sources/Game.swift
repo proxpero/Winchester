@@ -18,9 +18,6 @@ public class Game {
 
     public weak var delegate: GameDelegate?
 
-    /// The game's move index.
-    public var moveIndex: Int
-
     /// The white player.
     public var whitePlayer: Player
 
@@ -54,7 +51,6 @@ public class Game {
     public init(whitePlayer: Player = Player(), blackPlayer: Player = Player(), startingPosition: Position = Position(), moveIndex: Int = 0) {
         self.whitePlayer = whitePlayer
         self.blackPlayer = blackPlayer
-        self.moveIndex = moveIndex
         self.outcome = .undetermined
         self._startingPosition = startingPosition
         self._history = []
@@ -68,7 +64,6 @@ public class Game {
         self.whitePlayer = game.whitePlayer
         self.blackPlayer = game.blackPlayer
         self.outcome = game.outcome
-        self.moveIndex = game.moveIndex
         self._startingPosition = game._startingPosition
         self._history = game._history
         self._undoHistory = game._undoHistory
@@ -77,13 +72,26 @@ public class Game {
     // MARK: - Public API
 
     @discardableResult
-    public func move(to index: Int) -> [HistoryItem] {
-        let diff = _history.count - index
-        if diff == 0 { return [] }
-        if diff > 0 {
-            return _reverse(to: index)
+    public func move(to: Int) -> (direction: Direction, items: [HistoryItem]) {
+        let direction = Direction(currentIndex: _history.endIndex, targetIndex: to)
+        let items: [HistoryItem]
+        switch direction {
+        case .none: items = []
+        case .forward(let distance):
+            items = (0 ..< distance).flatMap { _ in redo() }
+        case .backward(let distance):
+            items = (0 ..< distance).flatMap { _ in undo() }
+        }
+        return (direction, items)
+    }
+
+    public func item(at index: Int) -> HistoryItem? {
+        if index == 0 { return nil } // initial position
+        if index <= _history.endIndex {
+            return _history[index-1]
         } else {
-            return _advance(to: index)
+            let index = _undoHistory.endIndex - (index - _history.endIndex)
+            return _undoHistory[index]
         }
     }
 
@@ -92,17 +100,7 @@ public class Game {
     }
 
     public var lastIndex: Int {
-        return _undoHistory.endIndex
-    }
-
-    private func _reverse(to index: Int) -> [HistoryItem] {
-        guard index >= 0 else { fatalError() }
-        return stride(from: _history.count, to: index, by: -1).flatMap { _ in undo() }
-    }
-
-    private func _advance(to index: Int) -> [HistoryItem] {
-        guard index <= _undoHistory.count else { fatalError() }
-        return (0 ..< index).flatMap { _ in redo() }
+        return _history.endIndex + _undoHistory.endIndex
     }
 
     public func availableTargets(for color: Color) -> [Square] {
@@ -272,4 +270,28 @@ public protocol GameDelegate: class {
     func game(_: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) -> ()
     func game(_: Game, didAdvance items: [HistoryItem]) -> ()
     func game(_: Game, didReverse items: [HistoryItem]) -> ()
+}
+
+public enum Direction: Equatable {
+    case forward(Int)
+    case backward(Int)
+    case none
+
+    init(currentIndex: Int, targetIndex: Int) {
+        let distance = abs(currentIndex - targetIndex)
+        if currentIndex == targetIndex { self = .none }
+        else if currentIndex > targetIndex { self = .backward(distance) }
+        else { self = .forward(distance) }
+    }
+
+    public static func == (lhs: Direction, rhs: Direction) -> Bool {
+        switch (lhs, rhs) {
+        case (.none, .none): return true
+        case (.forward(let a), .forward(let b)):
+            return a == b
+        case (.backward(let a), .backward(let b)):
+            return a == b
+        default: return false
+        }
+    }
 }
