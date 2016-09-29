@@ -43,6 +43,9 @@
 		5295DD511D98A94A0036144D /* ECO Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD501D98A94A0036144D /* ECO Tests.swift */; };
 		5295DD521D98A94A0036144D /* ECO Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD501D98A94A0036144D /* ECO Tests.swift */; };
 		5295DD531D98A94A0036144D /* ECO Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD501D98A94A0036144D /* ECO Tests.swift */; };
+		52A485601D9D862B004AB5A6 /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A311D9BF7FC00AB1B9E /* Capture.swift */; };
+		52A485611D9D862B004AB5A6 /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A311D9BF7FC00AB1B9E /* Capture.swift */; };
+		52A485621D9D862C004AB5A6 /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A311D9BF7FC00AB1B9E /* Capture.swift */; };
 		52AB81D71D917902002C7A0B /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D61D917902002C7A0B /* Outcome.swift */; };
 		52AB81D91D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
 		52AB81DA1D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
@@ -955,6 +958,7 @@
 				52B595951D53AB7700E1D543 /* InternalTypes.swift in Sources */,
 				52B595591D53A05100E1D543 /* Board.swift in Sources */,
 				52DB55101D96D5A5008B6F72 /* Position.swift in Sources */,
+				52A485601D9D862B004AB5A6 /* Capture.swift in Sources */,
 				52B595681D53A5E100E1D543 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -990,6 +994,7 @@
 				52B595961D53AB7700E1D543 /* InternalTypes.swift in Sources */,
 				52B5955A1D53A05100E1D543 /* Board.swift in Sources */,
 				52DB55111D96D5A5008B6F72 /* Position.swift in Sources */,
+				52A485611D9D862B004AB5A6 /* Capture.swift in Sources */,
 				52B595691D53A5E100E1D543 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1025,6 +1030,7 @@
 				52B595971D53AB7700E1D543 /* InternalTypes.swift in Sources */,
 				52B5955B1D53A05100E1D543 /* Board.swift in Sources */,
 				52DB55121D96D5A6008B6F72 /* Position.swift in Sources */,
+				52A485621D9D862C004AB5A6 /* Capture.swift in Sources */,
 				52B5956A1D53A5E100E1D543 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -79,7 +79,7 @@ public class Game {
         case .none: items = []
         case .forward(let distance):
             items = (0 ..< distance).flatMap { _ in redo() }
-        case .backward(let distance):
+        case .reverse(let distance):
             items = (0 ..< distance).flatMap { _ in undo() }
         }
         return (direction, items)
@@ -274,13 +274,13 @@ public protocol GameDelegate: class {
 
 public enum Direction: Equatable {
     case forward(Int)
-    case backward(Int)
+    case reverse(Int)
     case none
 
     init(currentIndex: Int, targetIndex: Int) {
         let distance = abs(currentIndex - targetIndex)
         if currentIndex == targetIndex { self = .none }
-        else if currentIndex > targetIndex { self = .backward(distance) }
+        else if currentIndex > targetIndex { self = .reverse(distance) }
         else { self = .forward(distance) }
     }
 
@@ -289,7 +289,7 @@ public enum Direction: Equatable {
         case (.none, .none): return true
         case (.forward(let a), .forward(let b)):
             return a == b
-        case (.backward(let a), .backward(let b)):
+        case (.reverse(let a), .reverse(let b)):
             return a == b
         default: return false
         }
