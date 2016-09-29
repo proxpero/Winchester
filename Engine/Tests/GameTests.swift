@@ -55,7 +55,7 @@ class GameTests: XCTestCase {
         XCTAssertEqual(items1.items.map { $0.sanMove }, ["e4", "e5", "f4", "exf4", "Bc4"])
 
         let items2 = game.move(to: 2)
-        XCTAssertEqual(items2.direction, Direction.backward(3))
+        XCTAssertEqual(items2.direction, Direction.reverse(3))
         XCTAssertEqual(items2.items.map { $0.sanMove }, ["Bc4", "exf4", "f4"])
 
         XCTAssertEqual(game.lastIndex, 12)
@@ -64,7 +64,7 @@ class GameTests: XCTestCase {
         XCTAssertEqual(items3.items.map { $0.sanMove }, ["f4", "exf4", "Bc4", "Qh4+", "Kf1", "b5", "Bxb5", "Nf6", "Nf3", "Qh6"])
 
         let items4 = game.move(to: game.startIndex)
-        XCTAssertEqual(items4.direction, Direction.backward(12))
+        XCTAssertEqual(items4.direction, Direction.reverse(12))
         XCTAssertEqual(items4.items.map { $0.sanMove }, ["Qh6", "Nf3", "Nf6", "Bxb5", "b5", "Kf1", "Qh4+", "Bc4", "exf4", "f4", "e5", "e4"])
 
         let items5 = game.move(to: 7)
@@ -76,7 +76,7 @@ class GameTests: XCTestCase {
         XCTAssertEqual(items6.items.map { $0.sanMove }, ["b5", "Bxb5", "Nf6", "Nf3", "Qh6"])
 
         let items7 = game.move(to: game.startIndex)
-        XCTAssertEqual(items7.direction, Direction.backward(12))
+        XCTAssertEqual(items7.direction, Direction.reverse(12))
         XCTAssertEqual(items7.items.map { $0.sanMove }, ["Qh6", "Nf3", "Nf6", "Bxb5", "b5", "Kf1", "Qh4+", "Bc4", "exf4", "f4", "e5", "e4"])
 
         let items8 = game.move(to: game.lastIndex)
