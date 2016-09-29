@@ -27,8 +27,8 @@
 		52678A7B1D9C2B2200AB1B9E /* shirov v judit_polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52678A791D9C2B2200AB1B9E /* shirov v judit_polgar.pgn */; };
 		52A485541D9C37FB004AB5A6 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52A485521D9C37FB004AB5A6 /* Game.storyboard */; };
 		52A485561D9C387A004AB5A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A485551D9C387A004AB5A6 /* Assets.xcassets */; };
-		52A485581D9C3AAA004AB5A6 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A485571D9C3AAA004AB5A6 /* Engine.framework */; };
-		52A485591D9C3AAA004AB5A6 /* Engine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52A485571D9C3AAA004AB5A6 /* Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		52A4855C1D9CA056004AB5A6 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4855B1D9CA056004AB5A6 /* Engine.framework */; };
+		52A4855D1D9CA056004AB5A6 /* Engine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4855B1D9CA056004AB5A6 /* Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,7 +38,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				52A485591D9C3AAA004AB5A6 /* Engine.framework in Embed Frameworks */,
+				52A4855D1D9CA056004AB5A6 /* Engine.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,7 +68,7 @@
 		52678A791D9C2B2200AB1B9E /* shirov v judit_polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shirov v judit_polgar.pgn"; sourceTree = "<group>"; };
 		52A485531D9C37FB004AB5A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../iOS/Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		52A485551D9C387A004AB5A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Shared/Assets.xcassets; sourceTree = "<group>"; };
-		52A485571D9C3AAA004AB5A6 /* Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52A4855B1D9CA056004AB5A6 /* Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52A485581D9C3AAA004AB5A6 /* Engine.framework in Frameworks */,
+				52A4855C1D9CA056004AB5A6 /* Engine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 		52678A361D9C24F000AB1B9E = {
 			isa = PBXGroup;
 			children = (
-				52A485571D9C3AAA004AB5A6 /* Engine.framework */,
+				52A4855B1D9CA056004AB5A6 /* Engine.framework */,
 				52678A771D9C285700AB1B9E /* Shared */,
 				52678A411D9C24F000AB1B9E /* GameViewDemo */,
 				52678A401D9C24F000AB1B9E /* Products */,

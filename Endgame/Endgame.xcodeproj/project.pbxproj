@@ -123,6 +123,7 @@
 		5295DD551D999C4C0036144D /* RecentGamesConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD541D999C4C0036144D /* RecentGamesConfiguration.swift */; };
 		52A485451D9C3620004AB5A6 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5237A6591D96D7C400BAC16E /* Engine.framework */; };
 		52A485461D9C3620004AB5A6 /* Engine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5237A6591D96D7C400BAC16E /* Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		52A4855F1D9CBC11004AB5A6 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4855E1D9CBC11004AB5A6 /* Engine.framework */; };
 		52BE98971D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */; };
 		52BE989E1D80BC17005A0BB2 /* GameScene+TouchUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */; };
 		52D6DEC41D8C67F700CF8880 /* ChessGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DEC31D8C67F700CF8880 /* ChessGameViewController.swift */; };
@@ -260,6 +261,7 @@
 		528288241D6118910014B105 /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		5292EF091D73482600F1C93D /* Engine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Engine.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-eammzrehpcciejebhazhrqzcqegs/Build/Products/Debug-iphoneos/Engine.framework"; sourceTree = "<group>"; };
 		5295DD541D999C4C0036144D /* RecentGamesConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentGamesConfiguration.swift; path = iOS/RecentGamesConfiguration.swift; sourceTree = SOURCE_ROOT; };
+		52A4855E1D9CBC11004AB5A6 /* Engine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Engine.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-iphoneos/Engine.framework"; sourceTree = "<group>"; };
 		52BAE0921D5FD555006E2652 /* Endgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISwipeGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameScene+TouchUI.swift"; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A4855F1D9CBC11004AB5A6 /* Engine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +463,7 @@
 		5282881F1D6117270014B105 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52A4855E1D9CBC11004AB5A6 /* Engine.framework */,
 				5237A6591D96D7C400BAC16E /* Engine.framework */,
 				5292EF091D73482600F1C93D /* Engine.framework */,
 				528288221D6117BB0014B105 /* Engine.framework */,

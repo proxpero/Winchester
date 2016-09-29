@@ -109,13 +109,18 @@ public final class PiecesLayer: SKSpriteNode, GameLayer {
 
     typealias NodeType = PieceNode
 
+    public func createPieceNode(from piece: Piece, location: Square) -> PieceNode {
+        let pieceNode = PieceNode(piece: piece, with: squareSize)
+        pieceNode.position = position(for: location)
+        pieceNode.name = piece.description
+        return pieceNode
+    }
+
     public func setupPieces(for board: Board) {
 
         for space in board {
             if let piece = space.piece {
-                let pieceNode = PieceNode(piece: piece, with: squareSize)
-                pieceNode.position = position(for: Square(file: space.file, rank: space.rank))
-                pieceNode.name = piece.description
+                let pieceNode = createPieceNode(from: piece, location: Square(file: space.file, rank: space.rank))
                 addChild(pieceNode)
             }
         }

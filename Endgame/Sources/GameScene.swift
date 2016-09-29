@@ -34,14 +34,14 @@ public final class GameScene: SKScene {
 
         add(layer: squaresLayer)
         squaresLayer.name = "Squares"
-        squaresLayer.zPosition = 31
+        squaresLayer.zPosition = 100
         squaresLayer.position = view.center
         squaresLayer.setupSquares()
         squaresLayer.color = .white
 
         addChild(piecesLayer)
         piecesLayer.name = "Pieces"
-        piecesLayer.zPosition = 35
+        piecesLayer.zPosition = 200
         piecesLayer.position = view.center
         piecesLayer.setupPieces(for: Board())
 
@@ -49,6 +49,20 @@ public final class GameScene: SKScene {
             view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapAction(sender:))))
             view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(self.panAction(sender:))))
         #endif
+
+    }
+
+    func move(pieceFrom origin: Square, to target: Square, capture: Capture? = nil) {
+        guard let _ = piecesLayer.node(for: origin) else {
+            fatalError("Could not find piece at \(origin)")
+        }
+        piecesLayer.movePiece(from: origin, to: target, animated: true)
+        if let capture = capture {
+            let captureNode = piecesLayer.createPieceNode(from: capture.piece, location: capture.square)
+            captureNode.alpha = 0.0
+            piecesLayer.addChild(captureNode)
+            captureNode.run(SKAction.fadeIn(withDuration: 0.2))
+        }
 
     }
 

@@ -14,6 +14,7 @@ final public class PieceNode: SKSpriteNode {
     init(piece: Piece, with size: CGSize) {
         let imageName = "\(piece.color == .white ? "White" : "Black")\(piece.kind.name)"
         super.init(texture: SKTexture(imageNamed: imageName), color: .clear, size: size)
+        self.name = piece.description
         self.zPosition = 20
     }
 

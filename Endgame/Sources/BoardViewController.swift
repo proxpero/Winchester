@@ -17,12 +17,27 @@
 import Engine
 import SpriteKit
 
+protocol BoardViewDelegate: class {
+//    var perform: (_ item: HistoryItem) -> () { get set }
+//    var reverse: (_ item: HistoryItem) -> () { get set }
+    func availableMoves(from origin: Square) -> [Square]
+}
+
 internal final class BoardViewController: ViewController {
 
+    weak var delegate: BoardViewDelegate?
+    
     // MARK: Delegate
     var availableMoves: (_ origin: Square) -> [Square] = { _ in [] }
     var execute: (Move) -> Bool = { _ in false }
-    
+
+    func advance(item: HistoryItem) {
+        _scene.move(pieceFrom: item.move.origin, to: item.move.target)
+    }
+
+    func reverse(item: HistoryItem) {
+        _scene.move(pieceFrom: item.move.target, to: item.move.origin, capture: item.capture)
+    }
 
     enum ActivityState {
         case initiation(Square)
@@ -88,6 +103,7 @@ internal final class BoardViewController: ViewController {
     func update(with moves: [Move]) {
         
     }
+
 }
 
 protocol GameSceneDataSource {
