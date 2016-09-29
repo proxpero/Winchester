@@ -84,6 +84,10 @@ class MoveTests: XCTestCase {
         XCTAssertTrue(move4.isCastle())
         XCTAssertEqual(move4.origin, .e8)
         XCTAssertEqual(move4.target, .g8)
+
+        let (origin, target) = move4.castleSquares()
+        XCTAssertEqual(origin, .h8)
+        XCTAssertEqual(target, .f8)
     }
 
 }
