@@ -520,7 +520,7 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
             }
         } else if piece.kind.isKing {
             if move.isCastle() {
-                let (old, new) = move._castleSquares()
+                let (old, new) = move.castleSquares()
                 let rook = Piece(rook: color)
                 newBoard[rook][old] = false
                 newBoard[rook][new] = true
