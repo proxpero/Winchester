@@ -462,6 +462,7 @@ public struct Position: Equatable, CustomStringConvertible {
             move: move,
             piece: piece,
             capture: capture,
+            promotion: promotion,
             sanMove: sanMove(with: newPosition)
         )
     }
