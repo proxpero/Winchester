@@ -277,6 +277,33 @@ public enum Direction: Equatable {
     case reverse(Int)
     case none
 
+    public var isForward: Bool {
+        switch self {
+        case .forward(_):
+            return true
+        default:
+            return false
+        }
+    }
+
+    public var isReverse: Bool {
+        switch self {
+        case .reverse(_):
+            return true
+        default:
+            return false
+        }
+    }
+
+    public var isNone: Bool {
+        switch self {
+        case .none:
+            return true
+        default:
+            return false
+        }
+    }
+
     init(currentIndex: Int, targetIndex: Int) {
         let distance = abs(currentIndex - targetIndex)
         if currentIndex == targetIndex { self = .none }

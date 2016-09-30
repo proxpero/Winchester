@@ -52,19 +52,28 @@ public final class GameScene: SKScene {
 
     }
 
-    func move(pieceFrom origin: Square, to target: Square, capture: Capture? = nil) {
-        guard let _ = piecesLayer.node(for: origin) else {
-            fatalError("Could not find piece at \(origin)")
-        }
-        piecesLayer.movePiece(from: origin, to: target, animated: true)
-        if let capture = capture {
-            let captureNode = piecesLayer.createPieceNode(from: capture.piece, location: capture.square)
-            captureNode.alpha = 0.0
-            piecesLayer.addChild(captureNode)
-            captureNode.run(SKAction.fadeIn(withDuration: 0.2))
-        }
-
+    /// Moves the pieceNode at `move.origin` to the square at `move.target`
+    internal func perform(move: Move) {
+        piecesLayer.movePiece(from: move.origin, to: move.target, animated: true)
     }
+
+    /// Handles a forward moving capture.
+    internal func remove(capture: Capture) {
+        guard let capturedPieceNode = piecesLayer.node(for: capture.square), let name = capturedPieceNode.name,
+            name == capture.piece.description else { fatalError("Could not remove \(capture.piece.description) at \(capture.square.description)") }
+        capturedPieceNode.run(SKAction.fadeOut(withDuration: 0.2)) {
+            capturedPieceNode.removeFromParent()
+        }
+    }
+
+    /// Handles a reverse-directed capture.
+    internal func replace(capture: Capture) {
+        let captureNode = piecesLayer.createPieceNode(from: capture.piece, location: capture.square)
+        captureNode.alpha = 0.0
+        piecesLayer.addChild(captureNode)
+        captureNode.run(SKAction.fadeIn(withDuration: 0.2))
+    }
+
 
     /**
      Returns a `Square` corresponding to the given location.

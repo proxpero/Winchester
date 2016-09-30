@@ -49,8 +49,6 @@ public final class GameViewController: UIViewController, SegueHandlerType {
         case .board:
             guard let vc = segue.destination as? BoardViewController else { fatalError() }
             boardViewController = vc
-//            vc.availableMoves = availableMoves
-//            vc.execute = execute
 
         case .history:
             guard let vc = segue.destination as? HistoryViewController else { fatalError() }
@@ -65,19 +63,14 @@ public final class GameViewController: UIViewController, SegueHandlerType {
         guard let game = game else {
             fatalError()
         }
+
         let (direction, items) = game.move(to: index)
-        switch direction {
-        case .none:
-            return
-        case .forward(let distance):
-            for item in items {
-                boardViewController.advance(item: item)
-            }
-        case .backward:
-            for item in items {
-                boardViewController.reverse(item: item)
-            }
+        if direction.isNone { return }
+
+        for item in items {
+            boardViewController.perform(item: item, direction: direction)
         }
+
         print(game.currentPosition.ascii)
         print("\n")
     }

@@ -17,26 +17,35 @@
 import Engine
 import SpriteKit
 
-protocol BoardViewDelegate: class {
-//    var perform: (_ item: HistoryItem) -> () { get set }
-//    var reverse: (_ item: HistoryItem) -> () { get set }
-    func availableMoves(from origin: Square) -> [Square]
-}
-
 internal final class BoardViewController: ViewController {
 
-    weak var delegate: BoardViewDelegate?
-    
-    // MARK: Delegate
-    var availableMoves: (_ origin: Square) -> [Square] = { _ in [] }
-    var execute: (Move) -> Bool = { _ in false }
+    func perform(item: HistoryItem, direction: Direction) {
+        let move = direction.isForward ? item.move : item.move.reversed()
+        _scene.perform(move: move)
 
-    func advance(item: HistoryItem) {
-        _scene.move(pieceFrom: item.move.origin, to: item.move.target)
-    }
+        if item.move.isCastle() {
+            let (rookOrigin, rookTarget) = item.move.castleSquares()
+            let rookMove: Move
+            if direction.isForward {
+                rookMove = Move(origin: rookOrigin, target: rookTarget)
+            } else {
+                rookMove = Move(origin: rookTarget, target: rookOrigin)
+            }
+            _scene.perform(move: rookMove)
+        }
 
-    func reverse(item: HistoryItem) {
-        _scene.move(pieceFrom: item.move.target, to: item.move.origin, capture: item.capture)
+        if let capture = item.capture {
+            if direction.isReverse {
+                _scene.replace(capture: capture)
+            } else {
+
+            }
+        }
+
+        if let promotion = item.promotion {
+            
+        }
+
     }
 
     enum ActivityState {
@@ -67,10 +76,10 @@ internal final class BoardViewController: ViewController {
     }
 
     func beginActivity(for origin: Square) {
-        let squareNodes = _scene.squaresLayer.squareNodes(for: availableMoves(origin))
-        for squareNode in squareNodes {
-            squareNode.highlightType = .available
-        }
+//        let squareNodes = _scene.squaresLayer.squareNodes(for: availableMoves(origin))
+//        for squareNode in squareNodes {
+//            squareNode.highlightType = .available
+//        }
     }
 
     func normalizeActivity() {
@@ -79,19 +88,19 @@ internal final class BoardViewController: ViewController {
 
     func endActivity(with origin: Square, target: Square?) {
 
-        defer {
-            activityState = .normal
-        }
-
-        guard let target = target, availableMoves(origin).contains(target) else {
-            // move piece back to origin
-            return
-        }
-
-        guard execute(Move(origin: origin, target: target)) else {
-            fatalError("Error: no handling in \(#function)")
-        }
-        _scene.piecesLayer.movePiece(from: origin, to: target, animated: true)
+//        defer {
+//            activityState = .normal
+//        }
+//
+//        guard let target = target, availableMoves(origin).contains(target) else {
+//            // move piece back to origin
+//            return
+//        }
+//
+//        guard execute(Move(origin: origin, target: target)) else {
+//            fatalError("Error: no handling in \(#function)")
+//        }
+//        _scene.piecesLayer.movePiece(from: origin, to: target, animated: true)
     }
 
     override func viewDidLayoutSubviews() {

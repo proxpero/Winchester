@@ -432,6 +432,11 @@ public struct Position: Equatable, CustomStringConvertible {
 
             result += move.target.description
             result += newPosition._kingStatus.algebraicAnnotation
+
+            if let promotion = promotion, let char = promotion.kind.character {
+                result += "=\(char)"
+            }
+
             return result
         }
 
