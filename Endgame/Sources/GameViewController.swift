@@ -67,6 +67,8 @@ public final class GameViewController: UIViewController, SegueHandlerType {
         let (direction, items) = game.move(to: index)
         if direction.isNone { return }
 
+        
+
         for item in items {
             boardViewController.perform(item: item, direction: direction)
         }

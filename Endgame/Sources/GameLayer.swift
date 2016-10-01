@@ -109,42 +109,32 @@ public final class PiecesLayer: SKSpriteNode, GameLayer {
 
     typealias NodeType = PieceNode
 
-    public func createPieceNode(from piece: Piece, location: Square) -> PieceNode {
-        let pieceNode = PieceNode(piece: piece, with: squareSize)
-        pieceNode.position = position(for: location)
-        pieceNode.name = piece.description
-        return pieceNode
+    public func pieceNode(for piece: Piece) -> PieceNode {
+        return PieceNode(piece: piece, with: squareSize)
     }
 
     public func setupPieces(for board: Board) {
-
         for space in board {
             if let piece = space.piece {
-                let pieceNode = createPieceNode(from: piece, location: Square(file: space.file, rank: space.rank))
-                addChild(pieceNode)
+                let node = self.pieceNode(for: piece)
+                node.position = position(for: Square(file: space.file, rank: space.rank))
+                addChild(node)
             }
         }
-        
     }
 
-    public func movePiece(from origin: Square, to target: Square, animated: Bool) {
+    public func movePiece(from origin: Square, to target: Square) {
         guard let pieceNode = node(for: origin) else { return }
         place(pieceNode: pieceNode, on: target)
     }
 
     public func place(pieceNode: PieceNode, on target: Square) {
-
-        let capture = node(for: target)
         let action = SKAction.move(to: position(for: target), duration: 0.2)
         action.timingMode = .easeInEaseOut
         pieceNode.zPosition += 20
         pieceNode.run(action) {
-            print("Here I am: \(pieceNode.position)")
-            capture?.removeFromParent()
             pieceNode.zPosition -= 20
         }
     }
-
-
 
 }

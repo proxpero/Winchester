@@ -53,8 +53,17 @@ public final class GameScene: SKScene {
     }
 
     /// Moves the pieceNode at `move.origin` to the square at `move.target`
-    internal func perform(move: Move) {
-        piecesLayer.movePiece(from: move.origin, to: move.target, animated: true)
+    internal func perform(move: Move, endPiece: Piece? = nil) {
+        guard let oldNode = piecesLayer.node(for: move.origin) else {
+            fatalError("Expected a piece at \(move.origin.description)")
+        }
+        piecesLayer.movePiece(from: move.origin, to: move.target)
+        if let endPiece = endPiece {
+            let newNode = piecesLayer.pieceNode(for: endPiece)
+            newNode.position = oldNode.position
+            oldNode.removeFromParent()
+        }
+
     }
 
     /// Handles a forward moving capture.
@@ -68,12 +77,12 @@ public final class GameScene: SKScene {
 
     /// Handles a reverse-directed capture.
     internal func replace(capture: Capture) {
-        let captureNode = piecesLayer.createPieceNode(from: capture.piece, location: capture.square)
+        let captureNode = piecesLayer.pieceNode(for: capture.piece)
+        captureNode.position = piecesLayer.position(for: capture.square)
         captureNode.alpha = 0.0
         piecesLayer.addChild(captureNode)
         captureNode.run(SKAction.fadeIn(withDuration: 0.2))
     }
-
 
     /**
      Returns a `Square` corresponding to the given location.
