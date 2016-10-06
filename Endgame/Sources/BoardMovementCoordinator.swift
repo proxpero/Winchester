@@ -1,5 +1,5 @@
 //
-//  BoardViewCoordinator.swift
+//  BoardMovementCoordinator.swift
 //  GameViewDemo
 //
 //  Created by Todd Olsen on 10/6/16.
@@ -28,7 +28,7 @@ struct Transaction: TransactionType {
     var status: Status
 }
 
-final class BoardViewCoordinator {
+final class BoardMovementCoordinator {
 
     // MARK: - Stored Properties
 

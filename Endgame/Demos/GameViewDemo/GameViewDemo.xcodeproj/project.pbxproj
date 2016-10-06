@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		525AE6881DA68A61002A1630 /* BoardViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525AE6871DA68A61002A1630 /* BoardViewCoordinator.swift */; };
+		525AE6881DA68A61002A1630 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525AE6871DA68A61002A1630 /* BoardMovementCoordinator.swift */; };
 		52678A431D9C24F000AB1B9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A421D9C24F000AB1B9E /* AppDelegate.swift */; };
 		52678A4D1D9C24F000AB1B9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52678A4B1D9C24F000AB1B9E /* LaunchScreen.storyboard */; };
 		52678A5C1D9C254600AB1B9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52678A5A1D9C254600AB1B9E /* Main.storyboard */; };
@@ -52,7 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		525AE6871DA68A61002A1630 /* BoardViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardViewCoordinator.swift; path = ../../Sources/BoardViewCoordinator.swift; sourceTree = "<group>"; };
+		525AE6871DA68A61002A1630 /* BoardMovementCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardMovementCoordinator.swift; path = ../../Sources/BoardMovementCoordinator.swift; sourceTree = "<group>"; };
 		52678A3F1D9C24F000AB1B9E /* GameViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52678A421D9C24F000AB1B9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52678A4C1D9C24F000AB1B9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 				52678A5E1D9C285000AB1B9E /* GameCell.swift */,
 				52678A5F1D9C285000AB1B9E /* TitleViewController.swift */,
 				52678A601D9C285000AB1B9E /* BoardViewController.swift */,
-				525AE6871DA68A61002A1630 /* BoardViewCoordinator.swift */,
+				525AE6871DA68A61002A1630 /* BoardMovementCoordinator.swift */,
 				52678A611D9C285000AB1B9E /* HistoryViewController.swift */,
 				52678A621D9C285000AB1B9E /* GameScene.swift */,
 				52678A631D9C285000AB1B9E /* GameScene+TouchUI.swift */,
@@ -247,7 +247,7 @@
 				52678A701D9C285000AB1B9E /* GameScene+TouchUI.swift in Sources */,
 				52678A751D9C285000AB1B9E /* UIImage+View.swift in Sources */,
 				52678A711D9C285000AB1B9E /* GameLayer.swift in Sources */,
-				525AE6881DA68A61002A1630 /* BoardViewCoordinator.swift in Sources */,
+				525AE6881DA68A61002A1630 /* BoardMovementCoordinator.swift in Sources */,
 				52678A741D9C285000AB1B9E /* SegueHandlerType.swift in Sources */,
 				52678A761D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
 				52678A6D1D9C285000AB1B9E /* BoardViewController.swift in Sources */,
