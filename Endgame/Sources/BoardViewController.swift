@@ -14,83 +14,51 @@
     typealias ViewController = UIViewController
 #endif
 
-import Engine
 import SpriteKit
+import Engine
 
 internal final class BoardViewController: ViewController {
-
-    // MARK: Delegate
-    var availableMoves: (_ origin: Square) -> Bitboard = { _ in 0x0 }
-    var execute: (Move) -> Bool = { _ in false }
-    
-
-    enum ActivityState {
-        case initiation(Square)
-        case end(origin: Square, target: Square)
-        case normal
-    }
-
-    var activityState: ActivityState = .normal {
-        didSet {
-            switch activityState {
-            case .initiation(let origin):
-                beginActivity(for: origin)
-            case .end(let origin, let target):
-                endActivity(with: origin, target: target)
-            case .normal:
-                normalizeActivity()
-            }
-        }
-    }
-
-    private var _scene: GameScene {
-        guard
-            let skview = view as? SKView,
-            let scene = skview.scene as? GameScene
-        else { fatalError("") }
-        return scene
-    }
-
-    func beginActivity(for origin: Square) {
-        let squareNodes = _scene.squaresLayer.squareNodes(for: availableMoves(origin))
-        for squareNode in squareNodes {
-            squareNode.highlightType = .available
-        }
-    }
-
-    func normalizeActivity() {
-        _scene.squaresLayer.removeHighlights()
-    }
-
-    func endActivity(with origin: Square, target: Square?) {
-
-        defer {
-            activityState = .normal
-        }
-
-        guard let target = target, availableMoves(origin).contains(target) else {
-            // move piece back to origin
-            return
-        }
-
-        guard execute(Move(origin: origin, target: target)) else {
-            fatalError("Error: no handling in \(#function)")
-        }
-        _scene.piecesLayer.movePiece(from: origin, to: target, animated: true)
-    }
 
     override func viewDidLayoutSubviews() {
         guard let skview = view as? SKView else { return }
         let scene = GameScene(edge: view.bounds.width)
         skview.presentScene(scene)
-     }
-
-    func update(with moves: [Move]) {
-
     }
+
+    var scene: GameScene {
+        guard
+            let skview = view as? SKView,
+            let scene = skview.scene as? GameScene
+            else { fatalError("There is no scene!") }
+        return scene
+    }
+
+    func pieceNode(for square: Square) -> PieceNode? {
+        return scene.piecesLayer.node(for: square)
+    }
+
+    func newPieceNode(for piece: Piece) -> PieceNode {
+        return scene.piecesLayer.pieceNode(for: piece)
+    }
+
+    func perform(_ transaction: Transaction, on pieceNode: PieceNode) {
+        scene.piecesLayer.perform(transaction, on: pieceNode)
+    }
+
 }
 
-protocol GameSceneDataSource {
+extension BoardViewCoordinator {
+    var ascii: String {
+        let edge = "  +-----------------+\n"
+        var result = edge
+        let reversed = Rank.all.reversed()
+        for rank in reversed {
+            let strings = File.all.map { self.getPieceNode(Square(file: $0, rank: rank))?.name ?? "." }
+            let str = strings.joined(separator: " ")
+            result += "\(rank) | \(str) |\n"
 
-    func piece(_: GameScene, at square: Square) -> Piece
+        }
+        result += "\(edge)    a b c d e f g h  "
+        return result
+    }
 }

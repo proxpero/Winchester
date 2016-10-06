@@ -27,6 +27,11 @@ public struct Move: Hashable, CustomStringConvertible {
         self.target = target
     }
 
+    public init(_ origin: Square, _ target: Square) {
+        self.origin = origin
+        self.target = target
+    }
+
     /// Create a move with origin and target locations.
     public init(origin: Location, target: Location) {
         self.origin = Square(location: origin)
@@ -165,10 +170,8 @@ public struct Move: Hashable, CustomStringConvertible {
             && (endFile == .c || endFile == .g)
     }
 
-    // MARK: - Internal Computed Properties and Functions
-
     /// Returns the castle squares for a rook.
-    internal func _castleSquares() -> (old: Square, new: Square) {
+    public func castleSquares() -> (old: Square, new: Square) {
         let rank = origin.rank
         let movedLeft = self.isLeftward
         let old = Square(file: movedLeft ? .a : .h, rank: rank)

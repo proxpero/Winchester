@@ -14,11 +14,22 @@ final public class PieceNode: SKSpriteNode {
     init(piece: Piece, with size: CGSize) {
         let imageName = "\(piece.color == .white ? "White" : "Black")\(piece.kind.name)"
         super.init(texture: SKTexture(imageNamed: imageName), color: .clear, size: size)
-        self.zPosition = 20
+        self.name = String(piece.character)
+        self.zPosition = 210
     }
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    func perform(_ transaction: Transaction) {
+        if transaction.status == .removed {
+            run(SKAction.fadeOut(withDuration: 0.2))
+            return
+        }
+
+        if transaction.status == .added {
+            run(SKAction.fadeIn(withDuration: 0.2))
+        }
+    }
 }

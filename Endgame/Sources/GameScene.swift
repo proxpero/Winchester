@@ -34,14 +34,14 @@ public final class GameScene: SKScene {
 
         add(layer: squaresLayer)
         squaresLayer.name = "Squares"
-        squaresLayer.zPosition = 31
+        squaresLayer.zPosition = 100
         squaresLayer.position = view.center
         squaresLayer.setupSquares()
         squaresLayer.color = .white
 
-        addChild(piecesLayer)
+        add(layer: piecesLayer)
         piecesLayer.name = "Pieces"
-        piecesLayer.zPosition = 35
+        piecesLayer.zPosition = 200
         piecesLayer.position = view.center
         piecesLayer.setupPieces(for: Board())
 
@@ -87,6 +87,8 @@ public final class GameScene: SKScene {
     }
 
 }
+
+
 
 protocol GameSceneDelegate {
     func availableMoves(from origin: Square) -> Bitboard

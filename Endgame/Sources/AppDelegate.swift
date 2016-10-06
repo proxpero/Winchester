@@ -13,20 +13,66 @@ import Engine
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var app: App?
+    var configuration: MenuConfiguration?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        if let window = window {
-            app = App(window: window)
-        }
+        guard let window = window else { return false }
+        configuration = MenuConfiguration(window: window)
         return true
     }
 
 }
 
+final class Configuration {
+
+    let navigationController: UINavigationController
+    let profile: Profile
+
+    init(window: UIWindow, profile: Profile) {
+        self.profile = profile
+        self.navigationController = window.rootViewController as! UINavigationController
+
+    }
+
+    enum Section: Int {
+        case newGame
+        case recentGames
+        case favoriteGames
+        case puzzles
+        case settings
+
+        var all: [Section] {
+            return [.newGame, .recentGames, .favoriteGames, .puzzles, .settings]
+        }
+
+        init(at indexPath: IndexPath) {
+            self.init(rawValue: indexPath.section)!
+        }
+
+        init(_ section: Int) {
+            self.init(rawValue: section)!
+        }
+
+        var title: String {
+            switch self {
+            case .newGame: return "New Game"
+            case .recentGames: return "Recent Games"
+            case .favoriteGames: return "Favorite Games"
+            case .puzzles: return "Puzzles"
+            case .settings: return "Settings"
+            }
+        }
+    }
+
+    
+
+}
+
 final class App {
 
-    // This is implicitly unwrapped because
+    // This is implicitly unwrapped because some functions needed
+    // to initialize it are in `self`, and they cannont both be
+    // initialized first.
     var navigationController: UINavigationController!
 
     init(window: UIWindow) {
@@ -64,7 +110,7 @@ final class App {
         let white = game.whitePlayer.name ?? "?"
         let black = game.blackPlayer.name ?? "?"
         cell.textLabel?.text = "\(white) vs. \(black)"
-        cell.imageView?.image = UIImage(view: game.board.view(edge: cell.bounds.height))
+        cell.imageView?.image = UIImage(view: game.currentPosition.thumbnail(edge: cell.bounds.height))
     }
 
     func showGame(game: Game) {

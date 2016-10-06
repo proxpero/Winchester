@@ -68,7 +68,11 @@ class MessagesViewController: MSMessagesAppViewController {
 
         controller.delegate = self
 
-//        return GameViewController()
+        return controller
+    }
+
+    private func instantiateGameViewController(with game: Game) -> ChessGameViewController {
+        return ChessGameViewController(nibName: nil, bundle: nil)
     }
 
 }
@@ -80,6 +84,10 @@ extension MessagesViewController: ChessGamesListViewControllerDelegate {
 }
 
 extension MessagesViewController: ChessGameViewControllerDelegate {
+    internal func chessGameViewController(didExecute move: Move) {
+//        <#code#>
+    }
+
     func chessGameViewController(_ controller: ChessGameViewController, didExecute move: Move) {
 
     }
@@ -98,7 +106,7 @@ extension PGN {
     }
 
     var queryItem: URLQueryItem {
-        return URLQueryItem(name: "moves", value: sanMoves)
+        return URLQueryItem(name: "moves", value: "sanMoves")
     }
 }
 
@@ -118,6 +126,6 @@ extension Game {
         }
     }
     var queryItem: URLQueryItem {
-        return pngRepresentation.queryItem
+        return pgn.queryItem
     }
 }

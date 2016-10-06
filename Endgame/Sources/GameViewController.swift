@@ -9,10 +9,23 @@
 import UIKit
 import Engine
 
+struct GameViewCoordinator {
+
+    var game: Game
+
+    init(game: Game) {
+        self.game = game
+    }
+
+}
+
 public final class GameViewController: UIViewController, SegueHandlerType {
 
-    var game = Game()
-    var update: ([Move]) -> () = { _ in }
+    var game: Game?
+    var historyViewConfiguration: HistoryViewConfiguration?
+    var boardViewCoordinator: BoardViewCoordinator?
+    var boardViewController: BoardViewController!
+
 
     enum SegueIdentifier: String {
         case title = "TitleViewControllerSegueIdentifier"
@@ -22,51 +35,38 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+        guard let game = game else { fatalError() }
         switch segueIdentifierForSegue(segue) {
 
         case .title:
             guard let vc = segue.destination as? TitleViewContoller else { fatalError() }
-            let outcome = game.outcome?.description ?? "vs"
+            let outcome = game.outcome.description
             vc.model = (game.whitePlayer.name, game.blackPlayer.name, outcome)
 
         case .board:
             guard let vc = segue.destination as? BoardViewController else { fatalError() }
-            vc.availableMoves = availableMoves
-            vc.execute = execute
-            update = vc.update
+            boardViewCoordinator = BoardViewCoordinator(
+                pieceNode: vc.pieceNode,
+                newPieceNode: vc.newPieceNode,
+                perform: vc.perform
+            )
 
         case .history:
             guard let vc = segue.destination as? HistoryViewController else { fatalError() }
-            vc.game = game
+            historyViewConfiguration = HistoryViewConfiguration(game: game, historyViewController: vc, moveSelectionHandler: didSelect)
             view.addSwipeGestureRecognizer(target: vc, action: #selector(vc.advanceMove(sender:)), direction: .left)
             view.addSwipeGestureRecognizer(target: vc, action: #selector(vc.reverseMove(sender:)), direction: .right)
-            vc.moveSelectionHandler = selectMove
         }
 
     }
 
-    func availableMoves(from origin: Square) -> Bitboard {
-        return game.moves(from: origin)
-    }
-
-    func execute(move: Move) -> Bool {
-        do {
-            try game.execute(move: move)
-            return true
-        } catch {
-            print("Could not perform move: \(move.description)")
-            return false
+    func didSelect(rowAt index: Int) {
+        guard let game = game else {
+            fatalError()
         }
+        let (direction, items) = game.move(to: index)
+        boardViewCoordinator?.arrange(items: items, direction: direction)
     }
-
-    func selectMove(at index: Int) {
-        print(game.moveHistory[index])
-        let moves: [Move] = []
-        // Get the diff between current board and new board
-        update(moves)
-    }
-
-    var didSelect: (Game) -> () = { _ in }
-    var didTapConfigure: () -> () = { }
 
 }
+

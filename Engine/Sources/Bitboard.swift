@@ -92,10 +92,7 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
 
     /// The number of bits set in `self`.
     public var count: Int {
-        var n = rawValue
-        n = n - ((n >> 1) & 0x5555555555555555)
-        n = (n & 0x3333333333333333) + ((n >> 2) & 0x3333333333333333)
-        return Int((((n + (n >> 4)) & 0xF0F0F0F0F0F0F0F) &* 0x101010101010101) >> 56)
+        return rawValue.count
     }
 
     /// `true` if `self` is empty.
@@ -152,27 +149,27 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
     }
 
     /// Returns the attacks available to a bishop in `self`.
-    internal func _bishopAttacks(stoppers bitboard: Bitboard = 0) -> Bitboard {
-        let ne = filled(toward: .northeast, stoppers: bitboard).shifted(toward: .northeast)
-        let nw = filled(toward: .northwest, stoppers: bitboard).shifted(toward: .northwest)
-        let se = filled(toward: .southeast, stoppers: bitboard).shifted(toward: .southeast)
-        let sw = filled(toward: .southwest, stoppers: bitboard).shifted(toward: .southwest)
+    internal func _bishopAttacks(obstacles bitboard: Bitboard = 0) -> Bitboard {
+        let ne = filled(toward: .northeast, obstacles: bitboard).shifted(toward: .northeast)
+        let nw = filled(toward: .northwest, obstacles: bitboard).shifted(toward: .northwest)
+        let se = filled(toward: .southeast, obstacles: bitboard).shifted(toward: .southeast)
+        let sw = filled(toward: .southwest, obstacles: bitboard).shifted(toward: .southwest)
         return ne | nw | se | sw
     }
 
     /// Returns the attacks available to a rook in `self`.
-    internal func _rookAttacks(stoppers bitboard: Bitboard = 0) -> Bitboard {
-        let n = filled(toward: .north, stoppers: bitboard).shifted(toward: .north)
-        let s = filled(toward: .south, stoppers: bitboard).shifted(toward: .south)
-        let e = filled(toward: .east,  stoppers: bitboard).shifted(toward: .east)
-        let w = filled(toward: .west,  stoppers: bitboard).shifted(toward: .west)
+    internal func _rookAttacks(obstacles bitboard: Bitboard = 0) -> Bitboard {
+        let n = filled(toward: .north, obstacles: bitboard).shifted(toward: .north)
+        let s = filled(toward: .south, obstacles: bitboard).shifted(toward: .south)
+        let e = filled(toward: .east,  obstacles: bitboard).shifted(toward: .east)
+        let w = filled(toward: .west,  obstacles: bitboard).shifted(toward: .west)
         return n | s | e | w
     }
 
     /// Returns the attacks available to the queen in `self`.
-    internal func _queenAttacks(stoppers bitboard: Bitboard = 0) -> Bitboard {
-        let rook = _rookAttacks(stoppers: bitboard)
-        let bishop = _bishopAttacks(stoppers: bitboard)
+    internal func _queenAttacks(obstacles bitboard: Bitboard = 0) -> Bitboard {
+        let rook = _rookAttacks(obstacles: bitboard)
+        let bishop = _bishopAttacks(obstacles: bitboard)
         return rook | bishop
     }
 
@@ -186,18 +183,18 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
     }
 
     /// Returns the attacks available to `piece` in `self`.
-    internal func _attacks(for piece: Piece, stoppers: Bitboard = 0) -> Bitboard {
+    internal func _attacks(for piece: Piece, obstacles: Bitboard = 0) -> Bitboard {
         switch piece.kind {
         case .pawn:
             return _pawnAttacks(for: piece.color)
         case .knight:
             return _knightAttacks()
         case .bishop:
-            return _bishopAttacks(stoppers: stoppers)
+            return _bishopAttacks(obstacles: obstacles)
         case .rook:
-            return _rookAttacks(stoppers: stoppers)
+            return _rookAttacks(obstacles: obstacles)
         case .queen:
-            return _queenAttacks(stoppers: stoppers)
+            return _queenAttacks(obstacles: obstacles)
         case .king:
             return _kingAttacks()
         }
@@ -228,9 +225,9 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
         return n
     }
 
-    /// Returns the bits of `self` filled toward `direction` stopped by `stoppers`.
-    public func filled(toward direction: ShiftDirection, stoppers: Bitboard) -> Bitboard {
-        let empty = ~stoppers
+    /// Returns the bits of `self` filled toward `direction` stopped by `obstacles`.
+    public func filled(toward direction: ShiftDirection, obstacles: Bitboard) -> Bitboard {
+        let empty = ~obstacles
         var bitboard = self
         for _ in 0 ..< 7 {
             bitboard |= empty & bitboard.shifted(toward: direction)
@@ -267,9 +264,9 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
         self = shifted(toward: direction)
     }
 
-    /// Fills the bits of `self` toward `direction` stopped by `stoppers`.
-    public mutating func fill(toward direction: ShiftDirection, stoppers: Bitboard = 0) {
-        self = filled(toward: direction, stoppers: stoppers)
+    /// Fills the bits of `self` toward `direction` stopped by `obstacles`.
+    public mutating func fill(toward direction: ShiftDirection, obstacles: Bitboard = 0) {
+        self = filled(toward: direction, obstacles: obstacles)
     }
 
     // MARK: - Protocol Conformance
@@ -537,3 +534,17 @@ internal let _kingAttackTable = Array(Square.all.map { square in
 internal let _knightAttackTable = Array(Square.all.map { square in
     return square.bitmask._knightAttacks()
 })
+
+// MARK: - Helpers
+
+extension UInt64 {
+    /// The number of 1s in the binary representation of `self`
+    /// http://stackoverflow.com/a/109025/277905
+    public var count: Int {
+        var n = self
+        n = n - ((n >> 1) & 0x5555555555555555)
+        n = (n & 0x3333333333333333) + ((n >> 2) & 0x3333333333333333)
+        return Int((((n + (n >> 4)) & 0xF0F0F0F0F0F0F0F) &* 0x101010101010101) >> 56)
+    }
+}
+

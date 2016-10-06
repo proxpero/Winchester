@@ -136,6 +136,17 @@ public struct PGN: Equatable {
             return rawValue
         }
 
+        public static var roster: [(tag: Tag, default: String)] {
+            return [
+                (.event, "?"),
+                (.site, "?"),
+                (.date, "????.??.??"),
+                (.round, "?"),
+                (.white, "?"),
+                (.black, "?"),
+                (.result, "?")]
+        }
+
     }
 
     // MARK: -
@@ -177,7 +188,7 @@ public struct PGN: Equatable {
     private var _tagPairs: [Tag: String]
 
     /// The moves in standard algebraic notation.
-    private var _algebraicMoves: [String]
+    private var _sanMoves: [String]
 
     // MARK: - Initializers
 
@@ -195,7 +206,7 @@ public struct PGN: Equatable {
             } else if line.characters.first != "%" {
                 let stripped = try line._commentsStripped(strings: false)
                 let (moves, outcome) = try stripped._moves()
-                self._algebraicMoves += moves
+                self._sanMoves += moves
                 if let outcome = outcome {
                     self.outcome = outcome
                 }
@@ -205,7 +216,7 @@ public struct PGN: Equatable {
 
     // Create PGN with `tagPairs` and `moves`.
     public init(tagPairs: [Tag: String] = [:], moves: [String] = []) {
-        self._algebraicMoves = moves
+        self._sanMoves = moves
         self._tagPairs = tagPairs
     }
 
@@ -222,17 +233,17 @@ public struct PGN: Equatable {
     // MARK: - Public Computed Properties and Functions
 
     /// The game outcome.
-    public var outcome: Outcome? {
+    public var outcome: Outcome {
         get {
-            return self[Tag.result].flatMap(Outcome.init)
+            return self[Tag.result].flatMap(Outcome.init) ?? .undetermined
         }
         set {
-            self[Tag.result] = newValue?.description
+            self[Tag.result] = newValue.description
         }
     }
 
     public var sanMoves: [String] {
-        return _algebraicMoves
+        return _sanMoves
     }
 
     public var tagPairs: [Tag: String] {
@@ -242,16 +253,7 @@ public struct PGN: Equatable {
     public var exportTagPairs: String {
         var result = ""
         var tagPairs = self._tagPairs
-        let sevenTagRoster = [
-            (Tag.event,  "?"),
-            (Tag.site,   "?"),
-            (Tag.date,   "????.??.??"),
-            (Tag.round,  "?"),
-            (Tag.white,  "?"),
-            (Tag.black,  "?"),
-            (Tag.result, "*")
-        ]
-        for (tag, defaultValue) in sevenTagRoster {
+        for (tag, defaultValue) in Tag.roster {
             if let value = tagPairs[tag] {
                 tagPairs[tag] = nil
                 result += "[\(tag.rawValue) \"\(value)\"]\n"
@@ -267,11 +269,11 @@ public struct PGN: Equatable {
 
     public var fullMoves: [String] {
         var result = [String]()
-        for num in stride(from: 0, to: _algebraicMoves.endIndex, by: 2) {
+        for num in stride(from: 0, to: _sanMoves.endIndex, by: 2) {
             let moveNumber = (num + 2) / 2
-            var moveString = "\(moveNumber). \(_algebraicMoves[num])"
-            if num + 1 < _algebraicMoves.endIndex {
-                moveString += " \(_algebraicMoves[num+1])"
+            var moveString = "\(moveNumber). \(_sanMoves[num])"
+            if num + 1 < _sanMoves.endIndex {
+                moveString += " \(_sanMoves[num+1])"
             }
             result.append(moveString)
         }
@@ -283,7 +285,7 @@ public struct PGN: Equatable {
         var line: String = ""
         func append(line: String) { result += (result.isEmpty ? "" : "\n") + line }
         func append(element: String) { line += (line.isEmpty ? "" : " ") + element }
-        for element in fullMoves + [self.outcome?.description ?? ""] {
+        for element in fullMoves + [self.outcome.description] {
             if line.characters.count + element.characters.count < 80 {
                 append(element: element)
             } else {
@@ -331,8 +333,7 @@ public struct PGN: Equatable {
     /// Returns a Boolean value indicating whether two values are equal.
     public static func == (lhs: PGN, rhs: PGN) -> Bool {
         return lhs._tagPairs == rhs._tagPairs
-            && lhs._algebraicMoves == rhs._algebraicMoves
-        
+            && lhs._sanMoves == rhs._sanMoves
     }
 
 }

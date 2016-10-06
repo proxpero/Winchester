@@ -33,6 +33,8 @@ public extension String {
     }
 }
 
+
+
 public extension Character {
 
     static let newlines: Set<Character> = ["\u{000A}", "\u{000B}", "\u{000C}", "\u{000D}",
