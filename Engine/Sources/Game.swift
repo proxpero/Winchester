@@ -76,7 +76,6 @@ public class Game {
         let direction = Direction(currentIndex: _history.endIndex, targetIndex: to)
         let items: [HistoryItem]
         switch direction {
-        case .none: items = []
         case .forward(let distance):
             items = (0 ..< distance).flatMap { _ in redo() }
         case .reverse(let distance):
@@ -275,7 +274,6 @@ public protocol GameDelegate: class {
 public enum Direction: Equatable {
     case forward(Int)
     case reverse(Int)
-    case none
 
     public var isForward: Bool {
         switch self {
@@ -295,25 +293,14 @@ public enum Direction: Equatable {
         }
     }
 
-    public var isNone: Bool {
-        switch self {
-        case .none:
-            return true
-        default:
-            return false
-        }
-    }
-
     init(currentIndex: Int, targetIndex: Int) {
         let distance = abs(currentIndex - targetIndex)
-        if currentIndex == targetIndex { self = .none }
-        else if currentIndex > targetIndex { self = .reverse(distance) }
+        if currentIndex > targetIndex { self = .reverse(distance) }
         else { self = .forward(distance) }
     }
 
     public static func == (lhs: Direction, rhs: Direction) -> Bool {
         switch (lhs, rhs) {
-        case (.none, .none): return true
         case (.forward(let a), .forward(let b)):
             return a == b
         case (.reverse(let a), .reverse(let b)):
