@@ -46,19 +46,3 @@ internal final class BoardViewController: ViewController {
     }
 
 }
-
-extension BoardViewCoordinator {
-    var ascii: String {
-        let edge = "  +-----------------+\n"
-        var result = edge
-        let reversed = Rank.all.reversed()
-        for rank in reversed {
-            let strings = File.all.map { self.getPieceNode(Square(file: $0, rank: rank))?.name ?? "." }
-            let str = strings.joined(separator: " ")
-            result += "\(rank) | \(str) |\n"
-
-        }
-        result += "\(edge)    a b c d e f g h  "
-        return result
-    }
-}
