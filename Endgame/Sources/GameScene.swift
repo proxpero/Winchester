@@ -12,6 +12,7 @@ import SpriteKit
 public final class GameScene: SKScene {
 
     let squaresLayer: SquaresLayer
+    let arrowsLayer: ArrowsLayer
     let piecesLayer: PiecesLayer
 
     public init(edge: CGFloat) {
@@ -19,6 +20,7 @@ public final class GameScene: SKScene {
         let size = CGSize(width: edge, height: edge)
         self.squaresLayer = SquaresLayer(size: size)
         self.piecesLayer = PiecesLayer(size: size)
+        self.arrowsLayer = ArrowsLayer(size: size)
 
         super.init(size: size)
 
@@ -38,6 +40,12 @@ public final class GameScene: SKScene {
         squaresLayer.position = view.center
         squaresLayer.setupSquares()
         squaresLayer.color = .white
+
+        add(layer: arrowsLayer)
+        arrowsLayer.name = "Arrows"
+        arrowsLayer.zPosition = 150
+        arrowsLayer.position = view.center
+        arrowsLayer.color = .clear
 
         add(layer: piecesLayer)
         piecesLayer.name = "Pieces"
@@ -83,12 +91,9 @@ public final class GameScene: SKScene {
 
     private func add<T>(layer: T) where T: GameLayer, T: SKNode {
         addChild(layer)
-        layer.name = ""
     }
 
 }
-
-
 
 protocol GameSceneDelegate {
     func availableMoves(from origin: Square) -> Bitboard
