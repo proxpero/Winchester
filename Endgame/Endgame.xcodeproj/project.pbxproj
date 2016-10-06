@@ -117,9 +117,6 @@
 		5246E64B1D6669C000219C8C /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246E6491D6669C000219C8C /* SegueHandlerType.swift */; };
 		5246E64C1D6669C000219C8C /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246E6491D6669C000219C8C /* SegueHandlerType.swift */; };
 		525560B91D64C3BF00985809 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525560B81D64C3BF00985809 /* GameViewController.swift */; };
-		525AE68A1DA68AA7002A1630 /* BoardViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525AE6891DA68AA7002A1630 /* BoardViewCoordinator.swift */; };
-		525AE68B1DA68AA7002A1630 /* BoardViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525AE6891DA68AA7002A1630 /* BoardViewCoordinator.swift */; };
-		525AE68C1DA68AA7002A1630 /* BoardViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525AE6891DA68AA7002A1630 /* BoardViewCoordinator.swift */; };
 		526ACC111D8C582700D0D1A9 /* NewChessGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526ACC101D8C582700D0D1A9 /* NewChessGameCell.swift */; };
 		526ACC131D8C587500D0D1A9 /* ChessGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526ACC121D8C587500D0D1A9 /* ChessGameCell.swift */; };
 		526B6A251DA44FAF00738D6B /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 526B6A241DA44FAF00738D6B /* fischer v fine.pgn */; };
@@ -140,6 +137,7 @@
 		52E354E51D7C99C0006EAEA6 /* UIImage+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E354E41D7C99C0006EAEA6 /* UIImage+View.swift */; };
 		52E354E71D7C99DE006EAEA6 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E354E61D7C99DE006EAEA6 /* GameCell.swift */; };
 		52E354E91D7C9BF0006EAEA6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E354E81D7C9BF0006EAEA6 /* CollectionViewController.swift */; };
+		52EA13DA1DA7152D00EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -257,7 +255,6 @@
 		5246E61F1D665A5300219C8C /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		5246E6491D6669C000219C8C /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		525560B81D64C3BF00985809 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		525AE6891DA68AA7002A1630 /* BoardViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewCoordinator.swift; sourceTree = "<group>"; };
 		52678A541D9C24F000AB1B9E /* GameViewDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GameViewDemo.xcodeproj; path = Demos/GameViewDemo/GameViewDemo.xcodeproj; sourceTree = "<group>"; };
 		526ACC101D8C582700D0D1A9 /* NewChessGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChessGameCell.swift; sourceTree = "<group>"; };
 		526ACC121D8C587500D0D1A9 /* ChessGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChessGameCell.swift; sourceTree = "<group>"; };
@@ -281,6 +278,7 @@
 		52E354E41D7C99C0006EAEA6 /* UIImage+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+View.swift"; sourceTree = "<group>"; };
 		52E354E61D7C99DE006EAEA6 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		52E354E81D7C9BF0006EAEA6 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardMovementCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -429,7 +427,7 @@
 				5237A6641D9711B400BAC16E /* MenuViewController.swift */,
 				5295DD541D999C4C0036144D /* RecentGamesConfiguration.swift */,
 				525560B81D64C3BF00985809 /* GameViewController.swift */,
-				525AE6891DA68AA7002A1630 /* BoardViewCoordinator.swift */,
+				52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */,
 				52E354E61D7C99DE006EAEA6 /* GameCell.swift */,
 				5246E61F1D665A5300219C8C /* TitleViewController.swift */,
 				528288241D6118910014B105 /* BoardViewController.swift */,
@@ -887,7 +885,6 @@
 				5237A6A11D97691A00BAC16E /* README.md in Sources */,
 				5240587D1D63893E000A925C /* GameScene.swift in Sources */,
 				5240586A1D638328000A925C /* AppDelegate.swift in Sources */,
-				525AE68B1DA68AA7002A1630 /* BoardViewCoordinator.swift in Sources */,
 				524058801D63896F000A925C /* SquareNode.swift in Sources */,
 				524058631D63757A000A925C /* BoardViewController.swift in Sources */,
 				5246E64B1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
@@ -903,7 +900,6 @@
 				5237A6A21D97691A00BAC16E /* README.md in Sources */,
 				5240589C1D638DDE000A925C /* GameLayer.swift in Sources */,
 				5240589E1D638DE6000A925C /* PieceNode.swift in Sources */,
-				525AE68C1DA68AA7002A1630 /* BoardViewCoordinator.swift in Sources */,
 				5240589D1D638DE3000A925C /* SquareNode.swift in Sources */,
 				5240589A1D638D29000A925C /* BoardViewController.swift in Sources */,
 				5246E64C1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
@@ -954,7 +950,7 @@
 				52E354E51D7C99C0006EAEA6 /* UIImage+View.swift in Sources */,
 				5240587F1D63896F000A925C /* SquareNode.swift in Sources */,
 				5237A6651D9711B400BAC16E /* MenuViewController.swift in Sources */,
-				525AE68A1DA68AA7002A1630 /* BoardViewCoordinator.swift in Sources */,
+				52EA13DA1DA7152D00EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				52BE98971D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
 				5246E64A1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
 				528287FE1D6103720014B105 /* AppDelegate.swift in Sources */,

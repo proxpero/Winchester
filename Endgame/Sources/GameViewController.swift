@@ -71,3 +71,17 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
 }
 
+extension GameViewController: GameDelegate {
+
+    public func game(_: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) {
+        
+    }
+
+    public func game(_: Game, didAdvance items: [HistoryItem]) {
+
+    }
+
+    public func game(_: Game, didReverse items: [HistoryItem]) {
+
+    }
+}
