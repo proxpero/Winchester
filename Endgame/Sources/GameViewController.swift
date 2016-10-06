@@ -17,16 +17,13 @@ struct GameViewCoordinator {
         self.game = game
     }
 
-//    func selectMove(at index: Int, operation: (HistoryItem) -> ()) {
-//        game.move(to: index).forEach { operation($0) }
-//    }
-
 }
 
 public final class GameViewController: UIViewController, SegueHandlerType {
 
     var game: Game?
     var historyViewConfiguration: HistoryViewConfiguration?
+    var boardViewCoordinator: BoardViewCoordinator?
     var boardViewController: BoardViewController!
 
 
@@ -48,7 +45,11 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
         case .board:
             guard let vc = segue.destination as? BoardViewController else { fatalError() }
-            boardViewController = vc
+            boardViewCoordinator = BoardViewCoordinator(
+                pieceNode: vc.pieceNode,
+                newPieceNode: vc.newPieceNode,
+                perform: vc.perform
+            )
 
         case .history:
             guard let vc = segue.destination as? HistoryViewController else { fatalError() }
@@ -63,18 +64,8 @@ public final class GameViewController: UIViewController, SegueHandlerType {
         guard let game = game else {
             fatalError()
         }
-
         let (direction, items) = game.move(to: index)
-        if direction.isNone { return }
-
-        
-
-        for item in items {
-            boardViewController.perform(item: item, direction: direction)
-        }
-
-        print(game.currentPosition.ascii)
-        print("\n")
+        boardViewCoordinator?.arrange(items: items, direction: direction)
     }
 
 }

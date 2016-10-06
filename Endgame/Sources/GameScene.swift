@@ -39,7 +39,7 @@ public final class GameScene: SKScene {
         squaresLayer.setupSquares()
         squaresLayer.color = .white
 
-        addChild(piecesLayer)
+        add(layer: piecesLayer)
         piecesLayer.name = "Pieces"
         piecesLayer.zPosition = 200
         piecesLayer.position = view.center
@@ -50,38 +50,6 @@ public final class GameScene: SKScene {
             view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(self.panAction(sender:))))
         #endif
 
-    }
-
-    /// Moves the pieceNode at `move.origin` to the square at `move.target`
-    internal func perform(move: Move, endPiece: Piece? = nil) {
-        guard let oldNode = piecesLayer.node(for: move.origin) else {
-            fatalError("Expected a piece at \(move.origin.description)")
-        }
-        piecesLayer.movePiece(from: move.origin, to: move.target)
-        if let endPiece = endPiece {
-            let newNode = piecesLayer.pieceNode(for: endPiece)
-            newNode.position = oldNode.position
-            oldNode.removeFromParent()
-        }
-
-    }
-
-    /// Handles a forward moving capture.
-    internal func remove(capture: Capture) {
-        guard let capturedPieceNode = piecesLayer.node(for: capture.square), let name = capturedPieceNode.name,
-            name == capture.piece.description else { fatalError("Could not remove \(capture.piece.description) at \(capture.square.description)") }
-        capturedPieceNode.run(SKAction.fadeOut(withDuration: 0.2)) {
-            capturedPieceNode.removeFromParent()
-        }
-    }
-
-    /// Handles a reverse-directed capture.
-    internal func replace(capture: Capture) {
-        let captureNode = piecesLayer.pieceNode(for: capture.piece)
-        captureNode.position = piecesLayer.position(for: capture.square)
-        captureNode.alpha = 0.0
-        piecesLayer.addChild(captureNode)
-        captureNode.run(SKAction.fadeIn(withDuration: 0.2))
     }
 
     /**
@@ -119,6 +87,8 @@ public final class GameScene: SKScene {
     }
 
 }
+
+
 
 protocol GameSceneDelegate {
     func availableMoves(from origin: Square) -> Bitboard
