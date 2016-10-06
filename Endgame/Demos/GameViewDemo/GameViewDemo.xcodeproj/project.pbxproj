@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		525AE6881DA68A61002A1630 /* BoardViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525AE6871DA68A61002A1630 /* BoardViewCoordinator.swift */; };
 		52678A431D9C24F000AB1B9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A421D9C24F000AB1B9E /* AppDelegate.swift */; };
 		52678A4D1D9C24F000AB1B9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52678A4B1D9C24F000AB1B9E /* LaunchScreen.storyboard */; };
 		52678A5C1D9C254600AB1B9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52678A5A1D9C254600AB1B9E /* Main.storyboard */; };
@@ -29,6 +30,11 @@
 		52A485561D9C387A004AB5A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A485551D9C387A004AB5A6 /* Assets.xcassets */; };
 		52A4855C1D9CA056004AB5A6 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4855B1D9CA056004AB5A6 /* Engine.framework */; };
 		52A4855D1D9CA056004AB5A6 /* Engine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4855B1D9CA056004AB5A6 /* Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		52E85E9B1DA575A800CDD85D /* test case 1.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52E85E9A1DA575A800CDD85D /* test case 1.pgn */; };
+		52EA13D21DA6A7B800EBF078 /* test case 2.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D11DA6A7B800EBF078 /* test case 2.pgn */; };
+		52EA13D41DA6A85000EBF078 /* test case 3.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D31DA6A85000EBF078 /* test case 3.pgn */; };
+		52EA13D61DA6BCA700EBF078 /* test case 4.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D51DA6BCA700EBF078 /* test case 4.pgn */; };
+		52EA13D81DA6C12F00EBF078 /* test case 5.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D71DA6C12F00EBF078 /* test case 5.pgn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		525AE6871DA68A61002A1630 /* BoardViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardViewCoordinator.swift; path = ../../Sources/BoardViewCoordinator.swift; sourceTree = "<group>"; };
 		52678A3F1D9C24F000AB1B9E /* GameViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52678A421D9C24F000AB1B9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52678A4C1D9C24F000AB1B9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,6 +76,11 @@
 		52A485531D9C37FB004AB5A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../iOS/Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		52A485551D9C387A004AB5A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Shared/Assets.xcassets; sourceTree = "<group>"; };
 		52A4855B1D9CA056004AB5A6 /* Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52E85E9A1DA575A800CDD85D /* test case 1.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 1.pgn"; sourceTree = "<group>"; };
+		52EA13D11DA6A7B800EBF078 /* test case 2.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 2.pgn"; sourceTree = "<group>"; };
+		52EA13D31DA6A85000EBF078 /* test case 3.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 3.pgn"; sourceTree = "<group>"; };
+		52EA13D51DA6BCA700EBF078 /* test case 4.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 4.pgn"; sourceTree = "<group>"; };
+		52EA13D71DA6C12F00EBF078 /* test case 5.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 5.pgn"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +122,11 @@
 				52A485551D9C387A004AB5A6 /* Assets.xcassets */,
 				52678A4B1D9C24F000AB1B9E /* LaunchScreen.storyboard */,
 				52678A4E1D9C24F000AB1B9E /* Info.plist */,
+				52E85E9A1DA575A800CDD85D /* test case 1.pgn */,
+				52EA13D11DA6A7B800EBF078 /* test case 2.pgn */,
+				52EA13D31DA6A85000EBF078 /* test case 3.pgn */,
+				52EA13D51DA6BCA700EBF078 /* test case 4.pgn */,
+				52EA13D71DA6C12F00EBF078 /* test case 5.pgn */,
 				52678A781D9C2B2200AB1B9E /* fischer v fine.pgn */,
 				52678A791D9C2B2200AB1B9E /* shirov v judit_polgar.pgn */,
 			);
@@ -123,6 +140,7 @@
 				52678A5E1D9C285000AB1B9E /* GameCell.swift */,
 				52678A5F1D9C285000AB1B9E /* TitleViewController.swift */,
 				52678A601D9C285000AB1B9E /* BoardViewController.swift */,
+				525AE6871DA68A61002A1630 /* BoardViewCoordinator.swift */,
 				52678A611D9C285000AB1B9E /* HistoryViewController.swift */,
 				52678A621D9C285000AB1B9E /* GameScene.swift */,
 				52678A631D9C285000AB1B9E /* GameScene+TouchUI.swift */,
@@ -197,12 +215,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52EA13D21DA6A7B800EBF078 /* test case 2.pgn in Resources */,
 				52A485541D9C37FB004AB5A6 /* Game.storyboard in Resources */,
+				52EA13D81DA6C12F00EBF078 /* test case 5.pgn in Resources */,
 				52678A5C1D9C254600AB1B9E /* Main.storyboard in Resources */,
 				52678A7A1D9C2B2200AB1B9E /* fischer v fine.pgn in Resources */,
 				52678A4D1D9C24F000AB1B9E /* LaunchScreen.storyboard in Resources */,
+				52EA13D41DA6A85000EBF078 /* test case 3.pgn in Resources */,
+				52EA13D61DA6BCA700EBF078 /* test case 4.pgn in Resources */,
 				52A485561D9C387A004AB5A6 /* Assets.xcassets in Resources */,
 				52678A7B1D9C2B2200AB1B9E /* shirov v judit_polgar.pgn in Resources */,
+				52E85E9B1DA575A800CDD85D /* test case 1.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +247,7 @@
 				52678A701D9C285000AB1B9E /* GameScene+TouchUI.swift in Sources */,
 				52678A751D9C285000AB1B9E /* UIImage+View.swift in Sources */,
 				52678A711D9C285000AB1B9E /* GameLayer.swift in Sources */,
+				525AE6881DA68A61002A1630 /* BoardViewCoordinator.swift in Sources */,
 				52678A741D9C285000AB1B9E /* SegueHandlerType.swift in Sources */,
 				52678A761D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
 				52678A6D1D9C285000AB1B9E /* BoardViewController.swift in Sources */,

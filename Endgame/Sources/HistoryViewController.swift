@@ -66,7 +66,7 @@ internal final class HistoryViewController: UICollectionViewController, UICollec
         didSelect(indexPath.row.moveIndex() - 1)
     }
 
-    // MARK: -
+    // MARK: - UIKit
 
     override func viewDidAppear(_ animated: Bool) {
         let indexPath = IndexPath(row: 0, section: 0)
@@ -142,7 +142,6 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
             let sanMove = item.sanMove
             self = .move(sanMove)
         }
-        print(self)
     }
 
     var description: String {
@@ -185,12 +184,6 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
             return false
         }
     }
-}
-
-
-protocol HistoryViewDelegate: class {
-    func didAdvance(by distance: Int) -> ()
-    func didReverse(by distance: Int) -> ()
 }
 
 extension Int {

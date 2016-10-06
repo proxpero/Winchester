@@ -82,7 +82,7 @@ public final class SquaresLayer: SKSpriteNode, GameLayer {
         for square in Square.all {
             let squareNode = SquareNode(square: square, with: squareSize)
             squareNode.position = position(for: square)
-            squareNode.zPosition = 10
+            squareNode.zPosition = 110
             squareNode.name = square.description
             addChild(squareNode)
         }
@@ -117,24 +117,25 @@ public final class PiecesLayer: SKSpriteNode, GameLayer {
         for space in board {
             if let piece = space.piece {
                 let node = self.pieceNode(for: piece)
-                node.position = position(for: Square(file: space.file, rank: space.rank))
+                node.position = position(for: space.square)
                 addChild(node)
             }
         }
     }
 
-    public func movePiece(from origin: Square, to target: Square) {
-        guard let pieceNode = node(for: origin) else { return }
-        place(pieceNode: pieceNode, on: target)
-    }
-
-    public func place(pieceNode: PieceNode, on target: Square) {
-        let action = SKAction.move(to: position(for: target), duration: 0.2)
-        action.timingMode = .easeInEaseOut
-        pieceNode.zPosition += 20
-        pieceNode.run(action) {
-            pieceNode.zPosition -= 20
+    func perform(_ transaction: Transaction, on pieceNode: PieceNode) {
+        if transaction.status == .removed {
+            pieceNode.run(SKAction.fadeOut(withDuration: 0.2)) {
+                pieceNode.removeFromParent()
+            }
+        } else {
+            if transaction.status == .added {
+                pieceNode.alpha = 0.0
+                pieceNode.position = position(for: transaction.origin)
+                addChild(pieceNode)
+                pieceNode.run(SKAction.fadeIn(withDuration: 0.2))
+            }
+            pieceNode.run(SKAction.move(to: position(for: transaction.target), duration: 0.2))
         }
     }
-
 }
