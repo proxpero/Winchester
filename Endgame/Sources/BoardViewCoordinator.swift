@@ -11,22 +11,6 @@ import SpriteKit
 
 typealias MoveTable = Dictionary<PieceNode, Transaction>
 
-//extension Dictionary where Key: PieceNode, Value: TransactionType {
-//func pieceNode(for square: Square) -> PieceNode? {
-//    let candidates = self
-//        .filter { $0.value.target == square }
-//        .map { $0.key }
-//    guard candidates.count == 1 else { return nil }
-//    return candidates.first!
-//}
-//
-//func origin(for pieceNode: PieceNode) -> Square {
-//    guard let transaction = self[pieceNode as! Key] else { fatalError("I was expecting a transaction for \(pieceNode)") }
-//    return transaction.origin
-//}
-//
-//}
-
 protocol TransactionType {
     var origin: Square { get set }
     var target: Square { get set }
@@ -76,13 +60,13 @@ final class BoardViewCoordinator {
         var result: MoveTable = [:]
 
         func findNode(for square: Square) -> PieceNode {
-            // If the pieceNode has been been moved already
-
+            // If the pieceNode has been moved already
             func node(at square: Square) -> PieceNode? {
-                let candidates = result.filter { $0.value.target == square && $0.value.status != .removed }
-                let ps = candidates.map { $0.key }
-                guard ps.count == 1 else { return nil }
-                return ps.first!
+                let nodes = result
+                    .filter { $0.value.target == square && $0.value.status != .removed }
+                    .map { $0.key }
+                guard nodes.count == 1 else { return nil }
+                return nodes[0]
             }
             if let candidate = node(at: square) {
                 return candidate
@@ -138,26 +122,11 @@ final class BoardViewCoordinator {
             }
 
             if let promotion = item.promotion {
-                transaction.status = {
-                    switch direction {
-                    case .forward(_): return .removed
-                    case .reverse(_): return .added
-                    }
-                }()
-
-                let newPiece: PieceNode
-                let newMove: Move
-
-                switch direction {
-                case .forward(_):
-                    newPiece = newPieceNode(promotion)
-                    newMove = item.move
-                case .reverse(_):
-                    newPiece = newPieceNode(Piece(pawn: promotion.color))
-                    newMove = item.move.reversed()
-                }
-
-                result[newPiece] = Transaction(origin: newMove.origin, target: newMove.target, status: .added)
+                // In either direction, the pieceNode is removed and a new piece is added, either a pawn or the chosen promotion.
+                transaction.status = .removed
+                let piece = direction.isForward ? promotion : Piece(pawn: promotion.color)
+                let move = direction.isForward ? item.move : item.move.reversed()
+                result[newPieceNode(piece)] = Transaction(origin: move.origin, target: move.target, status: .added)
             }
 
             // If a castle is involved then the rook need to be moved and added to the table.
@@ -174,15 +143,10 @@ final class BoardViewCoordinator {
                     result[rookNode] = rookTransaction
                 }
             }
-
             result[pieceNode] = transaction
         }
 
-        for item in items {
-            consolidate(item: item)
-            print(result)
-        }
-
+        items.forEach(consolidate)
         return result
     }
 
