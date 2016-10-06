@@ -27,7 +27,15 @@ final class Configuration {
 
     let navigationController: UINavigationController
     let games: [Game] = {
-        var games = ["fischer v fine", "shirov v judit_polgar"]
+        var games = [
+            "fischer v fine",
+            "shirov v judit_polgar",
+            "test case 1",
+            "test case 2",
+            "test case 3",
+            "test case 4",
+            "test case 5"
+            ]
             .flatMap { Bundle(for: AppDelegate.self).url(forResource: $0, withExtension: "pgn") }
             .map { try! String(contentsOf: $0) }
             .map { try! PGN(parse: $0) }
