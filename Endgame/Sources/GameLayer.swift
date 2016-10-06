@@ -22,7 +22,7 @@ protocol GameLayer {
 
 }
 
-extension GameLayer where Self: SKSpriteNode, NodeType: SKSpriteNode {
+extension GameLayer where Self: SKSpriteNode, NodeType: SKNode {
 
     internal init(size: CGSize) {
         self = Self.init(texture: nil, color: .clear, size: size)
@@ -105,6 +105,50 @@ public final class SquaresLayer: SKSpriteNode, GameLayer {
     }
 }
 
+//extension UIBezierPath {
+//
+//    convenience init(origin: Square, target: Square) {
+//
+//        let originPoint = origin.center
+//        let targetPoint = target.center
+//
+//        let headLength = origin.frame.width / 6
+//        let headWidth = origin.frame.width / 6
+//        let tailWidth = headWidth / 3
+//
+//        let originOffset = origin.frame.width / 8
+//        let targetOffset = origin.frame.width / 3.7
+//
+//        self.init(origin: originPoint, target: targetPoint, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength, originOffset: originOffset, targetOffset: targetOffset)
+//        
+//    }
+//    
+//}
+
+public final class ArrowsLayer: SKSpriteNode, GameLayer {
+    typealias NodeType = SKShapeNode
+
+    func arrowNode(from origin: Square, to target: Square) -> SKShapeNode {
+        return SKShapeNode(path: arrowPath(from: origin, to: target) as! CGPath)
+    }
+
+    func arrowPath(from origin: Square, to target: Square) -> UIBezierPath {
+
+        let originPoint = position(for: origin)
+        let targetPoint = position(for: target)
+
+        let headLength = squareSize.width / 3
+        let headWidth = squareSize.width / 2
+        let tailWidth = headWidth / 1.7
+
+        let originOffset = squareSize.width / 8
+        let targetOffset = squareSize.width / 3.7
+
+        return UIBezierPath(origin: originPoint, target: targetPoint, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength, originOffset: originOffset, targetOffset: targetOffset)
+    }
+
+}
+
 public final class PiecesLayer: SKSpriteNode, GameLayer {
 
     typealias NodeType = PieceNode
@@ -138,4 +182,40 @@ public final class PiecesLayer: SKSpriteNode, GameLayer {
             pieceNode.run(SKAction.move(to: position(for: transaction.target), duration: 0.2))
         }
     }
+}
+
+extension UIBezierPath {
+
+    convenience init(origin: CGPoint, target: CGPoint, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat, originOffset: CGFloat = 0.0, targetOffset: CGFloat = 0.0) {
+
+        let length = CGFloat(hypot(
+            (Double(target.x) - Double(origin.x)),
+            (Double(target.y) - Double(origin.y))
+        ))
+
+        let points: [CGPoint] = {
+            let tailLength = length - headLength - originOffset - targetOffset
+            return [
+                CGPoint(x: 0 + originOffset, y: tailWidth / 2),
+                CGPoint(x: tailLength + originOffset, y: tailWidth / 2),
+                CGPoint(x: tailLength + originOffset, y: headWidth / 2),
+                CGPoint(x: length - targetOffset, y: 0),
+                CGPoint(x: tailLength + originOffset, y: -headWidth / 2),
+                CGPoint(x: tailLength + originOffset, y: -tailWidth/2),
+                CGPoint(x: 0 + originOffset, y: -tailWidth / 2)
+            ]
+        }()
+
+        let transform: CGAffineTransform = {
+            let cosine = (target.x - origin.x) / length
+            let sine = (target.y - origin.y) / length
+            return CGAffineTransform(a: cosine, b: sine, c: -sine, d: cosine, tx: origin.x, ty: origin.y)
+        }()
+
+        let path = CGMutablePath()
+        path.addLines(between: points, transform: transform)
+        path.closeSubpath()
+        self.init(cgPath: path)
+    }
+    
 }
