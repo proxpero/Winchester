@@ -8,7 +8,7 @@
 
 import XCTest
 import Messages
-import Engine
+@testable import Engine
 @testable import Endgame
 
 class EndgameTests: XCTestCase {
@@ -102,4 +102,87 @@ class ViewHistoryConfigurationTests: XCTestCase {
         )
 
     }
+}
+
+class BoardViewCoordinatorTests: XCTestCase {
+
+    var game: Game!
+    var coordinator: BoardViewCoordinator!
+    var sceneMock: Dictionary<Square, PieceNode> = [:]
+
+    func square(for pieceNode: PieceNode) -> Square {
+        let x = sceneMock.filter { $0.value == pieceNode }
+        XCTAssertTrue(x.count == 1)
+        let d = x.first!
+        XCTAssertTrue(d.value == pieceNode)
+        let square = d.key
+        return square
+    }
+
+    override func setUp() {
+
+        let url = Bundle.main.url(forResource: "fischer v fine", withExtension: "pgn")!
+        let string = try! String(contentsOf: url)
+        let pgn = try! PGN(parse: string)
+        self.game = Game(pgn: pgn)
+
+        let board = self.game!.currentPosition.board
+
+        for space in board {
+            var pn: PieceNode?
+            if let piece = space.piece {
+                pn = newPieceNode(for: piece)
+            }
+            sceneMock[space.square] = pn
+        }
+
+        self.coordinator = BoardViewCoordinator(
+            pieceNode: pieceNode,
+            newPieceNode: newPieceNode,
+            add: add,
+            remove: remove,
+            move: move
+        )
+
+    }
+
+    func pieceNode(for square: Square) -> PieceNode? {
+        return sceneMock[square]
+    }
+
+    func newPieceNode(for piece: Piece) -> PieceNode {
+        return PieceNode(piece: piece, with: CGSize.zero)
+    }
+
+    func remove(_ pieceNode: PieceNode) {
+        let x = sceneMock.filter { $0.value == pieceNode }
+        XCTAssertTrue(x.count == 1)
+        let d = x.first!
+        XCTAssertTrue(d.value == pieceNode)
+        let square = d.key
+        sceneMock[square] = nil
+    }
+
+    func add(_ pieceNode: PieceNode, square: Square) {
+        sceneMock[square] = pieceNode
+    }
+
+    func move(_ pieceNode: PieceNode, to target: Square) {
+        let origin = self.square(for: pieceNode)
+        sceneMock[origin] = nil
+        sceneMock[target] = pieceNode
+    }
+
+    // MARK: - Tests
+
+    func testArrange() {
+        let (direction, items) = game.move(to: 5)
+        coordinator.arrange(items: items, direction: direction)
+
+        print(game.currentPosition.ascii)
+        print(sceneMock)
+
+    }
+
+
 }
