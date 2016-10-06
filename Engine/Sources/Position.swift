@@ -113,10 +113,10 @@ public struct Position: Equatable, CustomStringConvertible {
             input.characters.count > 2,
             input.substring(from: input.index(before: input.lastIndex)).hasPrefix("="),
             let char = input.characters.last,
-            let piece = Piece(character: char),
-            piece.kind.isPromotionType()
+            let kind = Piece.Kind(character: char),
+            kind.isPromotionType()
         {
-            promotion = piece
+            promotion = Piece(kind: kind, color: playerTurn)
             input = input.substring(to: input.index(before: input.lastIndex))
         }
 
