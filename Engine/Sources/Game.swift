@@ -170,6 +170,10 @@ public class Game {
         return lastItem.position
     }
 
+    public var lastMove: Move? {
+        return playedMoves.last
+    }
+
     public var history: Array<HistoryItem> {
         return _history
     }
