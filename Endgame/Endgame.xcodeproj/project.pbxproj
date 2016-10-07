@@ -120,8 +120,6 @@
 		526B6A271DA44FAF00738D6B /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 526B6A241DA44FAF00738D6B /* fischer v fine.pgn */; };
 		528287FE1D6103720014B105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528287F41D6103720014B105 /* AppDelegate.swift */; };
 		5295DD551D999C4C0036144D /* RecentGamesConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD541D999C4C0036144D /* RecentGamesConfiguration.swift */; };
-		52A485451D9C3620004AB5A6 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5237A6591D96D7C400BAC16E /* Engine.framework */; };
-		52A485461D9C3620004AB5A6 /* Engine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5237A6591D96D7C400BAC16E /* Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52A4855F1D9CBC11004AB5A6 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4855E1D9CBC11004AB5A6 /* Engine.framework */; };
 		52BE98971D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */; };
 		52BE989E1D80BC17005A0BB2 /* GameScene+TouchUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */; };
@@ -133,7 +131,6 @@
 		52E354E51D7C99C0006EAEA6 /* UIImage+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E354E41D7C99C0006EAEA6 /* UIImage+View.swift */; };
 		52E354E71D7C99DE006EAEA6 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E354E61D7C99DE006EAEA6 /* GameCell.swift */; };
 		52E354E91D7C9BF0006EAEA6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E354E81D7C9BF0006EAEA6 /* CollectionViewController.swift */; };
-		52EA13DA1DA7152D00EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */; };
 		52EA13E31DA7327800EBF078 /* PiecesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13E21DA7327800EBF078 /* PiecesLayer.swift */; };
 		52EA13E41DA7327800EBF078 /* PiecesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13E21DA7327800EBF078 /* PiecesLayer.swift */; };
 		52EA13E51DA7327800EBF078 /* PiecesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13E21DA7327800EBF078 /* PiecesLayer.swift */; };
@@ -143,14 +140,23 @@
 		52EA13EF1DA732FA00EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13EE1DA732FA00EBF078 /* SquaresLayer.swift */; };
 		52EA13F01DA732FA00EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13EE1DA732FA00EBF078 /* SquaresLayer.swift */; };
 		52EA13F11DA732FA00EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13EE1DA732FA00EBF078 /* SquaresLayer.swift */; };
-		52EA13F51DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13F41DA7342E00EBF078 /* BoardArrowsCoordinator.swift */; };
-		52EA13F61DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13F41DA7342E00EBF078 /* BoardArrowsCoordinator.swift */; };
-		52EA13F71DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13F41DA7342E00EBF078 /* BoardArrowsCoordinator.swift */; };
-		52EA13F81DA7367800EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */; };
-		52EA13F91DA7367800EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */; };
-		52EA13FD1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13FC1DA7D98900EBF078 /* BoardCoverageCoordinator.swift */; };
-		52EA13FE1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13FC1DA7D98900EBF078 /* BoardCoverageCoordinator.swift */; };
-		52EA13FF1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13FC1DA7D98900EBF078 /* BoardCoverageCoordinator.swift */; };
+		52EA14051DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14021DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift */; };
+		52EA14061DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14021DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift */; };
+		52EA14071DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14021DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift */; };
+		52EA14081DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14031DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift */; };
+		52EA14091DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14031DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift */; };
+		52EA140A1DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14031DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift */; };
+		52EA140B1DA7F0AD00EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14041DA7F0AD00EBF078 /* BoardMovementCoordinator.swift */; };
+		52EA140C1DA7F0AD00EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14041DA7F0AD00EBF078 /* BoardMovementCoordinator.swift */; };
+		52EA140D1DA7F0AD00EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14041DA7F0AD00EBF078 /* BoardMovementCoordinator.swift */; };
+		52EA140E1DA7F0E300EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14021DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift */; };
+		52EA140F1DA7F0E300EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14031DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift */; };
+		52EA14101DA7F0E300EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14041DA7F0AD00EBF078 /* BoardMovementCoordinator.swift */; };
+		52EA14111DA7F0F800EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13EE1DA732FA00EBF078 /* SquaresLayer.swift */; };
+		52EA14121DA7F0FA00EBF078 /* ArrowsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13E81DA732BA00EBF078 /* ArrowsLayer.swift */; };
+		52EA14131DA7F0FC00EBF078 /* PiecesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13E21DA7327800EBF078 /* PiecesLayer.swift */; };
+		52EA14141DA7F18F00EBF078 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4855E1D9CBC11004AB5A6 /* Engine.framework */; };
+		52EA14151DA7F18F00EBF078 /* Engine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4855E1D9CBC11004AB5A6 /* Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +195,13 @@
 			remoteGlobalIDString = 52678A3F1D9C24F000AB1B9E;
 			remoteInfo = GameViewDemo;
 		};
+		52EA143D1DA7F68900EBF078 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52EA14391DA7F68800EBF078 /* NewGameDemo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 52EA14241DA7F68800EBF078;
+			remoteInfo = NewGameDemo;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -203,13 +216,13 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52A485471D9C3620004AB5A6 /* Embed Frameworks */ = {
+		52EA14161DA7F18F00EBF078 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				52A485461D9C3620004AB5A6 /* Engine.framework in Embed Frameworks */,
+				52EA14151DA7F18F00EBF078 /* Engine.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,12 +303,13 @@
 		52E354E41D7C99C0006EAEA6 /* UIImage+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+View.swift"; sourceTree = "<group>"; };
 		52E354E61D7C99DE006EAEA6 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		52E354E81D7C9BF0006EAEA6 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardMovementCoordinator.swift; sourceTree = "<group>"; };
 		52EA13E21DA7327800EBF078 /* PiecesLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PiecesLayer.swift; sourceTree = "<group>"; };
 		52EA13E81DA732BA00EBF078 /* ArrowsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowsLayer.swift; sourceTree = "<group>"; };
 		52EA13EE1DA732FA00EBF078 /* SquaresLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquaresLayer.swift; sourceTree = "<group>"; };
-		52EA13F41DA7342E00EBF078 /* BoardArrowsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardArrowsCoordinator.swift; sourceTree = "<group>"; };
-		52EA13FC1DA7D98900EBF078 /* BoardCoverageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCoverageCoordinator.swift; sourceTree = "<group>"; };
+		52EA14021DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardArrowsCoordinator.swift; sourceTree = "<group>"; };
+		52EA14031DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCoverageCoordinator.swift; sourceTree = "<group>"; };
+		52EA14041DA7F0AD00EBF078 /* BoardMovementCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardMovementCoordinator.swift; sourceTree = "<group>"; };
+		52EA14391DA7F68800EBF078 /* NewGameDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NewGameDemo.xcodeproj; path = Demos/NewGameDemo/NewGameDemo.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,7 +362,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52A485451D9C3620004AB5A6 /* Engine.framework in Frameworks */,
+				52EA14141DA7F18F00EBF078 /* Engine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,9 +461,9 @@
 				52E354E61D7C99DE006EAEA6 /* GameCell.swift */,
 				5246E61F1D665A5300219C8C /* TitleViewController.swift */,
 				528288241D6118910014B105 /* BoardViewController.swift */,
-				52EA13F41DA7342E00EBF078 /* BoardArrowsCoordinator.swift */,
-				52EA13FC1DA7D98900EBF078 /* BoardCoverageCoordinator.swift */,
-				52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */,
+				52EA14021DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift */,
+				52EA14031DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift */,
+				52EA14041DA7F0AD00EBF078 /* BoardMovementCoordinator.swift */,
 				521EDDFC1D669B4200BD7355 /* HistoryViewController.swift */,
 				5240587B1D63893E000A925C /* GameScene.swift */,
 				52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */,
@@ -504,6 +518,7 @@
 		52BAE0891D5FD555006E2652 = {
 			isa = PBXGroup;
 			children = (
+				52EA14391DA7F68800EBF078 /* NewGameDemo.xcodeproj */,
 				52678A541D9C24F000AB1B9E /* GameViewDemo.xcodeproj */,
 				528288041D6104210014B105 /* Endgame.playground */,
 				521D1F141D8ACEF900A0A0E6 /* PGN */,
@@ -529,6 +544,14 @@
 				524058B21D63FA15000A925C /* EndgameTests tvOS.xctest */,
 				524058C01D63FA25000A925C /* EndgameTests macOS.xctest */,
 				521D1F581D8B0EE400A0A0E6 /* ChessWire.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52EA143A1DA7F68800EBF078 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52EA143E1DA7F68900EBF078 /* NewGameDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -649,7 +672,7 @@
 				52BAE08F1D5FD555006E2652 /* Frameworks */,
 				52BAE0901D5FD555006E2652 /* Resources */,
 				521D1F6A1D8B0EE400A0A0E6 /* Embed App Extensions */,
-				52A485471D9C3620004AB5A6 /* Embed Frameworks */,
+				52EA14161DA7F18F00EBF078 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -727,6 +750,10 @@
 					ProductGroup = 52678A551D9C24F000AB1B9E /* Products */;
 					ProjectRef = 52678A541D9C24F000AB1B9E /* GameViewDemo.xcodeproj */;
 				},
+				{
+					ProductGroup = 52EA143A1DA7F68800EBF078 /* Products */;
+					ProjectRef = 52EA14391DA7F68800EBF078 /* NewGameDemo.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -747,6 +774,13 @@
 			fileType = wrapper.application;
 			path = GameViewDemo.app;
 			remoteRef = 52678A581D9C24F100AB1B9E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		52EA143E1DA7F68900EBF078 /* NewGameDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = NewGameDemo.app;
+			remoteRef = 52EA143D1DA7F68900EBF078 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -876,18 +910,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52EA14101DA7F0E300EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				521D1F761D8B137100A0A0E6 /* GameScene+TouchUI.swift in Sources */,
+				52EA14131DA7F0FC00EBF078 /* PiecesLayer.swift in Sources */,
 				521D1F751D8B133C00A0A0E6 /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
 				521D1F741D8B133800A0A0E6 /* UIImage+View.swift in Sources */,
 				52D6DEC61D8C682A00CF8880 /* ChessGamesListViewController.swift in Sources */,
 				526ACC131D8C587500D0D1A9 /* ChessGameCell.swift in Sources */,
 				521D1F721D8B132E00A0A0E6 /* SquareNode.swift in Sources */,
+				52EA14121DA7F0FA00EBF078 /* ArrowsLayer.swift in Sources */,
 				521D1F711D8B132300A0A0E6 /* GameLayer.swift in Sources */,
+				52EA140E1DA7F0E300EBF078 /* BoardArrowsCoordinator.swift in Sources */,
 				52D6DEC41D8C67F700CF8880 /* ChessGameViewController.swift in Sources */,
 				521D1F701D8B130C00A0A0E6 /* GameScene.swift in Sources */,
+				52EA14111DA7F0F800EBF078 /* SquaresLayer.swift in Sources */,
 				521D1F6F1D8B12F200A0A0E6 /* HistoryViewController.swift in Sources */,
 				521D1F6E1D8B12EB00A0A0E6 /* BoardViewController.swift in Sources */,
 				521D1F6D1D8B12E600A0A0E6 /* TitleViewController.swift in Sources */,
+				52EA140F1DA7F0E300EBF078 /* BoardCoverageCoordinator.swift in Sources */,
 				521D1F6C1D8B12DE00A0A0E6 /* SegueHandlerType.swift in Sources */,
 				526ACC111D8C582700D0D1A9 /* NewChessGameCell.swift in Sources */,
 				521D1F6B1D8B11E400A0A0E6 /* GameViewController.swift in Sources */,
@@ -904,14 +944,14 @@
 				52EA13EA1DA732BA00EBF078 /* ArrowsLayer.swift in Sources */,
 				524058861D638B2F000A925C /* GameLayer.swift in Sources */,
 				5237A6A11D97691A00BAC16E /* README.md in Sources */,
+				52EA140C1DA7F0AD00EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				52EA13E41DA7327800EBF078 /* PiecesLayer.swift in Sources */,
-				52EA13FE1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */,
+				52EA14091DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift in Sources */,
 				5240587D1D63893E000A925C /* GameScene.swift in Sources */,
 				5240586A1D638328000A925C /* AppDelegate.swift in Sources */,
 				524058801D63896F000A925C /* SquareNode.swift in Sources */,
-				52EA13F81DA7367800EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				524058631D63757A000A925C /* BoardViewController.swift in Sources */,
-				52EA13F61DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
+				52EA14061DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
 				5246E64B1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -924,14 +964,14 @@
 				52EA13EB1DA732BA00EBF078 /* ArrowsLayer.swift in Sources */,
 				524058D31D63FB24000A925C /* AppDelegate.swift in Sources */,
 				5240589B1D638DD6000A925C /* GameScene.swift in Sources */,
+				52EA140D1DA7F0AD00EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				52EA13E51DA7327800EBF078 /* PiecesLayer.swift in Sources */,
-				52EA13FF1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */,
+				52EA140A1DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift in Sources */,
 				5237A6A21D97691A00BAC16E /* README.md in Sources */,
 				5240589C1D638DDE000A925C /* GameLayer.swift in Sources */,
 				5240589D1D638DE3000A925C /* SquareNode.swift in Sources */,
-				52EA13F91DA7367800EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				5240589A1D638D29000A925C /* BoardViewController.swift in Sources */,
-				52EA13F71DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
+				52EA14071DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
 				5246E64C1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -967,24 +1007,24 @@
 				525560B91D64C3BF00985809 /* GameViewController.swift in Sources */,
 				52E354E31D7C8FBB006EAEA6 /* TableViewController.swift in Sources */,
 				5237A6A01D97691A00BAC16E /* README.md in Sources */,
+				52EA14081DA7F0AD00EBF078 /* BoardCoverageCoordinator.swift in Sources */,
 				52E354E71D7C99DE006EAEA6 /* GameCell.swift in Sources */,
 				52E354E91D7C9BF0006EAEA6 /* CollectionViewController.swift in Sources */,
 				524058851D638B2F000A925C /* GameLayer.swift in Sources */,
 				52BE989E1D80BC17005A0BB2 /* GameScene+TouchUI.swift in Sources */,
+				52EA140B1DA7F0AD00EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				5295DD551D999C4C0036144D /* RecentGamesConfiguration.swift in Sources */,
 				5240587C1D63893E000A925C /* GameScene.swift in Sources */,
+				52EA14051DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
 				521EDDFD1D669B4200BD7355 /* HistoryViewController.swift in Sources */,
 				52EA13E31DA7327800EBF078 /* PiecesLayer.swift in Sources */,
 				524058681D638114000A925C /* BoardViewController.swift in Sources */,
 				52EA13EF1DA732FA00EBF078 /* SquaresLayer.swift in Sources */,
-				52EA13F51DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
 				52EA13E91DA732BA00EBF078 /* ArrowsLayer.swift in Sources */,
 				5246E6201D665A5300219C8C /* TitleViewController.swift in Sources */,
 				52E354E51D7C99C0006EAEA6 /* UIImage+View.swift in Sources */,
-				52EA13FD1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */,
 				5240587F1D63896F000A925C /* SquareNode.swift in Sources */,
 				5237A6651D9711B400BAC16E /* MenuViewController.swift in Sources */,
-				52EA13DA1DA7152D00EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				52BE98971D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
 				5246E64A1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
 				528287FE1D6103720014B105 /* AppDelegate.swift in Sources */,

@@ -107,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				52A4855B1D9CA056004AB5A6 /* Engine.framework */,
-				52678A771D9C285700AB1B9E /* Shared */,
+				52678A771D9C285700AB1B9E /* Endgame */,
 				52678A411D9C24F000AB1B9E /* GameViewDemo */,
 				52678A401D9C24F000AB1B9E /* Products */,
 			);
@@ -141,7 +141,7 @@
 			path = GameViewDemo;
 			sourceTree = "<group>";
 		};
-		52678A771D9C285700AB1B9E /* Shared */ = {
+		52678A771D9C285700AB1B9E /* Endgame */ = {
 			isa = PBXGroup;
 			children = (
 				52678A5D1D9C285000AB1B9E /* GameViewController.swift */,
@@ -163,7 +163,7 @@
 				52678A681D9C285000AB1B9E /* UIImage+View.swift */,
 				52678A691D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift */,
 			);
-			name = Shared;
+			name = Endgame;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
