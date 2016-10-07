@@ -23,7 +23,9 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
     var game: Game?
     var historyViewConfiguration: HistoryViewConfiguration?
-    var boardMovementCoordinator: BoardMovementCoordinator?
+    var movementCoordinator: BoardMovementCoordinator?
+    var arrowsCoordinator: BoardArrowsCoordinator?
+    var coverageCoordinator: BoardCoverageCoordinator?
 
 
     enum SegueIdentifier: String {
@@ -44,10 +46,14 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
         case .board:
             guard let vc = segue.destination as? BoardViewController else { fatalError() }
-            boardMovementCoordinator = BoardMovementCoordinator(
+            movementCoordinator = BoardMovementCoordinator(
                 pieceNode: vc.pieceNode,
                 newPieceNode: vc.newPieceNode,
                 perform: vc.perform
+            )
+            arrowsCoordinator = BoardArrowsCoordinator(
+                showLastMove: vc.showLastMove,
+                addArrow: vc.addArrow
             )
 
         case .history:
@@ -64,8 +70,8 @@ public final class GameViewController: UIViewController, SegueHandlerType {
             fatalError()
         }
         let (direction, items) = game.move(to: index)
-        boardMovementCoordinator?.arrange(items: items, direction: direction)
-        
+        movementCoordinator?.arrange(items: items, direction: direction)
+        arrowsCoordinator?.showLastMove(game.lastMove)
     }
 
 }

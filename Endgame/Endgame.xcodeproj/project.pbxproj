@@ -143,6 +143,14 @@
 		52EA13EF1DA732FA00EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13EE1DA732FA00EBF078 /* SquaresLayer.swift */; };
 		52EA13F01DA732FA00EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13EE1DA732FA00EBF078 /* SquaresLayer.swift */; };
 		52EA13F11DA732FA00EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13EE1DA732FA00EBF078 /* SquaresLayer.swift */; };
+		52EA13F51DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13F41DA7342E00EBF078 /* BoardArrowsCoordinator.swift */; };
+		52EA13F61DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13F41DA7342E00EBF078 /* BoardArrowsCoordinator.swift */; };
+		52EA13F71DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13F41DA7342E00EBF078 /* BoardArrowsCoordinator.swift */; };
+		52EA13F81DA7367800EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */; };
+		52EA13F91DA7367800EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */; };
+		52EA13FD1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13FC1DA7D98900EBF078 /* BoardCoverageCoordinator.swift */; };
+		52EA13FE1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13FC1DA7D98900EBF078 /* BoardCoverageCoordinator.swift */; };
+		52EA13FF1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13FC1DA7D98900EBF078 /* BoardCoverageCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -286,6 +294,8 @@
 		52EA13E21DA7327800EBF078 /* PiecesLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PiecesLayer.swift; sourceTree = "<group>"; };
 		52EA13E81DA732BA00EBF078 /* ArrowsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowsLayer.swift; sourceTree = "<group>"; };
 		52EA13EE1DA732FA00EBF078 /* SquaresLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquaresLayer.swift; sourceTree = "<group>"; };
+		52EA13F41DA7342E00EBF078 /* BoardArrowsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardArrowsCoordinator.swift; sourceTree = "<group>"; };
+		52EA13FC1DA7D98900EBF078 /* BoardCoverageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCoverageCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -434,10 +444,12 @@
 				5237A6641D9711B400BAC16E /* MenuViewController.swift */,
 				5295DD541D999C4C0036144D /* RecentGamesConfiguration.swift */,
 				525560B81D64C3BF00985809 /* GameViewController.swift */,
-				52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */,
 				52E354E61D7C99DE006EAEA6 /* GameCell.swift */,
 				5246E61F1D665A5300219C8C /* TitleViewController.swift */,
 				528288241D6118910014B105 /* BoardViewController.swift */,
+				52EA13F41DA7342E00EBF078 /* BoardArrowsCoordinator.swift */,
+				52EA13FC1DA7D98900EBF078 /* BoardCoverageCoordinator.swift */,
+				52EA13D91DA7152D00EBF078 /* BoardMovementCoordinator.swift */,
 				521EDDFC1D669B4200BD7355 /* HistoryViewController.swift */,
 				5240587B1D63893E000A925C /* GameScene.swift */,
 				52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */,
@@ -893,10 +905,13 @@
 				524058861D638B2F000A925C /* GameLayer.swift in Sources */,
 				5237A6A11D97691A00BAC16E /* README.md in Sources */,
 				52EA13E41DA7327800EBF078 /* PiecesLayer.swift in Sources */,
+				52EA13FE1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */,
 				5240587D1D63893E000A925C /* GameScene.swift in Sources */,
 				5240586A1D638328000A925C /* AppDelegate.swift in Sources */,
 				524058801D63896F000A925C /* SquareNode.swift in Sources */,
+				52EA13F81DA7367800EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				524058631D63757A000A925C /* BoardViewController.swift in Sources */,
+				52EA13F61DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
 				5246E64B1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -910,10 +925,13 @@
 				524058D31D63FB24000A925C /* AppDelegate.swift in Sources */,
 				5240589B1D638DD6000A925C /* GameScene.swift in Sources */,
 				52EA13E51DA7327800EBF078 /* PiecesLayer.swift in Sources */,
+				52EA13FF1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */,
 				5237A6A21D97691A00BAC16E /* README.md in Sources */,
 				5240589C1D638DDE000A925C /* GameLayer.swift in Sources */,
 				5240589D1D638DE3000A925C /* SquareNode.swift in Sources */,
+				52EA13F91DA7367800EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				5240589A1D638D29000A925C /* BoardViewController.swift in Sources */,
+				52EA13F71DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
 				5246E64C1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -959,9 +977,11 @@
 				52EA13E31DA7327800EBF078 /* PiecesLayer.swift in Sources */,
 				524058681D638114000A925C /* BoardViewController.swift in Sources */,
 				52EA13EF1DA732FA00EBF078 /* SquaresLayer.swift in Sources */,
+				52EA13F51DA7342E00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
 				52EA13E91DA732BA00EBF078 /* ArrowsLayer.swift in Sources */,
 				5246E6201D665A5300219C8C /* TitleViewController.swift in Sources */,
 				52E354E51D7C99C0006EAEA6 /* UIImage+View.swift in Sources */,
+				52EA13FD1DA7D98900EBF078 /* BoardCoverageCoordinator.swift in Sources */,
 				5240587F1D63896F000A925C /* SquareNode.swift in Sources */,
 				5237A6651D9711B400BAC16E /* MenuViewController.swift in Sources */,
 				52EA13DA1DA7152D00EBF078 /* BoardMovementCoordinator.swift in Sources */,

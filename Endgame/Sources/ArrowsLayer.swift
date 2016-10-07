@@ -11,6 +11,38 @@ import SpriteKit
 
 public typealias ArrowNode = SKShapeNode
 
+enum ArrowType {
+    case lastMove
+    case attacking
+    case guarding
+    case user
+
+    static let lastMoveName = "last-move-arrow"
+    static let attackingName = "attacking-arrow"
+    static let guardingName = "guarding-arrow"
+    static let userName = "user-arrow"
+
+    var name: String {
+        switch self {
+        case .lastMove: return ArrowType.lastMoveName
+        case .attacking: return ArrowType.attackingName
+        case .guarding: return ArrowType.guardingName
+        case .user: return ArrowType.userName
+        }
+    }
+
+    init(name: String) {
+        switch name {
+        case ArrowType.lastMoveName: self = .lastMove
+        case ArrowType.attackingName: self = .attacking
+        case ArrowType.guardingName: self = .guarding
+        case ArrowType.userName: self = .user
+        default: fatalError("Unexepected arrow name: \(name)")
+        }
+    }
+
+}
+
 public final class ArrowsLayer: SKSpriteNode, GameLayer {
     typealias NodeType = SKShapeNode
 
@@ -34,6 +66,18 @@ public final class ArrowsLayer: SKSpriteNode, GameLayer {
         return squareSize.width / 3.7
     }
 
+//    func show(_ arrow: ArrowNode) {
+//        let type = ArrowType(name: arrow.name!)
+//    }
+
+    func clearArrows(ofType type: ArrowType) {
+        self[type.name].forEach { arrow in
+            arrow.run(SKAction.fadeOut(withDuration: 0.2)) {
+                arrow.removeFromParent()
+            }
+        }
+    }
+
     func newArrow(for move: Move) -> ArrowNode {
         let path = UIBezierPath(
             origin: position(for: move.origin),
@@ -46,21 +90,27 @@ public final class ArrowsLayer: SKSpriteNode, GameLayer {
         return ArrowNode(path: path.cgPath)
     }
 
-    func arrowNode(from origin: Square, to target: Square) -> SKShapeNode {
-        return SKShapeNode(path: arrowPath(from: origin, to: target) as! CGPath)
+    func setLastMoveArrow(with move: Move?) {
+        clearArrows(ofType: .lastMove)
+        guard let move = move else { return }
+        let arrowNode = newArrow(for: move)
+        arrowNode.name = ArrowType.lastMove.name
+        arrowNode.strokeColor = .init(white: 0.9, alpha: 0.9)
+        arrowNode.fillColor = .init(red: 0.4, green: 0.4, blue: 0.4, alpha: 0.6)
+        arrowNode.alpha = 0.0
+        arrowNode.zPosition = 155
+        addChild(arrowNode)
+        arrowNode.run(SKAction.fadeIn(withDuration: 0.4))
     }
 
-    func arrowPath(from origin: Square, to target: Square) -> UIBezierPath {
+    var lastMoveArrow: ArrowNode? {
+        return childNode(withName: "last move arrow") as! ArrowNode?
+    }
 
-        let originPoint = position(for: origin)
-        let targetPoint = position(for: target)
+    func path(for move: Move) -> UIBezierPath {
 
-        let headLength = squareSize.width / 3
-        let headWidth = squareSize.width / 2
-        let tailWidth = headWidth / 1.7
-
-        let originOffset = squareSize.width / 8
-        let targetOffset = squareSize.width / 3.7
+        let originPoint = position(for: move.origin)
+        let targetPoint = position(for: move.target)
 
         return UIBezierPath(origin: originPoint, target: targetPoint, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength, originOffset: originOffset, targetOffset: targetOffset)
     }

@@ -45,5 +45,12 @@ internal final class BoardViewController: ViewController {
         scene.piecesLayer.perform(transaction, on: pieceNode)
     }
 
+    func showLastMove(_ move: Move?) {
+        scene.arrowsLayer.setLastMoveArrow(with: move)
+    }
+
+    func addArrow(for move: Move, with type: ArrowType) {
+
+    }
 }
 

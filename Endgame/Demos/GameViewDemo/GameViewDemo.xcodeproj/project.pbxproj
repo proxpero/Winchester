@@ -37,6 +37,8 @@
 		52EA13E71DA732A100EBF078 /* PiecesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13E61DA732A100EBF078 /* PiecesLayer.swift */; };
 		52EA13ED1DA732C800EBF078 /* ArrowsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13EC1DA732C800EBF078 /* ArrowsLayer.swift */; };
 		52EA13F31DA7332E00EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13F21DA7332E00EBF078 /* SquaresLayer.swift */; };
+		52EA13FB1DA7370300EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13FA1DA7370300EBF078 /* BoardArrowsCoordinator.swift */; };
+		52EA14011DA7DA1100EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14001DA7DA1100EBF078 /* BoardCoverageCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,6 +87,8 @@
 		52EA13E61DA732A100EBF078 /* PiecesLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PiecesLayer.swift; path = ../../Sources/PiecesLayer.swift; sourceTree = "<group>"; };
 		52EA13EC1DA732C800EBF078 /* ArrowsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrowsLayer.swift; path = ../../Sources/ArrowsLayer.swift; sourceTree = "<group>"; };
 		52EA13F21DA7332E00EBF078 /* SquaresLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SquaresLayer.swift; path = ../../Sources/SquaresLayer.swift; sourceTree = "<group>"; };
+		52EA13FA1DA7370300EBF078 /* BoardArrowsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardArrowsCoordinator.swift; path = ../../Sources/BoardArrowsCoordinator.swift; sourceTree = "<group>"; };
+		52EA14001DA7DA1100EBF078 /* BoardCoverageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardCoverageCoordinator.swift; path = ../../Sources/BoardCoverageCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,8 @@
 				52678A5F1D9C285000AB1B9E /* TitleViewController.swift */,
 				52678A601D9C285000AB1B9E /* BoardViewController.swift */,
 				525AE6871DA68A61002A1630 /* BoardMovementCoordinator.swift */,
+				52EA13FA1DA7370300EBF078 /* BoardArrowsCoordinator.swift */,
+				52EA14001DA7DA1100EBF078 /* BoardCoverageCoordinator.swift */,
 				52678A611D9C285000AB1B9E /* HistoryViewController.swift */,
 				52678A621D9C285000AB1B9E /* GameScene.swift */,
 				52678A631D9C285000AB1B9E /* GameScene+TouchUI.swift */,
@@ -249,11 +255,13 @@
 				52678A721D9C285000AB1B9E /* SquareNode.swift in Sources */,
 				52678A431D9C24F000AB1B9E /* AppDelegate.swift in Sources */,
 				52678A6E1D9C285000AB1B9E /* HistoryViewController.swift in Sources */,
+				52EA13FB1DA7370300EBF078 /* BoardArrowsCoordinator.swift in Sources */,
 				52678A6B1D9C285000AB1B9E /* GameCell.swift in Sources */,
 				52EA13ED1DA732C800EBF078 /* ArrowsLayer.swift in Sources */,
 				52678A6F1D9C285000AB1B9E /* GameScene.swift in Sources */,
 				52678A701D9C285000AB1B9E /* GameScene+TouchUI.swift in Sources */,
 				52678A751D9C285000AB1B9E /* UIImage+View.swift in Sources */,
+				52EA14011DA7DA1100EBF078 /* BoardCoverageCoordinator.swift in Sources */,
 				52678A711D9C285000AB1B9E /* GameLayer.swift in Sources */,
 				525AE6881DA68A61002A1630 /* BoardMovementCoordinator.swift in Sources */,
 				52678A741D9C285000AB1B9E /* SegueHandlerType.swift in Sources */,
