@@ -24,7 +24,6 @@ public final class GameViewController: UIViewController, SegueHandlerType {
     var game: Game?
     var historyViewConfiguration: HistoryViewConfiguration?
     var boardMovementCoordinator: BoardMovementCoordinator?
-    var boardViewController: BoardViewController!
 
 
     enum SegueIdentifier: String {
