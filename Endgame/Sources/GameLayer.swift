@@ -105,28 +105,42 @@ public final class SquaresLayer: SKSpriteNode, GameLayer {
     }
 }
 
-//extension UIBezierPath {
-//
-//    convenience init(origin: Square, target: Square) {
-//
-//        let originPoint = origin.center
-//        let targetPoint = target.center
-//
-//        let headLength = origin.frame.width / 6
-//        let headWidth = origin.frame.width / 6
-//        let tailWidth = headWidth / 3
-//
-//        let originOffset = origin.frame.width / 8
-//        let targetOffset = origin.frame.width / 3.7
-//
-//        self.init(origin: originPoint, target: targetPoint, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength, originOffset: originOffset, targetOffset: targetOffset)
-//        
-//    }
-//    
-//}
+public typealias ArrowNode = SKShapeNode
 
 public final class ArrowsLayer: SKSpriteNode, GameLayer {
     typealias NodeType = SKShapeNode
+
+    var headLength: CGFloat {
+        return squareSize.width/3
+    }
+
+    var headWidth: CGFloat {
+        return squareSize.width/2
+    }
+
+    var tailWidth: CGFloat {
+        return headWidth / 1.7
+    }
+
+    var originOffset: CGFloat {
+        return squareSize.width/8
+    }
+
+    var targetOffset: CGFloat {
+        return squareSize.width / 3.7
+    }
+
+    func newArrow(for move: Move) -> ArrowNode {
+        let path = UIBezierPath(
+            origin: position(for: move.origin),
+            target: position(for: move.target),
+            tailWidth: tailWidth,
+            headWidth: headWidth,
+            headLength: headLength,
+            originOffset: originOffset,
+            targetOffset: targetOffset)
+        return ArrowNode(path: path.cgPath)
+    }
 
     func arrowNode(from origin: Square, to target: Square) -> SKShapeNode {
         return SKShapeNode(path: arrowPath(from: origin, to: target) as! CGPath)
@@ -147,41 +161,6 @@ public final class ArrowsLayer: SKSpriteNode, GameLayer {
         return UIBezierPath(origin: originPoint, target: targetPoint, tailWidth: tailWidth, headWidth: headWidth, headLength: headLength, originOffset: originOffset, targetOffset: targetOffset)
     }
 
-}
-
-public final class PiecesLayer: SKSpriteNode, GameLayer {
-
-    typealias NodeType = PieceNode
-
-    public func pieceNode(for piece: Piece) -> PieceNode {
-        return PieceNode(piece: piece, with: squareSize)
-    }
-
-    public func setupPieces(for board: Board) {
-        for space in board {
-            if let piece = space.piece {
-                let node = self.pieceNode(for: piece)
-                node.position = position(for: space.square)
-                addChild(node)
-            }
-        }
-    }
-
-    func perform(_ transaction: Transaction, on pieceNode: PieceNode) {
-        if transaction.status == .removed {
-            pieceNode.run(SKAction.fadeOut(withDuration: 0.2)) {
-                pieceNode.removeFromParent()
-            }
-        } else {
-            if transaction.status == .added {
-                pieceNode.alpha = 0.0
-                pieceNode.position = position(for: transaction.origin)
-                addChild(pieceNode)
-                pieceNode.run(SKAction.fadeIn(withDuration: 0.2))
-            }
-            pieceNode.run(SKAction.move(to: position(for: transaction.target), duration: 0.2))
-        }
-    }
 }
 
 extension UIBezierPath {
@@ -218,4 +197,52 @@ extension UIBezierPath {
         self.init(cgPath: path)
     }
     
+}
+
+public typealias PieceNode = SKSpriteNode
+
+public final class PiecesLayer: SKSpriteNode, GameLayer {
+
+    typealias NodeType = PieceNode
+
+    public func pieceNode(for piece: Piece) -> PieceNode {
+
+        let imageName = "\(piece.color == .white ? "White" : "Black")\(piece.kind.name)"
+        let pieceNode = PieceNode(
+            texture: SKTexture(imageNamed: imageName),
+            color: .clear,
+            size: squareSize
+        )
+
+        pieceNode.name = String(piece.character)
+        pieceNode.zPosition = 210
+
+        return pieceNode
+    }
+
+    public func setupPieces(for board: Board) {
+        for space in board {
+            if let piece = space.piece {
+                let node = self.pieceNode(for: piece)
+                node.position = position(for: space.square)
+                addChild(node)
+            }
+        }
+    }
+
+    func perform(_ transaction: Transaction, on pieceNode: PieceNode) {
+        if transaction.status == .removed {
+            pieceNode.run(SKAction.fadeOut(withDuration: 0.2)) {
+                pieceNode.removeFromParent()
+            }
+        } else {
+            if transaction.status == .added {
+                pieceNode.alpha = 0.0
+                pieceNode.position = position(for: transaction.origin)
+                addChild(pieceNode)
+                pieceNode.run(SKAction.fadeIn(withDuration: 0.2))
+            }
+            pieceNode.run(SKAction.move(to: position(for: transaction.target), duration: 0.2))
+        }
+    }
 }

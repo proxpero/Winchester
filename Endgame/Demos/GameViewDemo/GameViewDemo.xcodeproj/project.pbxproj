@@ -35,6 +35,7 @@
 		52EA13D41DA6A85000EBF078 /* test case 3.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D31DA6A85000EBF078 /* test case 3.pgn */; };
 		52EA13D61DA6BCA700EBF078 /* test case 4.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D51DA6BCA700EBF078 /* test case 4.pgn */; };
 		52EA13D81DA6C12F00EBF078 /* test case 5.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D71DA6C12F00EBF078 /* test case 5.pgn */; };
+		52EA13DD1DA7219A00EBF078 /* ArrowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13DC1DA7219A00EBF078 /* ArrowNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,6 +82,7 @@
 		52EA13D31DA6A85000EBF078 /* test case 3.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 3.pgn"; sourceTree = "<group>"; };
 		52EA13D51DA6BCA700EBF078 /* test case 4.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 4.pgn"; sourceTree = "<group>"; };
 		52EA13D71DA6C12F00EBF078 /* test case 5.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 5.pgn"; sourceTree = "<group>"; };
+		52EA13DC1DA7219A00EBF078 /* ArrowNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrowNode.swift; path = ../../Sources/ArrowNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				52678A641D9C285000AB1B9E /* GameLayer.swift */,
 				52678A651D9C285000AB1B9E /* SquareNode.swift */,
 				52678A661D9C285000AB1B9E /* PieceNode.swift */,
+				52EA13DC1DA7219A00EBF078 /* ArrowNode.swift */,
 				52678A671D9C285000AB1B9E /* SegueHandlerType.swift */,
 				52678A681D9C285000AB1B9E /* UIImage+View.swift */,
 				52678A691D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift */,
@@ -247,6 +250,7 @@
 				52678A701D9C285000AB1B9E /* GameScene+TouchUI.swift in Sources */,
 				52678A751D9C285000AB1B9E /* UIImage+View.swift in Sources */,
 				52678A711D9C285000AB1B9E /* GameLayer.swift in Sources */,
+				52EA13DD1DA7219A00EBF078 /* ArrowNode.swift in Sources */,
 				525AE6881DA68A61002A1630 /* BoardMovementCoordinator.swift in Sources */,
 				52678A741D9C285000AB1B9E /* SegueHandlerType.swift in Sources */,
 				52678A761D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift in Sources */,

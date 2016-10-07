@@ -32,7 +32,6 @@
 		521D1F701D8B130C00A0A0E6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240587B1D63893E000A925C /* GameScene.swift */; };
 		521D1F711D8B132300A0A0E6 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524058841D638B2F000A925C /* GameLayer.swift */; };
 		521D1F721D8B132E00A0A0E6 /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240587E1D63896F000A925C /* SquareNode.swift */; };
-		521D1F731D8B133400A0A0E6 /* PieceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524058811D638977000A925C /* PieceNode.swift */; };
 		521D1F741D8B133800A0A0E6 /* UIImage+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E354E41D7C99C0006EAEA6 /* UIImage+View.swift */; };
 		521D1F751D8B133C00A0A0E6 /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */; };
 		521D1F761D8B137100A0A0E6 /* GameScene+TouchUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */; };
@@ -97,15 +96,12 @@
 		5240587D1D63893E000A925C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240587B1D63893E000A925C /* GameScene.swift */; };
 		5240587F1D63896F000A925C /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240587E1D63896F000A925C /* SquareNode.swift */; };
 		524058801D63896F000A925C /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240587E1D63896F000A925C /* SquareNode.swift */; };
-		524058821D638977000A925C /* PieceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524058811D638977000A925C /* PieceNode.swift */; };
-		524058831D638977000A925C /* PieceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524058811D638977000A925C /* PieceNode.swift */; };
 		524058851D638B2F000A925C /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524058841D638B2F000A925C /* GameLayer.swift */; };
 		524058861D638B2F000A925C /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524058841D638B2F000A925C /* GameLayer.swift */; };
 		5240589A1D638D29000A925C /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528288241D6118910014B105 /* BoardViewController.swift */; };
 		5240589B1D638DD6000A925C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240587B1D63893E000A925C /* GameScene.swift */; };
 		5240589C1D638DDE000A925C /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524058841D638B2F000A925C /* GameLayer.swift */; };
 		5240589D1D638DE3000A925C /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240587E1D63896F000A925C /* SquareNode.swift */; };
-		5240589E1D638DE6000A925C /* PieceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524058811D638977000A925C /* PieceNode.swift */; };
 		5240589F1D638E05000A925C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524058731D6384AB000A925C /* Assets.xcassets */; };
 		524058CA1D63FA64000A925C /* EndgameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* EndgameTests.swift */; };
 		524058CB1D63FA65000A925C /* EndgameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* EndgameTests.swift */; };
@@ -242,7 +238,6 @@
 		524058791D638526000A925C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tvOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		5240587B1D63893E000A925C /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		5240587E1D63896F000A925C /* SquareNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareNode.swift; sourceTree = "<group>"; };
-		524058811D638977000A925C /* PieceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceNode.swift; sourceTree = "<group>"; };
 		524058841D638B2F000A925C /* GameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 		5240588B1D638C8D000A925C /* Endgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		524058A41D63F353000A925C /* EndgameTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EndgameTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -436,7 +431,6 @@
 				52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */,
 				524058841D638B2F000A925C /* GameLayer.swift */,
 				5240587E1D63896F000A925C /* SquareNode.swift */,
-				524058811D638977000A925C /* PieceNode.swift */,
 				5246E6491D6669C000219C8C /* SegueHandlerType.swift */,
 				52E354E41D7C99C0006EAEA6 /* UIImage+View.swift */,
 				52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */,
@@ -860,7 +854,6 @@
 				521D1F741D8B133800A0A0E6 /* UIImage+View.swift in Sources */,
 				52D6DEC61D8C682A00CF8880 /* ChessGamesListViewController.swift in Sources */,
 				526ACC131D8C587500D0D1A9 /* ChessGameCell.swift in Sources */,
-				521D1F731D8B133400A0A0E6 /* PieceNode.swift in Sources */,
 				521D1F721D8B132E00A0A0E6 /* SquareNode.swift in Sources */,
 				521D1F711D8B132300A0A0E6 /* GameLayer.swift in Sources */,
 				52D6DEC41D8C67F700CF8880 /* ChessGameViewController.swift in Sources */,
@@ -880,7 +873,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524058831D638977000A925C /* PieceNode.swift in Sources */,
 				524058861D638B2F000A925C /* GameLayer.swift in Sources */,
 				5237A6A11D97691A00BAC16E /* README.md in Sources */,
 				5240587D1D63893E000A925C /* GameScene.swift in Sources */,
@@ -899,7 +891,6 @@
 				5240589B1D638DD6000A925C /* GameScene.swift in Sources */,
 				5237A6A21D97691A00BAC16E /* README.md in Sources */,
 				5240589C1D638DDE000A925C /* GameLayer.swift in Sources */,
-				5240589E1D638DE6000A925C /* PieceNode.swift in Sources */,
 				5240589D1D638DE3000A925C /* SquareNode.swift in Sources */,
 				5240589A1D638D29000A925C /* BoardViewController.swift in Sources */,
 				5246E64C1D6669C000219C8C /* SegueHandlerType.swift in Sources */,
@@ -937,7 +928,6 @@
 				525560B91D64C3BF00985809 /* GameViewController.swift in Sources */,
 				52E354E31D7C8FBB006EAEA6 /* TableViewController.swift in Sources */,
 				5237A6A01D97691A00BAC16E /* README.md in Sources */,
-				524058821D638977000A925C /* PieceNode.swift in Sources */,
 				52E354E71D7C99DE006EAEA6 /* GameCell.swift in Sources */,
 				52E354E91D7C9BF0006EAEA6 /* CollectionViewController.swift in Sources */,
 				524058851D638B2F000A925C /* GameLayer.swift in Sources */,
