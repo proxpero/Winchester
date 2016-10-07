@@ -22,10 +22,11 @@ struct GameViewCoordinator {
 public final class GameViewController: UIViewController, SegueHandlerType {
 
     var game: Game?
-    var historyViewConfiguration: HistoryViewConfiguration?
-    var movementCoordinator: BoardMovementCoordinator?
-    var arrowsCoordinator: BoardArrowsCoordinator?
-    var coverageCoordinator: BoardCoverageCoordinator?
+    var isEditable: Bool = false
+    private var historyViewConfiguration: HistoryViewConfiguration?
+    private var movementCoordinator: BoardMovementCoordinator?
+    private var arrowsCoordinator: BoardArrowsCoordinator?
+    private var coverageCoordinator: BoardCoverageCoordinator?
 
 
     enum SegueIdentifier: String {
