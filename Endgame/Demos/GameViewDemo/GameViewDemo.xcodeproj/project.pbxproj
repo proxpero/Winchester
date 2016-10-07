@@ -20,7 +20,6 @@
 		52678A701D9C285000AB1B9E /* GameScene+TouchUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A631D9C285000AB1B9E /* GameScene+TouchUI.swift */; };
 		52678A711D9C285000AB1B9E /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A641D9C285000AB1B9E /* GameLayer.swift */; };
 		52678A721D9C285000AB1B9E /* SquareNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A651D9C285000AB1B9E /* SquareNode.swift */; };
-		52678A731D9C285000AB1B9E /* PieceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A661D9C285000AB1B9E /* PieceNode.swift */; };
 		52678A741D9C285000AB1B9E /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A671D9C285000AB1B9E /* SegueHandlerType.swift */; };
 		52678A751D9C285000AB1B9E /* UIImage+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A681D9C285000AB1B9E /* UIImage+View.swift */; };
 		52678A761D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A691D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift */; };
@@ -35,7 +34,9 @@
 		52EA13D41DA6A85000EBF078 /* test case 3.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D31DA6A85000EBF078 /* test case 3.pgn */; };
 		52EA13D61DA6BCA700EBF078 /* test case 4.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D51DA6BCA700EBF078 /* test case 4.pgn */; };
 		52EA13D81DA6C12F00EBF078 /* test case 5.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D71DA6C12F00EBF078 /* test case 5.pgn */; };
-		52EA13DD1DA7219A00EBF078 /* ArrowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13DC1DA7219A00EBF078 /* ArrowNode.swift */; };
+		52EA13E71DA732A100EBF078 /* PiecesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13E61DA732A100EBF078 /* PiecesLayer.swift */; };
+		52EA13ED1DA732C800EBF078 /* ArrowsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13EC1DA732C800EBF078 /* ArrowsLayer.swift */; };
+		52EA13F31DA7332E00EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13F21DA7332E00EBF078 /* SquaresLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,7 +69,6 @@
 		52678A631D9C285000AB1B9E /* GameScene+TouchUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GameScene+TouchUI.swift"; path = "../../Sources/GameScene+TouchUI.swift"; sourceTree = "<group>"; };
 		52678A641D9C285000AB1B9E /* GameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameLayer.swift; path = ../../Sources/GameLayer.swift; sourceTree = "<group>"; };
 		52678A651D9C285000AB1B9E /* SquareNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SquareNode.swift; path = ../../Sources/SquareNode.swift; sourceTree = "<group>"; };
-		52678A661D9C285000AB1B9E /* PieceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PieceNode.swift; path = ../../Sources/PieceNode.swift; sourceTree = "<group>"; };
 		52678A671D9C285000AB1B9E /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueHandlerType.swift; path = ../../Sources/SegueHandlerType.swift; sourceTree = "<group>"; };
 		52678A681D9C285000AB1B9E /* UIImage+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+View.swift"; path = "../../Sources/UIImage+View.swift"; sourceTree = "<group>"; };
 		52678A691D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UISwipeGestureRecognizer+Extensions.swift"; path = "../../Sources/UISwipeGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
@@ -82,7 +82,9 @@
 		52EA13D31DA6A85000EBF078 /* test case 3.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 3.pgn"; sourceTree = "<group>"; };
 		52EA13D51DA6BCA700EBF078 /* test case 4.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 4.pgn"; sourceTree = "<group>"; };
 		52EA13D71DA6C12F00EBF078 /* test case 5.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 5.pgn"; sourceTree = "<group>"; };
-		52EA13DC1DA7219A00EBF078 /* ArrowNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrowNode.swift; path = ../../Sources/ArrowNode.swift; sourceTree = "<group>"; };
+		52EA13E61DA732A100EBF078 /* PiecesLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PiecesLayer.swift; path = ../../Sources/PiecesLayer.swift; sourceTree = "<group>"; };
+		52EA13EC1DA732C800EBF078 /* ArrowsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrowsLayer.swift; path = ../../Sources/ArrowsLayer.swift; sourceTree = "<group>"; };
+		52EA13F21DA7332E00EBF078 /* SquaresLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SquaresLayer.swift; path = ../../Sources/SquaresLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,9 +149,10 @@
 				52678A621D9C285000AB1B9E /* GameScene.swift */,
 				52678A631D9C285000AB1B9E /* GameScene+TouchUI.swift */,
 				52678A641D9C285000AB1B9E /* GameLayer.swift */,
+				52EA13F21DA7332E00EBF078 /* SquaresLayer.swift */,
+				52EA13EC1DA732C800EBF078 /* ArrowsLayer.swift */,
+				52EA13E61DA732A100EBF078 /* PiecesLayer.swift */,
 				52678A651D9C285000AB1B9E /* SquareNode.swift */,
-				52678A661D9C285000AB1B9E /* PieceNode.swift */,
-				52EA13DC1DA7219A00EBF078 /* ArrowNode.swift */,
 				52678A671D9C285000AB1B9E /* SegueHandlerType.swift */,
 				52678A681D9C285000AB1B9E /* UIImage+View.swift */,
 				52678A691D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift */,
@@ -239,18 +242,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52EA13E71DA732A100EBF078 /* PiecesLayer.swift in Sources */,
+				52EA13F31DA7332E00EBF078 /* SquaresLayer.swift in Sources */,
 				52678A6A1D9C285000AB1B9E /* GameViewController.swift in Sources */,
 				52678A6C1D9C285000AB1B9E /* TitleViewController.swift in Sources */,
 				52678A721D9C285000AB1B9E /* SquareNode.swift in Sources */,
 				52678A431D9C24F000AB1B9E /* AppDelegate.swift in Sources */,
-				52678A731D9C285000AB1B9E /* PieceNode.swift in Sources */,
 				52678A6E1D9C285000AB1B9E /* HistoryViewController.swift in Sources */,
 				52678A6B1D9C285000AB1B9E /* GameCell.swift in Sources */,
+				52EA13ED1DA732C800EBF078 /* ArrowsLayer.swift in Sources */,
 				52678A6F1D9C285000AB1B9E /* GameScene.swift in Sources */,
 				52678A701D9C285000AB1B9E /* GameScene+TouchUI.swift in Sources */,
 				52678A751D9C285000AB1B9E /* UIImage+View.swift in Sources */,
 				52678A711D9C285000AB1B9E /* GameLayer.swift in Sources */,
-				52EA13DD1DA7219A00EBF078 /* ArrowNode.swift in Sources */,
 				525AE6881DA68A61002A1630 /* BoardMovementCoordinator.swift in Sources */,
 				52678A741D9C285000AB1B9E /* SegueHandlerType.swift in Sources */,
 				52678A761D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift in Sources */,

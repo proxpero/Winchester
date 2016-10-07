@@ -49,7 +49,6 @@ public final class GameViewController: UIViewController, SegueHandlerType {
                 newPieceNode: vc.newPieceNode,
                 perform: vc.perform
             )
-            
 
         case .history:
             guard let vc = segue.destination as? HistoryViewController else { fatalError() }
@@ -66,6 +65,7 @@ public final class GameViewController: UIViewController, SegueHandlerType {
         }
         let (direction, items) = game.move(to: index)
         boardMovementCoordinator?.arrange(items: items, direction: direction)
+        
     }
 
 }
