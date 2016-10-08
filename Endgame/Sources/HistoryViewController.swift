@@ -13,9 +13,10 @@ final class HistoryViewConfiguration {
 
     let game: Game
 
-    init(game: Game,
-         historyViewController: HistoryViewController,
-         moveSelectionHandler: @escaping (Int) -> ()
+    init(
+        game: Game,
+        historyViewController: HistoryViewController,
+        moveSelectionHandler: @escaping (Int) -> ()
     ) {
         self.game = game
 

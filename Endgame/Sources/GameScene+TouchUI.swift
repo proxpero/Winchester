@@ -12,23 +12,18 @@ import SpriteKit
 extension GameScene {
 
     func tapAction(sender: UITapGestureRecognizer) {
-//        if let location = view?.convert(sender.location(in: view), to: self) {
-//            guard let square = self.square(at: location) else { return }
-//            switch activityState {
-//            case .normal:
-//                activityState = .initiation(square)
-//            case .initiation(let origin):
-//                activityState = .end(origin: origin, target: square)
-//            default:
-//                break
-//            }
-//        }
+        if
+            let location = view?.convert(sender.location(in: view), to: self),
+            let square = self.square(at: location)
+        {
+            userDidSelect(square)
+        }
     }
 
     func panAction(sender: UIPanGestureRecognizer) {
-//        if let location = view?.convert(sender.location(in: view), to: self) {
-//            let square = self.square(at: location)
-//            print("\(location), \(square)")
-//        }
+        if let location = view?.convert(sender.location(in: view), to: self) {
+            let square = self.square(at: location)
+            print("\(location), \(square)")
+        }
     }
 }

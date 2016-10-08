@@ -32,9 +32,9 @@ final class BoardMovementCoordinator {
 
     // MARK: - Stored Properties
 
-    let getPieceNode: (Square) -> PieceNode?
-    let newPieceNode: (Piece) -> PieceNode
-    let perform: (Transaction, PieceNode) -> ()
+    private let getPieceNode: (Square) -> PieceNode?
+    private let newPieceNode: (Piece) -> PieceNode
+    private let perform: (Transaction, PieceNode) -> ()
 
     // MARK: - Initializers
 

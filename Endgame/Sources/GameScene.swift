@@ -9,7 +9,15 @@
 import Engine
 import SpriteKit
 
+protocol SceneDelegate: class {
+    func didSelect(square: Square)
+}
+
 public final class GameScene: SKScene {
+
+    var userDidSelect: (Square) -> () = { _ in
+        print(#function)
+    }
 
     let squaresLayer: SquaresLayer
     let arrowsLayer: ArrowsLayer
@@ -53,11 +61,12 @@ public final class GameScene: SKScene {
         piecesLayer.position = view.center
         piecesLayer.setupPieces(for: Board())
 
+//        userDidSelect = userDidSelect
+
         #if os(iOS)
             view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapAction(sender:))))
             view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(self.panAction(sender:))))
         #endif
-
     }
 
     /**
@@ -93,8 +102,4 @@ public final class GameScene: SKScene {
         addChild(layer)
     }
 
-}
-
-protocol GameSceneDelegate {
-    func availableMoves(from origin: Square) -> Bitboard
 }

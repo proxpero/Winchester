@@ -25,10 +25,12 @@ public final class SquaresLayer: SKSpriteNode, GameLayer {
 
     }
 
+    func highlightAvailable(squares: [Square]) {
+        squares.map { squareNode(for: $0) }.forEach { $0.highlightType = .available }
+    }
+
     func removeHighlights() {
-        nodes
-            .filter { $0.highlightType != .none }
-            .forEach { $0.highlightType = .none }
+
     }
 
     public func squareNodes(for squares: [Square]) -> [SquareNode] {
@@ -38,5 +40,16 @@ public final class SquaresLayer: SKSpriteNode, GameLayer {
     public func squareNode(for square: Square) -> SquareNode {
         guard let squareNode = childNode(withName: square.description) as? SquareNode else { fatalError() }
         return squareNode
+    }
+
+    func update(for activityState: ActivityState) {
+        switch activityState {
+        case .initiation(let origin):
+            print("origin: \(origin)")
+        case .normal:
+            print("all is quiet")
+        case .end(let move):
+            print("execute \(move)")
+        }
     }
 }

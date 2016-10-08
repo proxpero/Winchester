@@ -32,6 +32,7 @@
 		52EA14671DA7F7BC00EBF078 /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14551DA7F7BC00EBF078 /* UISwipeGestureRecognizer+Extensions.swift */; };
 		52EA146A1DA80DAD00EBF078 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EA14681DA80DAD00EBF078 /* Game.storyboard */; };
 		52EA146C1DA817CC00EBF078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52EA146B1DA817CC00EBF078 /* Assets.xcassets */; };
+		52EA146E1DA966F600EBF078 /* BoardInteractionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA146D1DA966F600EBF078 /* BoardInteractionCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +76,7 @@
 		52EA14551DA7F7BC00EBF078 /* UISwipeGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UISwipeGestureRecognizer+Extensions.swift"; path = "../../../Sources/UISwipeGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		52EA14691DA80DAD00EBF078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../iOS/Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		52EA146B1DA817CC00EBF078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52EA146D1DA966F600EBF078 /* BoardInteractionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardInteractionCoordinator.swift; path = ../../../Sources/BoardInteractionCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,9 +125,11 @@
 		52EA14431DA7F79000EBF078 /* Endgame */ = {
 			isa = PBXGroup;
 			children = (
+				52EA144D1DA7F7BC00EBF078 /* GameViewController.swift */,
 				52EA14451DA7F7BC00EBF078 /* BoardArrowsCoordinator.swift */,
 				52EA14461DA7F7BC00EBF078 /* BoardCoverageCoordinator.swift */,
 				52EA14471DA7F7BC00EBF078 /* BoardMovementCoordinator.swift */,
+				52EA146D1DA966F600EBF078 /* BoardInteractionCoordinator.swift */,
 				52EA14481DA7F7BC00EBF078 /* BoardViewController.swift */,
 				52EA14491DA7F7BC00EBF078 /* GameCell.swift */,
 				52EA144A1DA7F7BC00EBF078 /* GameLayer.swift */,
@@ -135,7 +139,6 @@
 				52EA144F1DA7F7BC00EBF078 /* PiecesLayer.swift */,
 				52EA144B1DA7F7BC00EBF078 /* GameScene.swift */,
 				52EA144C1DA7F7BC00EBF078 /* GameScene+TouchUI.swift */,
-				52EA144D1DA7F7BC00EBF078 /* GameViewController.swift */,
 				52EA144E1DA7F7BC00EBF078 /* HistoryViewController.swift */,
 				52EA14501DA7F7BC00EBF078 /* SegueHandlerType.swift */,
 				52EA14531DA7F7BC00EBF078 /* TitleViewController.swift */,
@@ -225,6 +228,7 @@
 				52EA145D1DA7F7BC00EBF078 /* GameScene.swift in Sources */,
 				52EA14661DA7F7BC00EBF078 /* UIImage+View.swift in Sources */,
 				52EA14641DA7F7BC00EBF078 /* SquaresLayer.swift in Sources */,
+				52EA146E1DA966F600EBF078 /* BoardInteractionCoordinator.swift in Sources */,
 				52EA145A1DA7F7BC00EBF078 /* BoardViewController.swift in Sources */,
 				52EA14631DA7F7BC00EBF078 /* SquareNode.swift in Sources */,
 				52EA14611DA7F7BC00EBF078 /* PiecesLayer.swift in Sources */,

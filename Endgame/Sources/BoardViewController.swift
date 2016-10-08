@@ -23,18 +23,25 @@ internal final class BoardViewController: ViewController {
         guard let skview = view as? SKView else { return }
         let scene = GameScene(edge: view.bounds.width)
         skview.presentScene(scene)
+        scene.userDidSelect = userDidSelect
     }
 
     var scene: GameScene {
         guard
             let skview = view as? SKView,
             let scene = skview.scene as? GameScene
-            else { fatalError("There is no scene!") }
+        else { fatalError("There is no scene!") }
         return scene
     }
 
+    var userDidSelect: (Square) -> () = { _ in }
+
     func pieceNode(for square: Square) -> PieceNode? {
         return scene.piecesLayer.node(for: square)
+    }
+
+    func position(for square: Square) -> CGPoint {
+        return scene.squaresLayer.position(for: square)
     }
 
     func newPieceNode(for piece: Piece) -> PieceNode {
@@ -45,6 +52,20 @@ internal final class BoardViewController: ViewController {
         scene.piecesLayer.perform(transaction, on: pieceNode)
     }
 
+    func execute(move: Move) {
+        if let capturedNode = pieceNode(for: move.target) {
+            capturedNode.zPosition -= 10
+            capturedNode.run(SKAction.fadeOut(withDuration: 0.2)) {
+                capturedNode.removeFromParent()
+            }
+        }
+        guard let movingNode = pieceNode(for: move.origin) else {
+            fatalError("Unable to find the expected pieceNode at \(move.origin)")
+        }
+        movingNode.run(SKAction.move(to: position(for: move.target), duration: 0.2))
+
+    }
+
     func showLastMove(_ move: Move?) {
         scene.arrowsLayer.setLastMoveArrow(with: move)
     }
@@ -52,5 +73,22 @@ internal final class BoardViewController: ViewController {
     func addArrow(for move: Move, with type: ArrowType) {
 
     }
+
+    func execute(move: Move, for pieceNode: PieceNode) {
+        
+    }
+
+    func highlightAvailableTargets(using squares: [Square]) {
+        squares
+            .map { scene.squaresLayer.squareNode(for: $0) }
+            .forEach { $0.highlightType = .available }
+    }
+
+    func removeHighlights() {
+        scene.squaresLayer.nodes
+            .filter { $0.highlightType != .none }
+            .forEach { $0.highlightType = .none }
+    }
+
 }
 

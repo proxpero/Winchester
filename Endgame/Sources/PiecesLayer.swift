@@ -52,7 +52,9 @@ public final class PiecesLayer: SKSpriteNode, GameLayer {
                 addChild(pieceNode)
                 pieceNode.run(SKAction.fadeIn(withDuration: 0.2))
             }
-            pieceNode.run(SKAction.move(to: position(for: transaction.target), duration: 0.2))
+            let action = SKAction.move(to: position(for: transaction.target), duration: 0.2)
+            action.timingMode = .easeInEaseOut
+            pieceNode.run(action)
         }
     }
 }

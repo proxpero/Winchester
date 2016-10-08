@@ -9,24 +9,16 @@
 import UIKit
 import Engine
 
-struct GameViewCoordinator {
-
-    var game: Game
-
-    init(game: Game) {
-        self.game = game
-    }
-
-}
-
 public final class GameViewController: UIViewController, SegueHandlerType {
 
     var game: Game?
     var isEditable: Bool = false
+
     private var historyViewConfiguration: HistoryViewConfiguration?
     private var movementCoordinator: BoardMovementCoordinator?
     private var arrowsCoordinator: BoardArrowsCoordinator?
     private var coverageCoordinator: BoardCoverageCoordinator?
+    private var interactionCoordinator: BoardInteractionCoordinator?
 
 
     enum SegueIdentifier: String {
@@ -47,6 +39,7 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
         case .board:
             guard let vc = segue.destination as? BoardViewController else { fatalError() }
+            
             movementCoordinator = BoardMovementCoordinator(
                 pieceNode: vc.pieceNode,
                 newPieceNode: vc.newPieceNode,
@@ -56,10 +49,21 @@ public final class GameViewController: UIViewController, SegueHandlerType {
                 showLastMove: vc.showLastMove,
                 addArrow: vc.addArrow
             )
+            interactionCoordinator = BoardInteractionCoordinator(
+                userDidExecute: userDidExecute,
+                pieceNode: vc.pieceNode,
+                position: vc.position,
+                availableTargets: game.availableTargets,
+                highlightAvailableTargets: vc.highlightAvailableTargets,
+                execute: vc.execute,
+                removeHighlights: vc.removeHighlights
+            )
+            vc.userDidSelect = interactionCoordinator!.userDidSelect
 
         case .history:
             guard let vc = segue.destination as? HistoryViewController else { fatalError() }
             historyViewConfiguration = HistoryViewConfiguration(game: game, historyViewController: vc, moveSelectionHandler: didSelect)
+            
             view.addSwipeGestureRecognizer(target: vc, action: #selector(vc.advanceMove(sender:)), direction: .left)
             view.addSwipeGestureRecognizer(target: vc, action: #selector(vc.reverseMove(sender:)), direction: .right)
         }
@@ -75,6 +79,20 @@ public final class GameViewController: UIViewController, SegueHandlerType {
         arrowsCoordinator?.showLastMove(game.lastMove)
     }
 
+    func userDidExecute(move: Move) {
+        do {
+            try game?.execute(move: move)
+        } catch {
+            print("ERROR: Could not execute move: \(move)")
+        }
+    }
+
+    func availableSquares(for origin: Square) -> [Square] {
+        guard let game = game else {
+            fatalError()
+        }
+        return game.availableTargets(forPieceAt: origin)
+    }
 }
 
 extension GameViewController: GameDelegate {
