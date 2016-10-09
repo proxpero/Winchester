@@ -20,6 +20,10 @@ public enum Outcome: CustomStringConvertible, Hashable  {
     /// An indeterminant outcome.
     case undetermined
 
+    static var all: [Outcome] {
+        return [.win(.white), .win(.black), .draw, .undetermined]
+    }
+
     // MARK: Initializers
 
     /// Creates an `Outcome` from a string representation. Trims whitespace.

@@ -122,7 +122,6 @@ public struct Position: Equatable, CustomStringConvertible {
 
         let san = input.trimmingCharacters(in: CharacterSet(charactersIn: "+=!?#"))
 
-
         let index = san.index(san.endIndex, offsetBy: -2)
         guard let target = Square(san.substring(from: index)) else {
             return nil

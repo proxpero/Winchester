@@ -384,7 +384,8 @@ public extension String {
             throw PGN.ParseError.parenthesisCountForRAV(self)
         }
         let tokens = stripped.split(by: [" ", "."])
-        let moves = tokens.filter({ $0.characters.first?.isDigit == false })
+        let outcomes = Outcome.all.map { $0.description }
+        let moves = tokens.filter { $0.characters.first?.isDigit == false && !outcomes.contains($0) }
         let outcome = tokens.last.flatMap(Outcome.init)
         return (moves, outcome)
     }
