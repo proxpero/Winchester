@@ -13,13 +13,12 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
     var game: Game?
     var isEditable: Bool = false
+    var save: (Game) -> () = { _ in }
 
-    private var historyViewConfiguration: HistoryViewConfiguration?
     private var movementCoordinator: BoardMovementCoordinator?
     private var arrowsCoordinator: BoardArrowsCoordinator?
     private var coverageCoordinator: BoardCoverageCoordinator?
     private var interactionCoordinator: BoardInteractionCoordinator?
-
 
     enum SegueIdentifier: String {
         case title = "TitleViewControllerSegueIdentifier"
@@ -62,13 +61,39 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
         case .history:
             guard let vc = segue.destination as? HistoryViewController else { fatalError() }
-            historyViewConfiguration = HistoryViewConfiguration(game: game, historyViewController: vc, moveSelectionHandler: didSelect)
-            
+            vc.rows = {
+                let moves = game.history.count + game.undoHistory.count
+                let rows = 1 + moves + (moves % 2 == 0 ? moves/2 : (moves + 1)/2)
+                return rows
+            }
+
+            vc.cellType = { index in
+                return HistoryCellType(row: index, game: game)
+            }
+
+            vc.didSelect = didSelect
+
+            updateHistory = {
+                guard let collectionView = vc.collectionView else {
+                    fatalError("Expected an unwrapped collection view")
+                }
+                collectionView.reloadData()
+                let row = collectionView.numberOfItems(inSection: 0) - 1
+                let indexPath = IndexPath(row: row, section: 0)
+                collectionView.selectItem(
+                    at: indexPath,
+                    animated: true,
+                    scrollPosition: .centeredHorizontally
+                )
+            }
+
             view.addSwipeGestureRecognizer(target: vc, action: #selector(vc.advanceMove(sender:)), direction: .left)
             view.addSwipeGestureRecognizer(target: vc, action: #selector(vc.reverseMove(sender:)), direction: .right)
         }
 
     }
+
+    var updateHistory: () -> Void = { }
 
     func didSelect(rowAt index: Int) {
         guard let game = game else {
@@ -81,7 +106,10 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
     func userDidExecute(move: Move) {
         do {
-            try game?.execute(move: move)
+            guard let game = game else { fatalError("A game was expected.") }
+            try game.execute(move: move)
+            updateHistory()
+            save(game)
         } catch {
             print("ERROR: Could not execute move: \(move)")
         }
@@ -92,20 +120,5 @@ public final class GameViewController: UIViewController, SegueHandlerType {
             fatalError()
         }
         return game.availableTargets(forPieceAt: origin)
-    }
-}
-
-extension GameViewController: GameDelegate {
-
-    public func game(_: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) {
-        
-    }
-
-    public func game(_: Game, didAdvance items: [HistoryItem]) {
-
-    }
-
-    public func game(_: Game, didReverse items: [HistoryItem]) {
-
     }
 }

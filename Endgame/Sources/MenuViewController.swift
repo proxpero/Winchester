@@ -61,7 +61,6 @@ final class MenuViewController: UITableViewController {
             case .settings: return "Settings"
             }
         }
-
     }
 
     var recentGamesConfiguration: RecentGamesConfiguration?

@@ -9,44 +9,18 @@
 import Engine
 import SpriteKit
 
-final class HistoryViewConfiguration {
-
-    let game: Game
-
-    init(
-        game: Game,
-        historyViewController: HistoryViewController,
-        moveSelectionHandler: @escaping (Int) -> ()
-    ) {
-        self.game = game
-
-        historyViewController.didSelect = moveSelectionHandler
-        historyViewController.rows = {
-            let moves = game.history.count + game.undoHistory.count
-            let rows = 1 + moves + (moves % 2 == 0 ? moves/2 : (moves + 1)/2)
-            return rows
-        }()
-        historyViewController.cellType = cellType
-    }
-
-    func cellType(for index: Int) -> HistoryCellType {
-        return HistoryCellType(row: index, game: game)
-    }
-
-}
-
 internal final class HistoryViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var didSelect: (Int) -> () = { _ in }
     var cellType: (_ row: Int) -> HistoryCellType = { _ in return .start }
     var advanceMove: (UIGestureRecognizer) -> () = { _ in }
     var reverseMove: (UIGestureRecognizer) -> () = { _ in }
-    var rows = 0
+    var rows: () -> Int = { _ in 0 }
 
     func advanceMove(sender: UISwipeGestureRecognizer) {
         guard
             let indexPath = collectionView?.indexPathsForSelectedItems?.first,
-            indexPath.row < rows - 1
+            indexPath.row < rows() - 1
         else { return }
         collectionView?.selectItem(
             at: IndexPath(row: indexPath.row.nextMoveIndex(), section: 0),
@@ -79,7 +53,7 @@ internal final class HistoryViewController: UICollectionViewController, UICollec
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return rows
+        return rows()
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -135,7 +109,7 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
 
     init(row: Int, game: Game?) {
         if row == 0 { self = .start }
-        else if row.isNumberRow() { self = .number(row.numberIndex()) }
+        else if row.isNumberRow { self = .number(row.numberIndex()) }
         else {
             guard let game = game else { fatalError() }
             let moveIndex = row.moveIndex()
@@ -189,9 +163,18 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
 
 extension Int {
 
-    /// Returns whether the `self` as an index in the collection view is a `number` cell.
-    func isNumberRow() -> Bool {
-        return (self-1)%3 == 0
+    var isEven: Bool {
+        return self % 2 == 0
+    }
+
+    /// Returns whether `self` as an row index in the collection view is a `number` cell.
+    var isNumberRow: Bool {
+       return (self-1)%3 == 0
+    }
+
+    /// Converts the index from a game's history array to its corresponding row index in the collection view.
+    var asRowIndex: Int {
+        return ((self.isEven ? 2 : 0) + (6 * (self + 1))) / 4
     }
 
     /// Converts a collection view cell index to a natural number index.
@@ -207,13 +190,13 @@ extension Int {
     /// Returns the next index after `self` of a move in a history collection view.
     func nextMoveIndex() -> Int {
         let next = self + 1
-        return next + (next.isNumberRow() ? 1 : 0)
+        return next + (next.isNumberRow ? 1 : 0)
     }
 
     /// Returns the previous index before `self` of a move in a history collection view.
     func previousMoveIndex() -> Int {
         let prev = self - 1
-        return prev - (prev.isNumberRow() ? 1 : 0)
+        return prev - (prev.isNumberRow ? 1 : 0)
     }
 
 }
