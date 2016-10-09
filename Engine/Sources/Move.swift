@@ -134,6 +134,11 @@ public struct Move: Hashable, CustomStringConvertible {
         }
     }
 
+    /// Returns a bool whether the move reaches the end rank for `color`.
+    public func reachesEndRank(for color: Color) -> Bool {
+        return self.target.rank == Rank.init(endFor: color)
+    }
+
     /// The hash value.
     public var hashValue: Int {
         return origin.hashValue + (target.hashValue << 6)
