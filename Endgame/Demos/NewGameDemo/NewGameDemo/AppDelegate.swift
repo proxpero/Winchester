@@ -62,7 +62,12 @@ final class Configuration {
         vc.didSelect = didSelect
         vc.cellIdentifier = cellIdentifier
         vc.configure = configure
+        vc.update = {
+            self.save()
+        }
     }
+
+    private var temp: Game?
 
     private let _gameStoryboard = UIStoryboard(name: "Game", bundle: nil)
 
@@ -108,6 +113,9 @@ final class Configuration {
         let gameViewController = _gameStoryboard.instantiateInitialViewController() as! GameViewController
         gameViewController.game = Game()
         gameViewController.isEditable = true
+        gameViewController.save = { game in
+            self.temp = game
+        }
         navigationController.pushViewController(gameViewController, animated: true)
     }
 
@@ -117,13 +125,19 @@ final class Configuration {
         navigationController.pushViewController(gameViewController, animated: true)
     }
 
-    func save(game: Game) {
+    func save() {
+        guard let temp = temp else { return }
         var pgns = UserDefaults.standard.array(forKey: myGamesKey) as? [String] ?? [String]()
-        pgns.append(game.pgn.exported())
+        let pgn = temp.pgn.exported()
+        pgns.append(pgn)
         UserDefaults.standard.set(pgns, forKey: myGamesKey)
     }
 
     var games: [Game] {
+        let removePgns = false
+        if removePgns {
+            UserDefaults.standard.set([], forKey: myGamesKey)
+        }
         let pgns = UserDefaults.standard.array(forKey: myGamesKey) as? [String] ?? [String]()
         let games = pgns
             .map { try! PGN(parse: $0) }
@@ -140,9 +154,16 @@ class TableViewController: UITableViewController {
     var didSelect: (IndexPath) -> () = { _ in }
     var cellIdentifier: (IndexPath) -> String = { _ in "" }
     var configure: (UITableViewCell, IndexPath) -> () = { _ in }
+    var update: () -> () = { }
 }
 
 extension TableViewController {
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        update()
+        tableView.reloadData()
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionCount()
