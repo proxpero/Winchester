@@ -10,6 +10,7 @@ import Foundation
 
 /// A player turn.
 public typealias PlayerTurn = Color
+public typealias IndexResult = (direction: Direction, items: Array<HistoryItem>)
 
 /// A chess game.
 public class Game {
@@ -263,7 +264,7 @@ public class Game {
     ///
     /// - returns: A tuple of the `direction` in which the move happens
     ///   and an array of `HistoryItem`s representing the difference in state.
-    public func settingIndex(to newIndex: Int?) -> (Direction, Array<HistoryItem>)? {
+    public func settingIndex(to newIndex: Int?) -> IndexResult? {
 
         let direction: Direction
         let slice: ArraySlice<HistoryItem>

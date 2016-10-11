@@ -205,7 +205,7 @@ class GameTests: XCTestCase {
 
             var newIndex: Int
             var count: Int
-            var result: (direction: Direction, items: Array<HistoryItem>)?
+            var result: IndexResult?
             
             (newIndex, count) = randomUndoIndex()
             result = game.settingIndex(to: newIndex)
