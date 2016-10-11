@@ -61,8 +61,6 @@ public class Game {
         self.blackPlayer = blackPlayer
         self.outcome = .undetermined
         self._startingPosition = startingPosition
-//        self._history = []
-//        self._undoHistory = []
         self._items = []
         self._currentIndex = nil
     }
@@ -75,42 +73,11 @@ public class Game {
         self.blackPlayer = game.blackPlayer
         self.outcome = game.outcome
         self._startingPosition = game._startingPosition
-//        self._history = game._history
-//        self._undoHistory = game._undoHistory
         self._items = game._items
         self._currentIndex = game._currentIndex
     }
 
     // MARK: - Public API
-
-//    @discardableResult
-//    public func move(to targetIndex: Int) -> (direction: Direction, items: [HistoryItem]) {
-//        let direction = Direction(currentIndex: _history.endIndex, targetIndex: targetIndex)
-//        let items: [HistoryItem]
-//        switch direction {
-//        case .forward(let distance):
-//            items = (0 ..< distance).flatMap { _ in redo() }
-//        case .reverse(let distance):
-//            items = (0 ..< distance).flatMap { _ in undo() }
-//        }
-//        return (direction, items)
-//    }
-
-//    public func item(at index: Int) -> HistoryItem? {
-//        guard index >= self.startIndex && index < self.endIndex else {
-//            return nil
-//        }
-//        return items[index]
-//        if index < _history.endIndex {
-//            return _history[index]
-//        } else {
-//            let i = _history.endIndex + _undoHistory.endIndex - index
-//            let i = _undoHistory.endIndex - (index - _history.endIndex)
-//            print("i=\(i), index=\(index)")
-//            print("item=\(_undoHistory[i].sanMove)")
-//            return _undoHistory[i]
-//        }
-//    }
 
     public var playerTurn: Color {
         return currentPosition.playerTurn
@@ -204,32 +171,6 @@ public class Game {
         return _items[current].position
     }
 
-//    public var lastMove: Move? {
-//        return playedMoves.last
-//    }
-
-//    public var history: Array<HistoryItem> {
-//        return _history
-//    }
-
-//    public var undoHistory: Array<HistoryItem> {
-//        return _undoHistory
-//    }
-
-    /// The number of executed moves.
-//    public var moveCount: Int {
-//        return _history.count
-//    }
-
-    /// All of the moves played in the game.
-//    public var playedMoves: [Move] {
-//        return _history.map({ $0.move })
-//    }
-
-//    public var sanMoves: [String] {
-//        return _history.map { $0.sanMove }
-//    }
-
     // MARK: - Collection Protocol Conformance
 
     public var startIndex: Int {
@@ -248,11 +189,6 @@ public class Game {
     public subscript(position: Int) -> HistoryItem {
         precondition(_items.indices.contains(position), "Index out of bounds")
         return _items[position]
-//        if position < _history.endIndex {
-//            return _history[position]
-//        } else {
-//            return _undoHistory[position - _history.count]
-//        }
     }
 
     // MARK: - Move Undo/Redo: Public Functions
@@ -270,8 +206,6 @@ public class Game {
     public func redoAll() -> ArraySlice<HistoryItem> {
         return redo(count: _items.count)
     }
-
-
 
     /// Decrements `currentIndex` and returns the undone history items in the
     /// order in which they must be executed in order to recreate the redone state.
@@ -297,12 +231,6 @@ public class Game {
         _currentIndex = newIndex
         precondition(_items.indices.overlaps(range), "Error: Trying to undo more items than are in contained in items.")
         return _items[range]
-
-//        if let last = _history.popLast() {
-//            _undoHistory.append(last)
-//            return last
-//        }
-//        return nil
     }
 
     /// Increments the currentIndex and returns the redone history items in the order
@@ -323,14 +251,42 @@ public class Game {
             range = _items.startIndex ..< count
         }
         _currentIndex = newIndex
-        precondition(_items.indices.overlaps(range))
+        precondition(_items.indices.contains(range.lowerBound))
+        precondition(_items.indices.contains(range.upperBound-1))
         return _items[range]
+    }
 
-//        if let last = _undoHistory.popLast() {
-//            _history.append(last)
-//            return last
-//        }
-//        return nil
+    /// Sets the current index of `self`.
+    ///
+    /// - parameter newIndex: The index to set currentIndex to. If nil then
+    ///   the game is reset to the starting position.
+    ///
+    /// - returns: A tuple of the `direction` in which the move happens
+    ///   and an array of `HistoryItem`s representing the difference in state.
+    public func settingIndex(to newIndex: Int?) -> (Direction, Array<HistoryItem>)? {
+
+        let direction: Direction
+        let slice: ArraySlice<HistoryItem>
+
+        switch (_currentIndex, newIndex) {
+        case (nil, nil):
+            return nil
+        case (nil, _):
+            direction = .redo
+            slice = self.redo(count: newIndex!)
+        case (_, nil):
+            direction = .undo
+            slice = self.undo(count: _currentIndex!)
+        default:
+            direction = (_currentIndex! < newIndex!) ? .redo : .undo
+            let count = abs(_currentIndex! - newIndex!)
+            switch direction {
+            case .redo: slice = self.redo(count: count)
+            case .undo: slice = self.undo(count: count)
+            }
+        }
+
+        return (direction, Array(slice))
     }
 
     // MARK: - PGN
@@ -397,40 +353,36 @@ public protocol GameDelegate: class {
 }
 
 public enum Direction: Equatable {
-    case forward(Int)
-    case reverse(Int)
+    case undo
+    case redo
 
-    public var isForward: Bool {
+    public var isUndo: Bool {
         switch self {
-        case .forward(_):
+        case .undo:
             return true
         default:
             return false
         }
     }
 
-    public var isReverse: Bool {
+    public var isRedo: Bool {
         switch self {
-        case .reverse(_):
+        case .redo:
             return true
         default:
             return false
         }
     }
 
-    init(currentIndex: Int, targetIndex: Int) {
-        let distance = abs(currentIndex - targetIndex)
-        if currentIndex > targetIndex { self = .reverse(distance) }
-        else { self = .forward(distance) }
-    }
+    public init?(currentIndex: Int?, newIndex: Int?) {
 
-    public static func == (lhs: Direction, rhs: Direction) -> Bool {
-        switch (lhs, rhs) {
-        case (.forward(let a), .forward(let b)):
-            return a == b
-        case (.reverse(let a), .reverse(let b)):
-            return a == b
-        default: return false
+        switch (currentIndex, newIndex) {
+        case (nil, nil): return nil
+        case (nil, _): self = .redo
+        case (_, nil): self = .undo
+        default:
+            self = (currentIndex! < newIndex!) ? .undo : .redo
         }
+
     }
 }
