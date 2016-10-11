@@ -35,14 +35,14 @@ public class Game {
     /// The starting position.
     private var _startingPosition: Position
 
-//    private var _currentIndex: Int?
-//    private var _items: Array<HistoryItem>
+    private var _currentIndex: Int?
+    private var _items: Array<HistoryItem>
 
     /// All of the conducted moves in the game.
-    private var _history: Array<HistoryItem>
+//    private var _history: Array<HistoryItem>
 
     /// All of the undone moves in the game.
-    private var _undoHistory: Array<HistoryItem>
+//    private var _undoHistory: Array<HistoryItem>
 
     // MARK: - Public Initializers
 
@@ -61,8 +61,10 @@ public class Game {
         self.blackPlayer = blackPlayer
         self.outcome = .undetermined
         self._startingPosition = startingPosition
-        self._history = []
-        self._undoHistory = []
+//        self._history = []
+//        self._undoHistory = []
+        self._items = []
+        self._currentIndex = nil
     }
 
     // MARK: - Private Initializers
@@ -73,30 +75,32 @@ public class Game {
         self.blackPlayer = game.blackPlayer
         self.outcome = game.outcome
         self._startingPosition = game._startingPosition
-        self._history = game._history
-        self._undoHistory = game._undoHistory
+//        self._history = game._history
+//        self._undoHistory = game._undoHistory
+        self._items = game._items
+        self._currentIndex = game._currentIndex
     }
 
     // MARK: - Public API
 
-    @discardableResult
-    public func move(to targetIndex: Int) -> (direction: Direction, items: [HistoryItem]) {
-        let direction = Direction(currentIndex: _history.endIndex, targetIndex: targetIndex)
-        let items: [HistoryItem]
-        switch direction {
-        case .forward(let distance):
-            items = (0 ..< distance).flatMap { _ in redo() }
-        case .reverse(let distance):
-            items = (0 ..< distance).flatMap { _ in undo() }
-        }
-        return (direction, items)
-    }
+//    @discardableResult
+//    public func move(to targetIndex: Int) -> (direction: Direction, items: [HistoryItem]) {
+//        let direction = Direction(currentIndex: _history.endIndex, targetIndex: targetIndex)
+//        let items: [HistoryItem]
+//        switch direction {
+//        case .forward(let distance):
+//            items = (0 ..< distance).flatMap { _ in redo() }
+//        case .reverse(let distance):
+//            items = (0 ..< distance).flatMap { _ in undo() }
+//        }
+//        return (direction, items)
+//    }
 
-    public func item(at index: Int) -> HistoryItem? {
-        guard index >= self.startIndex && index < self.endIndex else {
-            return nil
-        }
-        return items[index]
+//    public func item(at index: Int) -> HistoryItem? {
+//        guard index >= self.startIndex && index < self.endIndex else {
+//            return nil
+//        }
+//        return items[index]
 //        if index < _history.endIndex {
 //            return _history[index]
 //        } else {
@@ -106,7 +110,7 @@ public class Game {
 //            print("item=\(_undoHistory[i].sanMove)")
 //            return _undoHistory[i]
 //        }
-    }
+//    }
 
     public var playerTurn: Color {
         return currentPosition.playerTurn
@@ -117,7 +121,7 @@ public class Game {
     }
 
     public var items: [HistoryItem] {
-        return _history + _undoHistory.reversed()
+        return _items
     }
 
     public func availableTargets(for color: Color) -> [Square] {
@@ -170,9 +174,13 @@ public class Game {
         guard let newHistoryItem = currentPosition._execute(uncheckedMove: move, promotion: promotion) else {
             fatalError("Could not execute move: \(move.description)")
         }
-        _history.append(newHistoryItem)
 
-        if let e = ECO.codes[sanMoves.joined(separator: " ")] {
+        if let start = _currentIndex {
+            _items.removeSubrange(start..<_items.endIndex)
+        }
+        _items.append(newHistoryItem)
+        let key = self.map { $0.sanMove }.joined(separator: " ")
+        if let e = ECO.codes[key] {
             eco = e
         }
 
@@ -182,46 +190,46 @@ public class Game {
     // MARK: - Public Computed Properties
 
     public var currentPosition: Position {
-        guard let lastItem = _history.last else {
+        guard let current = _currentIndex else {
             return _startingPosition
         }
-        return lastItem.position
+        return _items[current].position
     }
 
-    public var lastMove: Move? {
-        return playedMoves.last
-    }
+//    public var lastMove: Move? {
+//        return playedMoves.last
+//    }
 
-    public var history: Array<HistoryItem> {
-        return _history
-    }
+//    public var history: Array<HistoryItem> {
+//        return _history
+//    }
 
-    public var undoHistory: Array<HistoryItem> {
-        return _undoHistory
-    }
+//    public var undoHistory: Array<HistoryItem> {
+//        return _undoHistory
+//    }
 
     /// The number of executed moves.
-    public var moveCount: Int {
-        return _history.count
-    }
+//    public var moveCount: Int {
+//        return _history.count
+//    }
 
     /// All of the moves played in the game.
-    public var playedMoves: [Move] {
-        return _history.map({ $0.move })
-    }
+//    public var playedMoves: [Move] {
+//        return _history.map({ $0.move })
+//    }
 
-    public var sanMoves: [String] {
-        return _history.map { $0.sanMove }
-    }
+//    public var sanMoves: [String] {
+//        return _history.map { $0.sanMove }
+//    }
 
     // MARK: - Collection Protocol Conformance
 
     public var startIndex: Int {
-        return _history.startIndex
+        return _items.startIndex
     }
 
     public var endIndex: Int {
-        return _history.endIndex + _undoHistory.endIndex
+        return _items.endIndex
     }
 
     public func index(after i: Int) -> Int {
@@ -230,32 +238,52 @@ public class Game {
     }
 
     public subscript(position: Int) -> HistoryItem {
-        precondition((0..<endIndex).contains(position), "Index out of bounds")
-        if position < _history.endIndex {
-            return _history[position]
-        } else {
-            return _undoHistory[position - _history.count]
-        }
+        precondition(_items.indices.contains(position), "Index out of bounds")
+        return _items[position]
+//        if position < _history.endIndex {
+//            return _history[position]
+//        } else {
+//            return _undoHistory[position - _history.count]
+//        }
     }
 
     // MARK: - Move Undo/Redo: Public Functions
 
+    /// Decrements the currentIndex and returns the undone `HistoryItem`.
     @discardableResult
-    public func undo() -> HistoryItem? {
-        if let last = _history.popLast() {
-            _undoHistory.append(last)
-            return last
+    public func undo(count: Int = 1) -> HistoryItem? {
+        guard let current = _currentIndex, current > count - 1 else {
+            return nil
         }
-        return nil
+        let newIndex = current - count
+        _currentIndex = newIndex
+        return _items[newIndex]
+
+//        if let last = _history.popLast() {
+//            _undoHistory.append(last)
+//            return last
+//        }
+//        return nil
     }
 
+    /// Increments the currentIndex and returns the redone `HistoryItem`.
     @discardableResult
-    public func redo() -> HistoryItem? {
-        if let last = _undoHistory.popLast() {
-            _history.append(last)
-            return last
+    public func redo(count: Int = 1) -> HistoryItem {
+        let newIndex: Int
+        if let current = _currentIndex {
+            newIndex = current + count
+        } else {
+            newIndex = count - 1
         }
-        return nil
+        _currentIndex = newIndex
+        precondition(newIndex < _items.endIndex)
+        return _items[newIndex]
+
+//        if let last = _undoHistory.popLast() {
+//            _history.append(last)
+//            return last
+//        }
+//        return nil
     }
 
     // MARK: - PGN
@@ -304,7 +332,7 @@ public class Game {
      Returns the PGN representation of `self`.
      */
     public var pgn: PGN {
-        return PGN(tagPairs: tagPairs(), moves: _history.map({ $0.sanMove }))
+        return PGN(tagPairs: tagPairs(), moves: self.map({ $0.sanMove }))
     }
 
 }
