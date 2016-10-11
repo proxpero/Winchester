@@ -35,6 +35,9 @@ public class Game {
     /// The starting position.
     private var _startingPosition: Position
 
+//    private var _currentIndex: Int?
+//    private var _items: Array<HistoryItem>
+
     /// All of the conducted moves in the game.
     private var _history: Array<HistoryItem>
 
@@ -48,7 +51,12 @@ public class Game {
     /// - parameter whitePlayer: The game's white player. Default is a nameless human.
     /// - parameter blackPlayer: The game's black player. Default is a nameless human.
     /// - parameter startingPosition: The games's starting position. Default is standard.
-    public init(whitePlayer: Player = Player(), blackPlayer: Player = Player(), startingPosition: Position = Position(), moveIndex: Int = 0) {
+    public init(
+        whitePlayer: Player = Player(),
+        blackPlayer: Player = Player(),
+        startingPosition: Position = Position(),
+        moveIndex: Int = 0)
+    {
         self.whitePlayer = whitePlayer
         self.blackPlayer = blackPlayer
         self.outcome = .undetermined
@@ -72,8 +80,8 @@ public class Game {
     // MARK: - Public API
 
     @discardableResult
-    public func move(to: Int) -> (direction: Direction, items: [HistoryItem]) {
-        let direction = Direction(currentIndex: _history.endIndex, targetIndex: to)
+    public func move(to targetIndex: Int) -> (direction: Direction, items: [HistoryItem]) {
+        let direction = Direction(currentIndex: _history.endIndex, targetIndex: targetIndex)
         let items: [HistoryItem]
         switch direction {
         case .forward(let distance):
@@ -85,21 +93,31 @@ public class Game {
     }
 
     public func item(at index: Int) -> HistoryItem? {
-        if index == 0 { return nil } // initial position
-        if index <= _history.endIndex {
-            return _history[index-1]
-        } else {
-            let index = _undoHistory.endIndex - (index - _history.endIndex)
-            return _undoHistory[index]
+        guard index >= self.startIndex && index < self.endIndex else {
+            return nil
         }
+        return items[index]
+//        if index < _history.endIndex {
+//            return _history[index]
+//        } else {
+//            let i = _history.endIndex + _undoHistory.endIndex - index
+//            let i = _undoHistory.endIndex - (index - _history.endIndex)
+//            print("i=\(i), index=\(index)")
+//            print("item=\(_undoHistory[i].sanMove)")
+//            return _undoHistory[i]
+//        }
     }
 
-    public var startIndex: Int {
-        return _history.startIndex
+    public var playerTurn: Color {
+        return currentPosition.playerTurn
     }
 
-    public var lastIndex: Int {
-        return _history.endIndex + _undoHistory.endIndex
+    public func isPromotion(for move: Move) -> Bool {
+        return currentPosition.board[move.target]?.kind == .pawn && move.reachesEndRank(for: playerTurn)
+    }
+
+    public var items: [HistoryItem] {
+        return _history + _undoHistory.reversed()
     }
 
     public func availableTargets(for color: Color) -> [Square] {
@@ -196,6 +214,30 @@ public class Game {
         return _history.map { $0.sanMove }
     }
 
+    // MARK: - Collection Protocol Conformance
+
+    public var startIndex: Int {
+        return _history.startIndex
+    }
+
+    public var endIndex: Int {
+        return _history.endIndex + _undoHistory.endIndex
+    }
+
+    public func index(after i: Int) -> Int {
+        precondition(i < endIndex)
+        return i + 1
+    }
+
+    public subscript(position: Int) -> HistoryItem {
+        precondition((0..<endIndex).contains(position), "Index out of bounds")
+        if position < _history.endIndex {
+            return _history[position]
+        } else {
+            return _undoHistory[position - _history.count]
+        }
+    }
+
     // MARK: - Move Undo/Redo: Public Functions
 
     @discardableResult
@@ -264,6 +306,10 @@ public class Game {
     public var pgn: PGN {
         return PGN(tagPairs: tagPairs(), moves: _history.map({ $0.sanMove }))
     }
+
+}
+
+extension Game: Collection {
 
 }
 

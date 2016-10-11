@@ -39,6 +39,7 @@
 		52EA13F31DA7332E00EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13F21DA7332E00EBF078 /* SquaresLayer.swift */; };
 		52EA13FB1DA7370300EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13FA1DA7370300EBF078 /* BoardArrowsCoordinator.swift */; };
 		52EA14011DA7DA1100EBF078 /* BoardCoverageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14001DA7DA1100EBF078 /* BoardCoverageCoordinator.swift */; };
+		52EA14701DA9C02A00EBF078 /* BoardInteractionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA146F1DA9C02A00EBF078 /* BoardInteractionCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,6 +90,7 @@
 		52EA13F21DA7332E00EBF078 /* SquaresLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SquaresLayer.swift; path = ../../Sources/SquaresLayer.swift; sourceTree = "<group>"; };
 		52EA13FA1DA7370300EBF078 /* BoardArrowsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardArrowsCoordinator.swift; path = ../../Sources/BoardArrowsCoordinator.swift; sourceTree = "<group>"; };
 		52EA14001DA7DA1100EBF078 /* BoardCoverageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardCoverageCoordinator.swift; path = ../../Sources/BoardCoverageCoordinator.swift; sourceTree = "<group>"; };
+		52EA146F1DA9C02A00EBF078 /* BoardInteractionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardInteractionCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				52678A601D9C285000AB1B9E /* BoardViewController.swift */,
 				525AE6871DA68A61002A1630 /* BoardMovementCoordinator.swift */,
 				52EA13FA1DA7370300EBF078 /* BoardArrowsCoordinator.swift */,
+				52EA146F1DA9C02A00EBF078 /* BoardInteractionCoordinator.swift */,
 				52EA14001DA7DA1100EBF078 /* BoardCoverageCoordinator.swift */,
 				52678A611D9C285000AB1B9E /* HistoryViewController.swift */,
 				52678A621D9C285000AB1B9E /* GameScene.swift */,
@@ -252,6 +255,7 @@
 				52EA13F31DA7332E00EBF078 /* SquaresLayer.swift in Sources */,
 				52678A6A1D9C285000AB1B9E /* GameViewController.swift in Sources */,
 				52678A6C1D9C285000AB1B9E /* TitleViewController.swift in Sources */,
+				52EA14701DA9C02A00EBF078 /* BoardInteractionCoordinator.swift in Sources */,
 				52678A721D9C285000AB1B9E /* SquareNode.swift in Sources */,
 				52678A431D9C24F000AB1B9E /* AppDelegate.swift in Sources */,
 				52678A6E1D9C285000AB1B9E /* HistoryViewController.swift in Sources */,

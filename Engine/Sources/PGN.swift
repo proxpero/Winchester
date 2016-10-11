@@ -300,7 +300,7 @@ public struct PGN: Equatable {
     /// A string representation of `self`.
     /// see https://www.chessclub.com/user/help/pgn-spec
     public func exported() -> String {
-        return "\(exportTagPairs)\n\(exportFullMoves)"
+        return "\(exportTagPairs)\n\(exportFullMoves)\n"
     }
 
     // MARK: - Static Properties and Functions

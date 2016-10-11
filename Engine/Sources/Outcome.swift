@@ -87,6 +87,18 @@ public enum Outcome: CustomStringConvertible, Hashable  {
         }
     }
 
+    /// A user facing text representation of `self`
+    public var userDescription: String {
+        switch self {
+        case .win(let color):
+            return color.isWhite ? "1﹘0" : "0﹘1"
+        case .draw:
+            return "½﹘½"
+        case .undetermined:
+            return "❊"
+        }
+    }
+
     // MARK: Static Constants
     public static let whiteWin = "1-0"
     public static let blackWin = "0-1"
