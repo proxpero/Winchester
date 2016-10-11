@@ -53,17 +53,32 @@ internal final class BoardViewController: ViewController {
     }
 
     func execute(move: Move) {
+
+        func action(to target: Square) -> SKAction {
+            let action = SKAction.move(to: position(for: target), duration: 0.2)
+            action.timingMode = .easeInEaseOut
+            return action
+        }
+
         if let capturedNode = pieceNode(for: move.target) {
             capturedNode.zPosition -= 10
             capturedNode.run(SKAction.fadeOut(withDuration: 0.2)) {
                 capturedNode.removeFromParent()
             }
         }
+
+        if move.isCastle() {
+            let (old, new) = move.castleSquares()
+            guard let rookNode = pieceNode(for: old) else {
+                fatalError("Expected a rook at \(old.description)")
+            }
+            rookNode.run(action(to: new))
+        }
+
         guard let movingNode = pieceNode(for: move.origin) else {
             fatalError("Unable to find the expected pieceNode at \(move.origin)")
         }
-        movingNode.run(SKAction.move(to: position(for: move.target), duration: 0.2))
-
+        movingNode.run(action(to: move.target))
     }
 
     func showLastMove(_ move: Move?) {
@@ -72,10 +87,6 @@ internal final class BoardViewController: ViewController {
 
     func addArrow(for move: Move, with type: ArrowType) {
 
-    }
-
-    func execute(move: Move, for pieceNode: PieceNode) {
-        
     }
 
     func highlightAvailableTargets(using squares: [Square]) {
