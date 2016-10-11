@@ -65,10 +65,8 @@ public final class GameViewController: UIViewController, SegueHandlerType {
             vc.userDidSelect = interactionCoordinator!.userDidSelect
 
         case .history:
-            guard
-            let vc = segue.destination as? HistoryViewController,
-            let collectionView = vc.collectionView
-            else { fatalError() }
+            guard let vc = segue.destination as? HistoryViewController, let collectionView = vc.collectionView else {
+                fatalError() }
 
             historyCoordinator = HistoryCoordinator()
 
@@ -79,7 +77,7 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
             view.addSwipeGestureRecognizer(
                 target: vc,
-                action: #selector(vc.advanceMove(sender:)),
+                action: #selector(vc.handleSwipe(recognizer:)),
                 direction: .left
             )
 
@@ -94,13 +92,19 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
     var updateHistory: () -> Void = { }
 
-    func didSelect(rowAt index: Int) {
-        guard let game = game else {
-            fatalError()
+    func didSelect(rowAt index: Int?) {
+
+        guard let game = game else { fatalError() }
+//        guard let i = index, i < game.endIndex else {
+//            return
+//        }
+        guard let result = game.settingIndex(to: index) else {
+            return
         }
-        let (direction, items) = game.move(to: index)
-        movementCoordinator?.arrange(items: items, direction: direction)
-        arrowsCoordinator?.showLastMove(game.lastMove)
+
+        movementCoordinator?.arrange(items: result.items, direction: result.direction)
+        arrowsCoordinator?.showLastMove(game.latestMove)
+
     }
 
     func userDidExecute(move: Move) {
