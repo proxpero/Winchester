@@ -100,7 +100,6 @@ final class BoardInteractionCoordinator {
 
         userDidExecute(move)
         execute(move)
-//        moveNode(to: move.target)
     }
 
 }
