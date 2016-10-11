@@ -52,54 +52,74 @@ class HistoryViewControllerTests: XCTestCase {
         ]
 
         for c in cases {
-            XCTAssert(c.0.isNumberRow() == c.1)
+            XCTAssert(c.0.isNumberRow == c.1)
         }
     }
 
-    func testMoveIndex() {
-        XCTAssertEqual(2.moveIndex(), 1)
-        XCTAssertEqual(3.moveIndex(), 2)
-        XCTAssertEqual(5.moveIndex(), 3)
-        XCTAssertEqual(6.moveIndex(), 4)
-        XCTAssertEqual(8.moveIndex(), 5)
+    func testAsRowIndex() {
+        XCTAssertEqual(0.asRowIndex, 2)
+        XCTAssertEqual(1.asRowIndex, 3)
+        XCTAssertEqual(2.asRowIndex, 5)
+        XCTAssertEqual(3.asRowIndex, 6)
+        XCTAssertEqual(4.asRowIndex, 8)
+        XCTAssertEqual(5.asRowIndex, 9)
+        XCTAssertEqual(6.asRowIndex, 11)
+    }
+
+    func testAsFullmoveIndex() {
+        XCTAssertEqual(2.asFullmoveIndex, 1)
+        XCTAssertEqual(3.asFullmoveIndex, 1)
+        XCTAssertEqual(5.asFullmoveIndex, 2)
+        XCTAssertEqual(6.asFullmoveIndex, 2)
+        XCTAssertEqual(8.asFullmoveIndex, 3)
+        XCTAssertEqual(9.asFullmoveIndex, 3)
+        XCTAssertEqual(11.asFullmoveIndex, 4)
+        XCTAssertEqual(12.asFullmoveIndex, 4)
+    }
+
+
+    func testItemIndex() {
+        XCTAssertEqual(2.asItemIndex, 0)
+        XCTAssertEqual(3.asItemIndex, 1)
+        XCTAssertEqual(5.asItemIndex, 2)
+        XCTAssertEqual(6.asItemIndex, 3)
+        XCTAssertEqual(8.asItemIndex, 4)
+    }
+
+    func testGameHistoryRows() {
+        
     }
 
 }
 
 class ViewHistoryConfigurationTests: XCTestCase {
 
-    func testCellTypeForIndex() {
+    func testCellTypeForIndexAndRows() {
 
-        let moves = "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 1-0"
+        let moves = "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 1-0"
 
         let pgn = try! PGN(parse: moves)
         let game = Game(pgn: pgn)
         game.move(to: game.startIndex)
-        let historyVC = HistoryViewController()
-        let configuration = HistoryViewConfiguration(game: game, historyViewController: historyVC, moveSelectionHandler: { _ in })
+        let coordinator = HistoryCoordinator()
+        let outcome = game.outcome
 
-        XCTAssertEqual(historyVC.rows, 12)
-        XCTAssertEqual(configuration.cellType(for: 0), .start)
-        XCTAssertEqual(configuration.cellType(for: 1), .number(1))
-        XCTAssertEqual(configuration.cellType(for: 2), .move("e4"))
-        XCTAssertEqual(configuration.cellType(for: 3), .move("e5"))
-        XCTAssertEqual(configuration.cellType(for: 4), .number(2))
-        XCTAssertEqual(configuration.cellType(for: 5), .move("Nf3"))
+        XCTAssertEqual(coordinator.rows(game)(), 13)
 
-    }
-
-    func testMoveSelectionHandler() {
-        let moves = "1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 b5 5.Bxb5 Nf6 6.Nf3 Qh6"
-        let pgn = try! PGN(parse: moves)
-        let game = Game(pgn: pgn)
-        let historyVC = HistoryViewController()
-        let configuration = HistoryViewConfiguration(
-            game: game,
-            historyViewController: historyVC,
-            moveSelectionHandler: { index in
-
-            }
-        )
+        XCTAssertEqual(coordinator.cellType(game)(0), .start)
+        XCTAssertEqual(coordinator.cellType(game)(1), .number(1))
+        XCTAssertEqual(coordinator.cellType(game)(2), .move("e4"))
+        XCTAssertEqual(coordinator.cellType(game)(3), .move("e5"))
+        XCTAssertEqual(coordinator.cellType(game)(4), .number(2))
+        XCTAssertEqual(coordinator.cellType(game)(5), .move("Nf3"))
+        XCTAssertEqual(coordinator.cellType(game)(6), .move("Nc6"))
+        XCTAssertEqual(coordinator.cellType(game)(7), .number(3))
+        XCTAssertEqual(coordinator.cellType(game)(8), .move("Bc4"))
+        XCTAssertEqual(coordinator.cellType(game)(9), .move("Bc5"))
+        XCTAssertEqual(coordinator.cellType(game)(10), .number(4))
+        XCTAssertEqual(coordinator.cellType(game)(11), .move("b4"))
+        XCTAssertEqual(coordinator.cellType(game)(12), .last(outcome))
 
     }
+
 }
