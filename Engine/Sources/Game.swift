@@ -168,6 +168,7 @@ public class Game {
         }
     }
 
+    /// Execute `move`.  
     public func execute(move: Move, promotion: Piece? = nil) throws {
 
         // execute move
@@ -175,10 +176,13 @@ public class Game {
             fatalError("Could not execute move: \(move.description)")
         }
 
-        if let start = _currentIndex {
-            _items.removeSubrange(start..<_items.endIndex)
+        // Remove "undone moves" from the items array.
+        if let current = _currentIndex, current + 1 < endIndex {
+            _items.removeSubrange((current + 1)..<_items.endIndex)
         }
         _items.append(newHistoryItem)
+        _currentIndex = _items.endIndex - 1
+
         let key = self.map { $0.sanMove }.joined(separator: " ")
         if let e = ECO.codes[key] {
             eco = e
@@ -303,7 +307,7 @@ public class Game {
         do {
             try game.execute(sanMoves: pgn.sanMoves.joined(separator: " "))
         } catch {
-            fatalError("could not parse san move: \(pgn.sanMoves)")
+            fatalError("could not parse san moves: \(pgn.sanMoves)")
         }
         self.init(game: game)
     }
