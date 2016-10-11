@@ -11,102 +11,189 @@ import XCTest
 
 class GameTests: XCTestCase {
 
-    func testItemAtIndex() {
+    var fischer: Game!
+    var polgar: Game!
+    var reti: Game!
 
-        do {
-            let moves = "1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 b5 5.Bxb5 Nf6 6.Nf3 Qh6"
-            let pgn = try! PGN(parse: moves)
-            let game = Game(pgn: pgn)
+    override func setUp() {
 
-            XCTAssertEqual(game.outcome, Outcome.undetermined)
-
-            func test(index: Int, result: String?) {
-                XCTAssertEqual(game.item(at: index)?.sanMove, result)
-            }
-
-            test(index: game.startIndex, result: Optional("e4"))
-            test(index: 0, result: Optional("e4"))
-            test(index: 1, result: Optional("e5"))
-            test(index: 2, result: Optional("f4"))
-            test(index: 3, result: Optional("exf4"))
-            test(index: 4, result: Optional("Bc4"))
-            test(index: 5, result: Optional("Qh4+"))
-            test(index: 6, result: Optional("Kf1"))
-            test(index: 7, result: Optional("b5"))
-            test(index: 8, result: Optional("Bxb5"))
-            test(index: 9, result: Optional("Nf6"))
-            test(index: 10, result: Optional("Nf3"))
-            test(index: 11, result: Optional("Qh6"))
-            test(index: game.endIndex - 1, result: Optional("Qh6"))
-            test(index: game.endIndex, result: nil)
-        }
-
-        do {
-            let url = Bundle(for: GameTests.self).url(forResource: "fischer v fine", withExtension: "pgn")!
+        func game(with file: String) -> Game {
+            let url = Bundle(for: GameTests.self).url(forResource: file, withExtension: "pgn")!
             let pgn = try! PGN(parse: try! String(contentsOf: url))
-            let game = Game(pgn: pgn)
-
-            for (index, item) in zip(game.startIndex..<game.endIndex, game.items) {
-                XCTAssertEqual(game.item(at: index), item)
-            }
+            return Game(pgn: pgn)
         }
 
+        fischer = game(with: "fischer v fine")
+        polgar = game(with: "shirov v polgar")
+        reti = game(with: "reti v rubenstein")
     }
 
-    func testMoveToIndex() {
+    func testOutcome() {
+        XCTAssertEqual(fischer.outcome, Outcome.win(.white))
+        XCTAssertEqual(polgar.outcome, Outcome.win(.black))
+        XCTAssertEqual(reti.outcome, Outcome.draw)
+    }
+
+    func testSubscript1() {
+
         let moves = "1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 b5 5.Bxb5 Nf6 6.Nf3 Qh6"
         let pgn = try! PGN(parse: moves)
         let game = Game(pgn: pgn)
 
-        game.move(to: game.startIndex)
-        XCTAssertTrue(game.history.isEmpty)
+        XCTAssertEqual(game.outcome, Outcome.undetermined)
 
-        let items1 = game.move(to: 5)
-        XCTAssertEqual(items1.direction, Direction.forward(5))
-        XCTAssertEqual(items1.items.map { $0.sanMove }, ["e4", "e5", "f4", "exf4", "Bc4"])
+        func test(index: Int, result: String?) {
+            XCTAssertEqual(game[index].sanMove, result)
+        }
 
-        let items2 = game.move(to: 2)
-        XCTAssertEqual(items2.direction, Direction.reverse(3))
-        XCTAssertEqual(items2.items.map { $0.sanMove }, ["Bc4", "exf4", "f4"])
+        test(index: game.startIndex, result: Optional("e4"))
+        test(index: 0, result: Optional("e4"))
+        test(index: 1, result: Optional("e5"))
+        test(index: 2, result: Optional("f4"))
+        test(index: 3, result: Optional("exf4"))
+        test(index: 4, result: Optional("Bc4"))
+        test(index: 5, result: Optional("Qh4+"))
+        test(index: 6, result: Optional("Kf1"))
+        test(index: 7, result: Optional("b5"))
+        test(index: 8, result: Optional("Bxb5"))
+        test(index: 9, result: Optional("Nf6"))
+        test(index: 10, result: Optional("Nf3"))
+        test(index: 11, result: Optional("Qh6"))
+        test(index: game.endIndex - 1, result: Optional("Qh6"))
 
-        XCTAssertEqual(game.endIndex, 12)
-        let items3 = game.move(to: 12)
-        XCTAssertEqual(items3.direction, Direction.forward(10))
-        XCTAssertEqual(items3.items.map { $0.sanMove }, ["f4", "exf4", "Bc4", "Qh4+", "Kf1", "b5", "Bxb5", "Nf6", "Nf3", "Qh6"])
+    }
 
-        let items4 = game.move(to: game.startIndex)
-        XCTAssertEqual(items4.direction, Direction.reverse(12))
-        XCTAssertEqual(items4.items.map { $0.sanMove }, ["Qh6", "Nf3", "Nf6", "Bxb5", "b5", "Kf1", "Qh4+", "Bc4", "exf4", "f4", "e5", "e4"])
+    func testSubscript2() {
 
-        let items5 = game.move(to: 7)
-        XCTAssertEqual(items5.direction, Direction.forward(7))
-        XCTAssertEqual(items5.items.map { $0.sanMove }, ["e4", "e5", "f4", "exf4", "Bc4", "Qh4+", "Kf1"])
+        func test(game: Game) {
+            for (index, item) in zip(game.indices, game.items) {
+                XCTAssertEqual(game[index], item)
+            }
+        }
+        test(game: fischer)
+        test(game: polgar)
+        test(game: reti)
+    }
 
-        let items6 = game.move(to: game.endIndex)
-        XCTAssertEqual(items6.direction, Direction.forward(5))
-        XCTAssertEqual(items6.items.map { $0.sanMove }, ["b5", "Bxb5", "Nf6", "Nf3", "Qh6"])
+    func testUndo() {
 
-        let items7 = game.move(to: game.startIndex)
-        XCTAssertEqual(items7.direction, Direction.reverse(12))
-        XCTAssertEqual(items7.items.map { $0.sanMove }, ["Qh6", "Nf3", "Nf6", "Bxb5", "b5", "Kf1", "Qh4+", "Bc4", "exf4", "f4", "e5", "e4"])
-        XCTAssertEqual(game.currentPosition, Position())
+        func test(game: Game) {
+            let original = Game(game: game)
+            let undone = game.undo()
+            XCTAssertEqual(undone.count, 1)
+            try! game.execute(move: undone.first!.move, promotion: undone.first!.promotion)
+            zip(game, original).forEach { XCTAssertEqual($0.0, $0.1) }
+        }
 
-        let items8 = game.move(to: game.endIndex)
-        XCTAssertEqual(items8.direction, Direction.forward(12))
-        XCTAssertEqual(items8.items.map { $0.sanMove }, ["e4", "e5", "f4", "exf4", "Bc4", "Qh4+", "Kf1", "b5", "Bxb5", "Nf6", "Nf3", "Qh6"])
+        test(game: fischer)
+        test(game: polgar)
+        test(game: reti)
+    }
+
+    func testUndoCount() {
+
+        func test(game: Game) {
+            let original = Game(game: game)
+            let count = Int(arc4random_uniform(UInt32(game.count-1)))
+            let undone = game.undo(count: count)
+            XCTAssertEqual(undone.count, count)
+            XCTAssertNotNil(game.currentIndex)
+            XCTAssertEqual(game.currentIndex!+count+1, game.count)
+            undone.forEach { try! game.execute(move: $0.move, promotion: $0.promotion) }
+            zip(game, original).forEach { XCTAssertEqual($0.0, $0.1) }
+        }
+
+        test(game: fischer)
+        test(game: polgar)
+        test(game: reti)
+    }
+
+    func testUndoAll() {
+
+        func test(game: Game) {
+            let undone = game.undoAll()
+            XCTAssertEqual(undone.count, game.count)
+            XCTAssertNil(game.currentIndex)
+            XCTAssertEqual(game.currentPosition, Position())
+            let newGame = Game()
+            undone.forEach { try! newGame.execute(move: $0.move, promotion: $0.promotion) }
+            zip(game, newGame).forEach { XCTAssertEqual($0.0, $0.1) }
+        }
+
+        test(game: fischer)
+        test(game: polgar)
+        test(game: reti)
+    }
+
+    func testRedoAll() {
+
+        func test(game: Game) {
+            game.undoAll()
+            let redone = game.redoAll()
+            XCTAssertEqual(redone.count, game.count)
+            XCTAssertEqual(game.currentIndex, game.endIndex-1)
+            let newGame = Game()
+            redone.forEach { try! newGame.execute(move: $0.move, promotion: $0.promotion) }
+            zip(game, newGame).forEach { XCTAssertEqual($0.0, $0.1) }
+        }
+
+        test(game: fischer)
+        test(game: polgar)
+        test(game: reti)
+    }
+
+    func testRedo() {
+
+        func test(game: Game) {
+            let original = Game(game: game)
+            game.undoAll()
+            let redone = game.redo()
+            XCTAssertEqual(redone.count, 1)
+            XCTAssertNotNil(game.currentIndex)
+            XCTAssertEqual(game.currentIndex!, 0)
+            original.undo(count: original.count-1)
+            zip(game, original).forEach { XCTAssertEqual($0.0, $0.1) }
+        }
+
+        test(game: fischer)
+        test(game: polgar)
+        test(game: reti)
+
+    }
+
+    func testRedoCount() {
+
+        func test(game: Game) {
+            game.undoAll()
+            let count = Int(arc4random_uniform(UInt32(game.count-1)+1))
+            let redone = game.redo(count: count)
+            XCTAssertEqual(redone.count, count)
+            XCTAssertNotNil(game.currentIndex)
+            XCTAssertEqual(game.currentIndex!+(game.count-count)+1, game.count)
+
+            let newGame = Game()
+            redone.forEach { try! newGame.execute(move: $0.move, promotion: $0.promotion) }
+            zip(game[0..<count], newGame).forEach { XCTAssertEqual($0.0, $0.1) }
+
+        }
+
+        test(game: fischer)
+        test(game: polgar)
+        test(game: reti)
     }
 
     func testSubscript() {
 
-        let url = Bundle(for: GameTests.self).url(forResource: "fischer v fine", withExtension: "pgn")!
-        let pgn = try! PGN(parse: try! String(contentsOf: url))
-        let game = Game(pgn: pgn)
+        XCTAssertEqual(fischer[11].sanMove, "exd4")
 
-        game.map { $0.sanMove }
-            .enumerated()
-            .forEach { print("\($0.offset). \($0.element)") }
-
-        XCTAssertEqual(game[11].sanMove, "exd4")
+        func test(game: Game) {
+            for (index, item) in game.enumerated() {
+                XCTAssertEqual(game[index], item)
+            }
+        }
+        test(game: fischer)
+        test(game: polgar)
+        test(game: reti)
     }
 
 

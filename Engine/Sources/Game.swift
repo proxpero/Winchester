@@ -70,7 +70,7 @@ public class Game {
     // MARK: - Private Initializers
 
     /// Create a game from another game.
-    private init(game: Game) {
+    internal init(game: Game) {
         self.whitePlayer = game.whitePlayer
         self.blackPlayer = game.blackPlayer
         self.outcome = game.outcome
@@ -118,6 +118,10 @@ public class Game {
 
     public func isPromotion(for move: Move) -> Bool {
         return currentPosition.board[move.target]?.kind == .pawn && move.reachesEndRank(for: playerTurn)
+    }
+
+    public var currentIndex: Int? {
+        return _currentIndex
     }
 
     public var items: [HistoryItem] {
@@ -253,15 +257,46 @@ public class Game {
 
     // MARK: - Move Undo/Redo: Public Functions
 
-    /// Decrements the currentIndex and returns the undone `HistoryItem`.
+    /// Sets the game's currentIndex to the starting position.
     @discardableResult
-    public func undo(count: Int = 1) -> HistoryItem? {
-        guard let current = _currentIndex, current > count - 1 else {
-            return nil
+    public func undoAll() -> ArraySlice<HistoryItem> {
+        return undo(count: _items.count)
+    }
+
+    /// Sets the game's currentIndex to the ending position.
+    ///
+    /// - returns: A corresponding slice of `items`. 
+    @discardableResult
+    public func redoAll() -> ArraySlice<HistoryItem> {
+        return redo(count: _items.count)
+    }
+
+
+
+    /// Decrements `currentIndex` and returns the undone history items in the
+    /// order in which they must be executed in order to recreate the redone state.
+    ///
+    /// - parameter count: The number of moves to undo. Default is 1.
+    ///
+    /// - returns: An optional array of history items.
+    @discardableResult
+    public func undo(count: Int = 1) -> ArraySlice<HistoryItem> {
+        guard let current = _currentIndex else {
+            fatalError("Cannot undo the initial position")
         }
-        let newIndex = current - count
+        let newIndex: Int?
+        let range: Range<Int>
+
+        if count == self.count {
+            newIndex = nil
+            range = startIndex ..< endIndex
+        } else {
+            newIndex = current - count
+            range = (newIndex!+1)..<(current+1)
+        }
         _currentIndex = newIndex
-        return _items[newIndex]
+        precondition(_items.indices.overlaps(range), "Error: Trying to undo more items than are in contained in items.")
+        return _items[range]
 
 //        if let last = _history.popLast() {
 //            _undoHistory.append(last)
@@ -270,18 +305,26 @@ public class Game {
 //        return nil
     }
 
-    /// Increments the currentIndex and returns the redone `HistoryItem`.
+    /// Increments the currentIndex and returns the redone history items in the order
+    /// in which they must executed in order to recreate the undone state.
+    ///
+    /// - parameter count: The number of moves to redo. Default is 1.
+    ///
+    /// - returns: An optional array of history items.
     @discardableResult
-    public func redo(count: Int = 1) -> HistoryItem {
+    public func redo(count: Int = 1) -> ArraySlice<HistoryItem> {
         let newIndex: Int
+        let range: Range<Int>
         if let current = _currentIndex {
             newIndex = current + count
+            range = (current+1) ..< (newIndex+1)
         } else {
             newIndex = count - 1
+            range = _items.startIndex ..< count
         }
         _currentIndex = newIndex
-        precondition(newIndex < _items.endIndex)
-        return _items[newIndex]
+        precondition(_items.indices.overlaps(range))
+        return _items[range]
 
 //        if let last = _undoHistory.popLast() {
 //            _history.append(last)
