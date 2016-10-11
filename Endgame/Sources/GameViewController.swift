@@ -9,15 +9,21 @@
 import UIKit
 import Engine
 
+enum ActivityState {
+    case initiation(Square)
+    case normal
+    case end(Move)
+}
+
 public final class GameViewController: UIViewController, SegueHandlerType {
 
     var game: Game?
     var isEditable: Bool = false
     var save: (Game) -> () = { _ in }
 
+    private var historyCoordinator: HistoryCoordinator?
     private var movementCoordinator: BoardMovementCoordinator?
     private var arrowsCoordinator: BoardArrowsCoordinator?
-    private var coverageCoordinator: BoardCoverageCoordinator?
     private var interactionCoordinator: BoardInteractionCoordinator?
 
     enum SegueIdentifier: String {
@@ -33,8 +39,7 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
         case .title:
             guard let vc = segue.destination as? TitleViewContoller else { fatalError() }
-            let outcome = game.outcome.description
-            vc.model = (game.whitePlayer.name, game.blackPlayer.name, outcome)
+            vc.model = (game.whitePlayer, game.blackPlayer, game.outcome)
 
         case .board:
             guard let vc = segue.destination as? BoardViewController else { fatalError() }
@@ -60,35 +65,29 @@ public final class GameViewController: UIViewController, SegueHandlerType {
             vc.userDidSelect = interactionCoordinator!.userDidSelect
 
         case .history:
-            guard let vc = segue.destination as? HistoryViewController else { fatalError() }
-            vc.rows = {
-                let moves = game.history.count + game.undoHistory.count
-                let rows = 1 + moves + (moves % 2 == 0 ? moves/2 : (moves + 1)/2)
-                return rows
-            }
+            guard
+            let vc = segue.destination as? HistoryViewController,
+            let collectionView = vc.collectionView
+            else { fatalError() }
 
-            vc.cellType = { index in
-                return HistoryCellType(row: index, game: game)
-            }
+            historyCoordinator = HistoryCoordinator()
 
+            vc.cellType = historyCoordinator!.cellType(game)
+            vc.rows = historyCoordinator!.rows(game)
+            updateHistory = historyCoordinator!.update(collectionView)
             vc.didSelect = didSelect
 
-            updateHistory = {
-                guard let collectionView = vc.collectionView else {
-                    fatalError("Expected an unwrapped collection view")
-                }
-                collectionView.reloadData()
-                let row = collectionView.numberOfItems(inSection: 0) - 1
-                let indexPath = IndexPath(row: row, section: 0)
-                collectionView.selectItem(
-                    at: indexPath,
-                    animated: true,
-                    scrollPosition: .centeredHorizontally
-                )
-            }
+            view.addSwipeGestureRecognizer(
+                target: vc,
+                action: #selector(vc.advanceMove(sender:)),
+                direction: .left
+            )
 
-            view.addSwipeGestureRecognizer(target: vc, action: #selector(vc.advanceMove(sender:)), direction: .left)
-            view.addSwipeGestureRecognizer(target: vc, action: #selector(vc.reverseMove(sender:)), direction: .right)
+            view.addSwipeGestureRecognizer(
+                target: vc,
+                action: #selector(vc.handleSwipe(recognizer:)),
+                direction: .right
+            )
         }
 
     }
@@ -107,6 +106,9 @@ public final class GameViewController: UIViewController, SegueHandlerType {
     func userDidExecute(move: Move) {
         do {
             guard let game = game else { fatalError("A game was expected.") }
+            if game.isPromotion(for: move) {
+                
+            }
             try game.execute(move: move)
             updateHistory()
             save(game)
