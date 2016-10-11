@@ -23,17 +23,17 @@
 		52678A741D9C285000AB1B9E /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A671D9C285000AB1B9E /* SegueHandlerType.swift */; };
 		52678A751D9C285000AB1B9E /* UIImage+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A681D9C285000AB1B9E /* UIImage+View.swift */; };
 		52678A761D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A691D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift */; };
-		52678A7A1D9C2B2200AB1B9E /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52678A781D9C2B2200AB1B9E /* fischer v fine.pgn */; };
-		52678A7B1D9C2B2200AB1B9E /* shirov v judit_polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52678A791D9C2B2200AB1B9E /* shirov v judit_polgar.pgn */; };
 		52A485541D9C37FB004AB5A6 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52A485521D9C37FB004AB5A6 /* Game.storyboard */; };
 		52A485561D9C387A004AB5A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A485551D9C387A004AB5A6 /* Assets.xcassets */; };
 		52A4855C1D9CA056004AB5A6 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4855B1D9CA056004AB5A6 /* Engine.framework */; };
 		52A4855D1D9CA056004AB5A6 /* Engine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52A4855B1D9CA056004AB5A6 /* Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		52BA80191DAD246C00E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80161DAD246C00E15277 /* fischer v fine.pgn */; };
+		52BA801A1DAD246C00E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80171DAD246C00E15277 /* reti v rubenstein.pgn */; };
+		52BA801B1DAD246C00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80181DAD246C00E15277 /* shirov v polgar.pgn */; };
 		52E85E9B1DA575A800CDD85D /* test case 1.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52E85E9A1DA575A800CDD85D /* test case 1.pgn */; };
 		52EA13D21DA6A7B800EBF078 /* test case 2.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D11DA6A7B800EBF078 /* test case 2.pgn */; };
 		52EA13D41DA6A85000EBF078 /* test case 3.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D31DA6A85000EBF078 /* test case 3.pgn */; };
 		52EA13D61DA6BCA700EBF078 /* test case 4.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D51DA6BCA700EBF078 /* test case 4.pgn */; };
-		52EA13D81DA6C12F00EBF078 /* test case 5.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52EA13D71DA6C12F00EBF078 /* test case 5.pgn */; };
 		52EA13E71DA732A100EBF078 /* PiecesLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13E61DA732A100EBF078 /* PiecesLayer.swift */; };
 		52EA13ED1DA732C800EBF078 /* ArrowsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13EC1DA732C800EBF078 /* ArrowsLayer.swift */; };
 		52EA13F31DA7332E00EBF078 /* SquaresLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA13F21DA7332E00EBF078 /* SquaresLayer.swift */; };
@@ -74,16 +74,16 @@
 		52678A671D9C285000AB1B9E /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueHandlerType.swift; path = ../../Sources/SegueHandlerType.swift; sourceTree = "<group>"; };
 		52678A681D9C285000AB1B9E /* UIImage+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+View.swift"; path = "../../Sources/UIImage+View.swift"; sourceTree = "<group>"; };
 		52678A691D9C285000AB1B9E /* UISwipeGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UISwipeGestureRecognizer+Extensions.swift"; path = "../../Sources/UISwipeGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
-		52678A781D9C2B2200AB1B9E /* fischer v fine.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v fine.pgn"; sourceTree = "<group>"; };
-		52678A791D9C2B2200AB1B9E /* shirov v judit_polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shirov v judit_polgar.pgn"; sourceTree = "<group>"; };
 		52A485531D9C37FB004AB5A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../iOS/Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		52A485551D9C387A004AB5A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Shared/Assets.xcassets; sourceTree = "<group>"; };
 		52A4855B1D9CA056004AB5A6 /* Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52BA80161DAD246C00E15277 /* fischer v fine.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fischer v fine.pgn"; path = "../../../../Test Games/fischer v fine.pgn"; sourceTree = "<group>"; };
+		52BA80171DAD246C00E15277 /* reti v rubenstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reti v rubenstein.pgn"; path = "../../../../Test Games/reti v rubenstein.pgn"; sourceTree = "<group>"; };
+		52BA80181DAD246C00E15277 /* shirov v polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "shirov v polgar.pgn"; path = "../../../../Test Games/shirov v polgar.pgn"; sourceTree = "<group>"; };
 		52E85E9A1DA575A800CDD85D /* test case 1.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 1.pgn"; sourceTree = "<group>"; };
 		52EA13D11DA6A7B800EBF078 /* test case 2.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 2.pgn"; sourceTree = "<group>"; };
 		52EA13D31DA6A85000EBF078 /* test case 3.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 3.pgn"; sourceTree = "<group>"; };
 		52EA13D51DA6BCA700EBF078 /* test case 4.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 4.pgn"; sourceTree = "<group>"; };
-		52EA13D71DA6C12F00EBF078 /* test case 5.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test case 5.pgn"; sourceTree = "<group>"; };
 		52EA13E61DA732A100EBF078 /* PiecesLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PiecesLayer.swift; path = ../../Sources/PiecesLayer.swift; sourceTree = "<group>"; };
 		52EA13EC1DA732C800EBF078 /* ArrowsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrowsLayer.swift; path = ../../Sources/ArrowsLayer.swift; sourceTree = "<group>"; };
 		52EA13F21DA7332E00EBF078 /* SquaresLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SquaresLayer.swift; path = ../../Sources/SquaresLayer.swift; sourceTree = "<group>"; };
@@ -134,9 +134,9 @@
 				52EA13D11DA6A7B800EBF078 /* test case 2.pgn */,
 				52EA13D31DA6A85000EBF078 /* test case 3.pgn */,
 				52EA13D51DA6BCA700EBF078 /* test case 4.pgn */,
-				52EA13D71DA6C12F00EBF078 /* test case 5.pgn */,
-				52678A781D9C2B2200AB1B9E /* fischer v fine.pgn */,
-				52678A791D9C2B2200AB1B9E /* shirov v judit_polgar.pgn */,
+				52BA80161DAD246C00E15277 /* fischer v fine.pgn */,
+				52BA80171DAD246C00E15277 /* reti v rubenstein.pgn */,
+				52BA80181DAD246C00E15277 /* shirov v polgar.pgn */,
 			);
 			path = GameViewDemo;
 			sourceTree = "<group>";
@@ -229,15 +229,15 @@
 			files = (
 				52EA13D21DA6A7B800EBF078 /* test case 2.pgn in Resources */,
 				52A485541D9C37FB004AB5A6 /* Game.storyboard in Resources */,
-				52EA13D81DA6C12F00EBF078 /* test case 5.pgn in Resources */,
 				52678A5C1D9C254600AB1B9E /* Main.storyboard in Resources */,
-				52678A7A1D9C2B2200AB1B9E /* fischer v fine.pgn in Resources */,
+				52BA801B1DAD246C00E15277 /* shirov v polgar.pgn in Resources */,
 				52678A4D1D9C24F000AB1B9E /* LaunchScreen.storyboard in Resources */,
 				52EA13D41DA6A85000EBF078 /* test case 3.pgn in Resources */,
 				52EA13D61DA6BCA700EBF078 /* test case 4.pgn in Resources */,
+				52BA80191DAD246C00E15277 /* fischer v fine.pgn in Resources */,
 				52A485561D9C387A004AB5A6 /* Assets.xcassets in Resources */,
-				52678A7B1D9C2B2200AB1B9E /* shirov v judit_polgar.pgn in Resources */,
 				52E85E9B1DA575A800CDD85D /* test case 1.pgn in Resources */,
+				52BA801A1DAD246C00E15277 /* reti v rubenstein.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
