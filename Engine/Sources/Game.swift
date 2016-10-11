@@ -36,7 +36,7 @@ public class Game {
     /// The starting position.
     private var _startingPosition: Position
 
-    private var _currentIndex: Int?
+    internal var _currentIndex: Int?
     private var _items: Array<HistoryItem>
 
     /// All of the conducted moves in the game.
@@ -86,14 +86,6 @@ public class Game {
 
     public func isPromotion(for move: Move) -> Bool {
         return currentPosition.board[move.target]?.kind == .pawn && move.reachesEndRank(for: playerTurn)
-    }
-
-    public var currentIndex: Int? {
-        return _currentIndex
-    }
-
-    public var items: [HistoryItem] {
-        return _items
     }
 
     public func availableTargets(for color: Color) -> [Square] {

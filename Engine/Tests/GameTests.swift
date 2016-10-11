@@ -66,7 +66,7 @@ class GameTests: XCTestCase {
     func testSubscript2() {
 
         func test(game: Game) {
-            for (index, item) in zip(game.indices, game.items) {
+            for (index, item) in zip(game.indices, game) {
                 XCTAssertEqual(game[index], item)
             }
         }
@@ -97,8 +97,8 @@ class GameTests: XCTestCase {
             let count = Int(arc4random_uniform(UInt32(game.count-1)))
             let undone = game.undo(count: count)
             XCTAssertEqual(undone.count, count)
-            XCTAssertNotNil(game.currentIndex)
-            XCTAssertEqual(game.currentIndex!+count+1, game.count)
+            XCTAssertNotNil(game._currentIndex)
+            XCTAssertEqual(game._currentIndex!+count+1, game.count)
             undone.forEach { try! game.execute(move: $0.move, promotion: $0.promotion) }
             zip(game, original).forEach { XCTAssertEqual($0.0, $0.1) }
         }
@@ -113,7 +113,7 @@ class GameTests: XCTestCase {
         func test(game: Game) {
             let undone = game.undoAll()
             XCTAssertEqual(undone.count, game.count)
-            XCTAssertNil(game.currentIndex)
+            XCTAssertNil(game._currentIndex)
             XCTAssertEqual(game.currentPosition, Position())
             let newGame = Game()
             undone.forEach { try! newGame.execute(move: $0.move, promotion: $0.promotion) }
@@ -131,7 +131,7 @@ class GameTests: XCTestCase {
             game.undoAll()
             let redone = game.redoAll()
             XCTAssertEqual(redone.count, game.count)
-            XCTAssertEqual(game.currentIndex, game.endIndex-1)
+            XCTAssertEqual(game._currentIndex, game.endIndex-1)
             let newGame = Game()
             redone.forEach { try! newGame.execute(move: $0.move, promotion: $0.promotion) }
             zip(game, newGame).forEach { XCTAssertEqual($0.0, $0.1) }
@@ -149,8 +149,8 @@ class GameTests: XCTestCase {
             game.undoAll()
             let redone = game.redo()
             XCTAssertEqual(redone.count, 1)
-            XCTAssertNotNil(game.currentIndex)
-            XCTAssertEqual(game.currentIndex!, 0)
+            XCTAssertNotNil(game._currentIndex)
+            XCTAssertEqual(game._currentIndex!, 0)
             original.undo(count: original.count-1)
             zip(game, original).forEach { XCTAssertEqual($0.0, $0.1) }
         }
@@ -168,8 +168,8 @@ class GameTests: XCTestCase {
             let count = Int(arc4random_uniform(UInt32(game.count-1)+1))
             let redone = game.redo(count: count)
             XCTAssertEqual(redone.count, count)
-            XCTAssertNotNil(game.currentIndex)
-            XCTAssertEqual(game.currentIndex!+(game.count-count)+1, game.count)
+            XCTAssertNotNil(game._currentIndex)
+            XCTAssertEqual(game._currentIndex!+(game.count-count)+1, game.count)
 
             let newGame = Game()
             redone.forEach { try! newGame.execute(move: $0.move, promotion: $0.promotion) }
@@ -191,16 +191,16 @@ class GameTests: XCTestCase {
             }
 
             func randomUndoIndex() -> (Int, Int) {
-                let index = randomIndex(lower: 0, upper: game.currentIndex!-1)
-                return (index, abs(game.currentIndex! - index))
+                let index = randomIndex(lower: 0, upper: game._currentIndex!-1)
+                return (index, abs(game._currentIndex! - index))
             }
 
             func randomRedoIndex() -> (Int, Int) {
-                let lower = game.currentIndex!+1
+                let lower = game._currentIndex!+1
                 let upper = game.endIndex-1
                 if upper <= lower { return randomRedoIndex() }
                 let index = randomIndex(lower: lower, upper: upper)
-                return (index, abs(game.currentIndex! - index))
+                return (index, abs(game._currentIndex! - index))
             }
 
             var newIndex: Int
@@ -219,7 +219,7 @@ class GameTests: XCTestCase {
             XCTAssertEqual(result!.direction, .redo)
             XCTAssertEqual(result!.items.count, count)
 
-            count = game.currentIndex!
+            count = game._currentIndex!
             result = game.settingIndex(to: nil)
             XCTAssertNotNil(result)
             XCTAssertEqual(result!.direction, .undo)
@@ -231,7 +231,7 @@ class GameTests: XCTestCase {
             XCTAssertEqual(result!.direction, .redo)
             XCTAssertEqual(result!.items.count, count)
 
-            (newIndex, count) = (game.endIndex - 1, game.endIndex - game.currentIndex! - 1)
+            (newIndex, count) = (game.endIndex - 1, game.endIndex - game._currentIndex! - 1)
             result = game.settingIndex(to: game.endIndex-1)
             XCTAssertNotNil(result)
             XCTAssertEqual(result!.direction, .redo)
