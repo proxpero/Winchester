@@ -15,22 +15,23 @@ internal final class TitleViewContoller: ViewController {
     @IBOutlet var black: UILabel!
     @IBOutlet var outcome: UILabel!
 
-    var model: (white: String?, black: String?, outcome: String) = (nil, nil, "*")
+    var model: (white: Player?, black: Player?, outcome: Outcome)
 
-    init(white: String, black: String, outcome: Outcome) {
+    init(white: Player, black: Player, outcome: Outcome) {
+        model = (white, black, outcome)
         super.init(nibName: "TitleViewController", bundle: nil)
-        model = (white, black, outcome.description)
     }
     
     required public init?(coder aDecoder: NSCoder) {
+        model = (nil, nil, Outcome.undetermined)
         super.init(coder: aDecoder)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.heightAnchor.constraint(equalToConstant: 44)
-        white.text = model.white
-        black.text = model.black
-        outcome.text = model.outcome
+        white.text = model.white?.name
+        black.text = model.black?.name
+        outcome.text = model.outcome.userDescription
     }
 }
