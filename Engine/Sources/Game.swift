@@ -84,6 +84,13 @@ public class Game {
         return currentPosition.playerTurn
     }
 
+    public var latestMove: Move? {
+        guard let current = _currentIndex else {
+            return nil
+        }
+        return _items[current].move
+    }
+
     public func isPromotion(for move: Move) -> Bool {
         return currentPosition.board[move.target]?.kind == .pawn && move.reachesEndRank(for: playerTurn)
     }
@@ -214,15 +221,16 @@ public class Game {
         let newIndex: Int?
         let range: Range<Int>
 
-        if count == self.count {
+        if count == current + 1 {
             newIndex = nil
-            range = startIndex ..< endIndex
+            range = startIndex ..< current+1
         } else {
             newIndex = current - count
             range = (newIndex!+1)..<(current+1)
         }
+
         _currentIndex = newIndex
-        precondition(_items.indices.overlaps(range), "Error: Trying to undo more items than are in contained in items.")
+//        precondition(_items.indices.overlaps(range), "Error: Trying to undo more items than are in contained in items.")
         return _items[range]
     }
 
@@ -244,8 +252,9 @@ public class Game {
             range = _items.startIndex ..< count
         }
         _currentIndex = newIndex
-        precondition(_items.indices.contains(range.lowerBound))
-        precondition(_items.indices.contains(range.upperBound-1))
+        if !_items.indices.contains(range.lowerBound) || !_items.indices.contains(range.upperBound-1) {
+            return []
+        }
         return _items[range]
     }
 
@@ -266,10 +275,10 @@ public class Game {
             return nil
         case (nil, _):
             direction = .redo
-            slice = self.redo(count: newIndex!)
+            slice = self.redo(count: newIndex! + 1)
         case (_, nil):
             direction = .undo
-            slice = self.undo(count: _currentIndex!)
+            slice = self.undo(count: abs(_currentIndex! + 1))
         default:
             direction = (_currentIndex! < newIndex!) ? .redo : .undo
             let count = abs(_currentIndex! - newIndex!)
