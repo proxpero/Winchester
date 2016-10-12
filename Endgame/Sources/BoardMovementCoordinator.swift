@@ -79,16 +79,11 @@ final class BoardMovementCoordinator {
 
         func consolidate(item: HistoryItem) {
 
-            let pieceNode = findNode(for: direction.isForward ? item.move.origin : item.move.target)
+            let pieceNode = findNode(for: direction.isRedo ? item.move.origin : item.move.target)
 
             var transaction: Transaction = {
 
-                let move: Move
-
-                switch direction {
-                case .forward(_): move = item.move
-                case .reverse(_): move = item.move.reversed()
-                }
+                let move = direction.isUndo ? item.move.reversed() : item.move
 
                 if var candidate = result[pieceNode] {
                     candidate.target = move.target
@@ -104,7 +99,7 @@ final class BoardMovementCoordinator {
             if let capture = item.capture {
                 switch direction {
 
-                case .forward(_):
+                case .redo:
                     let capturedNode = findNode(for: capture.square)
                     // If `result` has registered the captured piece already, modify that transaction...
                     if var captureTransaction = result[capturedNode] {
@@ -115,7 +110,7 @@ final class BoardMovementCoordinator {
                         result[capturedNode] = Transaction(origin: capture.square, target: capture.square, status: .removed)
                     }
                     result.updateValue(transaction, forKey: pieceNode)
-                case .reverse(_):
+                case .undo:
                     let capturedNode = newPieceNode(capture.piece)
                     result[capturedNode] = Transaction(origin: capture.square, target: capture.square, status: .added)
                 }
@@ -124,20 +119,20 @@ final class BoardMovementCoordinator {
             if let promotion = item.promotion {
                 // In either direction, the pieceNode is removed and a new piece is added, either a pawn or the chosen promotion.
                 transaction.status = .removed
-                let piece = direction.isForward ? promotion : Piece(pawn: promotion.color)
-                let move = direction.isForward ? item.move : item.move.reversed()
+                let piece = direction.isRedo ? promotion : Piece(pawn: promotion.color)
+                let move = direction.isRedo ? item.move : item.move.reversed()
                 result[newPieceNode(piece)] = Transaction(origin: move.origin, target: move.target, status: .added)
             }
 
             // If a castle is involved then the rook need to be moved and added to the table.
             if item.move.isCastle() {
                 let (old, new) = item.move.castleSquares()
-                let rookNode = findNode(for: direction.isForward ? old : new)
+                let rookNode = findNode(for: direction.isRedo ? old : new)
 
                 switch direction {
-                case .forward(_):
+                case .redo:
                     result[rookNode] = Transaction(origin: old, target: new, status: .normal)
-                case .reverse(_):
+                case .undo:
                     var rookTransaction = result[rookNode] ?? Transaction(origin: old, target: new, status: .normal)
                     rookTransaction.target = old
                     result[rookNode] = rookTransaction
@@ -146,7 +141,8 @@ final class BoardMovementCoordinator {
             result[pieceNode] = transaction
         }
 
-        items.forEach(consolidate)
+        let elements = direction.isRedo ? items : items.reversed()
+        elements.forEach(consolidate)
         return result
     }
 

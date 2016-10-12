@@ -56,13 +56,12 @@ internal extension Game {
         return rows
     }
 
-
 }
 
 
 internal final class HistoryViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var didSelect: (Int) -> () = { _ in }
+    var didSelect: (Int?) -> () = { _ in }
     var cellType: (_ row: Int) -> HistoryCellType = { _ in return .start }
     var rows: () -> Int = { _ in 0 }
 
@@ -73,29 +72,20 @@ internal final class HistoryViewController: UICollectionViewController, UICollec
     }
 
     func advanceMove(sender: UISwipeGestureRecognizer) {
+        
         guard
             let indexPath = collectionView?.indexPathsForSelectedItems?.first,
             indexPath.row < rows()
         else { return }
+
         collectionView?.selectItem(
-            at: IndexPath(row: indexPath.row.nextMoveIndex(), section: 0),
+            at: IndexPath(row: indexPath.row.asNextMoveRowIndex, section: 0),
             animated: true,
             scrollPosition: .centeredHorizontally)
-        didSelect(indexPath.row.asItemIndex + 1)
+        let selectedIndex: Int? = indexPath.row > 0 ? indexPath.row.asItemIndex! + 1 : 0
+        // check if too far
+        didSelect(selectedIndex)
     }
-//
-//    func reverseMove(sender: UISwipeGestureRecognizer) {
-//        guard
-//            let indexPath = collectionView?.indexPathsForSelectedItems?.first,
-//            indexPath.row > 1
-//        else { return }
-//        collectionView?.selectItem(
-//            at: IndexPath(row: indexPath.row.previousMoveIndex(), section: 0),
-//            animated: true,
-//            scrollPosition: .centeredHorizontally
-//        )
-//        didSelect(indexPath.row.moveIndex() - 1)
-//    }
 
     func handleSwipe(recognizer: UISwipeGestureRecognizer) {
 
@@ -107,10 +97,12 @@ internal final class HistoryViewController: UICollectionViewController, UICollec
         let add: Bool
         
         if recognizer.direction == UISwipeGestureRecognizerDirection.left && indexPath.row < rows() - 1 {
-            selectedRow = indexPath.row.nextMoveIndex()
+            selectedRow = indexPath.row.asNextMoveRowIndex
+            // Don't allow selection past the end
+            if selectedRow == rows() - 1 { return }
             add = true
         } else if recognizer.direction == UISwipeGestureRecognizerDirection.right && indexPath.row > 1 {
-            selectedRow = indexPath.row.previousMoveIndex()
+            selectedRow = indexPath.row.asPreviousMoveRowIndex
             add = false
         } else {
             return
@@ -122,7 +114,19 @@ internal final class HistoryViewController: UICollectionViewController, UICollec
             scrollPosition: .centeredHorizontally
         )
 
-        didSelect(indexPath.row.asItemIndex + (add ? 1 : -1))
+        var selectedIndex: Int?
+
+        switch (selectedRow.asItemIndex, add) {
+        case (.none, true):
+            selectedIndex = 0
+        case (.none, false):
+            selectedIndex = nil
+        case (.some(let index), true):
+            selectedIndex = index
+        case (.some(let index), false):
+            selectedIndex = index
+        }
+        didSelect(selectedIndex)
     }
 
     // MARK: - UIKit
@@ -190,27 +194,24 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
     case start
     case number(Int)
     case move(String)
-    case last(Outcome)
+    case outcome(Outcome)
 
     init(row: Int, game: Game) {
 
-        let itemIndex = row.asItemIndex
-
-        if row == 0 {
+        guard let itemIndex = row.asItemIndex else {
             self = .start
+            return
         }
-        else if itemIndex >= game.endIndex {
-            self = .last(game.outcome)
+
+        // If white plays the last move or if black plays the last move...
+        if itemIndex >= game.endIndex || (row.isNumberRow && itemIndex == game.endIndex - 1) {
+            self = .outcome(game.outcome)
         }
         else if row.isNumberRow {
             self = .number(row.asFullmoveIndex)
         }
         else {
-            guard let item = game.item(at: itemIndex) else {
-                fatalError("What the fuck?")
-            }// The event that this would be nil was handled in the test for `.start`
-            let sanMove = item.sanMove
-            self = .move(sanMove)
+            self = .move(game[itemIndex].sanMove)
         }
     }
 
@@ -219,7 +220,7 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
         case .start: return "Start"
         case .number(let n): return "\(n)."
         case .move(let m): return m.replacingOccurrences(of: "x", with: "×")
-        case .last(let outcome): return outcome.userDescription
+        case .outcome(let outcome): return outcome.userDescription
         }
     }
 
@@ -228,7 +229,7 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
         case .start: return true
         case .number: return false
         case .move: return true
-        case .last: return false
+        case .outcome: return false
         }
     }
 
@@ -238,7 +239,7 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
         case .start: width = 80
         case .number: width = 45
         case .move: width = 70
-        case .last: width = 80
+        case .outcome: width = 80
         }
         return CGSize(width: width, height: 44)
     }
@@ -246,7 +247,7 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
     var isBordered: Bool {
         switch self {
         case .number: return false
-        case .last: return false
+        case .outcome: return false
         default: return true
         }
     }
@@ -259,7 +260,7 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
         case .start: alignment = .center
         case .number: alignment = .right
         case .move: alignment = .center
-        case .last: alignment = .left
+        case .outcome: alignment = .center
         }
         cell.label.textAlignment = alignment
     }
@@ -269,7 +270,7 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
         case (.start, .start): return true
         case (.number(let a), .number(let b)): return a == b
         case (.move(let a), .move(let b)): return a == b
-        case (.last(let a), .last(let b)): return a == b
+        case (.outcome(let a), .outcome(let b)): return a == b
         default:
             return false
         }
@@ -299,18 +300,21 @@ extension Int {
     }
 
     /// Converts a collection view cell index to its index in a `game`'s `moveHistory`.
-    var asItemIndex: Int {
+    var asItemIndex: Int? {
+        guard self != 0 else {
+            return nil
+        }
         return 2*self/3 - 1
     }
 
     /// Returns the next index after `self` of a move in a history collection view.
-    func nextMoveIndex() -> Int {
+    var asNextMoveRowIndex: Int {
         let next = self + 1
         return next + (next.isNumberRow ? 1 : 0)
     }
 
     /// Returns the previous index before `self` of a move in a history collection view.
-    func previousMoveIndex() -> Int {
+    var asPreviousMoveRowIndex: Int {
         let prev = self - 1
         return prev - (prev.isNumberRow ? 1 : 0)
     }

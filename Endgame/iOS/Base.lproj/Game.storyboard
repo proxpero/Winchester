@@ -139,7 +139,7 @@
         <scene sceneID="u1U-kP-fvG">
             <objects>
                 <collectionViewController id="RRO-u4-dbp" customClass="HistoryViewController" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="PtE-61-dJg">
+                    <collectionView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" id="PtE-61-dJg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>

@@ -27,21 +27,31 @@ final class Configuration {
 
     let navigationController: UINavigationController
     let games: [Game] = {
-        var games = [
+
+        var games = [Game]()
+        func game(with file: String) -> Game {
+            let url = Bundle(for: AppDelegate.self).url(forResource: file, withExtension: "pgn")!
+            let pgn = try! PGN(parse: try! String(contentsOf: url))
+            let game = Game(pgn: pgn)
+            game.undoAll()
+            return game
+        }
+
+        let files = [
             "fischer v fine",
-            "shirov v judit_polgar",
+            "shirov v polgar",
+            "reti v rubenstein",
             "test case 1",
             "test case 2",
             "test case 3",
-            "test case 4",
-            "test case 5"
-            ]
-            .flatMap { Bundle(for: AppDelegate.self).url(forResource: $0, withExtension: "pgn") }
-            .map { try! String(contentsOf: $0) }
-            .map { try! PGN(parse: $0) }
-            .flatMap { Game(pgn: $0) }
-        games.forEach { $0.move(to: $0.startIndex) }
+            "test case 4"
+        ]
+
+        for file in files {
+            games.append(game(with: file))
+        }
         return games
+        
     }()
 
     init(window: UIWindow) {

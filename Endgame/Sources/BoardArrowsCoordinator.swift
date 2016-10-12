@@ -20,7 +20,7 @@ final class BoardArrowsCoordinator {
     }
 
     func showArrows(for game: Game) {
-        if let lastMove = game.lastMove {
+        if let lastMove = game.latestMove {
             showLastMove(lastMove)
         }
     }

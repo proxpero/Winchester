@@ -13,9 +13,6 @@
 		5212A36F1D9319E2008F2957 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36E1D9319E2008F2957 /* BoardTests.swift */; };
 		5212A3701D9319E2008F2957 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36E1D9319E2008F2957 /* BoardTests.swift */; };
 		5212A3711D9319E2008F2957 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36E1D9319E2008F2957 /* BoardTests.swift */; };
-		523508B91DAC570400F5A6F8 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 523508B81DAC570400F5A6F8 /* fischer v fine.pgn */; };
-		523508BA1DAC570400F5A6F8 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 523508B81DAC570400F5A6F8 /* fischer v fine.pgn */; };
-		523508BB1DAC570400F5A6F8 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 523508B81DAC570400F5A6F8 /* fischer v fine.pgn */; };
 		5237A65C1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
 		5237A65D1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
 		5237A65E1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
@@ -132,6 +129,15 @@
 		52B595FE1D5645D200E1D543 /* String+Chess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595FC1D5645D200E1D543 /* String+Chess.swift */; };
 		52B595FF1D5645D200E1D543 /* String+Chess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595FC1D5645D200E1D543 /* String+Chess.swift */; };
 		52B596001D5645D200E1D543 /* String+Chess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595FC1D5645D200E1D543 /* String+Chess.swift */; };
+		52BA7FFF1DAD241400E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFC1DAD241400E15277 /* fischer v fine.pgn */; };
+		52BA80001DAD241400E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFC1DAD241400E15277 /* fischer v fine.pgn */; };
+		52BA80011DAD241400E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFC1DAD241400E15277 /* fischer v fine.pgn */; };
+		52BA80021DAD241400E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFD1DAD241400E15277 /* reti v rubenstein.pgn */; };
+		52BA80031DAD241400E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFD1DAD241400E15277 /* reti v rubenstein.pgn */; };
+		52BA80041DAD241400E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFD1DAD241400E15277 /* reti v rubenstein.pgn */; };
+		52BA80051DAD241400E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFE1DAD241400E15277 /* shirov v polgar.pgn */; };
+		52BA80061DAD241400E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFE1DAD241400E15277 /* shirov v polgar.pgn */; };
+		52BA80071DAD241400E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFE1DAD241400E15277 /* shirov v polgar.pgn */; };
 		52C4DF4C1D83494B00385459 /* Board+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595CA1D5512FD00E1D543 /* Board+View.swift */; };
 		52DB54911D960903008B6F72 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54901D960903008B6F72 /* GameTests.swift */; };
 		52DB54921D960903008B6F72 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54901D960903008B6F72 /* GameTests.swift */; };
@@ -251,7 +257,6 @@
 		5212A36A1D92D35A008F2957 /* PositionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionTests.swift; sourceTree = "<group>"; };
 		5212A36E1D9319E2008F2957 /* BoardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
 		522324C31D3DEDC70034E292 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		523508B81DAC570400F5A6F8 /* fischer v fine.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fischer v fine.pgn"; path = "../../Endgame/Demos/GameViewDemo/GameViewDemo/fischer v fine.pgn"; sourceTree = "<group>"; };
 		5237A65B1D97033200BAC16E /* Position+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Position+View.swift"; sourceTree = "<group>"; };
 		5237A6A31D98218600BAC16E /* ECO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ECO.txt; sourceTree = "<group>"; };
 		5237A6A81D98233500BAC16E /* ECO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECO.swift; sourceTree = "<group>"; };
@@ -288,6 +293,9 @@
 		52B595B61D54F9D800E1D543 /* AsciiConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciiConvertible.swift; sourceTree = "<group>"; };
 		52B595CA1D5512FD00E1D543 /* Board+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Board+View.swift"; sourceTree = "<group>"; };
 		52B595FC1D5645D200E1D543 /* String+Chess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Chess.swift"; sourceTree = "<group>"; };
+		52BA7FFC1DAD241400E15277 /* fischer v fine.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fischer v fine.pgn"; path = "../../Test Games/fischer v fine.pgn"; sourceTree = "<group>"; };
+		52BA7FFD1DAD241400E15277 /* reti v rubenstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reti v rubenstein.pgn"; path = "../../Test Games/reti v rubenstein.pgn"; sourceTree = "<group>"; };
+		52BA7FFE1DAD241400E15277 /* shirov v polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "shirov v polgar.pgn"; path = "../../Test Games/shirov v polgar.pgn"; sourceTree = "<group>"; };
 		52BAE0881D5FD30F006E2652 /* Engine.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Engine.playground; sourceTree = "<group>"; };
 		52DB54901D960903008B6F72 /* GameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		52DB54941D961259008B6F72 /* FileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
@@ -384,7 +392,9 @@
 			isa = PBXGroup;
 			children = (
 				52B595471D539D2B00E1D543 /* Info.plist */,
-				523508B81DAC570400F5A6F8 /* fischer v fine.pgn */,
+				52BA7FFC1DAD241400E15277 /* fischer v fine.pgn */,
+				52BA7FFD1DAD241400E15277 /* reti v rubenstein.pgn */,
+				52BA7FFE1DAD241400E15277 /* shirov v polgar.pgn */,
 				52DB54901D960903008B6F72 /* GameTests.swift */,
 				5212A36A1D92D35A008F2957 /* PositionTests.swift */,
 				5212A36E1D9319E2008F2957 /* BoardTests.swift */,
@@ -739,7 +749,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				523508B91DAC570400F5A6F8 /* fischer v fine.pgn in Resources */,
+				52BA80051DAD241400E15277 /* shirov v polgar.pgn in Resources */,
+				52BA7FFF1DAD241400E15277 /* fischer v fine.pgn in Resources */,
+				52BA80021DAD241400E15277 /* reti v rubenstein.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,7 +759,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				523508BA1DAC570400F5A6F8 /* fischer v fine.pgn in Resources */,
+				52BA80061DAD241400E15277 /* shirov v polgar.pgn in Resources */,
+				52BA80001DAD241400E15277 /* fischer v fine.pgn in Resources */,
+				52BA80031DAD241400E15277 /* reti v rubenstein.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,7 +769,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				523508BB1DAC570400F5A6F8 /* fischer v fine.pgn in Resources */,
+				52BA80071DAD241400E15277 /* shirov v polgar.pgn in Resources */,
+				52BA80011DAD241400E15277 /* fischer v fine.pgn in Resources */,
+				52BA80041DAD241400E15277 /* reti v rubenstein.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
