@@ -120,7 +120,7 @@ final class BoardMovementCoordinator {
                 // In either direction, the pieceNode is removed and a new piece is added, either a pawn or the chosen promotion.
                 transaction.status = .removed
                 let piece = direction.isRedo ? promotion : Piece(pawn: promotion.color)
-                let move = direction.isUndo ? item.move : item.move.reversed()
+                let move = direction.isRedo ? item.move : item.move.reversed()
                 result[newPieceNode(piece)] = Transaction(origin: move.origin, target: move.target, status: .added)
             }
 
