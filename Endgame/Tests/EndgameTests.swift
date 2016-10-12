@@ -32,6 +32,12 @@ class GameViewControllerTests: XCTestCase {
 
 }
 
+class BoardMovementCoordinatorTests: XCTestCase {
+
+
+
+}
+
 class HistoryViewControllerTests: XCTestCase {
 
     func testIsNumberRow() {

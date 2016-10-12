@@ -141,7 +141,8 @@ final class BoardMovementCoordinator {
             result[pieceNode] = transaction
         }
 
-        items.forEach(consolidate)
+        let elements = direction.isRedo ? items : items.reversed()
+        elements.forEach(consolidate)
         return result
     }
 
