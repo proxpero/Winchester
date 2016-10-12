@@ -56,7 +56,6 @@ internal extension Game {
         return rows
     }
 
-
 }
 
 
@@ -204,7 +203,8 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
             return
         }
 
-        if itemIndex >= game.endIndex {
+        // If white plays the last move or if black plays the last move...
+        if itemIndex >= game.endIndex || (row.isNumberRow && itemIndex == game.endIndex - 1) {
             self = .outcome(game.outcome)
         }
         else if row.isNumberRow {
@@ -260,7 +260,7 @@ enum HistoryCellType: CustomStringConvertible, Equatable {
         case .start: alignment = .center
         case .number: alignment = .right
         case .move: alignment = .center
-        case .outcome: alignment = .left
+        case .outcome: alignment = .center
         }
         cell.label.textAlignment = alignment
     }
