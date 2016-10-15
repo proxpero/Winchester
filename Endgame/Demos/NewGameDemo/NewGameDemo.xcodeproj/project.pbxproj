@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520CCC0F1DAF17AA00BB8B50 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 520CCC0E1DAF17AA00BB8B50 /* spark.png */; };
+		520CCC111DAFFF8C00BB8B50 /* PromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520CCC101DAFFF8C00BB8B50 /* PromotionView.swift */; };
+		52BA802F1DAEDB1200E15277 /* PromotionBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52BA802E1DAEDB1200E15277 /* PromotionBackground.sks */; };
+		52E5CA851DB1479A00DD2536 /* GameView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E5CA841DB1479A00DD2536 /* GameView.storyboard */; };
 		52EA14281DA7F68800EBF078 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14271DA7F68800EBF078 /* AppDelegate.swift */; };
 		52EA142D1DA7F68800EBF078 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EA142B1DA7F68800EBF078 /* Main.storyboard */; };
 		52EA14321DA7F68800EBF078 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EA14301DA7F68800EBF078 /* LaunchScreen.storyboard */; };
@@ -49,6 +53,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		520CCC0E1DAF17AA00BB8B50 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../../../Sources/spark.png; sourceTree = "<group>"; };
+		520CCC101DAFFF8C00BB8B50 /* PromotionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionView.swift; path = ../../../Shared/PromotionView.swift; sourceTree = "<group>"; };
+		52BA802E1DAEDB1200E15277 /* PromotionBackground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = PromotionBackground.sks; path = ../../../Sources/PromotionBackground.sks; sourceTree = "<group>"; };
+		52E5CA841DB1479A00DD2536 /* GameView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GameView.storyboard; path = ../../../Shared/GameView.storyboard; sourceTree = "<group>"; };
 		52EA14241DA7F68800EBF078 /* NewGameDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewGameDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EA14271DA7F68800EBF078 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52EA142C1DA7F68800EBF078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,9 +118,13 @@
 		52EA14261DA7F68800EBF078 /* NewGameDemo */ = {
 			isa = PBXGroup;
 			children = (
+				52BA802E1DAEDB1200E15277 /* PromotionBackground.sks */,
+				520CCC0E1DAF17AA00BB8B50 /* spark.png */,
 				52EA14271DA7F68800EBF078 /* AppDelegate.swift */,
 				52EA142B1DA7F68800EBF078 /* Main.storyboard */,
 				52EA14681DA80DAD00EBF078 /* Game.storyboard */,
+				52E5CA841DB1479A00DD2536 /* GameView.storyboard */,
+				520CCC101DAFFF8C00BB8B50 /* PromotionView.swift */,
 				52EA14301DA7F68800EBF078 /* LaunchScreen.storyboard */,
 				52EA146B1DA817CC00EBF078 /* Assets.xcassets */,
 				52EA14331DA7F68800EBF078 /* Info.plist */,
@@ -208,8 +220,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EA146A1DA80DAD00EBF078 /* Game.storyboard in Resources */,
+				520CCC0F1DAF17AA00BB8B50 /* spark.png in Resources */,
 				52EA14321DA7F68800EBF078 /* LaunchScreen.storyboard in Resources */,
 				52EA146C1DA817CC00EBF078 /* Assets.xcassets in Resources */,
+				52BA802F1DAEDB1200E15277 /* PromotionBackground.sks in Resources */,
+				52E5CA851DB1479A00DD2536 /* GameView.storyboard in Resources */,
 				52EA142D1DA7F68800EBF078 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520CCC111DAFFF8C00BB8B50 /* PromotionView.swift in Sources */,
 				52EA14671DA7F7BC00EBF078 /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
 				52EA145D1DA7F7BC00EBF078 /* GameScene.swift in Sources */,
 				52EA14661DA7F7BC00EBF078 /* UIImage+View.swift in Sources */,

@@ -7,18 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		521D1F191D8ACEF900A0A0E6 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F151D8ACEF900A0A0E6 /* fischer v fine.pgn */; };
-		521D1F1A1D8ACEF900A0A0E6 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F151D8ACEF900A0A0E6 /* fischer v fine.pgn */; };
-		521D1F1B1D8ACEF900A0A0E6 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F151D8ACEF900A0A0E6 /* fischer v fine.pgn */; };
-		521D1F1C1D8ACEF900A0A0E6 /* karpov v kasparov.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F161D8ACEF900A0A0E6 /* karpov v kasparov.pgn */; };
-		521D1F1D1D8ACEF900A0A0E6 /* karpov v kasparov.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F161D8ACEF900A0A0E6 /* karpov v kasparov.pgn */; };
-		521D1F1E1D8ACEF900A0A0E6 /* karpov v kasparov.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F161D8ACEF900A0A0E6 /* karpov v kasparov.pgn */; };
-		521D1F1F1D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F171D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn */; };
-		521D1F201D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F171D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn */; };
-		521D1F211D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F171D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn */; };
-		521D1F221D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F181D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn */; };
-		521D1F231D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F181D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn */; };
-		521D1F241D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F181D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn */; };
 		521D1F5A1D8B0EE400A0A0E6 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521D1F591D8B0EE400A0A0E6 /* Messages.framework */; };
 		521D1F5D1D8B0EE400A0A0E6 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D1F5C1D8B0EE400A0A0E6 /* MessagesViewController.swift */; };
 		521D1F601D8B0EE400A0A0E6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 521D1F5E1D8B0EE400A0A0E6 /* MainInterface.storyboard */; };
@@ -88,6 +76,9 @@
 		5237A6A01D97691A00BAC16E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6751D97691A00BAC16E /* README.md */; };
 		5237A6A11D97691A00BAC16E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6751D97691A00BAC16E /* README.md */; };
 		5237A6A21D97691A00BAC16E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6751D97691A00BAC16E /* README.md */; };
+		52403A7F1DB1526400CA863A /* GameView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52403A7E1DB1526400CA863A /* GameView.storyboard */; };
+		52403A8F1DB1BBCF00CA863A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52403A8E1DB1BBCE00CA863A /* AppCoordinator.swift */; };
+		52403A921DB1C26900CA863A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52403A8E1DB1BBCE00CA863A /* AppCoordinator.swift */; };
 		524058631D63757A000A925C /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528288241D6118910014B105 /* BoardViewController.swift */; };
 		524058681D638114000A925C /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528288241D6118910014B105 /* BoardViewController.swift */; };
 		5240586A1D638328000A925C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528287F41D6103720014B105 /* AppDelegate.swift */; };
@@ -131,6 +122,13 @@
 		52BA80111DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
 		52BA80121DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
 		52BA80131DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
+		52BA801F1DAED18D00E15277 /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BA801E1DAED18D00E15277 /* PromotionViewController.swift */; };
+		52BA80241DAED70D00E15277 /* PromotionBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80221DAED70D00E15277 /* PromotionBackground.sks */; };
+		52BA80251DAED70D00E15277 /* PromotionBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80221DAED70D00E15277 /* PromotionBackground.sks */; };
+		52BA80261DAED70D00E15277 /* PromotionBackground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80221DAED70D00E15277 /* PromotionBackground.sks */; };
+		52BA80271DAED70D00E15277 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80231DAED70D00E15277 /* spark.png */; };
+		52BA80281DAED70D00E15277 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80231DAED70D00E15277 /* spark.png */; };
+		52BA80291DAED70D00E15277 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80231DAED70D00E15277 /* spark.png */; };
 		52BE98971D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */; };
 		52BE989E1D80BC17005A0BB2 /* GameScene+TouchUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */; };
 		52D6DEC41D8C67F700CF8880 /* ChessGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6DEC31D8C67F700CF8880 /* ChessGameViewController.swift */; };
@@ -236,10 +234,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		521D1F151D8ACEF900A0A0E6 /* fischer v fine.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v fine.pgn"; sourceTree = "<group>"; };
-		521D1F161D8ACEF900A0A0E6 /* karpov v kasparov.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "karpov v kasparov.pgn"; sourceTree = "<group>"; };
-		521D1F171D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "nakamura v fluvia_poyatos.pgn"; sourceTree = "<group>"; };
-		521D1F181D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shirov v judit_polgar.pgn"; sourceTree = "<group>"; };
 		521D1F581D8B0EE400A0A0E6 /* ChessWire.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ChessWire.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		521D1F591D8B0EE400A0A0E6 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		521D1F5C1D8B0EE400A0A0E6 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +260,8 @@
 		5237A6731D97691A00BAC16E /* mateIn5.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn5.epd; sourceTree = "<group>"; };
 		5237A6741D97691A00BAC16E /* mateIn6.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn6.epd; sourceTree = "<group>"; };
 		5237A6751D97691A00BAC16E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		52403A7E1DB1526400CA863A /* GameView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GameView.storyboard; path = Shared/GameView.storyboard; sourceTree = SOURCE_ROOT; };
+		52403A8E1DB1BBCE00CA863A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = Shared/AppCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		524058541D63749E000A925C /* Endgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5240586C1D638483000A925C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOS/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		5240586E1D638483000A925C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOS/Base.lproj/Game.storyboard; sourceTree = SOURCE_ROOT; };
@@ -301,6 +297,9 @@
 		52BA80081DAD244F00E15277 /* fischer v fine.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fischer v fine.pgn"; path = "../../Test Games/fischer v fine.pgn"; sourceTree = "<group>"; };
 		52BA80091DAD244F00E15277 /* reti v rubenstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reti v rubenstein.pgn"; path = "../../Test Games/reti v rubenstein.pgn"; sourceTree = "<group>"; };
 		52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "shirov v polgar.pgn"; path = "../../Test Games/shirov v polgar.pgn"; sourceTree = "<group>"; };
+		52BA801E1DAED18D00E15277 /* PromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
+		52BA80221DAED70D00E15277 /* PromotionBackground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PromotionBackground.sks; sourceTree = "<group>"; };
+		52BA80231DAED70D00E15277 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		52BAE0921D5FD555006E2652 /* Endgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISwipeGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameScene+TouchUI.swift"; sourceTree = "<group>"; };
@@ -377,18 +376,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		521D1F141D8ACEF900A0A0E6 /* PGN */ = {
-			isa = PBXGroup;
-			children = (
-				521D1F151D8ACEF900A0A0E6 /* fischer v fine.pgn */,
-				521D1F161D8ACEF900A0A0E6 /* karpov v kasparov.pgn */,
-				521D1F171D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn */,
-				521D1F181D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn */,
-			);
-			name = PGN;
-			path = ../PGN;
-			sourceTree = "<group>";
-		};
 		521D1F5B1D8B0EE400A0A0E6 /* ChessWire */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,7 +447,10 @@
 		528287F31D6103720014B105 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				52BA80221DAED70D00E15277 /* PromotionBackground.sks */,
+				52BA80231DAED70D00E15277 /* spark.png */,
 				528287F41D6103720014B105 /* AppDelegate.swift */,
+				52403A8E1DB1BBCE00CA863A /* AppCoordinator.swift */,
 				52E354E21D7C8FBB006EAEA6 /* TableViewController.swift */,
 				52E354E81D7C9BF0006EAEA6 /* CollectionViewController.swift */,
 				5237A6641D9711B400BAC16E /* MenuViewController.swift */,
@@ -469,6 +459,7 @@
 				52E354E61D7C99DE006EAEA6 /* GameCell.swift */,
 				5246E61F1D665A5300219C8C /* TitleViewController.swift */,
 				528288241D6118910014B105 /* BoardViewController.swift */,
+				52BA801E1DAED18D00E15277 /* PromotionViewController.swift */,
 				52EA14021DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift */,
 				523508B11DAC142C00F5A6F8 /* BoardInteractionCoordinator.swift */,
 				52EA14041DA7F0AD00EBF078 /* BoardMovementCoordinator.swift */,
@@ -494,6 +485,7 @@
 				5240586B1D638483000A925C /* LaunchScreen.storyboard */,
 				5237A6611D970B7C00BAC16E /* Main.storyboard */,
 				5240586D1D638483000A925C /* Game.storyboard */,
+				52403A7E1DB1526400CA863A /* GameView.storyboard */,
 				52E354E01D7C5957006EAEA6 /* GameCell.xib */,
 				524058711D638497000A925C /* Info.plist */,
 			);
@@ -531,7 +523,6 @@
 				52EA14391DA7F68800EBF078 /* NewGameDemo.xcodeproj */,
 				52678A541D9C24F000AB1B9E /* GameViewDemo.xcodeproj */,
 				528288041D6104210014B105 /* Endgame.playground */,
-				521D1F141D8ACEF900A0A0E6 /* PGN */,
 				528287F31D6103720014B105 /* Sources */,
 				528287F61D6103720014B105 /* iOS */,
 				524058551D63749E000A925C /* tvOS */,
@@ -810,8 +801,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5237A6801D97691A00BAC16E /* cc02.pgn in Resources */,
+				52BA80281DAED70D00E15277 /* spark.png in Resources */,
 				5237A68F1D97691A00BAC16E /* mateIn1.epd in Resources */,
-				521D1F201D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn in Resources */,
+				52BA80251DAED70D00E15277 /* PromotionBackground.sks in Resources */,
 				5237A67A1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
 				5237A69E1D97691A00BAC16E /* mateIn6.epd in Resources */,
 				5237A67D1D97691A00BAC16E /* cc01.pgn in Resources */,
@@ -820,15 +812,12 @@
 				5237A6831D97691A00BAC16E /* gm1830.pgn in Resources */,
 				5237A6981D97691A00BAC16E /* mateIn4.epd in Resources */,
 				5237A6891D97691A00BAC16E /* gm1981.pgn in Resources */,
-				521D1F231D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */,
 				5237A6861D97691A00BAC16E /* gm1931.pgn in Resources */,
 				5237A69B1D97691A00BAC16E /* mateIn5.epd in Resources */,
 				524058751D6384AB000A925C /* Assets.xcassets in Resources */,
 				5237A6951D97691A00BAC16E /* mateIn3.epd in Resources */,
 				5237A6921D97691A00BAC16E /* mateIn2.epd in Resources */,
-				521D1F1D1D8ACEF900A0A0E6 /* karpov v kasparov.pgn in Resources */,
 				524058781D6384C6000A925C /* Main.storyboard in Resources */,
-				521D1F1A1D8ACEF900A0A0E6 /* fischer v fine.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,8 +826,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5237A6811D97691A00BAC16E /* cc02.pgn in Resources */,
+				52BA80291DAED70D00E15277 /* spark.png in Resources */,
 				5237A6901D97691A00BAC16E /* mateIn1.epd in Resources */,
-				521D1F211D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn in Resources */,
+				52BA80261DAED70D00E15277 /* PromotionBackground.sks in Resources */,
 				5237A67B1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
 				5237A69F1D97691A00BAC16E /* mateIn6.epd in Resources */,
 				5237A67E1D97691A00BAC16E /* cc01.pgn in Resources */,
@@ -847,15 +837,12 @@
 				5237A6841D97691A00BAC16E /* gm1830.pgn in Resources */,
 				5237A6991D97691A00BAC16E /* mateIn4.epd in Resources */,
 				5237A68A1D97691A00BAC16E /* gm1981.pgn in Resources */,
-				521D1F241D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */,
 				5237A6871D97691A00BAC16E /* gm1931.pgn in Resources */,
 				5237A69C1D97691A00BAC16E /* mateIn5.epd in Resources */,
 				5240589F1D638E05000A925C /* Assets.xcassets in Resources */,
 				5237A6961D97691A00BAC16E /* mateIn3.epd in Resources */,
 				5237A6931D97691A00BAC16E /* mateIn2.epd in Resources */,
-				521D1F1E1D8ACEF900A0A0E6 /* karpov v kasparov.pgn in Resources */,
 				524058D71D63FB74000A925C /* Main.storyboard in Resources */,
-				521D1F1B1D8ACEF900A0A0E6 /* fischer v fine.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,7 +880,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				521D1F1C1D8ACEF900A0A0E6 /* karpov v kasparov.pgn in Resources */,
 				5237A69A1D97691A00BAC16E /* mateIn5.epd in Resources */,
 				5237A6881D97691A00BAC16E /* gm1981.pgn in Resources */,
 				5237A67C1D97691A00BAC16E /* cc01.pgn in Resources */,
@@ -903,17 +889,17 @@
 				5237A6911D97691A00BAC16E /* mateIn2.epd in Resources */,
 				524058741D6384AB000A925C /* Assets.xcassets in Resources */,
 				5237A6971D97691A00BAC16E /* mateIn4.epd in Resources */,
+				52403A7F1DB1526400CA863A /* GameView.storyboard in Resources */,
 				5237A6821D97691A00BAC16E /* gm1830.pgn in Resources */,
-				521D1F191D8ACEF900A0A0E6 /* fischer v fine.pgn in Resources */,
+				52BA80271DAED70D00E15277 /* spark.png in Resources */,
 				5240586F1D638483000A925C /* LaunchScreen.storyboard in Resources */,
-				521D1F1F1D8ACEF900A0A0E6 /* nakamura v fluvia_poyatos.pgn in Resources */,
 				5237A6791D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
 				5237A68B1D97691A00BAC16E /* gm2006.pgn in Resources */,
+				52BA80241DAED70D00E15277 /* PromotionBackground.sks in Resources */,
 				5237A67F1D97691A00BAC16E /* cc02.pgn in Resources */,
 				52E354E11D7C5957006EAEA6 /* GameCell.xib in Resources */,
 				5237A6941D97691A00BAC16E /* mateIn3.epd in Resources */,
 				5237A6761D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */,
-				521D1F221D8ACEF900A0A0E6 /* shirov v judit_polgar.pgn in Resources */,
 				5237A69D1D97691A00BAC16E /* mateIn6.epd in Resources */,
 				5237A6851D97691A00BAC16E /* gm1931.pgn in Resources */,
 			);
@@ -962,6 +948,7 @@
 				5237A6A11D97691A00BAC16E /* README.md in Sources */,
 				52EA140C1DA7F0AD00EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				52EA13E41DA7327800EBF078 /* PiecesLayer.swift in Sources */,
+				52403A921DB1C26900CA863A /* AppCoordinator.swift in Sources */,
 				523508B31DAC142C00F5A6F8 /* BoardInteractionCoordinator.swift in Sources */,
 				5240587D1D63893E000A925C /* GameScene.swift in Sources */,
 				5240586A1D638328000A925C /* AppDelegate.swift in Sources */,
@@ -1022,6 +1009,7 @@
 			files = (
 				525560B91D64C3BF00985809 /* GameViewController.swift in Sources */,
 				52E354E31D7C8FBB006EAEA6 /* TableViewController.swift in Sources */,
+				52403A8F1DB1BBCF00CA863A /* AppCoordinator.swift in Sources */,
 				5237A6A01D97691A00BAC16E /* README.md in Sources */,
 				52E354E71D7C99DE006EAEA6 /* GameCell.swift in Sources */,
 				52E354E91D7C9BF0006EAEA6 /* CollectionViewController.swift in Sources */,
@@ -1031,6 +1019,7 @@
 				5295DD551D999C4C0036144D /* RecentGamesConfiguration.swift in Sources */,
 				5240587C1D63893E000A925C /* GameScene.swift in Sources */,
 				52EA14051DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
+				52BA801F1DAED18D00E15277 /* PromotionViewController.swift in Sources */,
 				521EDDFD1D669B4200BD7355 /* HistoryViewController.swift in Sources */,
 				52EA13E31DA7327800EBF078 /* PiecesLayer.swift in Sources */,
 				524058681D638114000A925C /* BoardViewController.swift in Sources */,

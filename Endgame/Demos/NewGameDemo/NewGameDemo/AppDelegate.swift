@@ -138,11 +138,11 @@ final class Configuration {
         if removePgns {
             UserDefaults.standard.set([], forKey: myGamesKey)
         }
-        let pgns = UserDefaults.standard.array(forKey: myGamesKey) as? [String] ?? [String]()
-        let games = pgns
+        let files = UserDefaults.standard.array(forKey: myGamesKey) as? [String] ?? [String]()
+        let games = files
             .map { try! PGN(parse: $0) }
-            .flatMap { Game(pgn: $0) }
-        games.forEach { $0.move(to: $0.startIndex) }
+            .map { Game(pgn: $0) }
+        games.forEach { $0.undoAll() }
         return games
     }
 }
