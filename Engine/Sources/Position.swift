@@ -288,6 +288,12 @@ public struct Position: Equatable, CustomStringConvertible {
         return (moves & opponents).map { $0 }
     }
 
+    internal func _legalCaptures(forPieceAt origin: Square) -> [Square] {
+        let targets = _legalTargetSquares(from: origin).bitmask
+        let opponents = board.bitboard(for: playerTurn.inverse())
+        return (targets & opponents).map { $0 }
+    }
+
     /// Returns the moves bitboard currently available for the piece at `square`, if any.
     internal func _legalTargetSquares(from origin: Square, considerHalfmoves: Bool = false) -> [Square] {
 
