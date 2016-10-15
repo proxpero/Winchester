@@ -9,6 +9,8 @@
 import UIKit
 import Engine
 
+typealias PromotionHandler = (Piece?) -> ()
+
 enum ActivityState {
     case initiation(Square)
     case normal
@@ -43,7 +45,7 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
         case .board:
             guard let vc = segue.destination as? BoardViewController else { fatalError() }
-            
+
             movementCoordinator = BoardMovementCoordinator(
                 pieceNode: vc.pieceNode,
                 newPieceNode: vc.newPieceNode,
@@ -58,8 +60,11 @@ public final class GameViewController: UIViewController, SegueHandlerType {
                 pieceNode: vc.pieceNode,
                 position: vc.position,
                 availableTargets: game.availableTargets,
+                availableCaptures: game.availableCaptures,
                 highlightAvailableTargets: vc.highlightAvailableTargets,
-                execute: vc.execute,
+                highlightAvailableCaptures: vc.highlightAvailableCaptures,
+//                animateNode: { _ in },
+//                animateNode: vc.animateNode,
                 removeHighlights: vc.removeHighlights
             )
             vc.userDidSelect = interactionCoordinator!.userDidSelect
@@ -95,9 +100,6 @@ public final class GameViewController: UIViewController, SegueHandlerType {
     func didSelect(rowAt index: Int?) {
 
         guard let game = game else { fatalError() }
-//        guard let i = index, i < game.endIndex else {
-//            return
-//        }
         guard let result = game.settingIndex(to: index) else {
             return
         }
@@ -107,15 +109,17 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
     }
 
-    func userDidExecute(move: Move) {
+    func userDidExecute(move: Move, promotion: Piece?) {
         do {
             guard let game = game else { fatalError("A game was expected.") }
+
             if game.isPromotion(for: move) {
-                
+
+            } else {
+                try game.execute(move: move)
+                updateHistory()
+                save(game)
             }
-            try game.execute(move: move)
-            updateHistory()
-            save(game)
         } catch {
             print("ERROR: Could not execute move: \(move)")
         }

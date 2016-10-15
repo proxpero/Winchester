@@ -11,30 +11,36 @@ import SpriteKit
 
 final class BoardInteractionCoordinator {
 
-    let userDidExecute: (Move) -> Void
+    let userDidExecute: (Move, Piece?) -> Void
 
     let pieceNode: (Square) -> PieceNode?
     let position: (Square) -> CGPoint
     let availableTargets: (Square) -> [Square]
+    let availableCaptures: (Square) -> [Square]
     let highlightAvailableTargets: ([Square]) -> Void
-    let execute: (Move) -> Void
+    let highlightAvailableCaptures: ([Square]) -> Void
+//    let animateNode: (Move, @escaping PromotionHandler) -> Void
     let removeHighlights: () -> Void
 
     init(
-        userDidExecute: @escaping (Move) -> Void,
+        userDidExecute: @escaping (Move, Piece?) -> Void,
         pieceNode: @escaping (Square) -> PieceNode?,
         position: @escaping (Square) -> CGPoint,
         availableTargets: @escaping (Square) -> [Square],
+        availableCaptures: @escaping (Square) -> [Square],
         highlightAvailableTargets: @escaping ([Square]) -> Void,
-        execute: @escaping (Move) -> Void,
+        highlightAvailableCaptures: @escaping ([Square]) -> Void,
+//        animateNode: @escaping (Move, PromotionHandler) -> Void,
         removeHighlights: @escaping () -> Void
     ) {
         self.userDidExecute = userDidExecute
         self.pieceNode = pieceNode
         self.position = position
         self.availableTargets = availableTargets
+        self.availableCaptures = availableCaptures
         self.highlightAvailableTargets = highlightAvailableTargets
-        self.execute = execute
+        self.highlightAvailableCaptures = highlightAvailableCaptures
+//        self.animateNode = animateNode
         self.removeHighlights = removeHighlights
     }
 
@@ -73,6 +79,7 @@ final class BoardInteractionCoordinator {
         _activeNode = node
         _initialSquare = origin
         highlightAvailableTargets(availableTargets(origin))
+        highlightAvailableCaptures(availableCaptures(origin))
     }
 
     private func _normalizeActivity() {
@@ -98,8 +105,9 @@ final class BoardInteractionCoordinator {
             return
         }
 
-        userDidExecute(move)
-        execute(move)
+//        execute(move) { promotion in
+//            self.userDidExecute(move, promotion)
+//        }
     }
 
 }

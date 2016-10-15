@@ -11,6 +11,17 @@ import SpriteKit
 
 public typealias PieceNode = SKSpriteNode
 
+extension PieceNode {
+    var piece: Piece {
+        guard
+            let name = self.name,
+            let char = name.characters.first,
+            let piece = Piece(character: char)
+        else { fatalError("Could not create piece from PieceNode name: \(self.name)") }
+        return piece
+    }
+}
+
 public final class PiecesLayer: SKSpriteNode, GameLayer {
 
     typealias NodeType = PieceNode

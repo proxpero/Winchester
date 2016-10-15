@@ -15,9 +15,7 @@ protocol SceneDelegate: class {
 
 public final class GameScene: SKScene {
 
-    var userDidSelect: (Square) -> () = { _ in
-        print(#function)
-    }
+    var userDidSelect: (Square) -> () = { _ in }
 
     let squaresLayer: SquaresLayer
     let arrowsLayer: ArrowsLayer
@@ -69,6 +67,37 @@ public final class GameScene: SKScene {
         #endif
     }
 
+    var blurFilter: CIFilter {
+        guard let filter = CIFilter(name: "CIGaussianBlur") else {
+            fatalError("Could not create filter")
+        }
+        filter.setDefaults()
+        return filter
+    }
+
+    func blur() {
+
+        let filter = blurFilter
+        filter.setValue(40.0, forKey: "inputRadius")
+        self.shouldEnableEffects = true
+        self.filter = filter
+
+    }
+
+    func unblur() {
+        self.filter = nil
+    }
+
+    func showPromotion() {
+
+        let inset = size.width*0.2
+
+        
+
+//        let promotion = UIView(frame: frame.insetBy(dx: inset, dy: inset))
+
+    }
+
     /**
      Returns a `Square` corresponding to the given location.
      */
@@ -100,6 +129,50 @@ public final class GameScene: SKScene {
 
     private func add<T>(layer: T) where T: GameLayer, T: SKNode {
         addChild(layer)
+    }
+
+}
+
+extension SKScene {
+
+    var blurred: SKSpriteNode {
+        let viewSize = CGSize(width: self.view!.frame.size.width, height: self.view!.frame.size.height)
+
+
+        let renderer = UIGraphicsImageRenderer(size: size)
+        let context = UIGraphicsRendererContext()
+        let image_ = renderer.image(actions: { ctx in
+            let x = ctx.currentImage
+        })
+
+        print(image_)
+
+
+
+
+        UIGraphicsBeginImageContextWithOptions(viewSize, true, 1.0)
+        view!.drawHierarchy(in: self.view!.frame, afterScreenUpdates: true)
+        _ = UIGraphicsGetCurrentContext()
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        let ciContext = CIContext(options: nil)
+//        let coreImage = CIImage(image: image!)
+//        let filter = CIFilter(name: "CIGaussianBlur")
+//        filter?.setDefaults()
+//        filter?.setValue(coreImage, forKey: kCIInputImageKey)
+//        filter?.setValue(3.0, forKey: kCIInputRadiusKey)
+//        let filteredImageData = filter?.value(forKey: kCIOutputImageKey) as! CIImage
+//        let filteredImageRef = ciContext.createCGImage(filteredImageData, from: filteredImageData.extent)
+//        let filteredImage = UIImage(cgImage: filteredImageRef!)
+        
+        let texture = SKTexture(image: image!)
+
+//        let texture = SKTexture(image: filteredImage)
+        let sprite = SKSpriteNode(texture: texture)
+        sprite.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        let scale = UIScreen.main.scale
+        sprite.size.width *= scale
+        sprite.size.height *= scale
+        return sprite
     }
 
 }

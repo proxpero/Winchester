@@ -23,7 +23,8 @@ extension GameScene {
     func panAction(sender: UIPanGestureRecognizer) {
         if let location = view?.convert(sender.location(in: view), to: self) {
             let square = self.square(at: location)
-            print("\(location), \(square)")
+            
+
         }
     }
 }
