@@ -43,21 +43,16 @@ final class HistoryCoordinator {
                 )
             }
         }
-
     }
- 
 }
 
 internal extension Game {
-
     var historyRows: Int {
         let moves = self.count
         let rows = 1 + moves + (moves % 2 == 0 ? moves/2 : (moves + 1)/2) + 1
         return rows
     }
-
 }
-
 
 internal final class HistoryViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 

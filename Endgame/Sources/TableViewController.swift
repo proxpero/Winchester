@@ -8,6 +8,20 @@
 
 import UIKit
 
+protocol TableViewable {
+
+    associatedtype Element
+
+    var items: [Element]
+    var itemCount: Int { get }
+    var tableViewStyle: UITableViewStyle { get }
+    var cellNibName: String? { get }
+    var reusableCellClass: Reusable.Type { get }
+    var didSelect: (Element) -> ()
+
+}
+
+
 struct TableViewConfiguration<Item> {
 
     let items: [Item]
@@ -20,7 +34,7 @@ struct TableViewConfiguration<Item> {
 
 }
 
-final class TableViewController<Item>: UITableViewController {
+final class TableViewController<Item>: UITableViewController where Item: TableViewable {
 
     let configuration: TableViewConfiguration<Item>
 
