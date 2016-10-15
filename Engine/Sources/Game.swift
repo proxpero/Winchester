@@ -80,10 +80,12 @@ public class Game {
 
     // MARK: - Public API
 
+    /// Returns the color of the player whose turn it is.
     public var playerTurn: Color {
         return currentPosition.playerTurn
     }
 
+    /// Returns the last move of the position.
     public var latestMove: Move? {
         guard let current = _currentIndex else {
             return nil
@@ -91,12 +93,18 @@ public class Game {
         return _items[current].move
     }
 
+    /// Returns whether `move` is a promotion.
     public func isPromotion(for move: Move) -> Bool {
         return currentPosition.board[move.target]?.kind == .pawn && move.reachesEndRank(for: playerTurn)
     }
 
+    /// Returns the squares a side could potentially occupy.
+    ///
+    /// - parameter color: The player on whose behalf the computation is made.
+    ///
+    /// - returns: An array of `Square`s.
     public func availableTargets(for color: Color) -> [Square] {
-        return currentPosition._legalTargetSquares(for: color, considerHalfmoves: false)
+        return currentPosition._legalTargetSquares(for: color)
     }
 
     public func availableCaptures(for color: Color) -> [Square] {
@@ -104,7 +112,11 @@ public class Game {
     }
 
     public func availableTargets(forPieceAt square: Square) -> [Square] {
-        return currentPosition._legalTargetSquares(from: square, considerHalfmoves: false)
+        return currentPosition._legalTargetSquares(from: square)
+    }
+
+    public func availableCaptures(forPieceAt square: Square) -> [Square] {
+        return currentPosition._legalCaptures(forPieceAt: square)
     }
 
     public var squaresAttackingKing: [Square] {
