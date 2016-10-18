@@ -54,11 +54,7 @@ extension GameViewController {
 
         case .title:
             guard let vc = segue.destination as? TitleViewContoller else { fatalError() }
-            vc.model = TitleViewContoller.Model(
-                white: game.whitePlayer,
-                black: game.blackPlayer,
-                outcome: game.outcome
-            )
+            vc.model = TitleViewContoller.Model(for: game)
 
         case .board:
             guard let vc = segue.destination as? BoardViewController else { fatalError() }
