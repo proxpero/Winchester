@@ -9,153 +9,284 @@
 import Engine
 import SpriteKit
 
-final class HistoryCoordinator {
+let height: CGFloat = 44.0
 
-    let cellType: (Game) -> (Int) -> HistoryCellType
-    let rows: (Game) -> () -> Int
-    let update: (UICollectionView) -> () -> ()
+#if os(OSX)
+    import Cocoa
+    typealias CollectionViewController = NSCollectionViewController
+#elseif os(iOS) || os(tvOS)
+    import UIKit
+    typealias CollectionViewController = UICollectionViewController
+#endif
 
-    init() {
+final class HistoryViewController: CollectionViewController {
 
-        self.cellType = { game in
-            { index in
-                HistoryCellType(row: index, game: game)
+    var model: Model!
+    var delegate: Delegate!
+
+}
+
+// MARK: - ItemType
+
+extension HistoryViewController {
+
+    enum ItemType {
+
+        case start
+        case number(Int)
+        case move(String)
+        case outcome(Outcome)
+
+        var text: String {
+            switch self {
+            case .start: return "Start"
+            case .number(let n): return "\(n)."
+            case .move(let m): return m.replacingOccurrences(of: "x", with: "×")
+            case .outcome(let outcome): return outcome.userDescription
             }
         }
 
-        self.rows = { game in
-            return {
+        var textAlignment: NSTextAlignment {
+            switch self {
+            case .start: return .center
+            case .number: return .right
+            case .move: return .center
+            case .outcome: return .center
+            }
+        }
+
+        var shouldBeSelected: Bool {
+            switch self {
+            case .start: return true
+            case .number: return false
+            case .move: return true
+            case .outcome: return false
+            }
+        }
+
+        var size: CGSize {
+            let width: CGFloat
+            switch self {
+            case .start: width = 80
+            case .number: width = 45
+            case .move: width = 70
+            case .outcome: width = 80
+            }
+            return CGSize(width: width, height: height)
+        }
+
+        var isBordered: Bool {
+            switch self {
+            case .number: return false
+            case .outcome: return false
+            default: return true
+            }
+        }
+
+        func configureCell(cell: HistoryCell) {
+            cell.label.text = self.text
+            cell.isBordered = self.isBordered
+            cell.label.textAlignment = self.textAlignment
+        }
+
+        static func == (lhs: ItemType, rhs: ItemType) -> Bool {
+            switch (lhs, rhs) {
+            case (.start, .start): return true
+            case (.number(let a), .number(let b)): return a == b
+            case (.move(let a), .move(let b)): return a == b
+            case (.outcome(let a), .outcome(let b)): return a == b
+            default:
+                return false
+            }
+        }
+    }
+}
+
+// MARK: Model
+
+extension HistoryViewController {
+
+    struct Model {
+
+        let rowCount: () -> (Int)
+        private let outcome: () -> Outcome
+        private let sanMove: (Int) -> String
+
+        init(for game: Game) {
+            self.rowCount = {
                 let moves = game.count
-                let rows = 1 + moves + (moves % 2 == 0 ? moves/2 : (moves + 1)/2) + 1
+                let rows = 1 + moves + (moves.isEven ? moves/2 : (moves + 1)/2) + 1
                 return rows
             }
-        }
-
-        self.update = { collectionView in
-            return {
-                collectionView.reloadData()
-                let row = collectionView.numberOfItems(inSection: 0) - 2
-                let indexPath = IndexPath(row: row, section: 0)
-                collectionView.selectItem(
-                    at: indexPath,
-                    animated: true,
-                    scrollPosition: .centeredHorizontally
-                )
+            self.outcome = {
+                return game.outcome
+            }
+            self.sanMove = { index in
+                return game[index].sanMove
             }
         }
-    }
-}
 
-internal extension Game {
-    var historyRows: Int {
-        let moves = self.count
-        let rows = 1 + moves + (moves % 2 == 0 ? moves/2 : (moves + 1)/2) + 1
-        return rows
-    }
-}
+        func itemType(at indexPath: IndexPath) -> ItemType {
 
-internal final class HistoryViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+            if isStart(for: indexPath) { return .start }
+            if isOutcome(for: indexPath) { return .outcome(self.outcome()) }
+            if isNumberCell(for: indexPath) { return .number(fullmoveValue(for: indexPath)) }
 
-    var didSelect: (Int?) -> () = { _ in }
-    var cellType: (_ row: Int) -> HistoryCellType = { _ in return .start }
-    var rows: () -> Int = { _ in 0 }
+            guard let itemIndex = itemIndex(for: indexPath) else { fatalError("Expected a move") }
+            return .move(self.sanMove(itemIndex))
 
-    func cellType(for game: Game) -> (Int) -> HistoryCellType {
-        return { index in
-            HistoryCellType(row: index, game: game)
+        }
+
+        func itemIndex(for indexPath: IndexPath) -> Int? {
+            let row = indexPath.row
+            guard row != 0 else {
+                return nil
+            }
+            return 2*row/3 - 1
+        }
+
+        func isStart(for indexPath: IndexPath) -> Bool {
+            return indexPath.row == 0
+        }
+
+        func isOutcome(for indexPath: IndexPath) -> Bool {
+            return indexPath.row == rowCount() - 1
+        }
+
+        func isNumberCell(for indexPath: IndexPath) -> Bool {
+            return (indexPath.row-1)%3 == 0
+        }
+
+        func indexPath(for itemIndex: Int) -> IndexPath {
+            let row = ((itemIndex.isEven ? 2 : 0) + (6 * (itemIndex + 1))) / 4
+            return IndexPath(row: row, section: 0)
+        }
+
+        func fullmoveValue(for indexPath: IndexPath) -> Int {
+            return (indexPath.row-1)/3 + 1
+        }
+
+        func nextMoveCell(after indexPath: IndexPath) -> IndexPath {
+            let next = indexPath.row + 1
+            let candidate = IndexPath(row: next, section: 0)
+            if isNumberCell(for: candidate) {
+                return IndexPath(row: next+1, section: 0)
+            } else {
+                return candidate
+            }
+        }
+
+        func previousMoveCell(before indexPath: IndexPath) -> IndexPath {
+            let prev = indexPath.row - 1
+            let candidate = IndexPath(row: prev, section: 0)
+            if isNumberCell(for: candidate) {
+                return IndexPath(row: prev-1, section: 0)
+            } else {
+                return candidate
+            }
+        }
+
+        var lastMove: IndexPath {
+            return IndexPath(row: rowCount() - 1, section: 0)
+        }
+
+        func contains(indexPath: IndexPath) -> Bool {
+            return (0 ..< rowCount()).contains(indexPath.row)
         }
     }
+}
 
-    func advanceMove(sender: UISwipeGestureRecognizer) {
-        
-        guard
-            let indexPath = collectionView?.indexPathsForSelectedItems?.first,
-            indexPath.row < rows()
-        else { return }
+// MARK: - Delegate
 
-        collectionView?.selectItem(
-            at: IndexPath(row: indexPath.row.asNextMoveRowIndex, section: 0),
-            animated: true,
-            scrollPosition: .centeredHorizontally)
-        let selectedIndex: Int? = indexPath.row > 0 ? indexPath.row.asItemIndex! + 1 : 0
-        // check if too far
-        didSelect(selectedIndex)
+extension HistoryViewController {
+
+    struct Delegate {
+        let didSelectItem: (Int?) -> ()
+
+        init(didSelectItem: @escaping (Int?) -> ()) {
+            self.didSelectItem = didSelectItem
+        }
+
+        func didSelectHistoryItem(at index: Int?) {
+
+        }
+
+        func didSelectCell(at indexPath: IndexPath) {
+            // a conversion must be made to map the index path to the proper history item index.
+            // then call `didSelectHistoryItem(at: index)`
+        }
+
+    }
+}
+
+#if os(iOS) || os(tvOS)
+
+// MARK: - External Actions
+
+extension HistoryViewController {
+
+    func update() {
+        collectionView?.reloadData()
+        collectionView?.selectItem(at: model.lastMove, animated: true, scrollPosition: .centeredHorizontally)
     }
 
     func handleSwipe(recognizer: UISwipeGestureRecognizer) {
 
-        guard let indexPath = collectionView?.indexPathsForSelectedItems?.first else {
-            return
-        }
+        guard let indexPath = collectionView?.indexPathsForSelectedItems?.first else { return }
 
-        let selectedRow: Int
-        let add: Bool
-        
-        if recognizer.direction == UISwipeGestureRecognizerDirection.left && indexPath.row < rows() - 1 {
-            selectedRow = indexPath.row.asNextMoveRowIndex
-            // Don't allow selection past the end
-            if selectedRow == rows() - 1 { return }
-            add = true
-        } else if recognizer.direction == UISwipeGestureRecognizerDirection.right && indexPath.row > 1 {
-            selectedRow = indexPath.row.asPreviousMoveRowIndex
-            add = false
-        } else {
-            return
-        }
+        let isLeft = recognizer.direction == UISwipeGestureRecognizerDirection.left
+        let isRight = recognizer.direction == UISwipeGestureRecognizerDirection.right
+        guard isLeft || isRight else { return }
 
-        collectionView?.selectItem(
-            at: IndexPath(row: selectedRow, section: 0),
-            animated: true,
-            scrollPosition: .centeredHorizontally
-        )
+        let candidate = isLeft ? model.nextMoveCell(after: indexPath) : model.previousMoveCell(before: indexPath)
+        guard model.contains(indexPath: candidate) else { return }
 
-        var selectedIndex: Int?
+        collectionView?.selectItem(at: candidate, animated: true, scrollPosition: .centeredHorizontally)
+        delegate.didSelectCell(at: candidate)
 
-        switch (selectedRow.asItemIndex, add) {
-        case (.none, true):
-            selectedIndex = 0
-        case (.none, false):
-            selectedIndex = nil
-        case (.some(let index), true):
-            selectedIndex = index
-        case (.some(let index), false):
-            selectedIndex = index
-        }
-        didSelect(selectedIndex)
     }
 
-    // MARK: - UIKit
+}
+
+// MARK: - UIKit
+
+extension HistoryViewController: UICollectionViewDelegateFlowLayout {
 
     override func viewDidAppear(_ animated: Bool) {
-        let indexPath = IndexPath(row: 0, section: 0)
-        collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        // handle the initial selection?
     }
+
+    // MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return rows()
+        return model.rowCount()
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(HistoryCell.self)", for: indexPath) as? HistoryCell else { fatalError() }
-        cellType(indexPath.row).configureCell(cell: cell)
+        model.itemType(at: indexPath).configureCell(cell: cell)
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return cellType(indexPath.row).size
-    }
+    // MARK: - UICollectionViewDelegate
 
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return cellType(indexPath.row).shouldBeSelected
+        return model.itemType(at: indexPath).shouldBeSelected
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        didSelect(indexPath.row.asItemIndex)
+        delegate.didSelectCell(at: indexPath)
+    }
+
+    // MARK: - UICollectionViewDelegateFlowLayout
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return model.itemType(at: indexPath).size
     }
 
 }
@@ -184,134 +315,10 @@ final class HistoryCell: UICollectionViewCell {
 
 }
 
-enum HistoryCellType: CustomStringConvertible, Equatable {
-
-    case start
-    case number(Int)
-    case move(String)
-    case outcome(Outcome)
-
-    init(row: Int, game: Game) {
-
-        guard let itemIndex = row.asItemIndex else {
-            self = .start
-            return
-        }
-
-        // If white plays the last move or if black plays the last move...
-        if itemIndex >= game.endIndex || (row.isNumberRow && itemIndex == game.endIndex - 1) {
-            self = .outcome(game.outcome)
-        }
-        else if row.isNumberRow {
-            self = .number(row.asFullmoveIndex)
-        }
-        else {
-            self = .move(game[itemIndex].sanMove)
-        }
-    }
-
-    var description: String {
-        switch self {
-        case .start: return "Start"
-        case .number(let n): return "\(n)."
-        case .move(let m): return m.replacingOccurrences(of: "x", with: "×")
-        case .outcome(let outcome): return outcome.userDescription
-        }
-    }
-
-    var shouldBeSelected: Bool {
-        switch self {
-        case .start: return true
-        case .number: return false
-        case .move: return true
-        case .outcome: return false
-        }
-    }
-
-    var size: CGSize {
-        let width: CGFloat
-        switch self {
-        case .start: width = 80
-        case .number: width = 45
-        case .move: width = 70
-        case .outcome: width = 80
-        }
-        return CGSize(width: width, height: 44)
-    }
-
-    var isBordered: Bool {
-        switch self {
-        case .number: return false
-        case .outcome: return false
-        default: return true
-        }
-    }
-
-    func configureCell(cell: HistoryCell) {
-        cell.label.text = self.description
-        cell.isBordered = self.isBordered
-        let alignment: NSTextAlignment
-        switch self {
-        case .start: alignment = .center
-        case .number: alignment = .right
-        case .move: alignment = .center
-        case .outcome: alignment = .center
-        }
-        cell.label.textAlignment = alignment
-    }
-
-    static func == (lhs: HistoryCellType, rhs: HistoryCellType) -> Bool {
-        switch (lhs, rhs) {
-        case (.start, .start): return true
-        case (.number(let a), .number(let b)): return a == b
-        case (.move(let a), .move(let b)): return a == b
-        case (.outcome(let a), .outcome(let b)): return a == b
-        default:
-            return false
-        }
-    }
-}
+#endif
 
 extension Int {
-
     var isEven: Bool {
         return self % 2 == 0
     }
-
-    /// Returns whether `self` as an row index in the collection view is a `number` cell.
-    var isNumberRow: Bool {
-       return (self-1)%3 == 0
-    }
-
-    /// Converts the index from a game's history array to its corresponding row index in the collection view.
-    var asRowIndex: Int {
-        return ((self.isEven ? 2 : 0) + (6 * (self + 1))) / 4
-    }
-
-    /// Converts a collection view cell index to a natural number index. For example,
-    /// in the sequence "e4 e5 Nc3 Nf6 d3", the 
-    var asFullmoveIndex: Int {
-        return (self-1)/3 + 1
-    }
-
-    /// Converts a collection view cell index to its index in a `game`'s `moveHistory`.
-    var asItemIndex: Int? {
-        guard self != 0 else {
-            return nil
-        }
-        return 2*self/3 - 1
-    }
-
-    /// Returns the next index after `self` of a move in a history collection view.
-    var asNextMoveRowIndex: Int {
-        let next = self + 1
-        return next + (next.isNumberRow ? 1 : 0)
-    }
-
-    /// Returns the previous index before `self` of a move in a history collection view.
-    var asPreviousMoveRowIndex: Int {
-        let prev = self - 1
-        return prev - (prev.isNumberRow ? 1 : 0)
-    }
-
 }
