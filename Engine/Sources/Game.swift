@@ -85,6 +85,10 @@ public class Game {
         return currentPosition.playerTurn
     }
 
+    public var currentIndex: Int? {
+        return _currentIndex
+    }
+
     /// Returns the last move of the position.
     public var latestMove: Move? {
         guard let current = _currentIndex else {
@@ -354,9 +358,7 @@ public class Game {
 
 }
 
-extension Game: Collection {
-
-}
+extension Game: Collection { }
 
 // MARK: - Game Delegate
 

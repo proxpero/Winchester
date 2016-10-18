@@ -218,7 +218,7 @@ public struct Position: Equatable, CustomStringConvertible {
     public var ascii: String {
         return board.ascii
     }
-    
+
     // MARK: - Internal Computed Properties and Functions
 
     internal var _outcome: Outcome {
