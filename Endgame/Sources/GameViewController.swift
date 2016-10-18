@@ -22,17 +22,24 @@ public final class GameViewController: UIViewController, SegueHandlerType {
     var game: Game?
     var isEditable: Bool = false
     var save: (Game) -> () = { _ in }
+    var updateHistory: () -> Void = { }
 
-    private var historyCoordinator: HistoryCoordinator?
-    private var movementCoordinator: BoardMovementCoordinator?
-    private var arrowsCoordinator: BoardArrowsCoordinator?
-    private var interactionCoordinator: BoardInteractionCoordinator?
+    fileprivate var movementCoordinator: BoardMovementCoordinator?
+    fileprivate var arrowsCoordinator: BoardArrowsCoordinator?
+    fileprivate var interactionCoordinator: BoardInteractionCoordinator?
+}
 
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        guard let game = game else { fatalError() }
+extension GameViewController {
 
+    struct Delegate {
+        let userDidExecute: (Move, Piece?) -> ()
+        let updateHistory: () -> ()
+        let save: (Game) -> ()
+        let isEditable: Bool
     }
+}
+
+extension GameViewController {
 
     enum SegueIdentifier: String {
         case title = "TitleViewControllerSegueIdentifier"
@@ -47,7 +54,11 @@ public final class GameViewController: UIViewController, SegueHandlerType {
 
         case .title:
             guard let vc = segue.destination as? TitleViewContoller else { fatalError() }
-            vc.model = (game.whitePlayer, game.blackPlayer, game.outcome)
+            vc.model = TitleViewContoller.Model(
+                white: game.whitePlayer,
+                black: game.blackPlayer,
+                outcome: game.outcome
+            )
 
         case .board:
             guard let vc = segue.destination as? BoardViewController else { fatalError() }
@@ -66,9 +77,9 @@ public final class GameViewController: UIViewController, SegueHandlerType {
                 pieceNode: vc.pieceNode,
                 position: vc.position,
                 availableTargets: game.availableTargets,
-//                availableCaptures: game.availableCaptures,
-//                highlightAvailableTargets: vc.highlightAvailableTargets,
-//                highlightAvailableCaptures: vc.highlightAvailableCaptures,
+                availableCaptures: game.availableCaptures,
+                highlightAvailableTargets: vc.highlightAvailableTargets,
+                highlightAvailableCaptures: vc.highlightAvailableCaptures,
 //                animateNode: { _ in },
 //                animateNode: vc.animateNode,
                 removeHighlights: vc.removeHighlights
@@ -76,40 +87,23 @@ public final class GameViewController: UIViewController, SegueHandlerType {
             vc.userDidSelect = interactionCoordinator!.userDidSelect
 
         case .history:
-            guard let vc = segue.destination as? HistoryViewController, let collectionView = vc.collectionView else {
-                fatalError() }
+            guard let vc = segue.destination as? HistoryViewController else { fatalError() }
+            vc.delegate = HistoryViewController.Delegate(didSelectItem: self.didSelect)
+            vc.model = HistoryViewController.Model(for: game)
 
-            historyCoordinator = HistoryCoordinator()
-
-            vc.cellType = historyCoordinator!.cellType(game)
-            vc.rows = historyCoordinator!.rows(game)
-            updateHistory = historyCoordinator!.update(collectionView)
-            vc.didSelect = didSelect
-
-            let row: Int
-            if let currentIndex = game.currentIndex {
-                row = currentIndex.asRowIndex
-            } else {
-                row = 0
+            self.updateHistory = vc.update
+            
+            [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right]
+                .forEach { direction in
+                    view.addSwipeGestureRecognizer(
+                        target: vc,
+                        action: #selector(vc.handleSwipe(recognizer:)),
+                        direction: direction
+                    )
             }
-            vc.collectionView?.selectItem(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-
-            view.addSwipeGestureRecognizer(
-                target: vc,
-                action: #selector(vc.handleSwipe(recognizer:)),
-                direction: .left
-            )
-
-            view.addSwipeGestureRecognizer(
-                target: vc,
-                action: #selector(vc.handleSwipe(recognizer:)),
-                direction: .right
-            )
         }
-
     }
 
-    var updateHistory: () -> Void = { }
 
     func didSelect(rowAt index: Int?) {
 
