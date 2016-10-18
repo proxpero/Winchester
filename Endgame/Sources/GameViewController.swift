@@ -28,6 +28,12 @@ public final class GameViewController: UIViewController, SegueHandlerType {
     private var arrowsCoordinator: BoardArrowsCoordinator?
     private var interactionCoordinator: BoardInteractionCoordinator?
 
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        guard let game = game else { fatalError() }
+
+    }
+
     enum SegueIdentifier: String {
         case title = "TitleViewControllerSegueIdentifier"
         case board = "BoardViewControllerSegueIdentifier"
@@ -60,9 +66,9 @@ public final class GameViewController: UIViewController, SegueHandlerType {
                 pieceNode: vc.pieceNode,
                 position: vc.position,
                 availableTargets: game.availableTargets,
-                availableCaptures: game.availableCaptures,
-                highlightAvailableTargets: vc.highlightAvailableTargets,
-                highlightAvailableCaptures: vc.highlightAvailableCaptures,
+//                availableCaptures: game.availableCaptures,
+//                highlightAvailableTargets: vc.highlightAvailableTargets,
+//                highlightAvailableCaptures: vc.highlightAvailableCaptures,
 //                animateNode: { _ in },
 //                animateNode: vc.animateNode,
                 removeHighlights: vc.removeHighlights
@@ -79,6 +85,14 @@ public final class GameViewController: UIViewController, SegueHandlerType {
             vc.rows = historyCoordinator!.rows(game)
             updateHistory = historyCoordinator!.update(collectionView)
             vc.didSelect = didSelect
+
+            let row: Int
+            if let currentIndex = game.currentIndex {
+                row = currentIndex.asRowIndex
+            } else {
+                row = 0
+            }
+            vc.collectionView?.selectItem(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .centeredHorizontally)
 
             view.addSwipeGestureRecognizer(
                 target: vc,
@@ -125,10 +139,4 @@ public final class GameViewController: UIViewController, SegueHandlerType {
         }
     }
 
-    func availableSquares(for origin: Square) -> [Square] {
-        guard let game = game else {
-            fatalError()
-        }
-        return game.availableTargets(forPieceAt: origin)
-    }
 }

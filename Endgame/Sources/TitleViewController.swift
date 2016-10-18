@@ -9,7 +9,7 @@
 import UIKit
 import Engine
 
-internal final class TitleViewContoller: ViewController {
+internal final class TitleViewContoller: UIViewController {
 
     @IBOutlet var white: UILabel!
     @IBOutlet var black: UILabel!

@@ -6,20 +6,13 @@
 //  Copyright © 2016 Todd Olsen. All rights reserved.
 //
 
-#if os(OSX)
-    import Cocoa
-    typealias ViewController = NSViewController
-#elseif os(iOS) || os(tvOS)
-    import UIKit
-    typealias ViewController = UIViewController
-#endif
-
+import UIKit
 import SpriteKit
 import Engine
 
-internal final class BoardViewController: ViewController {
+internal final class BoardViewController: UIViewController {
 
-    @IBOutlet var promotionView: PromotionView!
+//    @IBOutlet var promotionView: PromotionView!
 
     override func viewDidLayoutSubviews() {
         guard let skview = view as? SKView else { return }
@@ -27,45 +20,45 @@ internal final class BoardViewController: ViewController {
         skview.presentScene(scene)
         scene.userDidSelect = userDidSelect
 
-        showPromotion(for: .white) { piece in
-            print(piece)
-        }
+//        showPromotion(for: .white) { piece in
+//            print(piece)
+//        }
     }
 
     func edge() -> CGFloat {
         return min(view.frame.width, view.frame.height)
     }
 
-    public override func viewDidLoad() {
-        let inset = edge() * 0.2
-        let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: edge(), height: edge()))
-        promotionView.frame = frame.insetBy(dx: inset, dy: inset)
-        promotionView.layer.cornerRadius = inset/3
-        promotionView.layer.borderColor = UIColor.gray.cgColor
-        promotionView.layer.borderWidth = 3.0
-        promotionView.layer.backgroundColor = UIColor(white: 0.8, alpha: 0.4).cgColor
-    }
+//    public override func viewDidLoad() {
+//        let inset = edge() * 0.2
+//        let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: edge(), height: edge()))
+//        promotionView.frame = frame.insetBy(dx: inset, dy: inset)
+//        promotionView.layer.cornerRadius = inset/3
+//        promotionView.layer.borderColor = UIColor.gray.cgColor
+//        promotionView.layer.borderWidth = 3.0
+//        promotionView.layer.backgroundColor = UIColor(white: 0.8, alpha: 0.4).cgColor
+//    }
 
-    func showPromotion(for color: Color, completion: @escaping (Piece) -> ()) {
-        promotionView.color = color
-        promotionView.center = CGPoint(x: view.frame.midX, y: view.frame.minX)
-        promotionView.alpha = 0.0
-        promotionView.completion = completion
-        view.addSubview(promotionView)
-        scene.blur()
-        UIView.animate(
-            withDuration: 0.6,
-            delay: 0.0,
-            options: .curveEaseInOut,
-            animations: {
-            self.promotionView.center = self.view!.center
-            self.promotionView.alpha = 1.0
-        })
-    }
+//    func showPromotion(for color: Color, completion: @escaping (Piece) -> ()) {
+//        promotionView.color = color
+//        promotionView.center = CGPoint(x: view.frame.midX, y: view.frame.minX)
+//        promotionView.alpha = 0.0
+//        promotionView.completion = completion
+//        view.addSubview(promotionView)
+//        scene.blur()
+//        UIView.animate(
+//            withDuration: 0.6,
+//            delay: 0.0,
+//            options: .curveEaseInOut,
+//            animations: {
+//            self.promotionView.center = self.view!.center
+//            self.promotionView.alpha = 1.0
+//        })
+//    }
 
-    func resetPromotion() {
-        promotionView.removeFromSuperview()
-    }
+//    func resetPromotion() {
+//        promotionView.removeFromSuperview()
+//    }
 
     var scene: GameScene {
         guard
@@ -127,16 +120,16 @@ internal final class BoardViewController: ViewController {
             let piece = movingNode.piece
             let isPromotion = piece.kind.isPawn && move.target.rank == Rank.init(endFor: piece.color)
             if isPromotion {
-                self.showPromotion(for: piece.color) { newPiece in
-                    let promotionNode = self.newPieceNode(for: newPiece)
-                    promotionNode.position = movingNode.position
-                    promotionNode.zPosition = movingNode.zPosition
-                    promotionNode.alpha = 0.0
-                    promotionNode.run(SKAction.fadeIn(withDuration: 0.2)) {
-                        self.add(promotionNode)
-                    }
-                    promotion(newPiece)
-                }
+//                self.showPromotion(for: piece.color) { newPiece in
+//                    let promotionNode = self.newPieceNode(for: newPiece)
+//                    promotionNode.position = movingNode.position
+//                    promotionNode.zPosition = movingNode.zPosition
+//                    promotionNode.alpha = 0.0
+//                    promotionNode.run(SKAction.fadeIn(withDuration: 0.2)) {
+//                        self.add(promotionNode)
+//                    }
+//                    promotion(newPiece)
+//                }
             }
         }
     }

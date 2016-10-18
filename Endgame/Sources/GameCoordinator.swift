@@ -6,4 +6,21 @@
 //  Copyright © 2016 Todd Olsen. All rights reserved.
 //
 
-import Foundation
+import Engine
+
+struct GameCoordinator {
+
+    private var _historyCoordinator: HistoryCoordinator?
+    private var _movementCoordinator: BoardMovementCoordinator?
+    private var _arrowsCoordinator: BoardArrowsCoordinator?
+    private var _interactionCoordinator: BoardInteractionCoordinator?
+
+
+
+    init(game: Game) {
+        
+    }
+
+
+
+}
