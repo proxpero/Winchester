@@ -20,7 +20,6 @@
 		52EA14571DA7F7BC00EBF078 /* BoardArrowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14451DA7F7BC00EBF078 /* BoardArrowsCoordinator.swift */; };
 		52EA14591DA7F7BC00EBF078 /* BoardMovementCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14471DA7F7BC00EBF078 /* BoardMovementCoordinator.swift */; };
 		52EA145A1DA7F7BC00EBF078 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14481DA7F7BC00EBF078 /* BoardViewController.swift */; };
-		52EA145B1DA7F7BC00EBF078 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA14491DA7F7BC00EBF078 /* GameCell.swift */; };
 		52EA145C1DA7F7BC00EBF078 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA144A1DA7F7BC00EBF078 /* GameLayer.swift */; };
 		52EA145D1DA7F7BC00EBF078 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA144B1DA7F7BC00EBF078 /* GameScene.swift */; };
 		52EA145E1DA7F7BC00EBF078 /* GameScene+TouchUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA144C1DA7F7BC00EBF078 /* GameScene+TouchUI.swift */; };
@@ -67,7 +66,6 @@
 		52EA14451DA7F7BC00EBF078 /* BoardArrowsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardArrowsCoordinator.swift; path = ../../../Sources/BoardArrowsCoordinator.swift; sourceTree = "<group>"; };
 		52EA14471DA7F7BC00EBF078 /* BoardMovementCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardMovementCoordinator.swift; path = ../../../Sources/BoardMovementCoordinator.swift; sourceTree = "<group>"; };
 		52EA14481DA7F7BC00EBF078 /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardViewController.swift; path = ../../../Sources/BoardViewController.swift; sourceTree = "<group>"; };
-		52EA14491DA7F7BC00EBF078 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameCell.swift; path = ../../../Sources/GameCell.swift; sourceTree = "<group>"; };
 		52EA144A1DA7F7BC00EBF078 /* GameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameLayer.swift; path = ../../../Sources/GameLayer.swift; sourceTree = "<group>"; };
 		52EA144B1DA7F7BC00EBF078 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = ../../../Sources/GameScene.swift; sourceTree = "<group>"; };
 		52EA144C1DA7F7BC00EBF078 /* GameScene+TouchUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GameScene+TouchUI.swift"; path = "../../../Sources/GameScene+TouchUI.swift"; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 				52EA14471DA7F7BC00EBF078 /* BoardMovementCoordinator.swift */,
 				52EA146D1DA966F600EBF078 /* BoardInteractionCoordinator.swift */,
 				52EA14481DA7F7BC00EBF078 /* BoardViewController.swift */,
-				52EA14491DA7F7BC00EBF078 /* GameCell.swift */,
 				52EA144A1DA7F7BC00EBF078 /* GameLayer.swift */,
 				52EA14521DA7F7BC00EBF078 /* SquaresLayer.swift */,
 				52EA14511DA7F7BC00EBF078 /* SquareNode.swift */,
@@ -249,7 +246,6 @@
 				52EA14561DA7F7BC00EBF078 /* ArrowsLayer.swift in Sources */,
 				52EA14601DA7F7BC00EBF078 /* HistoryViewController.swift in Sources */,
 				52EA145F1DA7F7BC00EBF078 /* GameViewController.swift in Sources */,
-				52EA145B1DA7F7BC00EBF078 /* GameCell.swift in Sources */,
 				52EA14591DA7F7BC00EBF078 /* BoardMovementCoordinator.swift in Sources */,
 				52EA14571DA7F7BC00EBF078 /* BoardArrowsCoordinator.swift in Sources */,
 				52EA145E1DA7F7BC00EBF078 /* GameScene+TouchUI.swift in Sources */,
