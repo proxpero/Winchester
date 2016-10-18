@@ -64,9 +64,6 @@
                         <barButtonItem key="rightBarButtonItem" image="Cog" id="c5J-Aq-fFt"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="promotionView" destination="0PQ-j0-4yM" id="s7G-dx-OJT"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZ6-cw-vvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -133,12 +130,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="promotionView" destination="0PQ-j0-4yM" id="OzG-BK-bdp"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="APy-ab-94b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="0PQ-j0-4yM" customClass="PromotionView" customModule="NewGameDemo">
+                <view contentMode="scaleToFill" id="0PQ-j0-4yM">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -149,16 +143,10 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YJ-sX-PbS">
                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="BlackQueen"/>
-                                            <connections>
-                                                <action selector="promotionSelected:" destination="0PQ-j0-4yM" eventType="touchUpInside" id="ULF-rb-frt"/>
-                                            </connections>
                                         </button>
                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBO-Gw-drx">
                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="BlackBishop"/>
-                                            <connections>
-                                                <action selector="promotionSelected:" destination="0PQ-j0-4yM" eventType="touchUpInside" id="pzG-Xp-kaE"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -167,16 +155,10 @@
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v5Z-8m-60P">
                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="BlackRook"/>
-                                            <connections>
-                                                <action selector="promotionSelected:" destination="0PQ-j0-4yM" eventType="touchUpInside" id="osX-It-Y4k"/>
-                                            </connections>
                                         </button>
                                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wss-5B-jvP">
                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="BlackPawn"/>
-                                            <connections>
-                                                <action selector="promotionSelected:" destination="0PQ-j0-4yM" eventType="touchUpInside" id="Utq-ld-J6x"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -190,12 +172,6 @@
                         <constraint firstItem="cUW-dm-p9V" firstAttribute="top" secondItem="0PQ-j0-4yM" secondAttribute="top" constant="20" symbolic="YES" id="SmI-iR-hJh"/>
                         <constraint firstAttribute="trailing" secondItem="cUW-dm-p9V" secondAttribute="trailing" constant="20" symbolic="YES" id="YCV-fM-gSL"/>
                     </constraints>
-                    <connections>
-                        <outlet property="bishopButton" destination="kBO-Gw-drx" id="6BK-kg-4Vg"/>
-                        <outlet property="knightButton" destination="Wss-5B-jvP" id="rLz-GQ-clV"/>
-                        <outlet property="queenButton" destination="6YJ-sX-PbS" id="OGU-bw-Ukh"/>
-                        <outlet property="rookButton" destination="v5Z-8m-60P" id="UCh-U7-k2C"/>
-                    </connections>
                 </view>
             </objects>
             <point key="canvasLocation" x="540" y="-177"/>

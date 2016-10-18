@@ -78,10 +78,10 @@
             </objects>
             <point key="canvasLocation" x="-243.47826086956525" y="88.043478260869577"/>
         </scene>
-        <!--View Controller-->
+        <!--Title View Contoller-->
         <scene sceneID="kHH-9o-WIj">
             <objects>
-                <viewController id="0Sx-fV-jAg" sceneMemberID="viewController">
+                <viewController id="0Sx-fV-jAg" customClass="TitleViewContoller" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qx8-LL-Jkr"/>
                         <viewControllerLayoutGuide type="bottom" id="m38-e7-sud"/>
@@ -96,10 +96,10 @@
             </objects>
             <point key="canvasLocation" x="647" y="-167"/>
         </scene>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="V1R-W7-y4v">
             <objects>
-                <viewController id="MEO-Cs-oaj" sceneMemberID="viewController">
+                <viewController id="MEO-Cs-oaj" customClass="GameViewController" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gvh-gN-qWo"/>
                         <viewControllerLayoutGuide type="bottom" id="GII-BC-sJZ"/>
@@ -173,10 +173,10 @@
             </objects>
             <point key="canvasLocation" x="646" y="64"/>
         </scene>
-        <!--View Controller-->
+        <!--History View Controller-->
         <scene sceneID="6yN-6G-z4o">
             <objects>
-                <viewController id="wYj-KV-ES5" sceneMemberID="viewController">
+                <viewController id="wYj-KV-ES5" customClass="HistoryViewController" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qqM-k4-sTC"/>
                         <viewControllerLayoutGuide type="bottom" id="b7A-Cd-tMG"/>
