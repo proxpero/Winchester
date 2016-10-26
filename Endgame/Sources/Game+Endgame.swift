@@ -9,18 +9,22 @@
 import Engine
 import UIKit
 
+extension UIView {
+
+    func image() -> UIImage {
+        UIGraphicsBeginImageContext(self.bounds.size)
+        self.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
+
+}
+
 extension Game {
 
     func images(with edge: CGFloat) -> [UIImage] {
-        func image(for view: UIView) -> UIImage {
-            UIGraphicsBeginImageContext(CGSize(width: edge, height: edge))
-            view.layer.render(in: UIGraphicsGetCurrentContext()!)
-            let image = UIGraphicsGetImageFromCurrentImageContext()!
-
-            UIGraphicsEndImageContext()
-            return image
-        }
-        return self.map { $0.position.thumbnail(edge: edge) }.map(image)
+        return self.map { $0.position.thumbnail(edge: edge) }.map { $0.image() }
     }
 
 }
