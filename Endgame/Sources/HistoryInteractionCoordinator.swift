@@ -11,14 +11,12 @@ import Engine
 struct HistoryInteractionConfiguration: HistoryViewDelegate {
 
     private let pieceModel: PieceNodeModel
-//    private let arrowModel: ArrowNodeModel
     private let game: Game
 
     private let userActivityDelegate: UserActivityDelegate?
 
-    init(pieceModel: PieceNodeModel, /* arrowModel: ArrowNodeModel,*/ for game: Game, with userActivityDelegate: UserActivityDelegate?) {
+    init(pieceModel: PieceNodeModel, for game: Game, with userActivityDelegate: UserActivityDelegate?) {
         self.pieceModel = pieceModel
-//        self.arrowModel = arrowModel
         self.game = game
         self.userActivityDelegate = userActivityDelegate
     }
@@ -27,7 +25,6 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
         guard let (direction, items) = game.settingIndex(to: itemIndex) else { return }
         mobilize(items, toward: direction)
         userActivityDelegate?.userDidNormalizeActivity()
-//        presentLastMoveArrow()
     }
 
     private func mobilize(_ items: [HistoryItem], toward direction: Direction) {
@@ -156,13 +153,6 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
             perform(transaction, on: pieceNode)
         }
     }
-
-//    func presentLastMoveArrow() {
-//        arrowModel.removeArrows(with: .lastMove)
-//        guard let move = game.latestMove else { return }
-//        let arrow = arrowModel.arrowNode(for: move, with: .lastMove)
-//        arrowModel.add(arrow)
-//    }
 
 }
 
