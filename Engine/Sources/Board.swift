@@ -596,9 +596,19 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
         return attackersToKing(for: color).count > 1
     }
 
-    internal func _defendedOccupations(for color: Color) -> Bitboard {
-        let mine = pieces(for: color).reduce(0) { $0 | self[$1] }
-        return _attacks(for: color) & mine
+    internal func _pieceDefenses() -> [Color: [Square: Bitboard]] {
+        var result: [Color: [Square: Bitboard]] = [:]
+        for color in [Color.white, Color.black] {
+            var side: Dictionary<Square, Bitboard> = [:]
+            for square in squares(for: color) {
+                var board = self
+                board.removePiece(at: square)
+                let defenders = board.attackers(targeting: square, color: color)
+                side[square] = defenders
+            }
+            result[color] = side
+        }
+        return result
     }
 
     internal func _attackedOccupations(for color: Color) -> Bitboard {
@@ -611,7 +621,4 @@ public struct Board: Sequence, CustomStringConvertible, Hashable {
         return _attacks(for: color) & enemies
     }
 
-    internal func _undefendedOccupations(for color: Color) -> Bitboard {
-        return _threatenedEnemies(for: color) & ~_defendedOccupations(for: color.inverse())
-    }
 }
