@@ -7,9 +7,8 @@
 //
 
 import UIKit
+import SpriteKit
 import Engine
-
-typealias PromotionHandler = (Piece?) -> ()
 
 enum ActivityState {
     case initiation(Square)
@@ -17,116 +16,131 @@ enum ActivityState {
     case end(Move)
 }
 
-public final class GameViewController: UIViewController, SegueHandlerType {
+struct Design: Equatable {
 
-    var game: Game?
-    var isEditable: Bool = false
-    var save: (Game) -> () = { _ in }
-    var updateHistory: () -> Void = { }
+    let isWide: Bool
+    let isBiased: Bool
+    let showGridLabels: Bool
 
-    fileprivate var movementCoordinator: BoardMovementCoordinator?
-    fileprivate var arrowsCoordinator: BoardArrowsCoordinator?
-    fileprivate var interactionCoordinator: BoardInteractionCoordinator?
-}
-
-extension GameViewController {
-
-    struct Delegate {
-        let userDidExecute: (Move, Piece?) -> ()
-        let updateHistory: () -> ()
-        let save: (Game) -> ()
-        let isEditable: Bool
-    }
-}
-
-extension GameViewController {
-
-    enum SegueIdentifier: String {
-        case title = "TitleViewControllerSegueIdentifier"
-        case board = "BoardViewControllerSegueIdentifier"
-        case history = "HistoryViewControllerSegueIdentifier"
+    init(size: CGSize, isBiased: Bool = false, showGridLabels: Bool = false) {
+        self.isWide = size.width > size.height
+        self.isBiased = isBiased
+        self.showGridLabels = showGridLabels
     }
 
-    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    var axis: UILayoutConstraintAxis {
+        return isWide ? .horizontal : .vertical
+    }
 
-        guard let game = game else { fatalError() }
-        switch segueIdentifierForSegue(segue) {
+    static func == (lhs: Design, rhs: Design) -> Bool {
+        return lhs.isWide == rhs.isWide && lhs.isBiased == rhs.isBiased && lhs.showGridLabels == rhs.showGridLabels
+    }
 
-        case .title:
-            guard let vc = segue.destination as? TitleViewContoller else { fatalError() }
-            vc.model = TitleViewContoller.Model(for: game)
 
-        case .board:
-            guard let vc = segue.destination as? BoardViewController else { fatalError() }
 
-            movementCoordinator = BoardMovementCoordinator(
-                pieceNode: vc.pieceNode,
-                newPieceNode: vc.newPieceNode,
-                perform: vc.perform
-            )
-            arrowsCoordinator = BoardArrowsCoordinator(
-                showLastMove: vc.showLastMove,
-                addArrow: vc.addArrow
-            )
-            interactionCoordinator = BoardInteractionCoordinator(
-                userDidExecute: userDidExecute,
-                pieceNode: vc.pieceNode,
-                position: vc.position,
-                availableTargets: game.availableTargets,
-                availableCaptures: game.availableCaptures,
-                highlightAvailableTargets: vc.highlightAvailableTargets,
-                highlightAvailableCaptures: vc.highlightAvailableCaptures,
-//                animateNode: { _ in },
-//                animateNode: vc.animateNode,
-                removeHighlights: vc.removeHighlights
-            )
-            vc.userDidSelect = interactionCoordinator!.userDidSelect
+}
 
-        case .history:
-            guard let vc = segue.destination as? HistoryViewController else { fatalError() }
-            vc.delegate = HistoryViewController.Delegate(didSelectItem: self.didSelect)
-            vc.model = HistoryViewController.Model(for: game)
+public final class GameViewController: UIViewController {
 
-            self.updateHistory = vc.update
-            
-            [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right]
-                .forEach { direction in
-                    view.addSwipeGestureRecognizer(
-                        target: vc,
-                        action: #selector(vc.handleSwipe(recognizer:)),
-                        direction: direction
-                    )
-            }
+    var userActivityCoordinator: UserActivityCoordinator!
+    var boardInteractionCoordinator: BoardInteractionCoordinator!
+
+    @IBOutlet var stackView: UIStackView!
+
+    var titleViewController: TitleViewContoller!
+    var boardViewController: BoardViewController!
+    var historyViewController: HistoryViewController!
+    var accessoryViewController: UIViewController?
+
+    var displayedDesign: Design? = nil
+
+    private var isFirstPass = true
+
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        let newDesign = Design(size: view.bounds.size)
+        if displayedDesign != newDesign {
+            addChildViewController(titleViewController)
+            stackView.addArrangedSubview(titleViewController.view)
+            titleViewController.didMove(toParentViewController: self)
+
+            addChildViewController(boardViewController)
+            stackView.addArrangedSubview(boardViewController.view)
+            boardViewController.didMove(toParentViewController: self)
+
+            addChildViewController(historyViewController)
+            stackView.addArrangedSubview(historyViewController.view)
+            historyViewController.didMove(toParentViewController: self)
+
+            presentScene()
+            displayedDesign = newDesign
         }
     }
 
+    var presentScene: () -> Void  =  { }
 
-    func didSelect(rowAt index: Int?) {
 
-        guard let game = game else { fatalError() }
-        guard let result = game.settingIndex(to: index) else {
-            return
-        }
+    // MARK: Stored Properties
+//    var _coordinator: GameCoordinator!
 
-        movementCoordinator?.arrange(items: result.items, direction: result.direction)
-        arrowsCoordinator?.showLastMove(game.latestMove)
+    // MARK: - Storyboard
 
-    }
+//    enum SegueIdentifier: String {
+//        case title = "TitleViewControllerSegueIdentifier"
+//        case board = "BoardViewControllerSegueIdentifier"
+//        case history = "HistoryViewControllerSegueIdentifier"
+//    }
 
-    func userDidExecute(move: Move, promotion: Piece?) {
-        do {
-            guard let game = game else { fatalError("A game was expected.") }
-
-            if game.isPromotion(for: move) {
-
-            } else {
-                try game.execute(move: move)
-                updateHistory()
-                save(game)
-            }
-        } catch {
-            print("ERROR: Could not execute move: \(move)")
-        }
-    }
+//    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        switch segueIdentifierForSegue(segue) {
+//
+//        case .title:
+//            guard let vc = segue.destination as? TitleViewContoller else { fatalError() }
+//            vc.dataSource = _coordinator.titleConfiguration
+//
+//        case .board:
+//            guard let vc = segue.destination as? BoardViewController else { fatalError() }
+//            vc.boardResizingEventHandler = _coordinator.boardResizingEventHandler
+//
+//        case .history:
+//            guard let vc = segue.destination as? HistoryViewController else { fatalError() }
+//            vc.model = _coordinator.historyConfiguration
+//            vc.delegate = _coordinator.historyInteractionConfiguration
+//
+//            // Add left and right swipe gesture recognizers to the view.
+//            [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right]
+//                .forEach { direction in
+//                    view.addSwipeGestureRecognizer(
+//                        target: vc,
+//                        action: #selector(vc.handleSwipe(recognizer:)),
+//                        direction: direction
+//                    )
+//            }
+//        }
+//    }
 
 }
+
+//extension BoardInteractionCoordinator: UserActivityDelegate {
+//    func userDidBeginActivity(on origin: Square) {
+//        
+//    }
+//
+//    func userDidEndActivity(with move: Move, for pieceNode: PieceNode) {
+//
+//    }
+//
+//    func userDidNormalizeActivity() {
+//
+//    }
+//
+//    func userDidPromote(with color: Color) -> Piece? {
+//        return nil
+//    }
+//
+//    func userDidExecute(move: Move, promotion: Piece?) {
+//
+//    }
+//}
