@@ -9,7 +9,8 @@
 import Engine
 import SpriteKit
 
-final class BoardInteractionCoordinator {
+
+struct BoardInteractionCoordinator {
 
     let userDidExecute: (Move, Piece?) -> Void
 
