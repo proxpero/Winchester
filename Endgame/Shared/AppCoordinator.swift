@@ -56,24 +56,22 @@ struct ApplicationCoordinator {
             return vc
         }
 
-        func _presentGame(_ game: Game) {
-            let vc = _gameViewController()
-            game.undoAll()
-            vc.game = game        
-            _navigationController.pushViewController(vc, animated: true)
+
+        func gameCoordinator(for game: Game) -> GameCoordinator {
+
+            let coordinator = GameCoordinator(for: game, with: _navigationController)
+            return coordinator
+            
         }
 
         func _presentNewGame() {
             let vc = _gameViewController()
-            vc.game = Game()
-            vc.isEditable = true
             _navigationController.pushViewController(vc, animated: true)
         }
 
         func _presentUserGame(game: Game) {
-            let vc = _gameViewController()
-            vc.game = game
-            _navigationController.pushViewController(vc, animated: true)
+            let coordinator = GameCoordinator(for: game, with: _navigationController)
+            coordinator.start()
         }
 
         func _presentAllUserGames() {
@@ -82,8 +80,6 @@ struct ApplicationCoordinator {
 
         func _presentFavoriteGame(game: Game) {
             let vc = _gameViewController()
-            vc.game = game
-            vc.isEditable = false
             _navigationController.pushViewController(vc, animated: true)
         }
 
