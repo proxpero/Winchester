@@ -11,28 +11,15 @@ import Engine
 
 internal final class TitleViewContoller: UIViewController {
 
-    struct Model {
-        let white: Player
-        let black: Player
-        let outcome: Outcome
-        init(for game: Game) {
-            self.white = game.whitePlayer
-            self.black = game.blackPlayer
-            self.outcome = game.outcome
-        }
+    var dataSource: TitleViewDataSource? {
+        didSet { reloadData() }
     }
 
-    var model: Model? {
-        didSet {
-            refresh()
-        }
-    }
-
-    func refresh() {
-        guard let model = model else { return }
-        white.text = model.white.name
-        black.text = model.black.name
-        outcome.text = model.outcome.userDescription
+    func reloadData() {
+        guard let dataSource = dataSource, view != nil else { return }
+        white.text = dataSource.white.name
+        black.text = dataSource.black.name
+        outcome.text = dataSource.outcome.userDescription
     }
 
     @IBOutlet var white: UILabel!
@@ -40,8 +27,6 @@ internal final class TitleViewContoller: UIViewController {
     @IBOutlet var outcome: UILabel!
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        view.heightAnchor.constraint(equalToConstant: 44)
-        refresh()
+        view.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
 }
