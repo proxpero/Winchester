@@ -22,13 +22,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7rQ-SR-c3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1135" y="98"/>
+            <point key="canvasLocation" x="-1508" y="98"/>
         </scene>
         <!--Endgame-->
         <scene sceneID="NOa-TU-Pqm">
             <objects>
                 <collectionViewController storyboardIdentifier="RootCellectionView" id="PXc-qv-jRj" customClass="RootCollectionViewController" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="13f-fl-0ih">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="13f-fl-0ih">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,10 +40,10 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShowGameCell" id="ZNa-9i-iDw" customClass="ShowGameCell" customModule="Endgame" customModuleProvider="target">
-                                <rect key="frame" x="20" y="50" width="351" height="153"/>
+                                <rect key="frame" x="12" y="50" width="351" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="351" height="153"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="351" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkR-Fk-tAj">
@@ -83,11 +83,6 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outcome" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ler-sX-FQt">
-                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -101,11 +96,10 @@
                                     <constraint firstItem="RkR-Fk-tAj" firstAttribute="bottom" secondItem="ZNa-9i-iDw" secondAttribute="bottom" id="RSD-hW-Yw9"/>
                                     <constraint firstItem="RkR-Fk-tAj" firstAttribute="trailing" secondItem="ZNa-9i-iDw" secondAttribute="trailing" id="hXI-Ci-U5j"/>
                                 </constraints>
-                                <size key="customSize" width="351" height="153"/>
+                                <size key="customSize" width="351" height="100"/>
                                 <connections>
                                     <outlet property="blackLabel" destination="2oM-2h-yTW" id="Xci-e9-s5h"/>
                                     <outlet property="imageView" destination="Nok-GV-Fgd" id="94C-OM-7xN"/>
-                                    <outlet property="outcomeLabel" destination="ler-sX-FQt" id="7MX-Fx-6Qx"/>
                                     <outlet property="whiteLabel" destination="jMw-cR-H5q" id="8gi-v1-tqA"/>
                                 </connections>
                             </collectionViewCell>
@@ -161,65 +155,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e80-oe-dJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-640" y="98"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="0rk-9v-BLK">
-            <objects>
-                <viewController id="jek-fj-Zw9" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bFA-PR-tc5"/>
-                        <viewControllerLayoutGuide type="bottom" id="b70-rV-hsK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pzE-MZ-dhJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="F5o-as-GEf">
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WH0-fM-uPY">
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="MP3-vm-Xx3"/>
-                                        </constraints>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gns-yG-MNv">
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKG-26-qqT">
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="qKG-26-qqT" secondAttribute="height" multiplier="1:1" id="nwo-aJ-ChR"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJ0-06-yMG">
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUv-v1-Hqm">
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" priority="979" constant="44" id="RQl-Ig-naa"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="F5o-as-GEf" secondAttribute="trailing" id="Gyb-Nv-wtH"/>
-                            <constraint firstItem="b70-rV-hsK" firstAttribute="top" secondItem="F5o-as-GEf" secondAttribute="bottom" id="J0b-er-26o"/>
-                            <constraint firstItem="F5o-as-GEf" firstAttribute="leading" secondItem="pzE-MZ-dhJ" secondAttribute="leading" id="d8s-aA-y6m"/>
-                            <constraint firstItem="F5o-as-GEf" firstAttribute="top" secondItem="bFA-PR-tc5" secondAttribute="bottom" id="e1F-ce-Wsr"/>
-                        </constraints>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="r0h-80-LOX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3173.5999999999999" y="97.601199400299862"/>
+            <point key="canvasLocation" x="-790" y="98"/>
         </scene>
         <!--Game-->
         <scene sceneID="l6v-zF-CR0">
@@ -252,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s7s-hA-Hi4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-133" y="98"/>
+            <point key="canvasLocation" x="-108" y="98"/>
         </scene>
         <!--Title View Contoller-->
         <scene sceneID="pKc-Ir-MDw">
@@ -317,7 +253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GaZ-Pa-pzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313" y="-214"/>
+            <point key="canvasLocation" x="714" y="-155"/>
         </scene>
         <!--Board View Controller-->
         <scene sceneID="64k-Y3-JWX">
@@ -340,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NyH-qL-mNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313" y="8"/>
+            <point key="canvasLocation" x="714" y="67"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qhf-zC-2ur">
@@ -465,7 +401,7 @@
         <scene sceneID="j8s-wE-4f8">
             <objects>
                 <collectionViewController storyboardIdentifier="HistoryViewController" clearsSelectionOnViewWillAppear="NO" id="2Y4-G0-7JH" customClass="HistoryViewController" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Dnm-CP-oqf">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Dnm-CP-oqf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -515,7 +451,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAE-gs-r3E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313" y="235"/>
+            <point key="canvasLocation" x="714" y="294"/>
         </scene>
     </scenes>
     <resources>
