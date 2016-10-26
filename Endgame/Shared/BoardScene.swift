@@ -62,11 +62,6 @@ final class BoardScene: SKScene {
         return CGPoint(x: x, y: y)
     }
 
-//    fileprivate func squareNode(for square: Square) -> SquareNode {
-//        guard let squareNode = children.filter({ $0.name == square.description }).first as? SquareNode else { fatalError() }
-//        return squareNode
-//    }
-
     var squareSize: CGSize {
         let rowCount: CGFloat = 8.0
         let edge = (size.width - (squareInset * (rowCount + 1.0))) / rowCount
@@ -109,38 +104,5 @@ final class BoardScene: SKScene {
     private var pieceNodes: [PieceNode] {
         return nodes()
     }
-
-}
-
-// MARK: - UIKit
-
-extension BoardScene {
-
-    func tapAction(sender: UITapGestureRecognizer) {
-        if
-            let location = view?.convert(sender.location(in: view), to: self),
-            let square = square(at: location)
-        {
-            boardDelegate?.userDidTap(on: square)
-        }
-    }
-
-    func panAction(sender: UIPanGestureRecognizer) {
-        if let location = view?.convert(sender.location(in: view), to: self) {
-            boardDelegate?.userDidPan(to: square(at: location))
-        }
-    }
-
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        boardDelegate?.userDidCancelSelection()
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first, let location = view?.convert(touch.location(in: view), to: self), let square = square(at: location)
-        else { return }
-        boardDelegate?.userDidTap(on: square)
-    }
-
-
 
 }
