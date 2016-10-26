@@ -133,7 +133,6 @@
 		52BA80131DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
 		52BA801F1DAED18D00E15277 /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BA801E1DAED18D00E15277 /* PromotionViewController.swift */; };
 		52BE98971D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */; };
-		52BE989E1D80BC17005A0BB2 /* GameScene+TouchUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */; };
 		52DF9DAB1DB6FDAD00CF17BF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525560B81D64C3BF00985809 /* GameViewController.swift */; };
 		52DF9DAF1DB6FDAE00CF17BF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525560B81D64C3BF00985809 /* GameViewController.swift */; };
 		52DF9DB11DB7B08200CF17BF /* HistoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF9DB01DB7B08200CF17BF /* HistoryViewDelegate.swift */; };
@@ -293,7 +292,6 @@
 		52BA801E1DAED18D00E15277 /* PromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
 		52BAE0921D5FD555006E2652 /* Endgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISwipeGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
-		52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameScene+TouchUI.swift"; sourceTree = "<group>"; };
 		52DF9DB01DB7B08200CF17BF /* HistoryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDelegate.swift; sourceTree = "<group>"; };
 		52DF9DB81DB7B15300CF17BF /* UserActivityCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActivityCoordinator.swift; sourceTree = "<group>"; };
 		52DF9DDC1DB82D8800CF17BF /* SceneCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
@@ -542,7 +540,6 @@
 				524A722C1DBFE7770078379A /* ArrowNodeModel.swift */,
 				524A723C1DC069650078379A /* SquareNode.swift */,
 				524A72341DC0355E0078379A /* SquareNodeModel.swift */,
-				52BE989D1D80BC17005A0BB2 /* GameScene+TouchUI.swift */,
 				52EA14021DA7F0AD00EBF078 /* BoardArrowsCoordinator.swift */,
 				523508B11DAC142C00F5A6F8 /* BoardInteractionCoordinator.swift */,
 			);
@@ -963,7 +960,6 @@
 				525560B91D64C3BF00985809 /* GameViewController.swift in Sources */,
 				52403A8F1DB1BBCF00CA863A /* AppCoordinator.swift in Sources */,
 				5237A6A01D97691A00BAC16E /* README.md in Sources */,
-				52BE989E1D80BC17005A0BB2 /* GameScene+TouchUI.swift in Sources */,
 				524537231DB66981007A4727 /* BoardScene.swift in Sources */,
 				524A722D1DBFE7770078379A /* ArrowNodeModel.swift in Sources */,
 				52DF9DB91DB7B15300CF17BF /* UserActivityCoordinator.swift in Sources */,
