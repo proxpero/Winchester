@@ -26,22 +26,5 @@ let game = Game(pgn: pgn)
 let delegate = Delegate()
 game.delegate = delegate
 
-print(game.currentPosition.ascii)
-print(game.sanMoves)
-
-print(game.currentPosition.ascii)
-
-game.reverse(to: game.startIndex)
-print(game.currentPosition.ascii)
-game.advance(to: game.lastIndex)
-print(game.currentPosition.ascii)
-
-game.reverse(to: 15)
-print(game.currentPosition.ascii)
-
-game.advance(to: game.lastIndex)
-print(game.currentPosition.ascii)
-
-
 
 

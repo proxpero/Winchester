@@ -37,9 +37,6 @@ public final class ShowGameCell: UICollectionViewCell, ReusableCell {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var whiteLabel: UILabel!
     @IBOutlet var blackLabel: UILabel!
-    @IBOutlet var eventLabel: UILabel!
-    @IBOutlet var ecoLabel: UILabel!
-    @IBOutlet var moveCountLabel: UILabel!
     @IBOutlet var outcomeLabel: UILabel!
 }
 

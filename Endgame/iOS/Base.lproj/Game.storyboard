@@ -54,10 +54,10 @@
                             <constraint firstItem="mhw-gX-D5r" firstAttribute="leading" secondItem="ou1-Zr-xCB" secondAttribute="leading" id="8JI-2K-l6b"/>
                             <constraint firstAttribute="trailing" secondItem="rl8-0H-lg7" secondAttribute="trailing" id="8mI-Ro-mgf"/>
                             <constraint firstItem="lMR-ZS-KI1" firstAttribute="leading" secondItem="ou1-Zr-xCB" secondAttribute="leading" id="DHd-ed-WxO"/>
-                            <constraint firstItem="mhw-gX-D5r" firstAttribute="top" secondItem="41b-nb-hEG" secondAttribute="bottom" constant="8" id="FDd-tv-eDK"/>
-                            <constraint firstItem="rl8-0H-lg7" firstAttribute="top" secondItem="mhw-gX-D5r" secondAttribute="bottom" constant="8" id="ZIJ-qg-fFu"/>
+                            <constraint firstItem="mhw-gX-D5r" firstAttribute="top" secondItem="41b-nb-hEG" secondAttribute="bottom" constant="1" id="FDd-tv-eDK"/>
+                            <constraint firstItem="rl8-0H-lg7" firstAttribute="top" secondItem="mhw-gX-D5r" secondAttribute="bottom" constant="1" id="ZIJ-qg-fFu"/>
                             <constraint firstAttribute="trailing" secondItem="lMR-ZS-KI1" secondAttribute="trailing" id="lwK-cG-bwU"/>
-                            <constraint firstItem="lMR-ZS-KI1" firstAttribute="top" secondItem="rl8-0H-lg7" secondAttribute="bottom" constant="8" id="mKF-xE-hx8"/>
+                            <constraint firstItem="lMR-ZS-KI1" firstAttribute="top" secondItem="rl8-0H-lg7" secondAttribute="bottom" constant="1" id="mKF-xE-hx8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="omP-hG-2Fp">
@@ -225,7 +225,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWa-JO-C2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="540" y="64.767616191904054"/>
+            <point key="canvasLocation" x="540" y="86"/>
         </scene>
     </scenes>
     <resources>
