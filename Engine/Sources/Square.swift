@@ -226,7 +226,7 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
         self.init(file: file, rank: rank)
     }
 
-    /// Create a square from `string`.
+    /// Create a square from `string` that is equivalent to the square's description.
     public init?(_ string: String) {
         let chars = string.characters
         guard chars.count == 2 else {
