@@ -14,7 +14,6 @@
 		5212A3701D9319E2008F2957 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36E1D9319E2008F2957 /* BoardTests.swift */; };
 		5212A3711D9319E2008F2957 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36E1D9319E2008F2957 /* BoardTests.swift */; };
 		5237A65C1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
-		5237A65D1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
 		5237A65E1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
 		5237A65F1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
 		5237A6A41D98218600BAC16E /* ECO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6A31D98218600BAC16E /* ECO.txt */; };
@@ -962,7 +961,6 @@
 				52B595B31D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */,
 				52B595CC1D5512FD00E1D543 /* Board+View.swift in Sources */,
 				52B5955E1D53A16F00E1D543 /* Bitboard.swift in Sources */,
-				5237A65D1D97033200BAC16E /* Position+View.swift in Sources */,
 				52B595B81D54F9D800E1D543 /* AsciiConvertible.swift in Sources */,
 				52DB55051D96D3DA008B6F72 /* README.md in Sources */,
 				52B595901D53AB1E00E1D543 /* Sequence+Chess.swift in Sources */,
