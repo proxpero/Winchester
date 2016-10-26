@@ -9,19 +9,15 @@
 import UIKit
 
 extension UISwipeGestureRecognizer {
-
     public convenience init(target: Any?, action: Selector?, direction: UISwipeGestureRecognizerDirection) {
         self.init(target: target, action: action)
         self.direction = direction
     }
-    
 }
 
 extension UIView {
-
     public func addSwipeGestureRecognizer(target: Any?, action: Selector?, direction: UISwipeGestureRecognizerDirection = .right ) {
         let swipe = UISwipeGestureRecognizer(target: target, action: action, direction: direction)
         addGestureRecognizer(swipe)
     }
-
 }

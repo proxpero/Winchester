@@ -9,56 +9,34 @@
 import Engine
 import SpriteKit
 
-final class BoardInteractionCoordinator {
+enum HighlightType {
+    case capture
+    case target
+    case origin
+    case vulnerable
+    case defended
+}
 
-    let userDidExecute: (Move, Piece?) -> Void
+protocol BoardHighlightingCoordinator {
+    func highlight(squares: [Square], with type: HighlightType)
+    func removeHighlights()
+}
 
-    let pieceNode: (Square) -> PieceNode?
-    let position: (Square) -> CGPoint
-    let availableTargets: (Square) -> [Square]
-    let availableCaptures: (Square) -> [Square]
-    let highlightAvailableTargets: ([Square]) -> Void
-    let highlightAvailableCaptures: ([Square]) -> Void
-//    let animateNode: (Move, @escaping PromotionHandler) -> Void
-    let removeHighlights: () -> Void
+extension BoardHighlightingCoordinator {
 
-    init(
-        userDidExecute: @escaping (Move, Piece?) -> Void,
-        pieceNode: @escaping (Square) -> PieceNode?,
-        position: @escaping (Square) -> CGPoint,
-        availableTargets: @escaping (Square) -> [Square],
-        availableCaptures: @escaping (Square) -> [Square],
-        highlightAvailableTargets: @escaping ([Square]) -> Void,
-        highlightAvailableCaptures: @escaping ([Square]) -> Void,
-//        animateNode: @escaping (Move, PromotionHandler) -> Void,
-        removeHighlights: @escaping () -> Void
-    ) {
-        self.userDidExecute = userDidExecute
-        self.pieceNode = pieceNode
-        self.position = position
-        self.availableTargets = availableTargets
-        self.availableCaptures = availableCaptures
-        self.highlightAvailableTargets = highlightAvailableTargets
-        self.highlightAvailableCaptures = highlightAvailableCaptures
-//        self.animateNode = animateNode
-        self.removeHighlights = removeHighlights
-    }
+}
 
-    private weak var _activeNode: PieceNode?
-    private var _initialSquare: Square?
+struct BoardInteractionCoordinator: BoardInteractionDelegate {
 
-    func userDidSelect(square: Square) {
-        switch _activityState {
-        case .initiation(let origin):
-            _activityState = .end(Move(origin: origin, target: square))
-        case .normal:
-            _activityState = .initiation(square)
-        case .end(let move):
-            fatalError("unexpected state where move: \(move), selected square: \(square), initial square: \(_initialSquare)")
-        }
-    }
+    // MARK: - Private Stored Properties
 
-    private var _activityState: ActivityState = .normal {
+    private let delegate: UserActivityDelegate
+    private let model: PieceNodeModel
+
+    weak var _activeNode: PieceNode?
+
+    var _initialSquare: Square?
+    var _activityState: ActivityState = .normal {
         didSet {
             switch _activityState {
             case .initiation(let origin):
@@ -71,44 +49,69 @@ final class BoardInteractionCoordinator {
         }
     }
 
-    private func _beginActivity(for origin: Square) {
-        guard let node = pieceNode(origin) else {
+    // MARK: - Initializers
+
+    init(delegate: UserActivityDelegate,
+         model: PieceNodeModel)
+    {
+        self.delegate = delegate
+        self.model = model
+    }
+
+    // MARK: - Private Functions
+
+    private mutating func _beginActivity(for origin: Square) {
+        guard let node = model.pieceNode(for: origin) else {
             _activityState = .normal
             return
         }
         _activeNode = node
         _initialSquare = origin
-        highlightAvailableTargets(availableTargets(origin))
-        highlightAvailableCaptures(availableCaptures(origin))
+        delegate.userDidBeginActivity(on: origin)
     }
 
-    private func _normalizeActivity() {
+    private mutating func _normalizeActivity() {
         _initialSquare = nil
         _activeNode = nil
-        removeHighlights()
+        delegate.userDidNormalizeActivity()
     }
 
-    private func _endActivity(with move: Move) {
+    private mutating func _endActivity(with move: Move) {
         defer {
             _activityState = .normal
         }
-
-        func moveNode(to target: Square) {
-            let action = SKAction.move(to: position(target), duration: 0.2)
-            action.timingMode = .easeInEaseOut
-            _activeNode?.run(action)
-
-        }
-
-        guard availableTargets(move.origin).contains(move.target) else {
-            moveNode(to: move.origin)
-            return
-        }
-
-//        execute(move) { promotion in
-//            self.userDidExecute(move, promotion)
-//        }
+        guard let node = _activeNode else { fatalError("Expected a pieceNode") }
+        delegate.userDidEndActivity(with: move, for: node)
     }
 
-}
+    // MARK: - Scene Delegate
 
+    mutating func userDidTap(on square: Square) {
+
+        switch _activityState {
+        case .initiation(let origin):
+            _endActivity(with: Move(origin: origin, target: square))
+        case .normal:
+            _activityState = .initiation(square)
+        case .end(let move):
+            fatalError("unexpected state where move: \(move), selected square: \(square), initial square: \(_initialSquare)")
+        }
+
+    }
+
+    func userDidPan(to square: Square?) {
+        print("\(#function) with square \(square)")
+    }
+
+    func userDidLongTap(on square: Square) {
+        print("\(#function) with square \(square)")
+    }
+
+    func userDidRelease(on square: Square?) {
+        print("\(#function) with square \(square)")
+    }
+
+    mutating func userDidCancelSelection() {
+        _normalizeActivity()
+    }
+}

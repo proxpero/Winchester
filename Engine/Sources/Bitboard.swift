@@ -185,18 +185,12 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
     /// Returns the attacks available to `piece` in `self`.
     internal func _attacks(for piece: Piece, obstacles: Bitboard = 0) -> Bitboard {
         switch piece.kind {
-        case .pawn:
-            return _pawnAttacks(for: piece.color)
-        case .knight:
-            return _knightAttacks()
-        case .bishop:
-            return _bishopAttacks(obstacles: obstacles)
-        case .rook:
-            return _rookAttacks(obstacles: obstacles)
-        case .queen:
-            return _queenAttacks(obstacles: obstacles)
-        case .king:
-            return _kingAttacks()
+        case .pawn: return _pawnAttacks(for: piece.color)
+        case .knight: return _knightAttacks()
+        case .bishop: return _bishopAttacks(obstacles: obstacles)
+        case .rook: return _rookAttacks(obstacles: obstacles)
+        case .queen: return _queenAttacks(obstacles: obstacles)
+        case .king: return _kingAttacks()
         }
     }
 
@@ -271,26 +265,27 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
 
     // MARK: - Protocol Conformance
 
-    /// A textual representation of `self`.
+    // MARK: CustomStringConvertible
+    /// A `String` representation of `self`
     public var description: String {
         let num = String(rawValue, radix: 16)
         let str = repeatElement("0", count: 16 - num.characters.count).joined(separator: "")
         return "Bitboard(0x\(str + num))"
     }
 
-    /// The hash value.
+    // MARK: Hashable
+    /// The has value.
     public var hashValue: Int {
         return rawValue.hashValue
     }
 
+    // MARK: ExpressibleByIntegerLiteral
     /// Create an instance initialized to `value`.
     public init(integerLiteral value: UInt64) {
         rawValue = value
     }
 
-    public static var allZeros: Bitboard {
-        return Bitboard.empty
-    }
+    // MARK: Sequence
 
     /// An iterator for the squares of a `Bitboard`.
     public struct Iterator: IteratorProtocol {
@@ -322,6 +317,11 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
     }
 
     // MARK: - Bitwise Operations
+
+    /// The empty bitboard.
+    public static var allZeros: Bitboard {
+        return Bitboard.empty
+    }
 
     /// Returns the intersection of bits set in `lhs` and `rhs`.
     ///
@@ -468,10 +468,10 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
     // MARK: - Static Constants
 
     /// The full bitset.
-    public static let full: Bitboard = 0x0
+    public static let full: Bitboard = 0xffffffffffffffff
 
     /// The empty bitset.
-    public static let empty: Bitboard = 0xffffffffffffffff
+    public static let empty: Bitboard = 0x0
 
     /// The edges of a board.
     public static let edges: Bitboard = 0xff818181818181ff
@@ -502,7 +502,7 @@ public struct Bitboard: RawRepresentable, Hashable, CustomStringConvertible, Exp
 
 }
 
-// MARK: Standalone Internal Functions and Computed Properties
+// MARK: Free Internal Functions and Computed Properties
 
 /// Returns the pawn attack table for `color`.
 internal func _pawnAttackTable(for color: Color) -> Array<Bitboard> {

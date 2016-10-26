@@ -13,115 +13,36 @@ import Engine
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var configuration: MenuConfiguration?
+    var coordinator: ApplicationCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         guard let window = window else { return false }
-        configuration = MenuConfiguration(window: window)
+        coordinator = ApplicationCoordinator(
+            window: window,
+            model: ApplicationCoordinator.Model(
+                updateUserGames: updateUserGames,
+                updateFavoriteGames: updateFavoriteGames
+            )
+        )
+        coordinator?.start()
         return true
     }
 
-}
+    let files = ["fischer v fine", "reti v rubenstein", "shirov v polgar"]
 
-final class Configuration {
-
-    let navigationController: UINavigationController
-    let profile: Profile
-
-    init(window: UIWindow, profile: Profile) {
-        self.profile = profile
-        self.navigationController = window.rootViewController as! UINavigationController
-
+    func updateUserGames() -> [Game] {
+        return files
+            .flatMap { Bundle.main.url(forResource: $0, withExtension: "pgn") }
+            .map { try! String(contentsOf: $0) }
+            .map { try! PGN(parse: $0) }
+            .map { Game(pgn: $0) }
     }
 
-    enum Section: Int {
-        case newGame
-        case recentGames
-        case favoriteGames
-        case puzzles
-        case settings
-
-        var all: [Section] {
-            return [.newGame, .recentGames, .favoriteGames, .puzzles, .settings]
-        }
-
-        init(at indexPath: IndexPath) {
-            self.init(rawValue: indexPath.section)!
-        }
-
-        init(_ section: Int) {
-            self.init(rawValue: section)!
-        }
-
-        var title: String {
-            switch self {
-            case .newGame: return "New Game"
-            case .recentGames: return "Recent Games"
-            case .favoriteGames: return "Favorite Games"
-            case .puzzles: return "Puzzles"
-            case .settings: return "Settings"
-            }
-        }
+    func updateFavoriteGames() -> [Game] {
+        return files
+            .flatMap { Bundle.main.url(forResource: $0, withExtension: "pgn") }
+            .map { try! String(contentsOf: $0) }
+            .map { try! PGN(parse: $0) }
+            .map { Game(pgn: $0) }
     }
-
-    
-
 }
-
-//final class App {
-//
-//    // This is implicitly unwrapped because some functions needed
-//    // to initialize it are in `self`, and they cannont both be
-//    // initialized first.
-//    var navigationController: UINavigationController!
-//
-//    init(window: UIWindow) {
-//
-//        let configuration = TableViewConfiguration(
-//            items: games,
-//            style: .plain,
-//            nibName: "GameCell",
-//            reusableCellClass: GameCell.self,
-//            configureCell: configureGameCell,
-//            didSelect: showGame,
-//            didTapConfigure: showConfiguration
-//        )
-//
-//        self.navigationController = UINavigationController(rootViewController: TableViewController(configuration: configuration))
-//        window.rootViewController = navigationController
-//    }
-//
-//    let games: Array<Game> = {
-//        var games = [
-//            "fischer v fine",
-//            "shirov v judit_polgar",
-//            "nakamura v fluvia_poyatos"
-//        ]
-//            .flatMap { Bundle(for: App.self).url(forResource: $0, withExtension: "pgn") }
-//            .map { try! String(contentsOf: $0) }
-//            .map { try! PGN(parse: $0) }
-//            .flatMap(Game.init)
-//        games.forEach { $0.move(to: $0.startIndex) }
-//        return games
-//    }()
-//
-//    func configureGameCell(cell: UITableViewCell, game: Game) -> () {
-//        let white = game.whitePlayer.name ?? "?"
-//        let black = game.blackPlayer.name ?? "?"
-//        cell.textLabel?.text = "\(white) vs. \(black)"
-//        cell.imageView?.image = UIImage(view: game.currentPosition.thumbnail(edge: cell.bounds.height))
-//    }
-//
-//    func showGame(game: Game) {
-//        guard let gameViewController = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: "Game") as? GameViewController else {
-//            fatalError("Could not find GameViewController Storyboard.")
-//        }
-//        gameViewController.game = game
-//        navigationController.pushViewController(gameViewController, animated: true)
-//    }
-//
-//    func showConfiguration() {
-//
-//    }
-//
-//}

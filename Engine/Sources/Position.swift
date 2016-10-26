@@ -14,7 +14,7 @@ public struct Position: Equatable, CustomStringConvertible {
     // MARK: - Stored Properties
 
     /// The board for the position.
-    internal private(set) var board: Board
+    public private(set) var board: Board
 
     /// The active player turn.
     internal private(set) var playerTurn: PlayerTurn
@@ -32,7 +32,8 @@ public struct Position: Equatable, CustomStringConvertible {
     internal private(set) var fullmoves: UInt
 
     /// Attackers to king
-    internal private(set) var _attackersToKing: Bitboard = 0
+    internal private(set) var _attackersToKing: Bitboard
+    internal private(set) var _pieceDefenses: [Color: [Square: Bitboard]]
 
     // MARK: - Public Initializers
 
@@ -50,6 +51,7 @@ public struct Position: Equatable, CustomStringConvertible {
         self.halfmoves = halfmoves
         self.fullmoves = fullmoves
         self._attackersToKing = board.attackersToKing(for: playerTurn)
+        self._pieceDefenses = board._pieceDefenses()
     }
 
     /// Create a position from a valid FEN string.
@@ -87,6 +89,7 @@ public struct Position: Equatable, CustomStringConvertible {
                   halfmoves: halfmoves,
                   fullmoves: fullmoves)
         self._attackersToKing = board.attackersToKing(for: playerTurn)
+        self._pieceDefenses = board._pieceDefenses()
     }
 
     // MARK: - Public Computed Properties and Functions
@@ -218,7 +221,7 @@ public struct Position: Equatable, CustomStringConvertible {
     public var ascii: String {
         return board.ascii
     }
-    
+
     // MARK: - Internal Computed Properties and Functions
 
     internal var _outcome: Outcome {
@@ -265,12 +268,16 @@ public struct Position: Equatable, CustomStringConvertible {
         return board._attackedOccupations(for: color).map { $0 }
     }
 
+    internal func pieceDefenses() -> [Color: [Square: Bitboard]] {
+        return board._pieceDefenses()
+    }
+
     internal func _defendedOccupations(for color: Color) -> [Square] {
-        return board._defendedOccupations(for: color).map { $0 }
+        return _pieceDefenses[color]!.filter { !$0.value.isEmpty }.map { $0.key }
     }
 
     internal func _undefendedOccupations(for color: Color) -> [Square] {
-        return board._undefendedOccupations(for: color).map { $0 }
+        return _pieceDefenses[color]!.filter { $0.value.isEmpty }.map { $0.key }
     }
 
     internal func _threatenedEnemies(for color: Color) -> [Square] {

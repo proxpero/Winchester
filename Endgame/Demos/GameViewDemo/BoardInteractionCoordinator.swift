@@ -9,32 +9,33 @@
 import Engine
 import SpriteKit
 
-final class BoardInteractionCoordinator {
 
-    let userDidExecute: (Move) -> Void
+struct BoardInteractionCoordinator {
+
+    let userDidExecute: (Move, Piece?) -> Void
 
     let pieceNode: (Square) -> PieceNode?
     let position: (Square) -> CGPoint
     let availableTargets: (Square) -> [Square]
-    let highlightAvailableTargets: ([Square]) -> Void
-    let execute: (Move) -> Void
+//    let highlightAvailableTargets: ([Square]) -> Void
+//    let execute: (Move) -> Void
     let removeHighlights: () -> Void
 
     init(
-        userDidExecute: @escaping (Move) -> Void,
+        userDidExecute: @escaping (Move, Piece?) -> Void,
         pieceNode: @escaping (Square) -> PieceNode?,
         position: @escaping (Square) -> CGPoint,
         availableTargets: @escaping (Square) -> [Square],
-        highlightAvailableTargets: @escaping ([Square]) -> Void,
-        execute: @escaping (Move) -> Void,
+//        highlightAvailableTargets: @escaping ([Square]) -> Void,
+//        execute: @escaping (Move) -> Void,
         removeHighlights: @escaping () -> Void
     ) {
         self.userDidExecute = userDidExecute
         self.pieceNode = pieceNode
         self.position = position
         self.availableTargets = availableTargets
-        self.highlightAvailableTargets = highlightAvailableTargets
-        self.execute = execute
+//        self.highlightAvailableTargets = highlightAvailableTargets
+//        self.execute = execute
         self.removeHighlights = removeHighlights
     }
 
@@ -72,7 +73,7 @@ final class BoardInteractionCoordinator {
         }
         _activeNode = node
         _initialSquare = origin
-        highlightAvailableTargets(availableTargets(origin))
+//        highlightAvailableTargets(availableTargets(origin))
     }
 
     private func _normalizeActivity() {
@@ -97,8 +98,8 @@ final class BoardInteractionCoordinator {
             return
         }
 
-        userDidExecute(move)
-        execute(move)
+        userDidExecute(move, nil)
+//        execute(move)
     }
 
 }

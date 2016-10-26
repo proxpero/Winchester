@@ -85,6 +85,10 @@ public class Game {
         return currentPosition.playerTurn
     }
 
+    public var currentIndex: Int? {
+        return _currentIndex
+    }
+
     /// Returns the last move of the position.
     public var latestMove: Move? {
         guard let current = _currentIndex else {
@@ -121,6 +125,11 @@ public class Game {
 
     public var squaresAttackingKing: [Square] {
         return currentPosition._attackersToKing.map { $0 }
+    }
+
+    public func movesAttackingKing() -> [Move] {
+        guard let kingSquare = currentPosition.board.squareForKing(for: currentPosition.playerTurn) else { return [] }
+        return currentPosition._attackersToKing.map { Move(origin: $0, target: kingSquare) }
     }
 
     public func attackedOccupations(for color: Color) -> [Square] {
@@ -277,6 +286,7 @@ public class Game {
     ///
     /// - returns: A tuple of the `direction` in which the move happens
     ///   and an array of `HistoryItem`s representing the difference in state.
+    ///   A `nil` result indicates that nothing needs doing.
     public func settingIndex(to newIndex: Int?) -> IndexResult? {
 
         let direction: Direction
@@ -354,9 +364,7 @@ public class Game {
 
 }
 
-extension Game: Collection {
-
-}
+extension Game: Collection { }
 
 // MARK: - Game Delegate
 

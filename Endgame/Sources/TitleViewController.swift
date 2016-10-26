@@ -9,29 +9,24 @@
 import UIKit
 import Engine
 
-internal final class TitleViewContoller: ViewController {
+internal final class TitleViewContoller: UIViewController {
+
+    var dataSource: TitleViewDataSource? {
+        didSet { reloadData() }
+    }
+
+    func reloadData() {
+        guard let dataSource = dataSource, view != nil else { return }
+        white.text = dataSource.white.name
+        black.text = dataSource.black.name
+        outcome.text = dataSource.outcome.userDescription
+    }
 
     @IBOutlet var white: UILabel!
     @IBOutlet var black: UILabel!
     @IBOutlet var outcome: UILabel!
 
-    var model: (white: Player?, black: Player?, outcome: Outcome)
-
-    init(white: Player, black: Player, outcome: Outcome) {
-        model = (white, black, outcome)
-        super.init(nibName: "TitleViewController", bundle: nil)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        model = (nil, nil, Outcome.undetermined)
-        super.init(coder: aDecoder)
-    }
-
     override func viewDidLoad() {
-        super.viewDidLoad()
-        view.heightAnchor.constraint(equalToConstant: 44)
-        white.text = model.white?.name
-        black.text = model.black?.name
-        outcome.text = model.outcome.userDescription
+        view.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
 }
