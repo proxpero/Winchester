@@ -141,9 +141,6 @@
 		52DF9DB91DB7B15300CF17BF /* UserActivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF9DB81DB7B15300CF17BF /* UserActivityCoordinator.swift */; };
 		52DF9DBA1DB7B15300CF17BF /* UserActivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF9DB81DB7B15300CF17BF /* UserActivityCoordinator.swift */; };
 		52DF9DBB1DB7B15300CF17BF /* UserActivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF9DB81DB7B15300CF17BF /* UserActivityCoordinator.swift */; };
-		52DF9DDD1DB82D8800CF17BF /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF9DDC1DB82D8800CF17BF /* SceneCoordinator.swift */; };
-		52DF9DDE1DB82D8800CF17BF /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF9DDC1DB82D8800CF17BF /* SceneCoordinator.swift */; };
-		52DF9DDF1DB82D8800CF17BF /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF9DDC1DB82D8800CF17BF /* SceneCoordinator.swift */; };
 		52DF9DE11DBA579600CF17BF /* HistoryInteractionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF9DE01DBA579600CF17BF /* HistoryInteractionCoordinator.swift */; };
 		52DF9DE21DBA579600CF17BF /* HistoryInteractionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF9DE01DBA579600CF17BF /* HistoryInteractionCoordinator.swift */; };
 		52DF9DE31DBA579600CF17BF /* HistoryInteractionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DF9DE01DBA579600CF17BF /* HistoryInteractionCoordinator.swift */; };
@@ -294,7 +291,6 @@
 		52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISwipeGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		52DF9DB01DB7B08200CF17BF /* HistoryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDelegate.swift; sourceTree = "<group>"; };
 		52DF9DB81DB7B15300CF17BF /* UserActivityCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActivityCoordinator.swift; sourceTree = "<group>"; };
-		52DF9DDC1DB82D8800CF17BF /* SceneCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		52DF9DE01DBA579600CF17BF /* HistoryInteractionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryInteractionCoordinator.swift; sourceTree = "<group>"; };
 		52DF9DE71DBA58B500CF17BF /* HistoryCellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCellType.swift; sourceTree = "<group>"; };
 		52DF9DEB1DBA599800CF17BF /* HistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
@@ -430,7 +426,6 @@
 				52DF9DEF1DBA5DD700CF17BF /* Game View */,
 				523362D61DB1DECC00E1D400 /* PromotionView.swift */,
 				52BA801E1DAED18D00E15277 /* PromotionViewController.swift */,
-				52DF9DDC1DB82D8800CF17BF /* SceneCoordinator.swift */,
 				52E354E41D7C99C0006EAEA6 /* UIImage+View.swift */,
 				52BE98961D804195005A0BB2 /* UISwipeGestureRecognizer+Extensions.swift */,
 				524058731D6384AB000A925C /* Assets.xcassets */,
@@ -864,7 +859,6 @@
 				524A723A1DC0395C0078379A /* ArrowNode.swift in Sources */,
 				524A72321DC01B560078379A /* NodeType.swift in Sources */,
 				523362DF1DB3207F00E1D400 /* Game+Endgame.swift in Sources */,
-				52DF9DDE1DB82D8800CF17BF /* SceneCoordinator.swift in Sources */,
 				52DF9E061DBA905E00CF17BF /* HistoryViewCoordinator.swift in Sources */,
 				5237A6A11D97691A00BAC16E /* README.md in Sources */,
 				524A72361DC0355E0078379A /* SquareNodeModel.swift in Sources */,
@@ -909,7 +903,6 @@
 				52DF9DEA1DBA58B500CF17BF /* HistoryCellType.swift in Sources */,
 				5237A6A21D97691A00BAC16E /* README.md in Sources */,
 				524A72371DC0355E0078379A /* SquareNodeModel.swift in Sources */,
-				52DF9DDF1DB82D8800CF17BF /* SceneCoordinator.swift in Sources */,
 				52DF9DEE1DBA599800CF17BF /* HistoryCell.swift in Sources */,
 				52DF9DB31DB7B08200CF17BF /* HistoryViewDelegate.swift in Sources */,
 				524A725F1DC128760078379A /* TitleViewDataSource.swift in Sources */,
@@ -970,7 +963,6 @@
 				521EDDFD1D669B4200BD7355 /* HistoryViewController.swift in Sources */,
 				524058681D638114000A925C /* BoardViewController.swift in Sources */,
 				52DF9DE11DBA579600CF17BF /* HistoryInteractionCoordinator.swift in Sources */,
-				52DF9DDD1DB82D8800CF17BF /* SceneCoordinator.swift in Sources */,
 				524A72351DC0355E0078379A /* SquareNodeModel.swift in Sources */,
 				524A72391DC0395C0078379A /* ArrowNode.swift in Sources */,
 				524A72271DBFDAF20078379A /* TitleViewConfiguration.swift in Sources */,
