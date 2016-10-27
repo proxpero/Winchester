@@ -36,8 +36,6 @@ struct Design: Equatable {
         return lhs.isWide == rhs.isWide && lhs.isBiased == rhs.isBiased && lhs.showGridLabels == rhs.showGridLabels
     }
 
-
-
 }
 
 public final class GameViewController: UIViewController {
@@ -80,67 +78,4 @@ public final class GameViewController: UIViewController {
 
     var presentScene: () -> Void  =  { }
 
-
-    // MARK: Stored Properties
-//    var _coordinator: GameCoordinator!
-
-    // MARK: - Storyboard
-
-//    enum SegueIdentifier: String {
-//        case title = "TitleViewControllerSegueIdentifier"
-//        case board = "BoardViewControllerSegueIdentifier"
-//        case history = "HistoryViewControllerSegueIdentifier"
-//    }
-
-//    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        switch segueIdentifierForSegue(segue) {
-//
-//        case .title:
-//            guard let vc = segue.destination as? TitleViewContoller else { fatalError() }
-//            vc.dataSource = _coordinator.titleConfiguration
-//
-//        case .board:
-//            guard let vc = segue.destination as? BoardViewController else { fatalError() }
-//            vc.boardResizingEventHandler = _coordinator.boardResizingEventHandler
-//
-//        case .history:
-//            guard let vc = segue.destination as? HistoryViewController else { fatalError() }
-//            vc.model = _coordinator.historyConfiguration
-//            vc.delegate = _coordinator.historyInteractionConfiguration
-//
-//            // Add left and right swipe gesture recognizers to the view.
-//            [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right]
-//                .forEach { direction in
-//                    view.addSwipeGestureRecognizer(
-//                        target: vc,
-//                        action: #selector(vc.handleSwipe(recognizer:)),
-//                        direction: direction
-//                    )
-//            }
-//        }
-//    }
-
 }
-
-//extension BoardInteractionCoordinator: UserActivityDelegate {
-//    func userDidBeginActivity(on origin: Square) {
-//        
-//    }
-//
-//    func userDidEndActivity(with move: Move, for pieceNode: PieceNode) {
-//
-//    }
-//
-//    func userDidNormalizeActivity() {
-//
-//    }
-//
-//    func userDidPromote(with color: Color) -> Piece? {
-//        return nil
-//    }
-//
-//    func userDidExecute(move: Move, promotion: Piece?) {
-//
-//    }
-//}

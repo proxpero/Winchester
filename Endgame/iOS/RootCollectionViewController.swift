@@ -52,14 +52,6 @@ extension RootCollectionViewController {
             }
         }
 
-        var cellType: UICollectionViewCell.Type {
-            switch self {
-            case .userGames: return ShowGameCell.self
-            case .favoriteGames: return ShowGameCell.self
-            case .puzzles: return ShowPuzzleCell.self
-            }
-        }
-
         var shouldHideShowAllButton: Bool {
             return false
         }
@@ -96,6 +88,14 @@ extension RootCollectionViewController {
             }
         }
 
+        var cellType: UICollectionViewCell.Type {
+            switch self {
+            case .userGames: return ShowGameCell.self
+            case .favoriteGames: return ShowGameCell.self
+            case .puzzles: return ShowPuzzleCell.self
+            }
+        }
+
         var configureCell: (UICollectionViewCell) -> (Playable) -> () {
             switch self {
             case .userGames:
@@ -115,7 +115,7 @@ extension RootCollectionViewController {
                 cell.imageView.image = image
                 cell.whiteLabel.text = game.whitePlayer.name
                 cell.blackLabel.text = game.blackPlayer.name
-                cell.outcomeLabel.text = game.outcome.description
+//                cell.outcomeLabel.text = game.outcome.description
             }
 
         }
