@@ -1,6 +1,6 @@
 //
-//  EndgameTests.swift
-//  Endgame
+//  WinchesterTests.swift
+//  Winchester
 //
 //  Created by Todd Olsen on 8/14/16.
 //  Copyright © 2016 Todd Olsen. All rights reserved.
@@ -9,9 +9,9 @@
 import XCTest
 import Messages
 @testable import Engine
-@testable import Endgame
+@testable import Winchester
 
-class EndgameTests: XCTestCase {
+class WinchesterTests: XCTestCase {
 
     func testTests() {
         XCTAssert(true)

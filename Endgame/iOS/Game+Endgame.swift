@@ -1,6 +1,6 @@
 //
-//  Game+Endgame.swift
-//  Endgame
+//  Game+Winchester.swift
+//  Winchester
 //
 //  Created by Todd Olsen on 10/15/16.
 //  Copyright © 2016 Todd Olsen. All rights reserved.

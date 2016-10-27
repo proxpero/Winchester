@@ -1,6 +1,6 @@
 //
 //  BoardArrowsCoordinator.swift
-//  Endgame
+//  Winchester
 //
 //  Created by Todd Olsen on 10/6/16.
 //  Copyright © 2016 Todd Olsen. All rights reserved.

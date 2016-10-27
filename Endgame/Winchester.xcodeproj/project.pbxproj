@@ -223,15 +223,15 @@
 		5237A6731D97691A00BAC16E /* mateIn5.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn5.epd; sourceTree = "<group>"; };
 		5237A6741D97691A00BAC16E /* mateIn6.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn6.epd; sourceTree = "<group>"; };
 		5237A6751D97691A00BAC16E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		524058541D63749E000A925C /* Endgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		524058541D63749E000A925C /* Winchester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Winchester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5240586C1D638483000A925C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOS/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		524058711D638497000A925C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		524058771D6384C6000A925C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = tvOS/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		524058791D638526000A925C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tvOS/Info.plist; sourceTree = SOURCE_ROOT; };
-		5240588B1D638C8D000A925C /* Endgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		524058A41D63F353000A925C /* EndgameTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EndgameTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		524058B21D63FA15000A925C /* EndgameTests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EndgameTests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		524058C01D63FA25000A925C /* EndgameTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EndgameTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5240588B1D638C8D000A925C /* Winchester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Winchester.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		524058A41D63F353000A925C /* WinchesterTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WinchesterTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		524058B21D63FA15000A925C /* WinchesterTests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WinchesterTests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		524058C01D63FA25000A925C /* WinchesterTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WinchesterTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		524058CD1D63FA92000A925C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524058D21D63FB24000A925C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = macOS/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		524058D41D63FB32000A925C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = macOS/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -277,7 +277,7 @@
 		52BA80081DAD244F00E15277 /* fischer v fine.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fischer v fine.pgn"; path = "../../Test Games/fischer v fine.pgn"; sourceTree = "<group>"; };
 		52BA80091DAD244F00E15277 /* reti v rubenstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reti v rubenstein.pgn"; path = "../../Test Games/reti v rubenstein.pgn"; sourceTree = "<group>"; };
 		52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "shirov v polgar.pgn"; path = "../../Test Games/shirov v polgar.pgn"; sourceTree = "<group>"; };
-		52BAE0921D5FD555006E2652 /* Endgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52BAE0921D5FD555006E2652 /* Winchester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Winchester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -477,12 +477,12 @@
 		52BAE0931D5FD555006E2652 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52BAE0921D5FD555006E2652 /* Endgame.app */,
-				524058541D63749E000A925C /* Endgame.app */,
-				5240588B1D638C8D000A925C /* Endgame.app */,
-				524058A41D63F353000A925C /* EndgameTests iOS.xctest */,
-				524058B21D63FA15000A925C /* EndgameTests tvOS.xctest */,
-				524058C01D63FA25000A925C /* EndgameTests macOS.xctest */,
+				52BAE0921D5FD555006E2652 /* Winchester.app */,
+				524058541D63749E000A925C /* Winchester.app */,
+				5240588B1D638C8D000A925C /* Winchester.app */,
+				524058A41D63F353000A925C /* WinchesterTests iOS.xctest */,
+				524058B21D63FA15000A925C /* WinchesterTests tvOS.xctest */,
+				524058C01D63FA25000A925C /* WinchesterTests macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -490,9 +490,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		524058531D63749E000A925C /* Endgame tvOS */ = {
+		524058531D63749E000A925C /* Winchester tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 524058621D63749E000A925C /* Build configuration list for PBXNativeTarget "Endgame tvOS" */;
+			buildConfigurationList = 524058621D63749E000A925C /* Build configuration list for PBXNativeTarget "Winchester tvOS" */;
 			buildPhases = (
 				524058501D63749E000A925C /* Sources */,
 				524058511D63749E000A925C /* Frameworks */,
@@ -502,14 +502,14 @@
 			);
 			dependencies = (
 			);
-			name = "Endgame tvOS";
+			name = "Winchester tvOS";
 			productName = "Endgame tvOS";
-			productReference = 524058541D63749E000A925C /* Endgame.app */;
+			productReference = 524058541D63749E000A925C /* Winchester.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5240588A1D638C8D000A925C /* Endgame macOS */ = {
+		5240588A1D638C8D000A925C /* Winchester macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 524058971D638C8D000A925C /* Build configuration list for PBXNativeTarget "Endgame macOS" */;
+			buildConfigurationList = 524058971D638C8D000A925C /* Build configuration list for PBXNativeTarget "Winchester macOS" */;
 			buildPhases = (
 				524058871D638C8D000A925C /* Sources */,
 				524058881D638C8D000A925C /* Frameworks */,
@@ -519,14 +519,14 @@
 			);
 			dependencies = (
 			);
-			name = "Endgame macOS";
+			name = "Winchester macOS";
 			productName = "Endgame macOS";
-			productReference = 5240588B1D638C8D000A925C /* Endgame.app */;
+			productReference = 5240588B1D638C8D000A925C /* Winchester.app */;
 			productType = "com.apple.product-type.application";
 		};
-		524058A31D63F353000A925C /* EndgameTests iOS */ = {
+		524058A31D63F353000A925C /* WinchesterTests iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 524058AB1D63F353000A925C /* Build configuration list for PBXNativeTarget "EndgameTests iOS" */;
+			buildConfigurationList = 524058AB1D63F353000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests iOS" */;
 			buildPhases = (
 				524058A01D63F353000A925C /* Sources */,
 				524058A11D63F353000A925C /* Frameworks */,
@@ -537,14 +537,14 @@
 			dependencies = (
 				524058AA1D63F353000A925C /* PBXTargetDependency */,
 			);
-			name = "EndgameTests iOS";
+			name = "WinchesterTests iOS";
 			productName = "EndgameTests iOS";
-			productReference = 524058A41D63F353000A925C /* EndgameTests iOS.xctest */;
+			productReference = 524058A41D63F353000A925C /* WinchesterTests iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		524058B11D63FA15000A925C /* EndgameTests tvOS */ = {
+		524058B11D63FA15000A925C /* WinchesterTests tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 524058B91D63FA15000A925C /* Build configuration list for PBXNativeTarget "EndgameTests tvOS" */;
+			buildConfigurationList = 524058B91D63FA15000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests tvOS" */;
 			buildPhases = (
 				524058AE1D63FA15000A925C /* Sources */,
 				524058AF1D63FA15000A925C /* Frameworks */,
@@ -555,14 +555,14 @@
 			dependencies = (
 				524058B81D63FA15000A925C /* PBXTargetDependency */,
 			);
-			name = "EndgameTests tvOS";
+			name = "WinchesterTests tvOS";
 			productName = "EndgameTests tvOS";
-			productReference = 524058B21D63FA15000A925C /* EndgameTests tvOS.xctest */;
+			productReference = 524058B21D63FA15000A925C /* WinchesterTests tvOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		524058BF1D63FA25000A925C /* EndgameTests macOS */ = {
+		524058BF1D63FA25000A925C /* WinchesterTests macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 524058C71D63FA25000A925C /* Build configuration list for PBXNativeTarget "EndgameTests macOS" */;
+			buildConfigurationList = 524058C71D63FA25000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests macOS" */;
 			buildPhases = (
 				524058BC1D63FA25000A925C /* Sources */,
 				524058BD1D63FA25000A925C /* Frameworks */,
@@ -573,14 +573,14 @@
 			dependencies = (
 				524058C61D63FA25000A925C /* PBXTargetDependency */,
 			);
-			name = "EndgameTests macOS";
+			name = "WinchesterTests macOS";
 			productName = "EndgameTests macOS";
-			productReference = 524058C01D63FA25000A925C /* EndgameTests macOS.xctest */;
+			productReference = 524058C01D63FA25000A925C /* WinchesterTests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		52BAE0911D5FD555006E2652 /* Endgame iOS */ = {
+		52BAE0911D5FD555006E2652 /* Winchester iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52BAE0A41D5FD555006E2652 /* Build configuration list for PBXNativeTarget "Endgame iOS" */;
+			buildConfigurationList = 52BAE0A41D5FD555006E2652 /* Build configuration list for PBXNativeTarget "Winchester iOS" */;
 			buildPhases = (
 				52BAE08E1D5FD555006E2652 /* Sources */,
 				52BAE08F1D5FD555006E2652 /* Frameworks */,
@@ -592,9 +592,9 @@
 			);
 			dependencies = (
 			);
-			name = "Endgame iOS";
+			name = "Winchester iOS";
 			productName = Endgame;
-			productReference = 52BAE0921D5FD555006E2652 /* Endgame.app */;
+			productReference = 52BAE0921D5FD555006E2652 /* Winchester.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -642,7 +642,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 52BAE08D1D5FD555006E2652 /* Build configuration list for PBXProject "Endgame" */;
+			buildConfigurationList = 52BAE08D1D5FD555006E2652 /* Build configuration list for PBXProject "Winchester" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -655,12 +655,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52BAE0911D5FD555006E2652 /* Endgame iOS */,
-				524058531D63749E000A925C /* Endgame tvOS */,
-				5240588A1D638C8D000A925C /* Endgame macOS */,
-				524058A31D63F353000A925C /* EndgameTests iOS */,
-				524058B11D63FA15000A925C /* EndgameTests tvOS */,
-				524058BF1D63FA25000A925C /* EndgameTests macOS */,
+				52BAE0911D5FD555006E2652 /* Winchester iOS */,
+				524058531D63749E000A925C /* Winchester tvOS */,
+				5240588A1D638C8D000A925C /* Winchester macOS */,
+				524058A31D63F353000A925C /* WinchesterTests iOS */,
+				524058B11D63FA15000A925C /* WinchesterTests tvOS */,
+				524058BF1D63FA25000A925C /* WinchesterTests macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -899,17 +899,17 @@
 /* Begin PBXTargetDependency section */
 		524058AA1D63F353000A925C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52BAE0911D5FD555006E2652 /* Endgame iOS */;
+			target = 52BAE0911D5FD555006E2652 /* Winchester iOS */;
 			targetProxy = 524058A91D63F353000A925C /* PBXContainerItemProxy */;
 		};
 		524058B81D63FA15000A925C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 524058531D63749E000A925C /* Endgame tvOS */;
+			target = 524058531D63749E000A925C /* Winchester tvOS */;
 			targetProxy = 524058B71D63FA15000A925C /* PBXContainerItemProxy */;
 		};
 		524058C61D63FA25000A925C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5240588A1D638C8D000A925C /* Endgame macOS */;
+			target = 5240588A1D638C8D000A925C /* Winchester macOS */;
 			targetProxy = 524058C51D63FA25000A925C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -958,8 +958,8 @@
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
 				INFOPLIST_FILE = "$(SRCROOT)/tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.Endgame-tvOS";
-				PRODUCT_NAME = Endgame;
+				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.Winchester-tvOS";
+				PRODUCT_NAME = Winchester;
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -975,8 +975,8 @@
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
 				INFOPLIST_FILE = "$(SRCROOT)/tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.Endgame-tvOS";
-				PRODUCT_NAME = Endgame;
+				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.Winchester-tvOS";
+				PRODUCT_NAME = Winchester;
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -994,8 +994,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.Endgame-macOS";
-				PRODUCT_NAME = Endgame;
+				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.Winchester-macOS";
+				PRODUCT_NAME = Winchester;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
 			};
@@ -1011,8 +1011,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.Endgame-macOS";
-				PRODUCT_NAME = Endgame;
+				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.Winchester-macOS";
+				PRODUCT_NAME = Winchester;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
 			};
@@ -1025,10 +1025,10 @@
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.EndgameTests-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.WinchesterTests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Endgame.app/Endgame";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Winchester";
 			};
 			name = Debug;
 		};
@@ -1039,10 +1039,10 @@
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.EndgameTests-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.WinchesterTests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Endgame.app/Endgame";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Winchester";
 			};
 			name = Release;
 		};
@@ -1053,11 +1053,11 @@
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.EndgameTests-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.WinchesterTests-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Endgame.app/Endgame";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Winchester";
 				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
@@ -1069,11 +1069,11 @@
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.EndgameTests-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.WinchesterTests-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Endgame.app/Endgame";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Winchester";
 				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
@@ -1088,11 +1088,11 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.EndgameTests-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.WinchesterTests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Endgame.app/Contents/MacOS/Endgame";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Contents/MacOS/Winchester";
 			};
 			name = Debug;
 		};
@@ -1106,11 +1106,11 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.EndgameTests-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.WinchesterTests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Endgame.app/Contents/MacOS/Endgame";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Contents/MacOS/Winchester";
 			};
 			name = Release;
 		};
@@ -1217,8 +1217,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
-				PRODUCT_NAME = Endgame;
+				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Winchester;
+				PRODUCT_NAME = Winchester;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1233,8 +1233,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
-				PRODUCT_NAME = Endgame;
+				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Winchester;
+				PRODUCT_NAME = Winchester;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -1242,7 +1242,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		524058621D63749E000A925C /* Build configuration list for PBXNativeTarget "Endgame tvOS" */ = {
+		524058621D63749E000A925C /* Build configuration list for PBXNativeTarget "Winchester tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				524058601D63749E000A925C /* Debug */,
@@ -1251,7 +1251,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		524058971D638C8D000A925C /* Build configuration list for PBXNativeTarget "Endgame macOS" */ = {
+		524058971D638C8D000A925C /* Build configuration list for PBXNativeTarget "Winchester macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				524058981D638C8D000A925C /* Debug */,
@@ -1260,7 +1260,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		524058AB1D63F353000A925C /* Build configuration list for PBXNativeTarget "EndgameTests iOS" */ = {
+		524058AB1D63F353000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				524058AC1D63F353000A925C /* Debug */,
@@ -1269,7 +1269,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		524058B91D63FA15000A925C /* Build configuration list for PBXNativeTarget "EndgameTests tvOS" */ = {
+		524058B91D63FA15000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				524058BA1D63FA15000A925C /* Debug */,
@@ -1278,7 +1278,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		524058C71D63FA25000A925C /* Build configuration list for PBXNativeTarget "EndgameTests macOS" */ = {
+		524058C71D63FA25000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				524058C81D63FA25000A925C /* Debug */,
@@ -1287,7 +1287,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52BAE08D1D5FD555006E2652 /* Build configuration list for PBXProject "Endgame" */ = {
+		52BAE08D1D5FD555006E2652 /* Build configuration list for PBXProject "Winchester" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52BAE0A21D5FD555006E2652 /* Debug */,
@@ -1296,7 +1296,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52BAE0A41D5FD555006E2652 /* Build configuration list for PBXNativeTarget "Endgame iOS" */ = {
+		52BAE0A41D5FD555006E2652 /* Build configuration list for PBXNativeTarget "Winchester iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52BAE0A51D5FD555006E2652 /* Debug */,

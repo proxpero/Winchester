@@ -2,10 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Winchester/Winchester.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Endgame/Endgame.xcodeproj">
+      location = "group:/Users/proxpero/Code/Winchester/Endgame/Winchester.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Engine/Engine.xcodeproj">

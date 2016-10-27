@@ -1,6 +1,6 @@
 //
 //  PieceNode.swift
-//  Endgame
+//  Winchester
 //
 //  Created by Todd Olsen on 8/16/16.
 //  Copyright © 2016 Todd Olsen. All rights reserved.
