@@ -27,10 +27,12 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
         userActivityDelegate?.userDidNormalizeActivity()
     }
 
+    // Move the pieces from where they are to where they need to be.
     private func mobilize(_ items: [HistoryItem], toward direction: Direction) {
 
         typealias TransactionTable = Dictionary<PieceNode, Transaction>
 
+        // Encapsulate what needs to happen to each piece.
         struct Transaction {
             enum Status {
                 case added

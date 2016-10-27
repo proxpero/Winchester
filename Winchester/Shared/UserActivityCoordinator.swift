@@ -51,8 +51,6 @@ final class UserActivityCoordinator: UserActivityDelegate {
         squareModel.clearSquareNodes(ofType: .capture)
         // test for check (show arrows, covergage, attacks by most recent move)
 
-
-
         presentLastMoveArrow()
         presentCheckingArrows()
         presentAllAvailableSquares()
