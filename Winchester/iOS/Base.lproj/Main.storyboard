@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jEr-b9-2PR">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -26,84 +27,101 @@
         <!--Endgame-->
         <scene sceneID="NOa-TU-Pqm">
             <objects>
-                <collectionViewController storyboardIdentifier="RootCellectionView" id="PXc-qv-jRj" customClass="RootCollectionViewController" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="13f-fl-0ih">
+                <collectionViewController storyboardIdentifier="RootCellectionView" id="PXc-qv-jRj" customClass="RootCollectionViewController" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="13f-fl-0ih">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="1" id="eLd-fl-h8e">
-                            <size key="itemSize" width="351" height="153"/>
+                            <size key="itemSize" width="175" height="231"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShowGameCell" id="ZNa-9i-iDw" customClass="ShowGameCell" customModule="Endgame" customModuleProvider="target">
-                                <rect key="frame" x="12" y="50" width="351" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShowGameCell" id="gsM-hb-qVn" customClass="ShowGameCell" customModule="Winchester" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="175" height="231"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="351" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="175" height="231"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkR-Fk-tAj">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="2cz-K5-dep">
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nok-GV-Fgd">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x09-EW-kVe">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="Nok-GV-Fgd" secondAttribute="height" multiplier="1:1" id="y93-KD-g8h"/>
+                                                        <constraint firstAttribute="width" secondItem="x09-EW-kVe" secondAttribute="height" multiplier="1:1" id="8J8-YS-WfP"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="YGj-do-VfN">
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETP-1a-IUy">
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="E6L-b2-6uZ">
-                                                            <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteQueen" translatesAutoresizingMaskIntoConstraints="NO" id="36w-Sa-A4E">
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="36w-Sa-A4E" secondAttribute="height" multiplier="1:1" id="yOn-q5-FgV"/>
-                                                                    </constraints>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMw-cR-H5q">
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Vl-pT-6GH">
-                                                            <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlackQueen" translatesAutoresizingMaskIntoConstraints="NO" id="JXv-MD-nBb">
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="JXv-MD-nBb" secondAttribute="height" multiplier="1:1" id="VBZ-Oj-uxW"/>
-                                                                    </constraints>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oM-2h-yTW">
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteQueen" translatesAutoresizingMaskIntoConstraints="NO" id="snS-eq-dvi">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="snS-eq-dvi" secondAttribute="height" multiplier="1:1" id="to6-Jh-jGc"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="762" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKw-dn-KFJ">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="½" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6P-PT-nkY">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="VJq-zZ-Gv0"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFj-hh-Vcm">
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlackQueen" translatesAutoresizingMaskIntoConstraints="NO" id="eAA-P9-PHj">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="eAA-P9-PHj" secondAttribute="height" multiplier="1:1" id="gCI-Ub-eel"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="762" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTy-Yh-SU3">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="½" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gw0-H6-uGI">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="avr-g1-fcO"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="kFj-hh-Vcm" firstAttribute="height" secondItem="ETP-1a-IUy" secondAttribute="height" id="yml-Am-4O9"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="RkR-Fk-tAj" firstAttribute="leading" secondItem="ZNa-9i-iDw" secondAttribute="leading" id="Jaq-9S-cjV"/>
-                                    <constraint firstItem="RkR-Fk-tAj" firstAttribute="top" secondItem="ZNa-9i-iDw" secondAttribute="top" id="QcI-tE-Jqh"/>
-                                    <constraint firstItem="RkR-Fk-tAj" firstAttribute="bottom" secondItem="ZNa-9i-iDw" secondAttribute="bottom" id="RSD-hW-Yw9"/>
-                                    <constraint firstItem="RkR-Fk-tAj" firstAttribute="trailing" secondItem="ZNa-9i-iDw" secondAttribute="trailing" id="hXI-Ci-U5j"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="2cz-K5-dep" secondAttribute="leading" id="UaM-HK-vs2"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="2cz-K5-dep" secondAttribute="bottom" id="Xev-n0-Oe7"/>
+                                    <constraint firstAttribute="topMargin" secondItem="2cz-K5-dep" secondAttribute="top" id="cbI-2C-yet"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="2cz-K5-dep" secondAttribute="trailing" id="r7t-XM-jxV"/>
                                 </constraints>
-                                <size key="customSize" width="351" height="100"/>
+                                <size key="customSize" width="175" height="231"/>
                                 <connections>
-                                    <outlet property="blackLabel" destination="2oM-2h-yTW" id="Xci-e9-s5h"/>
-                                    <outlet property="imageView" destination="Nok-GV-Fgd" id="94C-OM-7xN"/>
-                                    <outlet property="whiteLabel" destination="jMw-cR-H5q" id="8gi-v1-tqA"/>
+                                    <outlet property="blackLabel" destination="JTy-Yh-SU3" id="x2a-TD-ST7"/>
+                                    <outlet property="blackOutcomeLabel" destination="gw0-H6-uGI" id="ZYt-Na-0jC"/>
+                                    <outlet property="imageView" destination="x09-EW-kVe" id="yyH-aJ-dxD"/>
+                                    <outlet property="whiteLabel" destination="XKw-dn-KFJ" id="biF-YD-eUL"/>
+                                    <outlet property="whiteOutcomeLabel" destination="L6P-PT-nkY" id="iiG-2w-HD3"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="HeaderCell" id="U9H-gW-ytF" customClass="HeaderCell" customModule="Endgame" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="HeaderCell" id="U9H-gW-ytF" customClass="HeaderCell" customModule="Winchester" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -154,12 +172,12 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e80-oe-dJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-790" y="98"/>
+            <point key="canvasLocation" x="-791.20000000000005" y="97.601199400299862"/>
         </scene>
         <!--Game-->
         <scene sceneID="l6v-zF-CR0">
             <objects>
-                <viewController storyboardIdentifier="GameViewController" title="Game" id="Zuu-iC-iUE" customClass="GameViewController" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameViewController" title="Game" id="Zuu-iC-iUE" customClass="GameViewController" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="thj-Bv-yC3"/>
                         <viewControllerLayoutGuide type="bottom" id="M4c-9T-tDy"/>
@@ -192,7 +210,7 @@
         <!--Title View Contoller-->
         <scene sceneID="pKc-Ir-MDw">
             <objects>
-                <viewController storyboardIdentifier="TitleViewController" id="Jbd-Ip-8kb" customClass="TitleViewContoller" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TitleViewController" id="Jbd-Ip-8kb" customClass="TitleViewContoller" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="svv-Im-yWi"/>
                         <viewControllerLayoutGuide type="bottom" id="BPH-fe-ty7"/>
@@ -257,7 +275,7 @@
         <!--Board View Controller-->
         <scene sceneID="64k-Y3-JWX">
             <objects>
-                <viewController storyboardIdentifier="BoardViewController" id="iNc-xJ-9Rk" customClass="BoardViewController" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BoardViewController" id="iNc-xJ-9Rk" customClass="BoardViewController" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DCI-z1-juO"/>
                         <viewControllerLayoutGuide type="bottom" id="maT-Pd-Mdp"/>
@@ -399,7 +417,7 @@
         <!--History View Controller-->
         <scene sceneID="j8s-wE-4f8">
             <objects>
-                <collectionViewController storyboardIdentifier="HistoryViewController" clearsSelectionOnViewWillAppear="NO" id="2Y4-G0-7JH" customClass="HistoryViewController" customModule="Endgame" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="HistoryViewController" clearsSelectionOnViewWillAppear="NO" id="2Y4-G0-7JH" customClass="HistoryViewController" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Dnm-CP-oqf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -411,7 +429,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HistoryCell" id="UiL-qL-2ue" customClass="HistoryCell" customModule="Endgame" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HistoryCell" id="UiL-qL-2ue" customClass="HistoryCell" customModule="Winchester" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-3" width="61" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

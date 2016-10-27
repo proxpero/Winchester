@@ -13,7 +13,7 @@ struct ApplicationCoordinator {
 
     struct Model {
         let updateUserGames: () -> [Game]
-        let updateFavoriteGames: () -> [Game]
+        let updateClassicGames: () -> [Game]
     }
 
     // MARK: - Private Stored Properties
@@ -46,7 +46,7 @@ struct ApplicationCoordinator {
 
         vc.model = RootCollectionViewController.Model(
             userGames: _model.updateUserGames(),
-            favoriteGames: _model.updateFavoriteGames()
+            classicGames: _model.updateClassicGames()
         )
 
         // MARK: Delegate

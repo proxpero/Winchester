@@ -28,3 +28,13 @@ extension Game {
     }
 
 }
+
+extension Outcome {
+    func description(for color: Color) -> String {
+        switch self {
+        case .win(let winner): return winner == color ? "1" : "0"
+        case .draw: return "½"
+        default: return ""
+        }
+    }
+}

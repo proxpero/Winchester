@@ -111,7 +111,6 @@
 		524A72B91DC140B00078379A /* TitleViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72B31DC140B00078379A /* TitleViewDataSource.swift */; };
 		524A72BF1DC140F30078379A /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BA1DC140F30078379A /* HistoryCell.swift */; };
 		524A72C01DC140F30078379A /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BA1DC140F30078379A /* HistoryCell.swift */; };
-		524A72C11DC140F30078379A /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BA1DC140F30078379A /* HistoryCell.swift */; };
 		524A72C21DC140F30078379A /* HistoryCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BB1DC140F30078379A /* HistoryCellType.swift */; };
 		524A72C31DC140F30078379A /* HistoryCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BB1DC140F30078379A /* HistoryCellType.swift */; };
 		524A72C41DC140F30078379A /* HistoryCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BB1DC140F30078379A /* HistoryCellType.swift */; };
@@ -149,8 +148,14 @@
 		52BA80111DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
 		52BA80121DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
 		52BA80131DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
-		52BCD09A1DC18D40005D1CC2 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52647CC21DC184E600E617A4 /* Endgame.framework */; };
-		52BCD09B1DC18D40005D1CC2 /* Endgame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52647CC21DC184E600E617A4 /* Endgame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		52BCD0A01DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */; };
+		52BCD0A11DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */; };
+		52BCD0A21DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */; };
+		52BCD0A31DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
+		52BCD0A41DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
+		52BCD0A51DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
+		52BCD0A71DC242D8005D1CC2 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BCD0A61DC242D8005D1CC2 /* Endgame.framework */; };
+		52BCD0A81DC242D8005D1CC2 /* Endgame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52BCD0A61DC242D8005D1CC2 /* Endgame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,13 +203,13 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52BCD09C1DC18D40005D1CC2 /* Embed Frameworks */ = {
+		52BCD0A91DC242D8005D1CC2 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				52BCD09B1DC18D40005D1CC2 /* Endgame.framework in Embed Frameworks */,
+				52BCD0A81DC242D8005D1CC2 /* Endgame.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,7 +271,6 @@
 		524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDelegate.swift; sourceTree = "<group>"; };
 		52647CBC1DC1849200E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug/Endgame.framework"; sourceTree = "<group>"; };
 		52647CC01DC184DD00E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-appletvsimulator/Endgame.framework"; sourceTree = "<group>"; };
-		52647CC21DC184E600E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-iphonesimulator/Endgame.framework"; sourceTree = "<group>"; };
 		5282880E1D6113310014B105 /* EndgameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndgameTests.swift; sourceTree = "<group>"; };
 		528E211E1DC17E9800C45E17 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = iOS/AppCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		528E211F1DC17E9800C45E17 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = iOS/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -286,6 +290,9 @@
 		52BA80091DAD244F00E15277 /* reti v rubenstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reti v rubenstein.pgn"; path = "../../Test Games/reti v rubenstein.pgn"; sourceTree = "<group>"; };
 		52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "shirov v polgar.pgn"; path = "../../Test Games/shirov v polgar.pgn"; sourceTree = "<group>"; };
 		52BAE0921D5FD555006E2652 /* Winchester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Winchester.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v thomason.pgn"; sourceTree = "<group>"; };
+		52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v warner.pgn"; sourceTree = "<group>"; };
+		52BCD0A61DC242D8005D1CC2 /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,7 +337,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52BCD09A1DC18D40005D1CC2 /* Endgame.framework in Frameworks */,
+				52BCD0A71DC242D8005D1CC2 /* Endgame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +350,8 @@
 				5225DCFE1DB544CB00F74330 /* fischer v fine.pgn */,
 				5225DCFF1DB544CB00F74330 /* reti v rubenstein.pgn */,
 				5225DD001DB544CB00F74330 /* shirov v polgar.pgn */,
+				52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */,
+				52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */,
 			);
 			name = "Test Games";
 			path = "../Test Games";
@@ -395,22 +404,22 @@
 		524A72781DC13E600078379A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				524A72AB1DC140910078379A /* UserActivityCoordinator.swift */,
+				524A728A1DC13FFC0078379A /* BoardScene.swift */,
+				524A72891DC13FFC0078379A /* BoardInteractionCoordinator.swift */,
+				524A728C1DC13FFC0078379A /* PieceNodeModel.swift */,
+				524A728B1DC13FFC0078379A /* NodeType.swift */,
+				524A728D1DC13FFC0078379A /* SquareNode.swift */,
+				524A728E1DC13FFC0078379A /* SquareNodeModel.swift */,
+				524A72861DC13FFC0078379A /* ArrowNode.swift */,
+				524A72871DC13FFC0078379A /* ArrowNodeModel.swift */,
+				524A72881DC13FFC0078379A /* BoardArrowsCoordinator.swift */,
 				524A72AA1DC140910078379A /* HistoryInteractionCoordinator.swift */,
 				524A72BA1DC140F30078379A /* HistoryCell.swift */,
 				524A72BB1DC140F30078379A /* HistoryCellType.swift */,
 				524A72BC1DC140F30078379A /* HistoryViewCoordinator.swift */,
 				524A72BD1DC140F30078379A /* HistoryViewDataSource.swift */,
 				524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */,
-				524A72861DC13FFC0078379A /* ArrowNode.swift */,
-				524A72871DC13FFC0078379A /* ArrowNodeModel.swift */,
-				524A72881DC13FFC0078379A /* BoardArrowsCoordinator.swift */,
-				524A72891DC13FFC0078379A /* BoardInteractionCoordinator.swift */,
-				524A728A1DC13FFC0078379A /* BoardScene.swift */,
-				524A728B1DC13FFC0078379A /* NodeType.swift */,
-				524A728C1DC13FFC0078379A /* PieceNodeModel.swift */,
-				524A728D1DC13FFC0078379A /* SquareNode.swift */,
-				524A728E1DC13FFC0078379A /* SquareNodeModel.swift */,
-				524A72AB1DC140910078379A /* UserActivityCoordinator.swift */,
 				524A72B21DC140B00078379A /* TitleViewConfiguration.swift */,
 				524A72B31DC140B00078379A /* TitleViewDataSource.swift */,
 				524A727A1DC13E600078379A /* Assets.xcassets */,
@@ -421,19 +430,19 @@
 		528287F61D6103720014B105 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				524A72811DC13F2C0078379A /* BoardScene+Touch.swift */,
 				528E211E1DC17E9800C45E17 /* AppCoordinator.swift */,
 				528E211F1DC17E9800C45E17 /* AppDelegate.swift */,
-				528E21201DC17E9800C45E17 /* BoardViewController.swift */,
-				528E21211DC17E9800C45E17 /* Game+Endgame.swift */,
+				528E21281DC17E9800C45E17 /* RootCollectionViewController.swift */,
 				528E21221DC17E9800C45E17 /* GameCoordinator.swift */,
 				528E21231DC17E9800C45E17 /* GameViewController.swift */,
+				528E212A1DC17E9800C45E17 /* TitleViewController.swift */,
+				528E21201DC17E9800C45E17 /* BoardViewController.swift */,
 				528E21241DC17E9800C45E17 /* HistoryViewController.swift */,
+				524A72811DC13F2C0078379A /* BoardScene+Touch.swift */,
+				528E21211DC17E9800C45E17 /* Game+Endgame.swift */,
 				528E21251DC17E9800C45E17 /* PieceNode.swift */,
 				528E21261DC17E9800C45E17 /* PromotionView.swift */,
-				528E21281DC17E9800C45E17 /* RootCollectionViewController.swift */,
 				528E21291DC17E9800C45E17 /* ShowGameCell.swift */,
-				528E212A1DC17E9800C45E17 /* TitleViewController.swift */,
 				528E212B1DC17E9800C45E17 /* UIImage+View.swift */,
 				528E212C1DC17E9800C45E17 /* UISwipeGestureRecognizer+Extensions.swift */,
 				5240586B1D638483000A925C /* LaunchScreen.storyboard */,
@@ -459,7 +468,7 @@
 		5282881F1D6117270014B105 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				52647CC21DC184E600E617A4 /* Endgame.framework */,
+				52BCD0A61DC242D8005D1CC2 /* Endgame.framework */,
 				52647CC01DC184DD00E617A4 /* Endgame.framework */,
 				52647CBC1DC1849200E617A4 /* Endgame.framework */,
 			);
@@ -594,7 +603,7 @@
 				52BAE08F1D5FD555006E2652 /* Frameworks */,
 				52BAE0901D5FD555006E2652 /* Resources */,
 				521D1F6A1D8B0EE400A0A0E6 /* Embed App Extensions */,
-				52BCD09C1DC18D40005D1CC2 /* Embed Frameworks */,
+				52BCD0A91DC242D8005D1CC2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -679,6 +688,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5237A6801D97691A00BAC16E /* cc02.pgn in Resources */,
+				52BCD0A41DC198B7005D1CC2 /* fischer v warner.pgn in Resources */,
 				5237A68F1D97691A00BAC16E /* mateIn1.epd in Resources */,
 				5237A67A1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
 				5225DD021DB544CB00F74330 /* fischer v fine.pgn in Resources */,
@@ -690,6 +700,7 @@
 				5237A6831D97691A00BAC16E /* gm1830.pgn in Resources */,
 				5237A6981D97691A00BAC16E /* mateIn4.epd in Resources */,
 				5237A6891D97691A00BAC16E /* gm1981.pgn in Resources */,
+				52BCD0A11DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */,
 				5237A6861D97691A00BAC16E /* gm1931.pgn in Resources */,
 				5225DD081DB544CB00F74330 /* shirov v polgar.pgn in Resources */,
 				524A727F1DC13E600078379A /* Assets.xcassets in Resources */,
@@ -705,6 +716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5237A6811D97691A00BAC16E /* cc02.pgn in Resources */,
+				52BCD0A51DC198B7005D1CC2 /* fischer v warner.pgn in Resources */,
 				5237A6901D97691A00BAC16E /* mateIn1.epd in Resources */,
 				5237A67B1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
 				5225DD031DB544CB00F74330 /* fischer v fine.pgn in Resources */,
@@ -716,6 +728,7 @@
 				5237A6841D97691A00BAC16E /* gm1830.pgn in Resources */,
 				5237A6991D97691A00BAC16E /* mateIn4.epd in Resources */,
 				5237A68A1D97691A00BAC16E /* gm1981.pgn in Resources */,
+				52BCD0A21DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */,
 				5237A6871D97691A00BAC16E /* gm1931.pgn in Resources */,
 				5225DD091DB544CB00F74330 /* shirov v polgar.pgn in Resources */,
 				524A72801DC13E600078379A /* Assets.xcassets in Resources */,
@@ -762,6 +775,7 @@
 			files = (
 				5237A69A1D97691A00BAC16E /* mateIn5.epd in Resources */,
 				5237A6881D97691A00BAC16E /* gm1981.pgn in Resources */,
+				52BCD0A01DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */,
 				5237A67C1D97691A00BAC16E /* cc01.pgn in Resources */,
 				5237A6631D970B7C00BAC16E /* Main.storyboard in Resources */,
 				524A727E1DC13E600078379A /* Assets.xcassets in Resources */,
@@ -769,6 +783,7 @@
 				5237A6911D97691A00BAC16E /* mateIn2.epd in Resources */,
 				5237A6971D97691A00BAC16E /* mateIn4.epd in Resources */,
 				5225DD011DB544CB00F74330 /* fischer v fine.pgn in Resources */,
+				52BCD0A31DC198B7005D1CC2 /* fischer v warner.pgn in Resources */,
 				5237A6821D97691A00BAC16E /* gm1830.pgn in Resources */,
 				5240586F1D638483000A925C /* LaunchScreen.storyboard in Resources */,
 				5237A6791D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
@@ -824,7 +839,6 @@
 				524A72CD1DC140F30078379A /* HistoryViewDelegate.swift in Sources */,
 				524A72911DC13FFC0078379A /* ArrowNode.swift in Sources */,
 				524A72A01DC13FFC0078379A /* NodeType.swift in Sources */,
-				524A72C11DC140F30078379A /* HistoryCell.swift in Sources */,
 				524A729A1DC13FFC0078379A /* BoardInteractionCoordinator.swift in Sources */,
 				524A729D1DC13FFC0078379A /* BoardScene.swift in Sources */,
 				524A72B91DC140B00078379A /* TitleViewDataSource.swift in Sources */,

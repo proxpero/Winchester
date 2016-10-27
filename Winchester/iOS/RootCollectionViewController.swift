@@ -29,11 +29,11 @@ extension RootCollectionViewController {
     fileprivate enum Section: Int {
 
         case userGames
-        case favoriteGames
+        case classicGames
         case puzzles
 
         static var all: [Section] {
-            return [.userGames, .favoriteGames, .puzzles]
+            return [.userGames, .classicGames, .puzzles]
         }
 
         init(at indexPath: IndexPath) {
@@ -47,7 +47,7 @@ extension RootCollectionViewController {
         var title: String {
             switch self {
             case .userGames: return "My Games"
-            case .favoriteGames: return "Favorite Games"
+            case .classicGames: return "Classic Games"
             case .puzzles: return "Puzzles"
             }
         }
@@ -60,7 +60,7 @@ extension RootCollectionViewController {
             switch self {
             case .userGames:
                 return { }
-            case .favoriteGames:
+            case .classicGames:
                 return { }
             case .puzzles:
                 return { }
@@ -77,7 +77,7 @@ extension RootCollectionViewController {
                 return {
                     print(#function)
                 }
-            case .favoriteGames:
+            case .classicGames:
                 return {
                     print(#function)
                 }
@@ -91,7 +91,7 @@ extension RootCollectionViewController {
         var cellType: UICollectionViewCell.Type {
             switch self {
             case .userGames: return ShowGameCell.self
-            case .favoriteGames: return ShowGameCell.self
+            case .classicGames: return ShowGameCell.self
             case .puzzles: return ShowPuzzleCell.self
             }
         }
@@ -100,7 +100,7 @@ extension RootCollectionViewController {
             switch self {
             case .userGames:
                 return configureShowGameCell
-            case .favoriteGames:
+            case .classicGames:
                 return configureShowGameCell
             case .puzzles:
                 return configureShowPuzzleCell
@@ -115,7 +115,8 @@ extension RootCollectionViewController {
                 cell.imageView.image = image
                 cell.whiteLabel.text = game.whitePlayer.name
                 cell.blackLabel.text = game.blackPlayer.name
-//                cell.outcomeLabel.text = game.outcome.description
+                cell.whiteOutcomeLabel.text = game.outcome.description(for: .white)
+                cell.blackOutcomeLabel.text = game.outcome.description(for: .black)
             }
 
         }
@@ -138,13 +139,13 @@ extension RootCollectionViewController {
         // MARK: Private Stored Properties
 
         private let _userGames: Array<Game>
-        private let _favoriteGames: Array<Game>
+        private let _classicGames: Array<Game>
 
         // MARK: Initializers
 
-        init(userGames: [Game], favoriteGames: [Game]) {
+        init(userGames: [Game], classicGames: [Game]) {
             self._userGames = userGames
-            self._favoriteGames = favoriteGames
+            self._classicGames = classicGames
         }
 
         // MARK: Computed Properties and Functions
@@ -154,12 +155,11 @@ extension RootCollectionViewController {
         }
 
         func userGame(at index: Int) -> Game {
-
             return _userGames[index]
         }
 
-        func favoriteGame(at index: Int) -> Game {
-            return _favoriteGames[index]
+        func classicGame(at index: Int) -> Game {
+            return _classicGames[index]
         }
 
         func puzzle(at index: Int) -> Puzzle {
@@ -173,7 +173,7 @@ extension RootCollectionViewController {
         func itemCount(in section: Int) -> Int {
             switch Section(section) {
             case .userGames: return _userGames.count
-            case .favoriteGames: return _favoriteGames.count
+            case .classicGames: return _classicGames.count
             case .puzzles: return 0
             }
         }
@@ -217,8 +217,8 @@ extension RootCollectionViewController {
                 case .userGames:
                     let game = self.userGame(at: indexPath.row)
                     return section.configureCell(cell)(game)
-                case .favoriteGames:
-                    let game = self.favoriteGame(at: indexPath.row)
+                case .classicGames:
+                    let game = self.classicGame(at: indexPath.row)
                     return section.configureCell(cell)(game)
                 case .puzzles:
                     let puzzle = Puzzle()
@@ -245,8 +245,8 @@ extension RootCollectionViewController {
             switch section {
             case .userGames:
                 didSelectUserGame(model.userGame(at: indexPath.row))
-            case .favoriteGames:
-                didSelectFavoriteGame(model.favoriteGame(at: indexPath.row))
+            case .classicGames:
+                didSelectFavoriteGame(model.classicGame(at: indexPath.row))
             case .puzzles:
                 didSelectPuzzle(model.puzzle(at: indexPath.row))
             }
@@ -295,14 +295,14 @@ extension RootCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     // MARK: - Collection View Flow Delegate
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat
-        if traitCollection.horizontalSizeClass == .compact {
-            width = collectionView.frame.width
-        } else {
-            width = (collectionView.frame.width / 2) - 20
-        }
-        return CGSize(width: width, height: 150)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let width: CGFloat
+//        if traitCollection.horizontalSizeClass == .compact {
+//            width = collectionView.frame.width
+//        } else {
+//            width = (collectionView.frame.width / 2) - 20
+//        }
+//        return CGSize(width: width, height: 70)
+//    }
 
 }

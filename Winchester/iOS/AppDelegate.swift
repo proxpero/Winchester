@@ -21,14 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window: window,
             model: ApplicationCoordinator.Model(
                 updateUserGames: updateUserGames,
-                updateFavoriteGames: updateFavoriteGames
+                updateClassicGames: updateClassicGames
             )
         )
         coordinator?.start()
         return true
     }
 
-    let files = ["fischer v fine", "reti v rubenstein", "shirov v polgar"]
+    let files = ["fischer v fine", "fischer v thomason", "fischer v warner", "reti v rubenstein", "shirov v polgar"]
 
     func updateUserGames() -> [Game] {
         return files
@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .map { Game(pgn: $0) }
     }
 
-    func updateFavoriteGames() -> [Game] {
+    func updateClassicGames() -> [Game] {
         return files
             .flatMap { Bundle.main.url(forResource: $0, withExtension: "pgn") }
             .map { try! String(contentsOf: $0) }
