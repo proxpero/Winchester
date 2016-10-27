@@ -213,10 +213,6 @@
 		52DB55011D96D3DA008B6F72 /* mateIn6.epd in Resources */ = {isa = PBXBuildFile; fileRef = 52DB54CA1D96D3D9008B6F72 /* mateIn6.epd */; };
 		52DB55021D96D3DA008B6F72 /* mateIn6.epd in Resources */ = {isa = PBXBuildFile; fileRef = 52DB54CA1D96D3D9008B6F72 /* mateIn6.epd */; };
 		52DB55031D96D3DA008B6F72 /* mateIn6.epd in Resources */ = {isa = PBXBuildFile; fileRef = 52DB54CA1D96D3D9008B6F72 /* mateIn6.epd */; };
-		52DB55041D96D3DA008B6F72 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54CB1D96D3D9008B6F72 /* README.md */; };
-		52DB55051D96D3DA008B6F72 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54CB1D96D3D9008B6F72 /* README.md */; };
-		52DB55061D96D3DA008B6F72 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54CB1D96D3D9008B6F72 /* README.md */; };
-		52DB55071D96D3DA008B6F72 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54CB1D96D3D9008B6F72 /* README.md */; };
 		52DB550D1D96D597008B6F72 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D61D917902002C7A0B /* Outcome.swift */; };
 		52DB550E1D96D598008B6F72 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D61D917902002C7A0B /* Outcome.swift */; };
 		52DB550F1D96D598008B6F72 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D61D917902002C7A0B /* Outcome.swift */; };
@@ -922,7 +918,6 @@
 				52B5957B1D53A84100E1D543 /* Move.swift in Sources */,
 				52B595851D53A90F00E1D543 /* PGN.swift in Sources */,
 				52B595B21D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */,
-				52DB55041D96D3DA008B6F72 /* README.md in Sources */,
 				52B595CB1D5512FD00E1D543 /* Board+View.swift in Sources */,
 				52B5955D1D53A16F00E1D543 /* Bitboard.swift in Sources */,
 				5237A65C1D97033200BAC16E /* Position+View.swift in Sources */,
@@ -962,7 +957,6 @@
 				52B595CC1D5512FD00E1D543 /* Board+View.swift in Sources */,
 				52B5955E1D53A16F00E1D543 /* Bitboard.swift in Sources */,
 				52B595B81D54F9D800E1D543 /* AsciiConvertible.swift in Sources */,
-				52DB55051D96D3DA008B6F72 /* README.md in Sources */,
 				52B595901D53AB1E00E1D543 /* Sequence+Chess.swift in Sources */,
 				52B595721D53A6F200E1D543 /* Rank.swift in Sources */,
 				52B595541D53A02D00E1D543 /* Player.swift in Sources */,
@@ -998,7 +992,6 @@
 				52B5955F1D53A16F00E1D543 /* Bitboard.swift in Sources */,
 				5237A65E1D97033200BAC16E /* Position+View.swift in Sources */,
 				52B595B91D54F9D800E1D543 /* AsciiConvertible.swift in Sources */,
-				52DB55061D96D3DA008B6F72 /* README.md in Sources */,
 				52B595911D53AB1E00E1D543 /* Sequence+Chess.swift in Sources */,
 				52B595731D53A6F200E1D543 /* Rank.swift in Sources */,
 				52B595551D53A02D00E1D543 /* Player.swift in Sources */,
@@ -1034,7 +1027,6 @@
 				52B595BA1D54F9D800E1D543 /* AsciiConvertible.swift in Sources */,
 				5237A65F1D97033200BAC16E /* Position+View.swift in Sources */,
 				52B595921D53AB1E00E1D543 /* Sequence+Chess.swift in Sources */,
-				52DB55071D96D3DA008B6F72 /* README.md in Sources */,
 				52B595741D53A6F200E1D543 /* Rank.swift in Sources */,
 				52B595561D53A02D00E1D543 /* Player.swift in Sources */,
 				52B5958D1D53A93F00E1D543 /* EPD.swift in Sources */,
