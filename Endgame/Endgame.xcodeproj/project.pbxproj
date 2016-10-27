@@ -30,10 +30,10 @@
 		5282882E1D622BCB0014B105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5282882C1D622BCB0014B105 /* Assets.xcassets */; };
 		5282882F1D622BCB0014B105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5282882C1D622BCB0014B105 /* Assets.xcassets */; };
 		528288301D622BCB0014B105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5282882C1D622BCB0014B105 /* Assets.xcassets */; };
-		528797BF1D905FAC009671AC /* Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 528797BE1D905FAC009671AC /* Engine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		528797C01D905FAC009671AC /* Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 528797BE1D905FAC009671AC /* Engine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		528797C11D905FAC009671AC /* Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 528797BE1D905FAC009671AC /* Engine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		528797C21D905FAC009671AC /* Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 528797BE1D905FAC009671AC /* Engine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		528797BF1D905FAC009671AC /* Endgame.h in Headers */ = {isa = PBXBuildFile; fileRef = 528797BE1D905FAC009671AC /* Endgame.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		528797C01D905FAC009671AC /* Endgame.h in Headers */ = {isa = PBXBuildFile; fileRef = 528797BE1D905FAC009671AC /* Endgame.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		528797C11D905FAC009671AC /* Endgame.h in Headers */ = {isa = PBXBuildFile; fileRef = 528797BE1D905FAC009671AC /* Endgame.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		528797C21D905FAC009671AC /* Endgame.h in Headers */ = {isa = PBXBuildFile; fileRef = 528797BE1D905FAC009671AC /* Endgame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		528797CC1D90B040009671AC /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528797CB1D90B040009671AC /* Position.swift */; };
 		52942EA71D56BEF400525598 /* BoardCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52942EA61D56BEF400525598 /* BoardCoordinate.swift */; };
 		52942EA81D56BF1800525598 /* BoardCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52942EA61D56BEF400525598 /* BoardCoordinate.swift */; };
@@ -262,7 +262,7 @@
 		52678A311D9BF7FC00AB1B9E /* Capture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capture.swift; sourceTree = "<group>"; };
 		528288281D6168FE0014B105 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		5282882C1D622BCB0014B105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		528797BE1D905FAC009671AC /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
+		528797BE1D905FAC009671AC /* Endgame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Endgame.h; sourceTree = "<group>"; };
 		528797CB1D90B040009671AC /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		52942EA61D56BEF400525598 /* BoardCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCoordinate.swift; sourceTree = "<group>"; };
 		5295DD501D98A94A0036144D /* ECO Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ECO Tests.swift"; sourceTree = "<group>"; };
@@ -497,7 +497,7 @@
 			children = (
 				5282882C1D622BCB0014B105 /* Assets.xcassets */,
 				522324C31D3DEDC70034E292 /* Info.plist */,
-				528797BE1D905FAC009671AC /* Engine.h */,
+				528797BE1D905FAC009671AC /* Endgame.h */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -509,7 +509,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				528797BF1D905FAC009671AC /* Engine.h in Headers */,
+				528797BF1D905FAC009671AC /* Endgame.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,7 +517,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				528797C01D905FAC009671AC /* Engine.h in Headers */,
+				528797C01D905FAC009671AC /* Endgame.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +525,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				528797C11D905FAC009671AC /* Engine.h in Headers */,
+				528797C11D905FAC009671AC /* Endgame.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +533,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				528797C21D905FAC009671AC /* Engine.h in Headers */,
+				528797C21D905FAC009671AC /* Endgame.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

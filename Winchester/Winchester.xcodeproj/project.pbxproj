@@ -126,7 +126,6 @@
 		524A72CD1DC140F30078379A /* HistoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */; };
 		52647CBD1DC1849200E617A4 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52647CBC1DC1849200E617A4 /* Endgame.framework */; };
 		52647CC11DC184DD00E617A4 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52647CC01DC184DD00E617A4 /* Endgame.framework */; };
-		52647CC31DC184E600E617A4 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52647CC21DC184E600E617A4 /* Endgame.framework */; };
 		528E212D1DC17E9800C45E17 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E211E1DC17E9800C45E17 /* AppCoordinator.swift */; };
 		528E212E1DC17E9800C45E17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E211F1DC17E9800C45E17 /* AppDelegate.swift */; };
 		528E212F1DC17E9800C45E17 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21201DC17E9800C45E17 /* BoardViewController.swift */; };
@@ -150,6 +149,8 @@
 		52BA80111DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
 		52BA80121DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
 		52BA80131DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
+		52BCD09A1DC18D40005D1CC2 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52647CC21DC184E600E617A4 /* Endgame.framework */; };
+		52BCD09B1DC18D40005D1CC2 /* Endgame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52647CC21DC184E600E617A4 /* Endgame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,7 +188,7 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		528E21471DC1840000C45E17 /* Embed Frameworks */ = {
+		528E214B1DC1840800C45E17 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -197,12 +198,13 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		528E214B1DC1840800C45E17 /* Embed Frameworks */ = {
+		52BCD09C1DC18D40005D1CC2 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				52BCD09B1DC18D40005D1CC2 /* Endgame.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,7 +330,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52647CC31DC184E600E617A4 /* Endgame.framework in Frameworks */,
+				52BCD09A1DC18D40005D1CC2 /* Endgame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +594,7 @@
 				52BAE08F1D5FD555006E2652 /* Frameworks */,
 				52BAE0901D5FD555006E2652 /* Resources */,
 				521D1F6A1D8B0EE400A0A0E6 /* Embed App Extensions */,
-				528E21471DC1840000C45E17 /* Embed Frameworks */,
+				52BCD09C1DC18D40005D1CC2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
