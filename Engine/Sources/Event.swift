@@ -1,6 +1,6 @@
 //
 //  Event.swift
-//  Engine
+//  Endgame
 //
 //  Created by Todd Olsen on 9/23/16.
 //

@@ -5,6 +5,6 @@
       location = "group:/Users/proxpero/Code/Winchester/Endgame/Winchester.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Engine/Engine.xcodeproj">
+      location = "group:/Users/proxpero/Code/Winchester/Engine/Endgame.xcodeproj">
    </FileRef>
 </Workspace>

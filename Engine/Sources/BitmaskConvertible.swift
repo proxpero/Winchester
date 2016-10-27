@@ -1,6 +1,6 @@
 //
 //  BitmaskConvertible.swift
-//  Engine
+//  Endgame
 //
 //  Created by Todd Olsen on 8/5/16.
 //

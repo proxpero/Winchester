@@ -19,7 +19,7 @@
 //#endif
 
 import UIKit
-import Engine
+import Endgame
 
 final class PromotionView: UIView {
 

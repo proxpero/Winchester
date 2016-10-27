@@ -8,7 +8,7 @@
 
 import UIKit
 import SpriteKit
-import Engine
+import Endgame
 
 enum ActivityState {
     case initiation(Square)

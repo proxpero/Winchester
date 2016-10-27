@@ -1,4 +1,4 @@
-import Engine
+import Endgame
 import Foundation
 
 class Delegate: GameDelegate {
@@ -25,6 +25,5 @@ let pgn = try! PGN(parse: string)
 let game = Game(pgn: pgn)
 let delegate = Delegate()
 game.delegate = delegate
-
 
 

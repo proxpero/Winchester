@@ -6,7 +6,7 @@
 //  Copyright © 2016 proxpero. All rights reserved.
 //
 
-import Engine
+import Endgame
 import SpriteKit
 
 enum HighlightType {

@@ -8,7 +8,7 @@
 
 import XCTest
 import Messages
-@testable import Engine
+@testable import Endgame
 @testable import Winchester
 
 class WinchesterTests: XCTestCase {

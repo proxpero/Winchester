@@ -1,6 +1,6 @@
 //
 //  BoardCoordinate.swift
-//  Engine
+//  Endgame
 //
 //  Created by Todd Olsen on 8/6/16.
 //

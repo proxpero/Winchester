@@ -1,13 +1,13 @@
 //
 //  PositionTests.swift
-//  Engine
+//  Endgame
 //
 //  Created by Todd Olsen on 9/21/16.
 //
 //
 
 import XCTest
-@testable import Engine
+@testable import Endgame
 
 class PositionTests: XCTestCase {
 

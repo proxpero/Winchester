@@ -1,13 +1,13 @@
 //
 //  ECO Tests.swift
-//  Engine
+//  Endgame
 //
 //  Created by Todd Olsen on 9/25/16.
 //
 //
 
 import XCTest
-@testable import Engine
+@testable import Endgame
 
 class ECO_Tests: XCTestCase {
 

@@ -50,9 +50,9 @@
 		52AB81DA1D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
 		52AB81DB1D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
 		52AB81DC1D917986002C7A0B /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB81D81D917986002C7A0B /* HistoryItem.swift */; };
-		52B595221D539C8700E1D543 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE63311D3D83BC0022618B /* Engine.framework */; };
-		52B595311D539C9800E1D543 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE63581D3D83FC0022618B /* Engine.framework */; };
-		52B595401D539CA300E1D543 /* Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE634B1D3D83D90022618B /* Engine.framework */; };
+		52B595221D539C8700E1D543 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE63311D3D83BC0022618B /* Endgame.framework */; };
+		52B595311D539C9800E1D543 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE63581D3D83FC0022618B /* Endgame.framework */; };
+		52B595401D539CA300E1D543 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE634B1D3D83D90022618B /* Endgame.framework */; };
 		52B5954E1D539FC700E1D543 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5954D1D539FC700E1D543 /* Game.swift */; };
 		52B5954F1D539FC700E1D543 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5954D1D539FC700E1D543 /* Game.swift */; };
 		52B595501D539FC700E1D543 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5954D1D539FC700E1D543 /* Game.swift */; };
@@ -268,9 +268,9 @@
 		5295DD501D98A94A0036144D /* ECO Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ECO Tests.swift"; sourceTree = "<group>"; };
 		52AB81D61D917902002C7A0B /* Outcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
 		52AB81D81D917986002C7A0B /* HistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
-		52B5951D1D539C8700E1D543 /* EngineTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EngineTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52B5952C1D539C9800E1D543 /* EngineTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EngineTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52B5953B1D539CA300E1D543 /* EngineTests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EngineTests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52B5951D1D539C8700E1D543 /* EndgameTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EndgameTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52B5952C1D539C9800E1D543 /* EndgameTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EndgameTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52B5953B1D539CA300E1D543 /* EndgameTests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EndgameTests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B595471D539D2B00E1D543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B5954C1D539F9B00E1D543 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		52B5954D1D539FC700E1D543 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -317,10 +317,10 @@
 		52DB54C91D96D3D9008B6F72 /* mateIn5.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn5.epd; sourceTree = "<group>"; };
 		52DB54CA1D96D3D9008B6F72 /* mateIn6.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn6.epd; sourceTree = "<group>"; };
 		52DB54CB1D96D3D9008B6F72 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		52DE63311D3D83BC0022618B /* Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52DE633E1D3D83CB0022618B /* Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52DE634B1D3D83D90022618B /* Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52DE63581D3D83FC0022618B /* Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52DE63311D3D83BC0022618B /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52DE633E1D3D83CB0022618B /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52DE634B1D3D83D90022618B /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52DE63581D3D83FC0022618B /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,7 +328,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52B595221D539C8700E1D543 /* Engine.framework in Frameworks */,
+				52B595221D539C8700E1D543 /* Endgame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +336,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52B595311D539C9800E1D543 /* Engine.framework in Frameworks */,
+				52B595311D539C9800E1D543 /* Endgame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +344,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52B595401D539CA300E1D543 /* Engine.framework in Frameworks */,
+				52B595401D539CA300E1D543 /* Endgame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,13 +446,13 @@
 		52DE62FC1D3D82300022618B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52DE63311D3D83BC0022618B /* Engine.framework */,
-				52DE633E1D3D83CB0022618B /* Engine.framework */,
-				52DE634B1D3D83D90022618B /* Engine.framework */,
-				52DE63581D3D83FC0022618B /* Engine.framework */,
-				52B5951D1D539C8700E1D543 /* EngineTests iOS.xctest */,
-				52B5952C1D539C9800E1D543 /* EngineTests macOS.xctest */,
-				52B5953B1D539CA300E1D543 /* EngineTests tvOS.xctest */,
+				52DE63311D3D83BC0022618B /* Endgame.framework */,
+				52DE633E1D3D83CB0022618B /* Endgame.framework */,
+				52DE634B1D3D83D90022618B /* Endgame.framework */,
+				52DE63581D3D83FC0022618B /* Endgame.framework */,
+				52B5951D1D539C8700E1D543 /* EndgameTests iOS.xctest */,
+				52B5952C1D539C9800E1D543 /* EndgameTests macOS.xctest */,
+				52B5953B1D539CA300E1D543 /* EndgameTests tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -540,9 +540,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		52B5951C1D539C8700E1D543 /* EngineTests iOS */ = {
+		52B5951C1D539C8700E1D543 /* EndgameTests iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52B595251D539C8700E1D543 /* Build configuration list for PBXNativeTarget "EngineTests iOS" */;
+			buildConfigurationList = 52B595251D539C8700E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests iOS" */;
 			buildPhases = (
 				52B595191D539C8700E1D543 /* Sources */,
 				52B5951A1D539C8700E1D543 /* Frameworks */,
@@ -553,14 +553,14 @@
 			dependencies = (
 				52B595241D539C8700E1D543 /* PBXTargetDependency */,
 			);
-			name = "EngineTests iOS";
+			name = "EndgameTests iOS";
 			productName = "ChessTests iOS";
-			productReference = 52B5951D1D539C8700E1D543 /* EngineTests iOS.xctest */;
+			productReference = 52B5951D1D539C8700E1D543 /* EndgameTests iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		52B5952B1D539C9800E1D543 /* EngineTests macOS */ = {
+		52B5952B1D539C9800E1D543 /* EndgameTests macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52B595341D539C9800E1D543 /* Build configuration list for PBXNativeTarget "EngineTests macOS" */;
+			buildConfigurationList = 52B595341D539C9800E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests macOS" */;
 			buildPhases = (
 				52B595281D539C9800E1D543 /* Sources */,
 				52B595291D539C9800E1D543 /* Frameworks */,
@@ -571,14 +571,14 @@
 			dependencies = (
 				52B595331D539C9800E1D543 /* PBXTargetDependency */,
 			);
-			name = "EngineTests macOS";
+			name = "EndgameTests macOS";
 			productName = "ChessTests macOS";
-			productReference = 52B5952C1D539C9800E1D543 /* EngineTests macOS.xctest */;
+			productReference = 52B5952C1D539C9800E1D543 /* EndgameTests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		52B5953A1D539CA300E1D543 /* EngineTests tvOS */ = {
+		52B5953A1D539CA300E1D543 /* EndgameTests tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52B595431D539CA300E1D543 /* Build configuration list for PBXNativeTarget "EngineTests tvOS" */;
+			buildConfigurationList = 52B595431D539CA300E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests tvOS" */;
 			buildPhases = (
 				52B595371D539CA300E1D543 /* Sources */,
 				52B595381D539CA300E1D543 /* Frameworks */,
@@ -589,14 +589,14 @@
 			dependencies = (
 				52B595421D539CA300E1D543 /* PBXTargetDependency */,
 			);
-			name = "EngineTests tvOS";
+			name = "EndgameTests tvOS";
 			productName = "ChessTests tvOS";
-			productReference = 52B5953B1D539CA300E1D543 /* EngineTests tvOS.xctest */;
+			productReference = 52B5953B1D539CA300E1D543 /* EndgameTests tvOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		52DE63301D3D83BC0022618B /* Engine iOS */ = {
+		52DE63301D3D83BC0022618B /* Endgame iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52DE63361D3D83BC0022618B /* Build configuration list for PBXNativeTarget "Engine iOS" */;
+			buildConfigurationList = 52DE63361D3D83BC0022618B /* Build configuration list for PBXNativeTarget "Endgame iOS" */;
 			buildPhases = (
 				52DE632C1D3D83BC0022618B /* Sources */,
 				52DE632D1D3D83BC0022618B /* Frameworks */,
@@ -607,14 +607,14 @@
 			);
 			dependencies = (
 			);
-			name = "Engine iOS";
+			name = "Endgame iOS";
 			productName = "Chess-iOS";
-			productReference = 52DE63311D3D83BC0022618B /* Engine.framework */;
+			productReference = 52DE63311D3D83BC0022618B /* Endgame.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		52DE633D1D3D83CB0022618B /* Engine watchOS */ = {
+		52DE633D1D3D83CB0022618B /* Endgame watchOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52DE63431D3D83CB0022618B /* Build configuration list for PBXNativeTarget "Engine watchOS" */;
+			buildConfigurationList = 52DE63431D3D83CB0022618B /* Build configuration list for PBXNativeTarget "Endgame watchOS" */;
 			buildPhases = (
 				52DE63391D3D83CB0022618B /* Sources */,
 				52DE633A1D3D83CB0022618B /* Frameworks */,
@@ -625,14 +625,14 @@
 			);
 			dependencies = (
 			);
-			name = "Engine watchOS";
+			name = "Endgame watchOS";
 			productName = "Chess-watchOS";
-			productReference = 52DE633E1D3D83CB0022618B /* Engine.framework */;
+			productReference = 52DE633E1D3D83CB0022618B /* Endgame.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		52DE634A1D3D83D90022618B /* Engine tvOS */ = {
+		52DE634A1D3D83D90022618B /* Endgame tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52DE63501D3D83D90022618B /* Build configuration list for PBXNativeTarget "Engine tvOS" */;
+			buildConfigurationList = 52DE63501D3D83D90022618B /* Build configuration list for PBXNativeTarget "Endgame tvOS" */;
 			buildPhases = (
 				52DE63461D3D83D90022618B /* Sources */,
 				52DE63471D3D83D90022618B /* Frameworks */,
@@ -643,14 +643,14 @@
 			);
 			dependencies = (
 			);
-			name = "Engine tvOS";
+			name = "Endgame tvOS";
 			productName = "Chess-tvOS";
-			productReference = 52DE634B1D3D83D90022618B /* Engine.framework */;
+			productReference = 52DE634B1D3D83D90022618B /* Endgame.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		52DE63571D3D83FC0022618B /* Engine macOS */ = {
+		52DE63571D3D83FC0022618B /* Endgame macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52DE635D1D3D83FC0022618B /* Build configuration list for PBXNativeTarget "Engine macOS" */;
+			buildConfigurationList = 52DE635D1D3D83FC0022618B /* Build configuration list for PBXNativeTarget "Endgame macOS" */;
 			buildPhases = (
 				52DE63531D3D83FC0022618B /* Sources */,
 				52DE63541D3D83FC0022618B /* Frameworks */,
@@ -661,9 +661,9 @@
 			);
 			dependencies = (
 			);
-			name = "Engine macOS";
+			name = "Endgame macOS";
 			productName = "Chess-macOS";
-			productReference = 52DE63581D3D83FC0022618B /* Engine.framework */;
+			productReference = 52DE63581D3D83FC0022618B /* Endgame.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -720,7 +720,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 52DE62F31D3D82190022618B /* Build configuration list for PBXProject "Engine" */;
+			buildConfigurationList = 52DE62F31D3D82190022618B /* Build configuration list for PBXProject "Endgame" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -732,13 +732,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52DE63301D3D83BC0022618B /* Engine iOS */,
-				52DE633D1D3D83CB0022618B /* Engine watchOS */,
-				52DE634A1D3D83D90022618B /* Engine tvOS */,
-				52DE63571D3D83FC0022618B /* Engine macOS */,
-				52B5951C1D539C8700E1D543 /* EngineTests iOS */,
-				52B5952B1D539C9800E1D543 /* EngineTests macOS */,
-				52B5953A1D539CA300E1D543 /* EngineTests tvOS */,
+				52DE63301D3D83BC0022618B /* Endgame iOS */,
+				52DE633D1D3D83CB0022618B /* Endgame watchOS */,
+				52DE634A1D3D83D90022618B /* Endgame tvOS */,
+				52DE63571D3D83FC0022618B /* Endgame macOS */,
+				52B5951C1D539C8700E1D543 /* EndgameTests iOS */,
+				52B5952B1D539C9800E1D543 /* EndgameTests macOS */,
+				52B5953A1D539CA300E1D543 /* EndgameTests tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1062,17 +1062,17 @@
 /* Begin PBXTargetDependency section */
 		52B595241D539C8700E1D543 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52DE63301D3D83BC0022618B /* Engine iOS */;
+			target = 52DE63301D3D83BC0022618B /* Endgame iOS */;
 			targetProxy = 52B595231D539C8700E1D543 /* PBXContainerItemProxy */;
 		};
 		52B595331D539C9800E1D543 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52DE63571D3D83FC0022618B /* Engine macOS */;
+			target = 52DE63571D3D83FC0022618B /* Endgame macOS */;
 			targetProxy = 52B595321D539C9800E1D543 /* PBXContainerItemProxy */;
 		};
 		52B595421D539CA300E1D543 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52DE634A1D3D83D90022618B /* Engine tvOS */;
+			target = 52DE634A1D3D83D90022618B /* Endgame tvOS */;
 			targetProxy = 52B595411D539CA300E1D543 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1447,8 +1447,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Engine;
-				PRODUCT_NAME = Engine;
+				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
+				PRODUCT_NAME = Endgame;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1502,8 +1502,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Engine;
-				PRODUCT_NAME = Engine;
+				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
+				PRODUCT_NAME = Endgame;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1564,8 +1564,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Engine;
-				PRODUCT_NAME = Engine;
+				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
+				PRODUCT_NAME = Endgame;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1620,8 +1620,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Engine;
-				PRODUCT_NAME = Engine;
+				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
+				PRODUCT_NAME = Endgame;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1681,8 +1681,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Engine;
-				PRODUCT_NAME = Engine;
+				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
+				PRODUCT_NAME = Endgame;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1735,8 +1735,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Engine;
-				PRODUCT_NAME = Engine;
+				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
+				PRODUCT_NAME = Endgame;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1800,8 +1800,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Engine;
-				PRODUCT_NAME = Engine;
+				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
+				PRODUCT_NAME = Endgame;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1856,8 +1856,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Engine;
-				PRODUCT_NAME = Engine;
+				PRODUCT_BUNDLE_IDENTIFIER = proxpero.Endgame;
+				PRODUCT_NAME = Endgame;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1870,7 +1870,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		52B595251D539C8700E1D543 /* Build configuration list for PBXNativeTarget "EngineTests iOS" */ = {
+		52B595251D539C8700E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52B595261D539C8700E1D543 /* Debug */,
@@ -1879,7 +1879,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52B595341D539C9800E1D543 /* Build configuration list for PBXNativeTarget "EngineTests macOS" */ = {
+		52B595341D539C9800E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52B595351D539C9800E1D543 /* Debug */,
@@ -1888,7 +1888,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52B595431D539CA300E1D543 /* Build configuration list for PBXNativeTarget "EngineTests tvOS" */ = {
+		52B595431D539CA300E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52B595441D539CA300E1D543 /* Debug */,
@@ -1897,7 +1897,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52DE62F31D3D82190022618B /* Build configuration list for PBXProject "Engine" */ = {
+		52DE62F31D3D82190022618B /* Build configuration list for PBXProject "Endgame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52DE62F41D3D82190022618B /* Debug */,
@@ -1906,7 +1906,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52DE63361D3D83BC0022618B /* Build configuration list for PBXNativeTarget "Engine iOS" */ = {
+		52DE63361D3D83BC0022618B /* Build configuration list for PBXNativeTarget "Endgame iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52DE63371D3D83BC0022618B /* Debug */,
@@ -1915,7 +1915,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52DE63431D3D83CB0022618B /* Build configuration list for PBXNativeTarget "Engine watchOS" */ = {
+		52DE63431D3D83CB0022618B /* Build configuration list for PBXNativeTarget "Endgame watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52DE63441D3D83CB0022618B /* Debug */,
@@ -1924,7 +1924,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52DE63501D3D83D90022618B /* Build configuration list for PBXNativeTarget "Engine tvOS" */ = {
+		52DE63501D3D83D90022618B /* Build configuration list for PBXNativeTarget "Endgame tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52DE63511D3D83D90022618B /* Debug */,
@@ -1933,7 +1933,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52DE635D1D3D83FC0022618B /* Build configuration list for PBXNativeTarget "Engine macOS" */ = {
+		52DE635D1D3D83FC0022618B /* Build configuration list for PBXNativeTarget "Endgame macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52DE635E1D3D83FC0022618B /* Debug */,

@@ -1,6 +1,6 @@
 //
 //  Color.swift
-//  Engine
+//  Endgame
 //
 //  Created by Todd Olsen on 8/4/16.
 //

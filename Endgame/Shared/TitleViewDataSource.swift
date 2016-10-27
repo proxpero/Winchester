@@ -6,7 +6,7 @@
 //  Copyright © 2016 Todd Olsen. All rights reserved.
 //
 
-import Engine
+import Endgame
 
 protocol TitleViewDataSource {
     var white: Player { get }

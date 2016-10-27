@@ -1,6 +1,6 @@
 //
 //  Position.swift
-//  Engine
+//  Endgame
 //
 //  Created by Todd Olsen on 9/19/16.
 //

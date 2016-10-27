@@ -1,6 +1,6 @@
 //
 //  ECO.swift
-//  Engine
+//  Endgame
 //
 //  Created by Todd Olsen on 9/25/16.
 //
