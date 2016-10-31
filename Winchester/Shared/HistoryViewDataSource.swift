@@ -7,72 +7,37 @@
 //
 
 import Foundation
+import Endgame
 
-protocol HistoryViewDataSource {
+struct HistoryViewDataSource: HistoryViewModel {
 
-    /// The number of cells in the History View Control.
-    func cellCount() -> Int
+    private let game: Game
 
-    /// Provides a `HistoryCellType` suitable for the cell at `indexPath
-    func itemType(at indexPath: IndexPath) -> HistoryCellType
-
-    /// Returns the index for the `HistoryItem` in the game, or `nil` if
-    /// at the starting position.
-    func itemIndex(for indexPath: IndexPath) -> Int?
-
-}
-
-extension HistoryViewDataSource {
-
-    // MARK: Internal Computed Properties and Functions
-
-    func lastMove() -> IndexPath {
-        return IndexPath(row: cellCount() - 1, section: 0)
+    init(for game: Game) {
+        self.game = game
     }
 
-    func nextMoveCell(after indexPath: IndexPath) -> IndexPath {
-        let next = indexPath.row + 1
-        let candidate = IndexPath(row: next, section: 0)
-        if isNumberCell(for: candidate) {
-            return IndexPath(row: next+1, section: 0)
-        } else {
-            return candidate
-        }
+    func cellCount() -> Int {
+        let moves = game.count
+        // start cell + moves cells + number cells + outcome cell
+        return 1 + moves + (moves % 2 == 0 ? moves / 2 : (moves + 1) / 2) + 1
     }
 
-    func previousMoveCell(before indexPath: IndexPath) -> IndexPath {
-        let prev = indexPath.row - 1
-        let candidate = IndexPath(row: prev, section: 0)
-        if isNumberCell(for: candidate) {
-            return IndexPath(row: prev-1, section: 0)
-        } else {
-            return candidate
-        }
+    func itemType(at indexPath: IndexPath) -> HistoryCellType {
+
+        if isStart(for: indexPath) { return .start }
+        if isOutcome(for: indexPath) { return .outcome(game.outcome) }
+        if isNumberCell(for: indexPath) { return .number(fullmoveValue(for: indexPath)) }
+
+        guard let itemIndex = itemIndex(for: indexPath) else { fatalError("Expected a move") }
+        return .move(game[itemIndex].sanMove)
+
     }
 
-    func isValidSelection(for indexPath: IndexPath) -> Bool {
-        return (0 ..< cellCount()-1).contains(indexPath.row)
+    func itemIndex(for indexPath: IndexPath) -> Int? {
+        let row = indexPath.row
+        guard row != 0 else { return nil }
+        return 2 * row / 3 - 1
     }
 
-    func isStart(for indexPath: IndexPath) -> Bool {
-        return indexPath.row == 0
-    }
-
-    func isOutcome(for indexPath: IndexPath) -> Bool {
-        return indexPath.row == cellCount() - 1
-    }
-
-    func isNumberCell(for indexPath: IndexPath) -> Bool {
-        return (indexPath.row-1) % 3 == 0
-    }
-
-    func indexPath(for itemIndex: Int) -> IndexPath {
-        let row = ((itemIndex % 2 == 0 ? 2 : 0) + (6 * (itemIndex + 1))) / 4
-        return IndexPath(row: row, section: 0)
-    }
-
-    func fullmoveValue(for indexPath: IndexPath) -> Int {
-        return (indexPath.row - 1) / 3 + 1
-    }
-    
 }
