@@ -137,6 +137,7 @@ final class ArrowNode: SKShapeNode {
         super.init()
         self.path = path
         self.zPosition = NodeType.arrow.zPosition
+        self.name = type.name
     }
 
     required init?(coder aDecoder: NSCoder) {

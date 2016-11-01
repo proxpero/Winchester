@@ -11,7 +11,7 @@ import SpriteKit
 
 struct ArrowNodeModel {
     /// Required
-    private let scene: BoardScene
+    private weak var scene: BoardScene!
 
     init(scene: BoardScene) {
         self.scene = scene
@@ -33,18 +33,11 @@ struct ArrowNodeModel {
         ).cgPath
 
         let node = ArrowNode(move: move, type: type, path: path)
-        node.name = type.name
         node.zPosition = NodeType.arrow.zPosition
         node.fillColor = type.fillColor
         node.strokeColor = type.strokeColor
 
-        node.userData = NSMutableDictionary()
-        node.userData!["origin"] = move.origin.description
-        node.userData!["target"] = move.target.description
-        node.userData!["type"] = type.name
-
         return node
-        
     }
 
     func setTarget(_ target: Square, for node: ArrowNode) {
@@ -71,11 +64,7 @@ struct ArrowNodeModel {
         scene
             .children.flatMap { $0 as? ArrowNode }
             .filter { $0.type == type }
-            .forEach { arrowNode in
-                arrowNode.run(SKAction.fadeOut(withDuration: 0.2)) {
-                    arrowNode.removeFromParent()
-                }
-        }
+            .forEach(remove)
     }
 
     func add(_ arrowNode: ArrowNode) {
@@ -85,7 +74,7 @@ struct ArrowNodeModel {
     }
 
     func remove(_ arrowNode: ArrowNode) {
-        arrowNode.run(SKAction.fadeOut(withDuration: 0.2)) {
+        arrowNode.run(SKAction.fadeOut(withDuration: 0.0)) {
             arrowNode.removeFromParent()
         }
     }
