@@ -10,12 +10,6 @@ import UIKit
 import SpriteKit
 import Endgame
 
-enum ActivityState {
-    case initiation(Square)
-    case normal
-    case end(Move)
-}
-
 struct Design: Equatable {
 
     let isWide: Bool
@@ -42,23 +36,33 @@ public final class GameViewController: UIViewController {
 
     var userActivityCoordinator: UserActivityCoordinator!
     var boardInteractionCoordinator: BoardInteractionCoordinator!
+    var didTapSettingsButton: () -> () = { }
+    var didTapBackButton: () -> () = { }
+    var presentScene: () -> Void  =  { }
 
     @IBOutlet var stackView: UIStackView!
 
-    var titleViewController: TitleViewContoller!
+    var titleViewController: TitleViewController!
     var boardViewController: BoardViewController!
     var historyViewController: HistoryViewController!
-    var accessoryViewController: UIViewController?
+    var captureViewController: CaptureViewController!
+//    var accessoryViewController: UIViewController?
+
+    @IBAction func settingsButtonAction(_ sender: UIBarButtonItem) {
+        didTapSettingsButton()
+    }
+
+    @IBAction func backButtonAction(_ sender: UIBarButtonItem) {
+        self.didTapBackButton()
+    }
 
     var displayedDesign: Design? = nil
 
-    private var isFirstPass = true
-
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
         let newDesign = Design(size: view.bounds.size)
         if displayedDesign != newDesign {
+
             addChildViewController(titleViewController)
             stackView.addArrangedSubview(titleViewController.view)
             titleViewController.didMove(toParentViewController: self)
@@ -71,11 +75,14 @@ public final class GameViewController: UIViewController {
             stackView.addArrangedSubview(historyViewController.view)
             historyViewController.didMove(toParentViewController: self)
 
+            addChildViewController(captureViewController)
+            stackView.addArrangedSubview(captureViewController.view)
+            captureViewController.didMove(toParentViewController: self)
+
             presentScene()
             displayedDesign = newDesign
+            
         }
     }
-
-    var presentScene: () -> Void  =  { }
 
 }
