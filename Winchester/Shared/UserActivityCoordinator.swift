@@ -118,8 +118,6 @@ final class UserActivityCoordinator: UserActivityDelegate {
         squareModel.clearSquareNodes(ofType: .candidate)
         _availableCaptures = []
         _availableTargets = []
-        // test for check (show arrows, covergage, attacks by most recent move)
-
         
         arrowModel.removeArrows(with: .lastMove)
         if let move = game.latestMove {
@@ -127,51 +125,45 @@ final class UserActivityCoordinator: UserActivityDelegate {
             arrowModel.add(lastMoveArrow)
         }
 
-//        presentCheckingArrows()
-//        presentAllAvailableSquares()
-//        presentAllDefendedSquares()
+        presentCheckingArrows()
+        presentAllAvailableSquares()
+        presentAllDefendedSquares()
 
     }
 
     // MARK: - Private // MARK: - Private Computed Properties and Functions
 
-//    private func presentLastMoveArrow() {
-//        arrowModel.removeArrows(with: .lastMove)
-//        guard let move = game.latestMove else { return }
-//        let arrow = arrowModel.arrowNode(for: move, with: .lastMove)
-//        arrowModel.add(arrow)
-//    }
+    private func presentCheckingArrows() {
+        arrowModel.removeArrows(with: .check)
+        let checks = game.squaresAttackingKing
+        if checks.isEmpty { return }
+        for move in game.movesAttackingKing() {
+            let arrow = arrowModel.arrowNode(for: move, with: .check)
+            arrowModel.add(arrow)
+        }
+    }
 
-//    private func presentCheckingArrows() {
-//        arrowModel.removeArrows(with: .check)
-//        let checks = game.squaresAttackingKing
-//        if checks.isEmpty { return }
-//        for move in game.movesAttackingKing() {
-//            let arrow = arrowModel.arrowNode(for: move, with: .check)
-//            arrowModel.add(arrow)
-//        }
-//    }
-
-//    private func presentAllAvailableSquares() {
-//        squareModel.clearSquareNodes(ofType: .available)
-//        let squares = game.availableTargets(for: game.playerTurn)
-//        for square in squares {
-//            let node = squareModel.squareNode(with: square, ofType: .available)
-//            squareModel.add(node)            
-//        }
-//    }
+    private func presentAllAvailableSquares() {
+        squareModel.clearSquareNodes(ofType: .available)
+        let squares = game.availableTargets(for: game.playerTurn)
+        for square in squares {
+            let node = squareModel.squareNode(with: square, ofType: .available)
+            squareModel.add(node)            
+        }
+    }
 
 //    private func presentAllAttackingSquares() {
 //
 //    }
 
-//    private func presentAllDefendedSquares() {
-//        squareModel.clearSquareNodes(ofType: .defended)
-//        let squares = game.defendedOccupations(for: game.playerTurn)
-//        for square in squares {
-//            let node = squareModel.squareNode(with: square, ofType: .defended)
-//            node.zPosition += 10
-//            squareModel.add(node)
-//        }
-//    }
+    private func presentAllDefendedSquares() {
+        squareModel.clearSquareNodes(ofType: .defended)
+        let squares = game.defendedOccupations(for: game.playerTurn)
+        for square in squares {
+            let node = squareModel.squareNode(with: square, ofType: .defended)
+            node.zPosition += 10
+            squareModel.add(node)
+        }
+    }
+
 }
