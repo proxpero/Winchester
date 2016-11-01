@@ -46,7 +46,6 @@ public final class GameViewController: UIViewController {
     var boardViewController: BoardViewController!
     var historyViewController: HistoryViewController!
     var captureViewController: CaptureViewController!
-//    var accessoryViewController: UIViewController?
 
     @IBAction func settingsButtonAction(_ sender: UIBarButtonItem) {
         didTapSettingsButton()
@@ -85,4 +84,8 @@ public final class GameViewController: UIViewController {
         }
     }
 
+    deinit {
+        print("GameVC deinit")
+
+    }
 }

@@ -125,23 +125,6 @@ class GameTests: XCTestCase {
         test(game: reti)
     }
 
-//    func testRedoOneFromStart() {
-//
-//        func test(game: Game) {
-//            game.undoAll()
-//            let redone = game.redo()
-//            XCTAssertEqual(redone.count, game.count)
-//            XCTAssertEqual(game._currentIndex, game.endIndex-1)
-//            let newGame = Game()
-//            redone.forEach { try! newGame.execute(move: $0.move, promotion: $0.promotion) }
-//            zip(game, newGame).forEach { XCTAssertEqual($0.0, $0.1) }
-//        }
-//
-//        test(game: fischer)
-//        test(game: polgar)
-//        test(game: reti)
-//    }
-
     func testRedoAll() {
 
         func test(game: Game) {

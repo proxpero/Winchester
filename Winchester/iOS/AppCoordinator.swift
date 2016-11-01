@@ -52,11 +52,13 @@ struct ApplicationCoordinator {
         // MARK: Delegate
 
         func _presentUserGame(game: Game) {
+            game.undoAll()
             let coordinator = GameCoordinator(for: game, with: _navigationController)
             coordinator.start()
         }
 
         func _presentFavoriteGame(game: Game) {
+            game.undoAll()
             let coordinator = GameCoordinator(for: game, with: _navigationController)
             coordinator.start()
         }

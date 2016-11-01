@@ -216,7 +216,8 @@ public class Game {
     /// Sets the game's currentIndex to the starting position.
     @discardableResult
     public func undoAll() -> ArraySlice<HistoryItem> {
-        return undo(count: _items.count)
+        guard let count = _currentIndex else { return [] }
+        return undo(count: count + 1)
     }
 
     /// Sets the game's currentIndex to the ending position.
