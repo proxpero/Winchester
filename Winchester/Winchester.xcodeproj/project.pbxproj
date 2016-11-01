@@ -66,6 +66,10 @@
 		524058CC1D63FA66000A925C /* EndgameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* EndgameTests.swift */; };
 		524058D31D63FB24000A925C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524058D21D63FB24000A925C /* AppDelegate.swift */; };
 		524058D71D63FB74000A925C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524058D51D63FB74000A925C /* Main.storyboard */; };
+		524A14DE1DC6CA7B003BC9AC /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524A14DD1DC6CA7B003BC9AC /* Endgame.framework */; };
+		524A14DF1DC6CA7B003BC9AC /* Endgame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 524A14DD1DC6CA7B003BC9AC /* Endgame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		524A14E11DC788ED003BC9AC /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A14E01DC788ED003BC9AC /* PromotionViewController.swift */; };
+		524A14E31DC7E82D003BC9AC /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A14E21DC7E82D003BC9AC /* CaptureViewController.swift */; };
 		524A727E1DC13E600078379A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524A727A1DC13E600078379A /* Assets.xcassets */; };
 		524A727F1DC13E600078379A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524A727A1DC13E600078379A /* Assets.xcassets */; };
 		524A72801DC13E600078379A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524A727A1DC13E600078379A /* Assets.xcassets */; };
@@ -114,12 +118,12 @@
 		524A72C21DC140F30078379A /* HistoryCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BB1DC140F30078379A /* HistoryCellType.swift */; };
 		524A72C31DC140F30078379A /* HistoryCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BB1DC140F30078379A /* HistoryCellType.swift */; };
 		524A72C41DC140F30078379A /* HistoryCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BB1DC140F30078379A /* HistoryCellType.swift */; };
-		524A72C51DC140F30078379A /* HistoryViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BC1DC140F30078379A /* HistoryViewCoordinator.swift */; };
-		524A72C61DC140F30078379A /* HistoryViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BC1DC140F30078379A /* HistoryViewCoordinator.swift */; };
-		524A72C71DC140F30078379A /* HistoryViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BC1DC140F30078379A /* HistoryViewCoordinator.swift */; };
-		524A72C81DC140F30078379A /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BD1DC140F30078379A /* HistoryViewDataSource.swift */; };
-		524A72C91DC140F30078379A /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BD1DC140F30078379A /* HistoryViewDataSource.swift */; };
-		524A72CA1DC140F30078379A /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BD1DC140F30078379A /* HistoryViewDataSource.swift */; };
+		524A72C51DC140F30078379A /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BC1DC140F30078379A /* HistoryViewDataSource.swift */; };
+		524A72C61DC140F30078379A /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BC1DC140F30078379A /* HistoryViewDataSource.swift */; };
+		524A72C71DC140F30078379A /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BC1DC140F30078379A /* HistoryViewDataSource.swift */; };
+		524A72C81DC140F30078379A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BD1DC140F30078379A /* HistoryViewModel.swift */; };
+		524A72C91DC140F30078379A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BD1DC140F30078379A /* HistoryViewModel.swift */; };
+		524A72CA1DC140F30078379A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BD1DC140F30078379A /* HistoryViewModel.swift */; };
 		524A72CB1DC140F30078379A /* HistoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */; };
 		524A72CC1DC140F30078379A /* HistoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */; };
 		524A72CD1DC140F30078379A /* HistoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */; };
@@ -132,8 +136,6 @@
 		528E21311DC17E9800C45E17 /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21221DC17E9800C45E17 /* GameCoordinator.swift */; };
 		528E21321DC17E9800C45E17 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21231DC17E9800C45E17 /* GameViewController.swift */; };
 		528E21331DC17E9800C45E17 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21241DC17E9800C45E17 /* HistoryViewController.swift */; };
-		528E21341DC17E9800C45E17 /* PieceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21251DC17E9800C45E17 /* PieceNode.swift */; };
-		528E21351DC17E9800C45E17 /* PromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21261DC17E9800C45E17 /* PromotionView.swift */; };
 		528E21371DC17E9800C45E17 /* RootCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21281DC17E9800C45E17 /* RootCollectionViewController.swift */; };
 		528E21381DC17E9800C45E17 /* ShowGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21291DC17E9800C45E17 /* ShowGameCell.swift */; };
 		528E21391DC17E9800C45E17 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E212A1DC17E9800C45E17 /* TitleViewController.swift */; };
@@ -154,8 +156,10 @@
 		52BCD0A31DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
 		52BCD0A41DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
 		52BCD0A51DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
-		52BCD0A71DC242D8005D1CC2 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BCD0A61DC242D8005D1CC2 /* Endgame.framework */; };
-		52BCD0A81DC242D8005D1CC2 /* Endgame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52BCD0A61DC242D8005D1CC2 /* Endgame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		52E325011DC282CF001FE392 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E325001DC282CF001FE392 /* SettingsViewController.swift */; };
+		52E325031DC37FAF001FE392 /* BoardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E325021DC37FAF001FE392 /* BoardPresenter.swift */; };
+		52E325041DC37FAF001FE392 /* BoardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E325021DC37FAF001FE392 /* BoardPresenter.swift */; };
+		52E325051DC37FAF001FE392 /* BoardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E325021DC37FAF001FE392 /* BoardPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,7 +213,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				52BCD0A81DC242D8005D1CC2 /* Endgame.framework in Embed Frameworks */,
+				524A14DF1DC6CA7B003BC9AC /* Endgame.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +253,9 @@
 		524058D21D63FB24000A925C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = macOS/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		524058D41D63FB32000A925C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = macOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		524058D61D63FB74000A925C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = macOS/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		524A14DD1DC6CA7B003BC9AC /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		524A14E01DC788ED003BC9AC /* PromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionViewController.swift; path = iOS/PromotionViewController.swift; sourceTree = SOURCE_ROOT; };
+		524A14E21DC7E82D003BC9AC /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureViewController.swift; path = iOS/CaptureViewController.swift; sourceTree = SOURCE_ROOT; };
 		524A727A1DC13E600078379A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		524A72811DC13F2C0078379A /* BoardScene+Touch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BoardScene+Touch.swift"; path = "iOS/BoardScene+Touch.swift"; sourceTree = SOURCE_ROOT; };
 		524A72861DC13FFC0078379A /* ArrowNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowNode.swift; sourceTree = "<group>"; };
@@ -266,8 +273,8 @@
 		524A72B31DC140B00078379A /* TitleViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewDataSource.swift; sourceTree = "<group>"; };
 		524A72BA1DC140F30078379A /* HistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		524A72BB1DC140F30078379A /* HistoryCellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCellType.swift; sourceTree = "<group>"; };
-		524A72BC1DC140F30078379A /* HistoryViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewCoordinator.swift; sourceTree = "<group>"; };
-		524A72BD1DC140F30078379A /* HistoryViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDataSource.swift; sourceTree = "<group>"; };
+		524A72BC1DC140F30078379A /* HistoryViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDataSource.swift; sourceTree = "<group>"; };
+		524A72BD1DC140F30078379A /* HistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDelegate.swift; sourceTree = "<group>"; };
 		52647CBC1DC1849200E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug/Endgame.framework"; sourceTree = "<group>"; };
 		52647CC01DC184DD00E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-appletvsimulator/Endgame.framework"; sourceTree = "<group>"; };
@@ -279,8 +286,6 @@
 		528E21221DC17E9800C45E17 /* GameCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameCoordinator.swift; path = iOS/GameCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		528E21231DC17E9800C45E17 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = iOS/GameViewController.swift; sourceTree = SOURCE_ROOT; };
 		528E21241DC17E9800C45E17 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryViewController.swift; path = iOS/HistoryViewController.swift; sourceTree = SOURCE_ROOT; };
-		528E21251DC17E9800C45E17 /* PieceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PieceNode.swift; path = iOS/PieceNode.swift; sourceTree = SOURCE_ROOT; };
-		528E21261DC17E9800C45E17 /* PromotionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionView.swift; path = iOS/PromotionView.swift; sourceTree = SOURCE_ROOT; };
 		528E21281DC17E9800C45E17 /* RootCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootCollectionViewController.swift; path = iOS/RootCollectionViewController.swift; sourceTree = SOURCE_ROOT; };
 		528E21291DC17E9800C45E17 /* ShowGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowGameCell.swift; path = iOS/ShowGameCell.swift; sourceTree = SOURCE_ROOT; };
 		528E212A1DC17E9800C45E17 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleViewController.swift; path = iOS/TitleViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -292,7 +297,8 @@
 		52BAE0921D5FD555006E2652 /* Winchester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Winchester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v thomason.pgn"; sourceTree = "<group>"; };
 		52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v warner.pgn"; sourceTree = "<group>"; };
-		52BCD0A61DC242D8005D1CC2 /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52E325001DC282CF001FE392 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = iOS/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
+		52E325021DC37FAF001FE392 /* BoardPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,7 +343,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52BCD0A71DC242D8005D1CC2 /* Endgame.framework in Frameworks */,
+				524A14DE1DC6CA7B003BC9AC /* Endgame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				524A72AB1DC140910078379A /* UserActivityCoordinator.swift */,
+				52E325021DC37FAF001FE392 /* BoardPresenter.swift */,
 				524A728A1DC13FFC0078379A /* BoardScene.swift */,
 				524A72891DC13FFC0078379A /* BoardInteractionCoordinator.swift */,
 				524A728C1DC13FFC0078379A /* PieceNodeModel.swift */,
@@ -417,8 +424,8 @@
 				524A72AA1DC140910078379A /* HistoryInteractionCoordinator.swift */,
 				524A72BA1DC140F30078379A /* HistoryCell.swift */,
 				524A72BB1DC140F30078379A /* HistoryCellType.swift */,
-				524A72BC1DC140F30078379A /* HistoryViewCoordinator.swift */,
-				524A72BD1DC140F30078379A /* HistoryViewDataSource.swift */,
+				524A72BC1DC140F30078379A /* HistoryViewDataSource.swift */,
+				524A72BD1DC140F30078379A /* HistoryViewModel.swift */,
 				524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */,
 				524A72B21DC140B00078379A /* TitleViewConfiguration.swift */,
 				524A72B31DC140B00078379A /* TitleViewDataSource.swift */,
@@ -438,10 +445,11 @@
 				528E212A1DC17E9800C45E17 /* TitleViewController.swift */,
 				528E21201DC17E9800C45E17 /* BoardViewController.swift */,
 				528E21241DC17E9800C45E17 /* HistoryViewController.swift */,
+				524A14E21DC7E82D003BC9AC /* CaptureViewController.swift */,
 				524A72811DC13F2C0078379A /* BoardScene+Touch.swift */,
 				528E21211DC17E9800C45E17 /* Game+Endgame.swift */,
-				528E21251DC17E9800C45E17 /* PieceNode.swift */,
-				528E21261DC17E9800C45E17 /* PromotionView.swift */,
+				52E325001DC282CF001FE392 /* SettingsViewController.swift */,
+				524A14E01DC788ED003BC9AC /* PromotionViewController.swift */,
 				528E21291DC17E9800C45E17 /* ShowGameCell.swift */,
 				528E212B1DC17E9800C45E17 /* UIImage+View.swift */,
 				528E212C1DC17E9800C45E17 /* UISwipeGestureRecognizer+Extensions.swift */,
@@ -468,7 +476,7 @@
 		5282881F1D6117270014B105 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				52BCD0A61DC242D8005D1CC2 /* Endgame.framework */,
+				524A14DD1DC6CA7B003BC9AC /* Endgame.framework */,
 				52647CC01DC184DD00E617A4 /* Endgame.framework */,
 				52647CBC1DC1849200E617A4 /* Endgame.framework */,
 			);
@@ -621,7 +629,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Todd Olsen";
 				TargetAttributes = {
 					524058531D63749E000A925C = {
@@ -810,9 +818,9 @@
 				524A72B01DC140910078379A /* UserActivityCoordinator.swift in Sources */,
 				524A729F1DC13FFC0078379A /* NodeType.swift in Sources */,
 				524A72901DC13FFC0078379A /* ArrowNode.swift in Sources */,
-				524A72C61DC140F30078379A /* HistoryViewCoordinator.swift in Sources */,
+				524A72C61DC140F30078379A /* HistoryViewDataSource.swift in Sources */,
 				524A72931DC13FFC0078379A /* ArrowNodeModel.swift in Sources */,
-				524A72C91DC140F30078379A /* HistoryViewDataSource.swift in Sources */,
+				524A72C91DC140F30078379A /* HistoryViewModel.swift in Sources */,
 				524A72CC1DC140F30078379A /* HistoryViewDelegate.swift in Sources */,
 				524A72A51DC13FFC0078379A /* SquareNode.swift in Sources */,
 				524A72A21DC13FFC0078379A /* PieceNodeModel.swift in Sources */,
@@ -820,6 +828,7 @@
 				524A72961DC13FFC0078379A /* BoardArrowsCoordinator.swift in Sources */,
 				524A72A81DC13FFC0078379A /* SquareNodeModel.swift in Sources */,
 				524A72B81DC140B00078379A /* TitleViewDataSource.swift in Sources */,
+				52E325041DC37FAF001FE392 /* BoardPresenter.swift in Sources */,
 				524A72B51DC140B00078379A /* TitleViewConfiguration.swift in Sources */,
 				524A72C01DC140F30078379A /* HistoryCell.swift in Sources */,
 				524A72C31DC140F30078379A /* HistoryCellType.swift in Sources */,
@@ -844,10 +853,11 @@
 				524A72B91DC140B00078379A /* TitleViewDataSource.swift in Sources */,
 				524A72C41DC140F30078379A /* HistoryCellType.swift in Sources */,
 				524A72AE1DC140910078379A /* HistoryInteractionCoordinator.swift in Sources */,
-				524A72C71DC140F30078379A /* HistoryViewCoordinator.swift in Sources */,
+				524A72C71DC140F30078379A /* HistoryViewDataSource.swift in Sources */,
+				52E325051DC37FAF001FE392 /* BoardPresenter.swift in Sources */,
 				524A72A61DC13FFC0078379A /* SquareNode.swift in Sources */,
 				524A72A31DC13FFC0078379A /* PieceNodeModel.swift in Sources */,
-				524A72CA1DC140F30078379A /* HistoryViewDataSource.swift in Sources */,
+				524A72CA1DC140F30078379A /* HistoryViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,18 +890,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				528E212D1DC17E9800C45E17 /* AppCoordinator.swift in Sources */,
-				524A72C51DC140F30078379A /* HistoryViewCoordinator.swift in Sources */,
+				524A72C51DC140F30078379A /* HistoryViewDataSource.swift in Sources */,
+				52E325011DC282CF001FE392 /* SettingsViewController.swift in Sources */,
 				528E21321DC17E9800C45E17 /* GameViewController.swift in Sources */,
 				524A729E1DC13FFC0078379A /* NodeType.swift in Sources */,
 				524A72C21DC140F30078379A /* HistoryCellType.swift in Sources */,
+				524A14E11DC788ED003BC9AC /* PromotionViewController.swift in Sources */,
 				528E21371DC17E9800C45E17 /* RootCollectionViewController.swift in Sources */,
 				524A72AF1DC140910078379A /* UserActivityCoordinator.swift in Sources */,
+				524A14E31DC7E82D003BC9AC /* CaptureViewController.swift in Sources */,
 				524A72981DC13FFC0078379A /* BoardInteractionCoordinator.swift in Sources */,
 				524A72CB1DC140F30078379A /* HistoryViewDelegate.swift in Sources */,
 				528E213A1DC17E9800C45E17 /* UIImage+View.swift in Sources */,
 				528E21301DC17E9800C45E17 /* Game+Endgame.swift in Sources */,
 				524A72A71DC13FFC0078379A /* SquareNodeModel.swift in Sources */,
-				528E21341DC17E9800C45E17 /* PieceNode.swift in Sources */,
 				524A72A11DC13FFC0078379A /* PieceNodeModel.swift in Sources */,
 				524A72B71DC140B00078379A /* TitleViewDataSource.swift in Sources */,
 				524A72921DC13FFC0078379A /* ArrowNodeModel.swift in Sources */,
@@ -901,15 +913,15 @@
 				528E21331DC17E9800C45E17 /* HistoryViewController.swift in Sources */,
 				524A72951DC13FFC0078379A /* BoardArrowsCoordinator.swift in Sources */,
 				528E21391DC17E9800C45E17 /* TitleViewController.swift in Sources */,
-				528E21351DC17E9800C45E17 /* PromotionView.swift in Sources */,
 				524A72821DC13F2C0078379A /* BoardScene+Touch.swift in Sources */,
 				524A72BF1DC140F30078379A /* HistoryCell.swift in Sources */,
 				524A72AC1DC140910078379A /* HistoryInteractionCoordinator.swift in Sources */,
 				524A72B41DC140B00078379A /* TitleViewConfiguration.swift in Sources */,
-				524A72C81DC140F30078379A /* HistoryViewDataSource.swift in Sources */,
+				524A72C81DC140F30078379A /* HistoryViewModel.swift in Sources */,
 				524A729B1DC13FFC0078379A /* BoardScene.swift in Sources */,
 				528E21381DC17E9800C45E17 /* ShowGameCell.swift in Sources */,
 				528E213B1DC17E9800C45E17 /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
+				52E325031DC37FAF001FE392 /* BoardPresenter.swift in Sources */,
 				524A728F1DC13FFC0078379A /* ArrowNode.swift in Sources */,
 				528E212F1DC17E9800C45E17 /* BoardViewController.swift in Sources */,
 			);
@@ -1153,6 +1165,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1203,6 +1216,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
