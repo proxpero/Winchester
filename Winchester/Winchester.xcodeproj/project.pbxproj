@@ -17,48 +17,6 @@
 		5225DD081DB544CB00F74330 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5225DD001DB544CB00F74330 /* shirov v polgar.pgn */; };
 		5225DD091DB544CB00F74330 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5225DD001DB544CB00F74330 /* shirov v polgar.pgn */; };
 		5237A6631D970B7C00BAC16E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6611D970B7C00BAC16E /* Main.storyboard */; };
-		5237A6761D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */; };
-		5237A6771D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */; };
-		5237A6781D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */; };
-		5237A6791D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6681D97691A00BAC16E /* 40H-openings_8moves.epd */; };
-		5237A67A1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6681D97691A00BAC16E /* 40H-openings_8moves.epd */; };
-		5237A67B1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6681D97691A00BAC16E /* 40H-openings_8moves.epd */; };
-		5237A67C1D97691A00BAC16E /* cc01.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6691D97691A00BAC16E /* cc01.pgn */; };
-		5237A67D1D97691A00BAC16E /* cc01.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6691D97691A00BAC16E /* cc01.pgn */; };
-		5237A67E1D97691A00BAC16E /* cc01.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6691D97691A00BAC16E /* cc01.pgn */; };
-		5237A67F1D97691A00BAC16E /* cc02.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66A1D97691A00BAC16E /* cc02.pgn */; };
-		5237A6801D97691A00BAC16E /* cc02.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66A1D97691A00BAC16E /* cc02.pgn */; };
-		5237A6811D97691A00BAC16E /* cc02.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66A1D97691A00BAC16E /* cc02.pgn */; };
-		5237A6821D97691A00BAC16E /* gm1830.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66B1D97691A00BAC16E /* gm1830.pgn */; };
-		5237A6831D97691A00BAC16E /* gm1830.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66B1D97691A00BAC16E /* gm1830.pgn */; };
-		5237A6841D97691A00BAC16E /* gm1830.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66B1D97691A00BAC16E /* gm1830.pgn */; };
-		5237A6851D97691A00BAC16E /* gm1931.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66C1D97691A00BAC16E /* gm1931.pgn */; };
-		5237A6861D97691A00BAC16E /* gm1931.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66C1D97691A00BAC16E /* gm1931.pgn */; };
-		5237A6871D97691A00BAC16E /* gm1931.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66C1D97691A00BAC16E /* gm1931.pgn */; };
-		5237A6881D97691A00BAC16E /* gm1981.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66D1D97691A00BAC16E /* gm1981.pgn */; };
-		5237A6891D97691A00BAC16E /* gm1981.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66D1D97691A00BAC16E /* gm1981.pgn */; };
-		5237A68A1D97691A00BAC16E /* gm1981.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66D1D97691A00BAC16E /* gm1981.pgn */; };
-		5237A68B1D97691A00BAC16E /* gm2006.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66E1D97691A00BAC16E /* gm2006.pgn */; };
-		5237A68C1D97691A00BAC16E /* gm2006.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66E1D97691A00BAC16E /* gm2006.pgn */; };
-		5237A68D1D97691A00BAC16E /* gm2006.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66E1D97691A00BAC16E /* gm2006.pgn */; };
-		5237A68E1D97691A00BAC16E /* mateIn1.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66F1D97691A00BAC16E /* mateIn1.epd */; };
-		5237A68F1D97691A00BAC16E /* mateIn1.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66F1D97691A00BAC16E /* mateIn1.epd */; };
-		5237A6901D97691A00BAC16E /* mateIn1.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A66F1D97691A00BAC16E /* mateIn1.epd */; };
-		5237A6911D97691A00BAC16E /* mateIn2.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6701D97691A00BAC16E /* mateIn2.epd */; };
-		5237A6921D97691A00BAC16E /* mateIn2.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6701D97691A00BAC16E /* mateIn2.epd */; };
-		5237A6931D97691A00BAC16E /* mateIn2.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6701D97691A00BAC16E /* mateIn2.epd */; };
-		5237A6941D97691A00BAC16E /* mateIn3.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6711D97691A00BAC16E /* mateIn3.epd */; };
-		5237A6951D97691A00BAC16E /* mateIn3.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6711D97691A00BAC16E /* mateIn3.epd */; };
-		5237A6961D97691A00BAC16E /* mateIn3.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6711D97691A00BAC16E /* mateIn3.epd */; };
-		5237A6971D97691A00BAC16E /* mateIn4.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6721D97691A00BAC16E /* mateIn4.epd */; };
-		5237A6981D97691A00BAC16E /* mateIn4.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6721D97691A00BAC16E /* mateIn4.epd */; };
-		5237A6991D97691A00BAC16E /* mateIn4.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6721D97691A00BAC16E /* mateIn4.epd */; };
-		5237A69A1D97691A00BAC16E /* mateIn5.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6731D97691A00BAC16E /* mateIn5.epd */; };
-		5237A69B1D97691A00BAC16E /* mateIn5.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6731D97691A00BAC16E /* mateIn5.epd */; };
-		5237A69C1D97691A00BAC16E /* mateIn5.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6731D97691A00BAC16E /* mateIn5.epd */; };
-		5237A69D1D97691A00BAC16E /* mateIn6.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6741D97691A00BAC16E /* mateIn6.epd */; };
-		5237A69E1D97691A00BAC16E /* mateIn6.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6741D97691A00BAC16E /* mateIn6.epd */; };
-		5237A69F1D97691A00BAC16E /* mateIn6.epd in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6741D97691A00BAC16E /* mateIn6.epd */; };
 		5240586F1D638483000A925C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5240586B1D638483000A925C /* LaunchScreen.storyboard */; };
 		524058781D6384C6000A925C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524058761D6384C6000A925C /* Main.storyboard */; };
 		524058CA1D63FA64000A925C /* EndgameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* EndgameTests.swift */; };
@@ -225,21 +183,6 @@
 		5225DCFF1DB544CB00F74330 /* reti v rubenstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reti v rubenstein.pgn"; sourceTree = "<group>"; };
 		5225DD001DB544CB00F74330 /* shirov v polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shirov v polgar.pgn"; sourceTree = "<group>"; };
 		5237A6621D970B7C00BAC16E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOS/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
-		5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "40H-openings_6moves.epd"; sourceTree = "<group>"; };
-		5237A6681D97691A00BAC16E /* 40H-openings_8moves.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "40H-openings_8moves.epd"; sourceTree = "<group>"; };
-		5237A6691D97691A00BAC16E /* cc01.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cc01.pgn; sourceTree = "<group>"; };
-		5237A66A1D97691A00BAC16E /* cc02.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cc02.pgn; sourceTree = "<group>"; };
-		5237A66B1D97691A00BAC16E /* gm1830.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gm1830.pgn; sourceTree = "<group>"; };
-		5237A66C1D97691A00BAC16E /* gm1931.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gm1931.pgn; sourceTree = "<group>"; };
-		5237A66D1D97691A00BAC16E /* gm1981.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gm1981.pgn; sourceTree = "<group>"; };
-		5237A66E1D97691A00BAC16E /* gm2006.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gm2006.pgn; sourceTree = "<group>"; };
-		5237A66F1D97691A00BAC16E /* mateIn1.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn1.epd; sourceTree = "<group>"; };
-		5237A6701D97691A00BAC16E /* mateIn2.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn2.epd; sourceTree = "<group>"; };
-		5237A6711D97691A00BAC16E /* mateIn3.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn3.epd; sourceTree = "<group>"; };
-		5237A6721D97691A00BAC16E /* mateIn4.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn4.epd; sourceTree = "<group>"; };
-		5237A6731D97691A00BAC16E /* mateIn5.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn5.epd; sourceTree = "<group>"; };
-		5237A6741D97691A00BAC16E /* mateIn6.epd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mateIn6.epd; sourceTree = "<group>"; };
-		5237A6751D97691A00BAC16E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		524058541D63749E000A925C /* Winchester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Winchester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5240586C1D638483000A925C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOS/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		524058711D638497000A925C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -364,29 +307,6 @@
 			path = "../Test Games";
 			sourceTree = "<group>";
 		};
-		5237A6661D97691A00BAC16E /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				5237A6671D97691A00BAC16E /* 40H-openings_6moves.epd */,
-				5237A6681D97691A00BAC16E /* 40H-openings_8moves.epd */,
-				5237A6691D97691A00BAC16E /* cc01.pgn */,
-				5237A66A1D97691A00BAC16E /* cc02.pgn */,
-				5237A66B1D97691A00BAC16E /* gm1830.pgn */,
-				5237A66C1D97691A00BAC16E /* gm1931.pgn */,
-				5237A66D1D97691A00BAC16E /* gm1981.pgn */,
-				5237A66E1D97691A00BAC16E /* gm2006.pgn */,
-				5237A66F1D97691A00BAC16E /* mateIn1.epd */,
-				5237A6701D97691A00BAC16E /* mateIn2.epd */,
-				5237A6711D97691A00BAC16E /* mateIn3.epd */,
-				5237A6721D97691A00BAC16E /* mateIn4.epd */,
-				5237A6731D97691A00BAC16E /* mateIn5.epd */,
-				5237A6741D97691A00BAC16E /* mateIn6.epd */,
-				5237A6751D97691A00BAC16E /* README.md */,
-			);
-			name = Data;
-			path = ../Data;
-			sourceTree = "<group>";
-		};
 		524058551D63749E000A925C /* tvOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,7 +413,6 @@
 				524058551D63749E000A925C /* tvOS */,
 				5240588C1D638C8D000A925C /* macOS */,
 				5225DCFD1DB544CB00F74330 /* Test Games */,
-				5237A6661D97691A00BAC16E /* Data */,
 				528287FD1D6103720014B105 /* Tests */,
 				52BAE0931D5FD555006E2652 /* Products */,
 				5282881F1D6117270014B105 /* Frameworks */,
@@ -697,26 +616,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5237A6801D97691A00BAC16E /* cc02.pgn in Resources */,
 				52BCD0A41DC198B7005D1CC2 /* fischer v warner.pgn in Resources */,
-				5237A68F1D97691A00BAC16E /* mateIn1.epd in Resources */,
-				5237A67A1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
 				5225DD021DB544CB00F74330 /* fischer v fine.pgn in Resources */,
-				5237A69E1D97691A00BAC16E /* mateIn6.epd in Resources */,
-				5237A67D1D97691A00BAC16E /* cc01.pgn in Resources */,
-				5237A6771D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */,
 				5225DD051DB544CB00F74330 /* reti v rubenstein.pgn in Resources */,
-				5237A68C1D97691A00BAC16E /* gm2006.pgn in Resources */,
-				5237A6831D97691A00BAC16E /* gm1830.pgn in Resources */,
-				5237A6981D97691A00BAC16E /* mateIn4.epd in Resources */,
-				5237A6891D97691A00BAC16E /* gm1981.pgn in Resources */,
 				52BCD0A11DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */,
-				5237A6861D97691A00BAC16E /* gm1931.pgn in Resources */,
 				5225DD081DB544CB00F74330 /* shirov v polgar.pgn in Resources */,
 				524A727F1DC13E600078379A /* Assets.xcassets in Resources */,
-				5237A69B1D97691A00BAC16E /* mateIn5.epd in Resources */,
-				5237A6951D97691A00BAC16E /* mateIn3.epd in Resources */,
-				5237A6921D97691A00BAC16E /* mateIn2.epd in Resources */,
 				524058781D6384C6000A925C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,26 +630,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5237A6811D97691A00BAC16E /* cc02.pgn in Resources */,
 				52BCD0A51DC198B7005D1CC2 /* fischer v warner.pgn in Resources */,
-				5237A6901D97691A00BAC16E /* mateIn1.epd in Resources */,
-				5237A67B1D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
 				5225DD031DB544CB00F74330 /* fischer v fine.pgn in Resources */,
-				5237A69F1D97691A00BAC16E /* mateIn6.epd in Resources */,
-				5237A67E1D97691A00BAC16E /* cc01.pgn in Resources */,
-				5237A6781D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */,
 				5225DD061DB544CB00F74330 /* reti v rubenstein.pgn in Resources */,
-				5237A68D1D97691A00BAC16E /* gm2006.pgn in Resources */,
-				5237A6841D97691A00BAC16E /* gm1830.pgn in Resources */,
-				5237A6991D97691A00BAC16E /* mateIn4.epd in Resources */,
-				5237A68A1D97691A00BAC16E /* gm1981.pgn in Resources */,
 				52BCD0A21DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */,
-				5237A6871D97691A00BAC16E /* gm1931.pgn in Resources */,
 				5225DD091DB544CB00F74330 /* shirov v polgar.pgn in Resources */,
 				524A72801DC13E600078379A /* Assets.xcassets in Resources */,
-				5237A69C1D97691A00BAC16E /* mateIn5.epd in Resources */,
-				5237A6961D97691A00BAC16E /* mateIn3.epd in Resources */,
-				5237A6931D97691A00BAC16E /* mateIn2.epd in Resources */,
 				524058D71D63FB74000A925C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,27 +674,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5237A69A1D97691A00BAC16E /* mateIn5.epd in Resources */,
-				5237A6881D97691A00BAC16E /* gm1981.pgn in Resources */,
 				52BCD0A01DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */,
-				5237A67C1D97691A00BAC16E /* cc01.pgn in Resources */,
 				5237A6631D970B7C00BAC16E /* Main.storyboard in Resources */,
 				524A727E1DC13E600078379A /* Assets.xcassets in Resources */,
-				5237A68E1D97691A00BAC16E /* mateIn1.epd in Resources */,
-				5237A6911D97691A00BAC16E /* mateIn2.epd in Resources */,
-				5237A6971D97691A00BAC16E /* mateIn4.epd in Resources */,
 				5225DD011DB544CB00F74330 /* fischer v fine.pgn in Resources */,
 				52BCD0A31DC198B7005D1CC2 /* fischer v warner.pgn in Resources */,
-				5237A6821D97691A00BAC16E /* gm1830.pgn in Resources */,
 				5240586F1D638483000A925C /* LaunchScreen.storyboard in Resources */,
-				5237A6791D97691A00BAC16E /* 40H-openings_8moves.epd in Resources */,
-				5237A68B1D97691A00BAC16E /* gm2006.pgn in Resources */,
-				5237A67F1D97691A00BAC16E /* cc02.pgn in Resources */,
-				5237A6941D97691A00BAC16E /* mateIn3.epd in Resources */,
 				5225DD071DB544CB00F74330 /* shirov v polgar.pgn in Resources */,
-				5237A6761D97691A00BAC16E /* 40H-openings_6moves.epd in Resources */,
-				5237A69D1D97691A00BAC16E /* mateIn6.epd in Resources */,
-				5237A6851D97691A00BAC16E /* gm1931.pgn in Resources */,
 				5225DD041DB544CB00F74330 /* reti v rubenstein.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
