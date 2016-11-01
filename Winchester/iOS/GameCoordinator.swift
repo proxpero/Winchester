@@ -16,22 +16,59 @@ public struct GameCoordinator {
     private let game: Game
     private let scene: BoardScene
 
+//    private var gameViewController: GameViewController!
+    private let settingsViewCoordinator: SettingsViewCoordinator
+
     init(for game: Game, with navigationController: UINavigationController) {
-
         game.undoAll()
-
         self.navigationController = navigationController
         self.game = game
         self.scene = BoardScene()
         scene.scaleMode = .resizeFill
-        
+        self.settingsViewCoordinator = SettingsViewCoordinator(with: game)
+    }
+
+    func gameViewController() -> GameViewController {
+        let vc = UIStoryboard.main.instantiate(GameViewController.self)
+        vc.navigationItem.title = game.outcome.description
+        return vc
+    }
+
+    func titleViewController(model: TitleViewDataSource) -> TitleViewController {
+        let vc = UIStoryboard.main.instantiate(TitleViewController.self)
+        vc.model = model
+        return vc
+    }
+
+    func boardViewController(with delegate: BoardInteractionCoordinator) -> BoardViewController {
+        let vc = UIStoryboard.main.instantiate(BoardViewController.self)
+        vc.delegate = delegate
+        return vc
+    }
+
+    func historyViewController(model: HistoryViewDataSource, delegate: HistoryInteractionConfiguration) -> HistoryViewController {
+        let vc = UIStoryboard.main.instantiate(HistoryViewController.self)
+        vc.model = model
+        vc.delegate = delegate
+        game.delegate = vc
+        return vc
+    }
+
+    func captureViewController() -> CaptureViewController {
+        let vc = UIStoryboard.main.instantiate(CaptureViewController.self)
+        return vc
     }
 
     func start() {
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let pieceModel = PieceNodeModel(scene: self.scene)
+        let vc = gameViewController()
+
+        vc.captureViewController = captureViewController()
+
+        let pieceModel = PieceNodeModel(
+            scene: scene,
+            captureViewDelegate: vc.captureViewController
+        )
         let arrowModel = ArrowNodeModel(scene: self.scene)
         let squareModel = SquareNodeModel(scene: self.scene)
 
@@ -39,57 +76,86 @@ public struct GameCoordinator {
             game: game,
             pieceModel: pieceModel,
             arrowModel: arrowModel,
-            squareModel: squareModel
+            squareModel: squareModel,
+            presentingViewController: navigationController
         )
 
-        guard let gameVC = storyboard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController else { fatalError() }
-        gameVC.boardInteractionCoordinator = BoardInteractionCoordinator(delegate: userActivityCoordinator, model: pieceModel)
-        gameVC.userActivityCoordinator = userActivityCoordinator
+        let titleModel = TitleViewDataSource(for: game)
+        vc.titleViewController = titleViewController(model: titleModel)
 
-        guard let titleVC = storyboard.instantiateViewController(withIdentifier: "TitleViewController") as? TitleViewContoller else { fatalError("Couldn't create TitleViewController") }
-        
-        titleVC.dataSource = TitleViewConfiguration(for: game)
-
-        gameVC.titleViewController = titleVC
-
-        guard let boardViewController = storyboard.instantiateViewController(withIdentifier: "BoardViewController") as? BoardViewController else { fatalError() }
-        
-        gameVC.boardViewController = boardViewController
-
-        guard let historyViewController = storyboard.instantiateViewController(withIdentifier: "HistoryViewController") as? HistoryViewController else { fatalError() }
-        historyViewController.model = HistoryViewConfiguration(for: game)
-        historyViewController.delegate = HistoryInteractionConfiguration(
+        let historyModel = HistoryViewDataSource(for: game)
+        let historyDelegate = HistoryInteractionConfiguration(
             pieceModel: pieceModel,
             for: game,
             with: userActivityCoordinator
         )
-
-        // Add left and right swipe gesture recognizers to the view.
+        vc.historyViewController = historyViewController(
+            model: historyModel,
+            delegate: historyDelegate
+        )
+        // Add left and right swipe gesture recognizers to the view, and target historyViewController
         for direction in [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right] {
-            gameVC.view.addSwipeGestureRecognizer(
-                target: historyViewController,
-                action: #selector(historyViewController.handleSwipe(recognizer:)),
+            vc.view.addSwipeGestureRecognizer(
+                target: vc.historyViewController,
+                action: #selector(vc.historyViewController.handleSwipe),
                 direction: direction
             )
         }
 
-        gameVC.historyViewController = historyViewController
+        let boardInteractionCoordinator = BoardInteractionCoordinator(
+            delegate: userActivityCoordinator,
+            model: pieceModel
+        )
+        vc.boardViewController = boardViewController(with: boardInteractionCoordinator)
 
+        // A block to present the scene in boardVC's view without boardVC knowing
+        // about the scene. By this time, the board has it's size, so set the
+        // scene's size to match as well and have place its nodes as well.
         func presentScene() {
-            guard let boardVC = gameVC.boardViewController, let skview = boardVC.view as? SKView else { fatalError() }
-            self.scene.size = boardVC.view.bounds.size
+            guard let skview = vc.boardViewController.view as? SKView else { fatalError() }
+            self.scene.size = skview.bounds.size
+            self.scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             squareModel.placeSquares()
             pieceModel.updatePieces(with: self.game.currentPosition.board)
             skview.presentScene(self.scene)
-            historyViewController.collectionView?.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            vc.historyViewController.collectionView?.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+        }
+        vc.presentScene = presentScene
+
+        func didFinishEditingSettings() {
+            // Update board state based on changes in settings
+        }
+        let settingsViewDelegate = SettingsViewCoordinator.Delegate(
+            settingsViewDidRotateBoard: vc.boardViewController.rotateView,
+            settingsViewDidFinish: didFinishEditingSettings
+        )
+        vc.didTapSettingsButton = settingsViewCoordinator.start(
+            with: settingsViewDelegate,
+            navigationController: navigationController,
+            orientation: { vc.boardViewController.currentOrientation }
+        )
+
+        vc.didTapBackButton = {
+            self.navigationController.popViewController(animated: true)
+            // save game in cache until it can be sent off to the cloud.
+            print(#function)
         }
 
-        gameVC.presentScene = presentScene
+        navigationController.pushViewController(vc, animated: true)
 
-        navigationController.pushViewController(gameVC, animated: true)
     }
+
 }
 
-//extension GameCoordinator: User
+extension UIStoryboard {
 
-typealias BoardResizingEventHandler = () -> (BoardScene)
+    static var main: UIStoryboard {
+        return UIStoryboard(name: "Main", bundle: nil)
+    }
+
+    func instantiate<A: UIViewController>(_ type: A.Type) -> A {
+        guard let vc = self.instantiateViewController(withIdentifier: String(describing: type.self)) as? A else {
+            fatalError("Could not instantiate view controller \(A.self)") }
+        return vc
+    }
+}
