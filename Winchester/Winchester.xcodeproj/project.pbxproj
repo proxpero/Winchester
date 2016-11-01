@@ -278,6 +278,7 @@
 		524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDelegate.swift; sourceTree = "<group>"; };
 		52647CBC1DC1849200E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug/Endgame.framework"; sourceTree = "<group>"; };
 		52647CC01DC184DD00E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-appletvsimulator/Endgame.framework"; sourceTree = "<group>"; };
+		526B73B71DC8DAE600D1AE0F /* Winchester.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Winchester.playground; path = ../Winchester.playground; sourceTree = "<group>"; };
 		5282880E1D6113310014B105 /* EndgameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndgameTests.swift; sourceTree = "<group>"; };
 		528E211E1DC17E9800C45E17 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = iOS/AppCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		528E211F1DC17E9800C45E17 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = iOS/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -486,6 +487,7 @@
 		52BAE0891D5FD555006E2652 = {
 			isa = PBXGroup;
 			children = (
+				526B73B71DC8DAE600D1AE0F /* Winchester.playground */,
 				524A72781DC13E600078379A /* Shared */,
 				528287F61D6103720014B105 /* iOS */,
 				524058551D63749E000A925C /* tvOS */,

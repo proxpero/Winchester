@@ -66,7 +66,8 @@ extension HistoryViewModel {
         return (indexPath.row-1) % 3 == 0
     }
 
-    func indexPath(for itemIndex: Int) -> IndexPath {
+    func indexPath(for itemIndex: Int?) -> IndexPath {
+        guard let itemIndex = itemIndex else { return IndexPath(row: 0, section: 0) }
         let row = ((itemIndex % 2 == 0 ? 2 : 0) + (6 * (itemIndex + 1))) / 4
         return IndexPath(row: row, section: 0)
     }

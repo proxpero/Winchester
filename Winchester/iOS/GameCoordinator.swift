@@ -19,7 +19,6 @@ public struct GameCoordinator {
     private let settingsViewCoordinator: SettingsViewCoordinator
 
     init(for game: Game, with navigationController: UINavigationController) {
-        game.undoAll()
         self.navigationController = navigationController
         self.game = game
         self.scene = BoardScene()
@@ -117,7 +116,9 @@ public struct GameCoordinator {
             squareModel.placeSquares()
             pieceModel.updatePieces(with: self.game.currentPosition.board)
             skview.presentScene(self.scene)
-            vc.historyViewController.collectionView?.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+
+            let currentIndexPath = vc.historyViewController.model.indexPath(for: game.currentIndex)
+            vc.historyViewController.collectionView?.selectItem(at: currentIndexPath, animated: false, scrollPosition: .centeredHorizontally)
         }
         vc.presentScene = presentScene
 
@@ -137,7 +138,6 @@ public struct GameCoordinator {
         vc.didTapBackButton = {
             self.navigationController.popViewController(animated: true)
             // save game in cache until it can be sent off to the cloud.
-            print(#function)
         }
 
         navigationController.pushViewController(vc, animated: true)
