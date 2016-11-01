@@ -31,9 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let files = ["fischer v fine", "fischer v thomason", "fischer v warner", "reti v rubenstein", "shirov v polgar"]
 
     func updateUserGames() -> [Game] {
+        let files = UserDefaults.standard.array(forKey: "user-games") as? [String] ?? [String]()
         return files
-            .flatMap { Bundle.main.url(forResource: $0, withExtension: "pgn") }
-            .map { try! String(contentsOf: $0) }
             .map { try! PGN(parse: $0) }
             .map { Game(pgn: $0) }
     }
