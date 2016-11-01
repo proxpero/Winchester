@@ -53,7 +53,7 @@ extension RootCollectionViewController {
         }
 
         var shouldHideShowAllButton: Bool {
-            return false
+            return true
         }
 
         var didSelectShowAll: () -> () {
@@ -68,24 +68,11 @@ extension RootCollectionViewController {
         }
 
         var shouldHideCreateItem: Bool {
-            return false
+            return true
         }
 
-        var didTapCreateItem: () -> () {
-            switch self {
-            case .userGames:
-                return {
-                    print(#function)
-                }
-            case .classicGames:
-                return {
-                    print(#function)
-                }
-            case .puzzles:
-                return {
-                    print(#function)
-                }
-            }
+        func isCreateNewGame(for indexPath: IndexPath) -> Bool {
+            return indexPath.row == 0
         }
 
         var cellType: UICollectionViewCell.Type {
@@ -104,6 +91,17 @@ extension RootCollectionViewController {
                 return configureShowGameCell
             case .puzzles:
                 return configureShowPuzzleCell
+            }
+        }
+
+        func configureNewGameCell(cell: UICollectionViewCell) -> () -> () {
+            guard let cell = cell as? ShowGameCell else { fatalError() }
+            return {
+                cell.imageView.image = #imageLiteral(resourceName: "create")
+                cell.whiteRow.isHidden = true
+                cell.blackRow.isHidden = true
+//                cell.whiteLabel.text = ""
+//                cell.blackLabel.text = ""
             }
         }
 
@@ -155,7 +153,8 @@ extension RootCollectionViewController {
         }
 
         func userGame(at index: Int) -> Game {
-            return _userGames[index]
+            if index == 0 { return Game() }
+            return _userGames[index-1]
         }
 
         func classicGame(at index: Int) -> Game {
@@ -172,7 +171,7 @@ extension RootCollectionViewController {
 
         func itemCount(in section: Int) -> Int {
             switch Section(section) {
-            case .userGames: return _userGames.count
+            case .userGames: return _userGames.count + 1
             case .classicGames: return _classicGames.count
             case .puzzles: return 0
             }
@@ -206,7 +205,6 @@ extension RootCollectionViewController {
                 cell.showAllButton.isHidden = section.shouldHideShowAllButton
                 cell.didTapShowAll = section.didSelectShowAll
                 cell.createItemButton.isHidden = section.shouldHideCreateItem
-                cell.didTapCreateItem = section.didTapCreateItem
             }
         }
         
@@ -215,8 +213,11 @@ extension RootCollectionViewController {
                 let section = Section(at: indexPath)
                 switch section {
                 case .userGames:
-                    let game = self.userGame(at: indexPath.row)
-                    return section.configureCell(cell)(game)
+                    if section.isCreateNewGame(for: indexPath) {
+                        return section.configureNewGameCell(cell: cell)()
+                    } else {
+                        return section.configureCell(cell)(self.userGame(at: indexPath.row))
+                    }
                 case .classicGames:
                     let game = self.classicGame(at: indexPath.row)
                     return section.configureCell(cell)(game)
