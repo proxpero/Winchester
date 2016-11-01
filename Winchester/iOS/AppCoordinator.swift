@@ -51,47 +51,17 @@ struct ApplicationCoordinator {
 
         // MARK: Delegate
 
-        func _gameViewController() -> GameViewController {
-            guard let vc = UIStoryboard(name: "Game", bundle: Bundle(for: GameViewController.self)).instantiateInitialViewController() as? GameViewController else { fatalError("Could not create Game View Controller") }
-            return vc
-        }
-
-
-        func gameCoordinator(for game: Game) -> GameCoordinator {
-
-            let coordinator = GameCoordinator(for: game, with: _navigationController)
-            return coordinator
-            
-        }
-
-        func _presentNewGame() {
-            let vc = _gameViewController()
-            _navigationController.pushViewController(vc, animated: true)
-        }
-
         func _presentUserGame(game: Game) {
             let coordinator = GameCoordinator(for: game, with: _navigationController)
             coordinator.start()
         }
 
-        func _presentAllUserGames() {
-            print(#function)
-        }
-
         func _presentFavoriteGame(game: Game) {
-            let vc = _gameViewController()
-            _navigationController.pushViewController(vc, animated: true)
-        }
-
-        func _presentAllFavoriteGames() {
-            print(#function)
+            let coordinator = GameCoordinator(for: game, with: _navigationController)
+            coordinator.start()
         }
 
         func _presentPuzzle(puzzle: Puzzle) {
-            print(#function)
-        }
-
-        func _presentAllPuzzles() {
             print(#function)
         }
 
