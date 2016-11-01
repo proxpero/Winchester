@@ -9,17 +9,16 @@
 import UIKit
 import Endgame
 
-internal final class TitleViewContoller: UIViewController {
+internal final class TitleViewController: UIViewController {
 
-    var dataSource: TitleViewDataSource? {
+    var model: TitleViewDataSource? {
         didSet { reloadData() }
     }
 
     func reloadData() {
-        guard let dataSource = dataSource, view != nil else { return }
-        white.text = dataSource.white.name
-        black.text = dataSource.black.name
-        outcome.text = dataSource.outcome.userDescription
+        guard let model = model, view != nil else { return }
+        white.text = model.white.name
+        black.text = model.black.name
     }
 
     @IBOutlet var white: UILabel!
