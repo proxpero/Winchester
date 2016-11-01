@@ -16,7 +16,6 @@ public struct GameCoordinator {
     private let game: Game
     private let scene: BoardScene
 
-//    private var gameViewController: GameViewController!
     private let settingsViewCoordinator: SettingsViewCoordinator
 
     init(for game: Game, with navigationController: UINavigationController) {
