@@ -9,36 +9,31 @@
 import Endgame
 import SpriteKit
 
-enum HighlightType {
-    case capture
-    case target
-    case origin
-    case vulnerable
-    case defended
+enum ActivityState {
+    case initiation(Square)
+    case normal
+    case end(Move)
 }
 
-protocol BoardHighlightingCoordinator {
-    func highlight(squares: [Square], with type: HighlightType)
-    func removeHighlights()
+protocol BoardInteractionDelegate {
+    mutating func userDidTap(on square: Square)
+    mutating func userDidMove(to square: Square, at location: CGPoint)
+    mutating func userDidRelease(on square: Square?)
 }
 
-extension BoardHighlightingCoordinator {
-
-}
-
-struct BoardInteractionCoordinator: BoardInteractionDelegate {
+struct BoardInteractionCoordinator {
 
     // MARK: - Private Stored Properties
 
-    private let delegate: UserActivityDelegate
+    fileprivate let delegate: UserActivityDelegate
     private let model: PieceNodeModel
 
-    weak var _activeNode: PieceNode?
+    weak var activeNode: PieceNode?
 
-    var _initialSquare: Square?
-    var _activityState: ActivityState = .normal {
+    var initialSquare: Square?
+    var activityState: ActivityState = .normal {
         didSet {
-            switch _activityState {
+            switch activityState {
             case .initiation(let origin):
                 _beginActivity(for: origin)
             case .normal:
@@ -62,56 +57,57 @@ struct BoardInteractionCoordinator: BoardInteractionDelegate {
 
     private mutating func _beginActivity(for origin: Square) {
         guard let node = model.pieceNode(for: origin) else {
-            _activityState = .normal
+            activityState = .normal
             return
         }
-        _activeNode = node
-        _initialSquare = origin
+        activeNode = node
+        initialSquare = origin
         delegate.userDidBeginActivity(on: origin)
     }
 
     private mutating func _normalizeActivity() {
-        _initialSquare = nil
-        _activeNode = nil
+        initialSquare = nil
+        activeNode = nil
         delegate.userDidNormalizeActivity()
     }
 
     private mutating func _endActivity(with move: Move) {
         defer {
-            _activityState = .normal
+            activityState = .normal
         }
-        guard let node = _activeNode else { fatalError("Expected a pieceNode") }
+        guard let node = activeNode else { fatalError("Expected a pieceNode") }
         delegate.userDidEndActivity(with: move, for: node)
     }
 
-    // MARK: - Scene Delegate
+}
+
+extension BoardInteractionCoordinator: BoardInteractionDelegate {
+
+    // MARK: - Delegate
 
     mutating func userDidTap(on square: Square) {
-
-        switch _activityState {
+        switch activityState {
         case .initiation(let origin):
-            _endActivity(with: Move(origin: origin, target: square))
+            activityState = .end(Move(origin: origin, target: square))
         case .normal:
-            _activityState = .initiation(square)
+            activityState = .initiation(square)
         case .end(let move):
-            fatalError("unexpected state where move: \(move), selected square: \(square), initial square: \(_initialSquare)")
+            fatalError("unexpected state where move: \(move), selected square: \(square), initial square: \(initialSquare)")
         }
-
     }
 
-    func userDidPan(to square: Square?) {
-        print("\(#function) with square \(square)")
+    mutating func userDidMove(to square: Square, at location: CGPoint) {
+        guard case .initiation = activityState, let node = activeNode else { return }
+        node.position = (node.scene?.convertPoint(fromView: location))!
+        delegate.userDidPan(to: square)
     }
 
-    func userDidLongTap(on square: Square) {
-        print("\(#function) with square \(square)")
+    mutating func userDidRelease(on square: Square?) {
+        guard
+            let target = square,
+            case .initiation(let origin) = activityState
+        else { activityState = .normal; return }
+        activityState = .end(Move(origin: origin, target: target))
     }
 
-    func userDidRelease(on square: Square?) {
-        print("\(#function) with square \(square)")
-    }
-
-    mutating func userDidCancelSelection() {
-        _normalizeActivity()
-    }
 }
