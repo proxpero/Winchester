@@ -13,30 +13,41 @@ import SpriteKit
 
 extension BoardScene {
 
-    func tapAction(sender: UITapGestureRecognizer) {
-        if
-            let location = view?.convert(sender.location(in: view), to: self),
-            let square = square(at: location)
-        {
-            boardDelegate?.userDidTap(on: square)
-        }
-    }
-
-    func panAction(sender: UIPanGestureRecognizer) {
-        if let location = view?.convert(sender.location(in: view), to: self) {
-            boardDelegate?.userDidPan(to: square(at: location))
-        }
-    }
-
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        boardDelegate?.userDidCancelSelection()
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first, let location = view?.convert(touch.location(in: view), to: self), let square = square(at: location)
-            else { return }
-        boardDelegate?.userDidTap(on: square)
-    }
+//    func tapAction(sender: UITapGestureRecognizer) {
+//        if
+//            let location = view?.convert(sender.location(in: view), to: self),
+//            let square = square(at: location)
+//        {
+//            boardDelegate?.userDidTap(on: square)
+//        }
+//    }
+//
+//    func panAction(sender: UIPanGestureRecognizer) {
+//        if let location = view?.convert(sender.location(in: view), to: self) {
+//            boardDelegate?.userDidPan(to: square(at: location))
+//        }
+//    }
+//
+//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        boardDelegate?.userDidCancelSelection()
+//    }
+//
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        if let touch = touches.first {
+//            let p2 = touch.location(in: self)
+//            print("\(p2)\t\(square(at: p2))")
+//        }
+//    }
+//
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//
+//        guard
+//            let touch = touches.first,
+////            let location = touch.location(in: view),
+//            let square = square(at: touch.location(in: view))
+//        else { return }
+//        boardDelegate?.userDidTap(on: square)
+//    }
     
     
     
