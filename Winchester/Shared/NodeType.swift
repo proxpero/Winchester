@@ -24,5 +24,14 @@ enum NodeType {
     }
 }
 
-final class PieceNode: SKSpriteNode { }
+final class PieceNode: SKSpriteNode {
+    func piece() -> Piece {
+        guard
+            let name = name,
+            let char = name.characters.first,
+            let piece = Piece(character: char)
+        else { fatalError() }
+        return piece
+    }
+}
 
