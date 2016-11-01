@@ -1,27 +1,15 @@
 //
-//  PromotionView.swift
-//  NewGameDemo
+//  PromotionViewController.swift
+//  Winchester
 //
-//  Created by Todd Olsen on 10/13/16.
-//  Copyright © 2016 proxpero. All rights reserved.
+//  Created by Todd Olsen on 10/31/16.
+//  Copyright © 2016 Todd Olsen. All rights reserved.
 //
-
-//#if os(OSX)
-//    import Cocoa
-//    typealias View = NSView
-//    typealias Button = NSButton
-//    typealias Image = NSImage
-//#elseif os(iOS) || os(tvOS)
-//    import UIKit
-//    typealias View = UIView
-//    typealias Button = UIButton
-//    typealias Image = UIImage
-//#endif
 
 import UIKit
 import Endgame
 
-final class PromotionView: UIView {
+final class PromotionViewController: UIViewController {
 
     enum PromotionType: Int {
         case queen
@@ -39,8 +27,13 @@ final class PromotionView: UIView {
         }
     }
 
-    var completion: (Piece) -> () = { _ in }
+    @IBOutlet var queenButton: UIButton!
+    @IBOutlet var rookButton: UIButton!
+    @IBOutlet var bishopButton: UIButton!
+    @IBOutlet var knightButton: UIButton!
 
+    var completion: (Piece) -> () = { _ in }
+    
     var color: Color = .white {
         didSet {
             for (kind, button) in zip([Piece.Kind.queen, Piece.Kind.rook, Piece.Kind.bishop, Piece.Kind.knight], [queenButton, rookButton, bishopButton, knightButton]) {
@@ -50,14 +43,20 @@ final class PromotionView: UIView {
         }
     }
 
-    @IBOutlet var queenButton: UIButton!
-    @IBOutlet var rookButton: UIButton!
-    @IBOutlet var bishopButton: UIButton!
-    @IBOutlet var knightButton: UIButton!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        queenButton.tag = PromotionType.queen.rawValue
+        rookButton.tag = PromotionType.rook.rawValue
+        bishopButton.tag = PromotionType.bishop.rawValue
+        knightButton.tag = PromotionType.knight.rawValue
+    }
 
     @IBAction func promotionSelected(_ sender: UIButton) {
-        let promotionType = PromotionType(rawValue: sender.tag)!
-        let piece = promotionType.piece(for: color)
-        completion(piece)
+        self.dismiss(animated: true) {
+            let promotionType = PromotionType(rawValue: sender.tag)!
+            let piece = promotionType.piece(for: self.color)
+            self.completion(piece)
+        }
     }
+    
 }

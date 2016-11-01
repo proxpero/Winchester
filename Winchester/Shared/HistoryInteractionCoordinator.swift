@@ -38,6 +38,13 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
                 case added
                 case removed
                 case normal
+                case captured
+                case resurrected
+
+                func isRemoved() -> Bool {
+                    return self == .removed || self == .captured
+                }
+
             }
             var origin: Square
             var target: Square
@@ -52,7 +59,7 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
                 // If the pieceNode has been moved already
                 func node(at square: Square) -> PieceNode? {
                     let nodes = result
-                        .filter { $0.value.target == square && $0.value.status != .removed }
+                        .filter { $0.value.target == square && !$0.value.status.isRemoved() }
                         .map { $0.key }
                     guard nodes.count == 1 else { return nil }
                     return nodes[0]
@@ -89,22 +96,21 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
 
                 if let capture = item.capture {
                     switch direction {
-
                     case .redo:
                         let capturedNode = findNode(for: capture.square)
                         // If `result` has registered the captured piece already, modify that transaction...
                         if var captureTransaction = result[capturedNode] {
-                            captureTransaction.status = .removed
+                            captureTransaction.status = .captured
                             captureTransaction.target = capture.square
                             result.updateValue(captureTransaction, forKey: capturedNode)
                         } else { // ... otherwise create a new transaction.
-                            result[capturedNode] = Transaction(origin: capture.square, target: capture.square, status: .removed)
+                            result[capturedNode] = Transaction(origin: capture.square, target: capture.square, status: .captured)
                         }
                         result.updateValue(transaction, forKey: node)
                     case .undo:
                         let capturedNode = pieceModel.pieceNode(for: capture.piece)
                         //                        let captureNode = delegate.newPiceNode(for: capture.piece)
-                        result[capturedNode] = Transaction(origin: capture.square, target: capture.square, status: .added)
+                        result[capturedNode] = Transaction(origin: capture.square, target: capture.square, status: .resurrected)
                     }
                 }
 
@@ -141,9 +147,13 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
         func perform(_ transaction: Transaction, on pieceNode: PieceNode) {
             if transaction.status == .removed {
                 pieceModel.remove(pieceNode)
+            } else if transaction.status == .captured {
+                pieceModel.capture(pieceNode)
             } else {
                 if transaction.status == .added {
                     pieceModel.add(pieceNode, at: transaction.origin)
+                } else if transaction.status == .resurrected {
+                    pieceModel.resurrect(pieceNode, at: transaction.origin)
                 }
                 pieceModel.move(pieceNode, to: transaction.target)
             }

@@ -8,7 +8,7 @@
 
 import Endgame
 
-protocol TitleViewDataSource {
+protocol TitleViewModel {
     var white: Player { get }
     var black: Player { get }
     var outcome: Outcome { get }

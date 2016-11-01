@@ -1,5 +1,5 @@
 //
-//  TitleViewConfiguration.swift
+//  TitleViewDataSource.swift
 //  Winchester
 //
 //  Created by Todd Olsen on 10/25/16.
@@ -8,7 +8,7 @@
 
 import Endgame
 
-struct TitleViewConfiguration: TitleViewDataSource {
+struct TitleViewDataSource: TitleViewModel {
 
     private let game: Game
 

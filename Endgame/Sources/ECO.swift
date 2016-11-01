@@ -8,7 +8,9 @@
 
 import Foundation
 
-/// A model of a chess opening, according to the standards Encyclopedia of Chess Openeings.
+/// A model of a chess opening, according to the standards of the Encyclopedia of Chess Openeings.
+/// https://en.wikipedia.org/wiki/Encyclopaedia_of_Chess_Openings
+
 public struct ECO: Hashable {
 
     public enum Code: String {

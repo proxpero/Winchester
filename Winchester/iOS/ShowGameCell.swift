@@ -35,6 +35,8 @@ public final class HeaderCell: UICollectionReusableView, ReusableCell {
 
 public final class ShowGameCell: UICollectionViewCell, ReusableCell {
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var whiteRow: UIStackView!
+    @IBOutlet var blackRow: UIStackView!
     @IBOutlet var whiteLabel: UILabel!
     @IBOutlet var blackLabel: UILabel!
     @IBOutlet var whiteOutcomeLabel: UILabel!
