@@ -19,11 +19,18 @@ let height: CGFloat = 44.0
     typealias CollectionViewController = UICollectionViewController
 #endif
 
-final class HistoryViewController: CollectionViewController {
+final class HistoryViewController: CollectionViewController, GameDelegate {
 
-    var model: HistoryViewDataSource!
+    var model: HistoryViewModel!
     var delegate: HistoryViewDelegate?
 
+    func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) {
+        collectionView?.reloadData()
+        collectionView?.selectItem(at: model.lastMove(), animated: true, scrollPosition: .centeredHorizontally)
+    }
+
+    func game(_ game: Game, didAdvance items: [HistoryItem]) { }
+    func game(_ game: Game, didReverse items: [HistoryItem]) { }
 }
 
 #if os(iOS) || os(tvOS)
@@ -33,10 +40,10 @@ final class HistoryViewController: CollectionViewController {
 extension HistoryViewController {
 
     override func viewDidLoad() {
-        view.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        view.heightAnchor.constraint(equalToConstant: height).isActive = true
     }
 
-    func handleSwipe(recognizer: UISwipeGestureRecognizer) {
+    func handleSwipe(_ recognizer: UISwipeGestureRecognizer) {
 
         guard let indexPath = collectionView?.indexPathsForSelectedItems?.first else { return }
 
