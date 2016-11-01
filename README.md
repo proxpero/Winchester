@@ -1,5 +1,7 @@
 # Winchester
 
+Winchester is a cross-platform app framework which uses [Endgame](https://github.com/proxpero/Winchester/tree/master/Endgame) to allow users to play and review chess games. It is currently in beta.
+
 Features:
 
 * History scroll: a clear and easy way to quickly move forward and backward through a game's moves.
