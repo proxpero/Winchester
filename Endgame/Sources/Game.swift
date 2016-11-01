@@ -17,7 +17,7 @@ public class Game {
     
     // MARK: - Public Stored Properties
 
-    public weak var delegate: GameDelegate?
+    public var delegate: GameDelegate?
 
     /// The white player.
     public var whitePlayer: Player
@@ -25,7 +25,6 @@ public class Game {
     /// The black player.
     public var blackPlayer: Player
 
-    /// The game's eco. https://en.wikipedia.org/wiki/Encyclopaedia_of_Chess_Openings
     public var eco: ECO?
 
     /// The game's outcome.
@@ -237,7 +236,8 @@ public class Game {
     @discardableResult
     public func undo(count: Int = 1) -> ArraySlice<HistoryItem> {
         guard let current = _currentIndex else {
-            fatalError("Cannot undo the initial position")
+            return ArraySlice<HistoryItem>()
+//            fatalError("Cannot undo the initial position")
         }
         let newIndex: Int?
         let range: Range<Int>
@@ -368,10 +368,10 @@ extension Game: Collection { }
 
 // MARK: - Game Delegate
 
-public protocol GameDelegate: class {
-    func game(_: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) -> ()
-    func game(_: Game, didAdvance items: [HistoryItem]) -> ()
-    func game(_: Game, didReverse items: [HistoryItem]) -> ()
+public protocol GameDelegate {
+    func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?)
+    func game(_ game: Game, didAdvance items: [HistoryItem])
+    func game(_ game: Game, didReverse items: [HistoryItem])
 }
 
 public enum Direction: Equatable {
