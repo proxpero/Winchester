@@ -11,20 +11,16 @@ import SpriteKit
 
 struct SquareNodeModel {
 
-    private let scene: BoardScene
+    private weak var scene: BoardScene!
 
     init(scene: BoardScene) {
         self.scene = scene
     }
 
-    func square(at location: CGPoint) -> Square? {
-        return scene.square(at: location)
-    }
-
     func placeSquares() {
         squareNodes().forEach { $0.removeFromParent() }
         for square in Square.all {
-            scene.addChild(squareNode(with: square, ofType: .normal(square)))
+            scene.addChild(squareNode(with: square, ofType: .normal))
         }
     }
 
@@ -33,17 +29,18 @@ struct SquareNodeModel {
     }
 
     func squareNode(with square: Square, ofType type: SquareType) -> SquareNode {
-
-        let node = SquareNode(type: type)
+        let node = SquareNode(type: type, for: square)
         node.size = scene.squareSize
         node.position = scene.position(for: square)
-        node.zPosition = NodeType.square.zPosition
-        node.name = square.description
         return node
     }
 
     func presentSquareNodes(for squares: [Square], ofType type: SquareType) {
-        
+        clearSquareNodes(ofType: type)
+        for square in squares {
+            let node = squareNode(with: square, ofType: type)
+            add(node)
+        }
     }
 
     func add(_ squareNode: SquareNode) {
@@ -53,7 +50,6 @@ struct SquareNodeModel {
     }
 
     func clearSquareNodes(ofType type: SquareType) {
-
         squareNodes()
             .filter { $0.type == type }
             .forEach { squareNode in
