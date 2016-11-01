@@ -9,18 +9,25 @@
 import Endgame
 import SpriteKit
 
+protocol CaptureViewDelegate {
+    func capture(_ piece: Piece) -> Void
+    func resurrect(_ piece: Piece) -> Void
+}
+
 struct PieceNodeModel {
 
     /// Required
-    private let scene: BoardScene
+    private weak var scene: BoardScene!
+    private let captureViewDelegate: CaptureViewDelegate
 
-    init(scene: BoardScene) {
+    init(scene: BoardScene, captureViewDelegate: CaptureViewDelegate) {
         self.scene = scene
+        self.captureViewDelegate = captureViewDelegate
     }
 
     /// The default implementation returns the `PieceNode` in the scene at the given `Square` or `nil` if no pieceNode is there.
-    func pieceNode(for square: Square) -> PieceNode? {
-        return pieceNode(at: scene.position(for: square))
+    func pieceNode(for square: Square, excepting exception: PieceNode? = nil) -> PieceNode? {
+        return pieceNode(at: scene.position(for: square), excepting: exception)
     }
 
     /// The default implementation creates a new `PieceNode` with the given `Piece` and returns it.
@@ -37,10 +44,11 @@ struct PieceNodeModel {
         return pieceNode
     }
 
-    func pieceNode(at location: CGPoint) -> PieceNode? {
+    func pieceNode(at location: CGPoint, excepting exception: PieceNode? = nil) -> PieceNode? {
         let candidates = scene.children
             .filter { $0.contains(location) }
             .flatMap { $0 as? PieceNode }
+            .filter { $0 != exception }
         guard let node = candidates.first else { return nil }
         return node
     }
@@ -53,11 +61,21 @@ struct PieceNodeModel {
         pieceNode.run(SKAction.fadeIn(withDuration: 0.2))
     }
 
+    func resurrect(_ pieceNode: PieceNode, at origin: Square) {
+        add(pieceNode, at: origin)
+        captureViewDelegate.resurrect(pieceNode.piece())
+    }
+
     /// Removes `pieceNode` from the scene.
     func remove(_ pieceNode: PieceNode) {
         pieceNode.run(SKAction.fadeOut(withDuration: 0.2)) {
             pieceNode.removeFromParent()
         }
+    }
+
+    func capture(_ pieceNode: PieceNode) {
+        remove(pieceNode)
+        captureViewDelegate.capture(pieceNode.piece())
     }
 
     /// Animates the position of `pieceNode` to the location of `target`
