@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5212A36B1D92D35A008F2957 /* PositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36A1D92D35A008F2957 /* PositionTests.swift */; };
-		5212A36C1D92D35A008F2957 /* PositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36A1D92D35A008F2957 /* PositionTests.swift */; };
-		5212A36D1D92D35A008F2957 /* PositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36A1D92D35A008F2957 /* PositionTests.swift */; };
-		5212A36F1D9319E2008F2957 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36E1D9319E2008F2957 /* BoardTests.swift */; };
-		5212A3701D9319E2008F2957 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36E1D9319E2008F2957 /* BoardTests.swift */; };
-		5212A3711D9319E2008F2957 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36E1D9319E2008F2957 /* BoardTests.swift */; };
 		5237A65C1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
 		5237A65E1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
 		5237A65F1D97033200BAC16E /* Position+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A65B1D97033200BAC16E /* Position+View.swift */; };
@@ -35,9 +29,21 @@
 		52942EA81D56BF1800525598 /* BoardCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52942EA61D56BEF400525598 /* BoardCoordinate.swift */; };
 		52942EA91D56BF1900525598 /* BoardCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52942EA61D56BEF400525598 /* BoardCoordinate.swift */; };
 		52942EAA1D56BF1900525598 /* BoardCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52942EA61D56BEF400525598 /* BoardCoordinate.swift */; };
-		5295DD511D98A94A0036144D /* ECO Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD501D98A94A0036144D /* ECO Tests.swift */; };
-		5295DD521D98A94A0036144D /* ECO Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD501D98A94A0036144D /* ECO Tests.swift */; };
-		5295DD531D98A94A0036144D /* ECO Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD501D98A94A0036144D /* ECO Tests.swift */; };
+		5297E78C1DCA8DD2007B1066 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE63311D3D83BC0022618B /* Endgame.framework */; };
+		5297E7921DCA8DF5007B1066 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54901D960903008B6F72 /* GameTests.swift */; };
+		5297E7931DCA91B4007B1066 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE633E1D3D83CB0022618B /* Endgame.framework */; };
+		5297E7941DCA91B7007B1066 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE634B1D3D83D90022618B /* Endgame.framework */; };
+		5297E7951DCA91BA007B1066 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE63581D3D83FC0022618B /* Endgame.framework */; };
+		5297E7961DCA925F007B1066 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFC1DAD241400E15277 /* fischer v fine.pgn */; };
+		5297E7971DCA925F007B1066 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFD1DAD241400E15277 /* reti v rubenstein.pgn */; };
+		5297E7981DCA925F007B1066 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFE1DAD241400E15277 /* shirov v polgar.pgn */; };
+		5297E7991DCA925F007B1066 /* PositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36A1D92D35A008F2957 /* PositionTests.swift */; };
+		5297E79A1DCA925F007B1066 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5212A36E1D9319E2008F2957 /* BoardTests.swift */; };
+		5297E79B1DCA925F007B1066 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54941D961259008B6F72 /* FileTests.swift */; };
+		5297E79C1DCA925F007B1066 /* RankTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54981D961281008B6F72 /* RankTests.swift */; };
+		5297E79D1DCA925F007B1066 /* MoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB549C1D9612FC008B6F72 /* MoveTests.swift */; };
+		5297E79E1DCA925F007B1066 /* OutcomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54A01D961349008B6F72 /* OutcomeTests.swift */; };
+		5297E79F1DCA925F007B1066 /* ECO Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5295DD501D98A94A0036144D /* ECO Tests.swift */; };
 		52A485601D9D862B004AB5A6 /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A311D9BF7FC00AB1B9E /* Capture.swift */; };
 		52A485611D9D862B004AB5A6 /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A311D9BF7FC00AB1B9E /* Capture.swift */; };
 		52A485621D9D862C004AB5A6 /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A311D9BF7FC00AB1B9E /* Capture.swift */; };
@@ -50,9 +56,6 @@
 		52AC42EA1DC9037A00A7E57F /* ECO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52AC42E81DC9037A00A7E57F /* ECO.txt */; };
 		52AC42EB1DC9037A00A7E57F /* ECO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52AC42E81DC9037A00A7E57F /* ECO.txt */; };
 		52AC42EC1DC9037A00A7E57F /* ECO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 52AC42E81DC9037A00A7E57F /* ECO.txt */; };
-		52B595221D539C8700E1D543 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE63311D3D83BC0022618B /* Endgame.framework */; };
-		52B595311D539C9800E1D543 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE63581D3D83FC0022618B /* Endgame.framework */; };
-		52B595401D539CA300E1D543 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DE634B1D3D83D90022618B /* Endgame.framework */; };
 		52B5954E1D539FC700E1D543 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5954D1D539FC700E1D543 /* Game.swift */; };
 		52B5954F1D539FC700E1D543 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5954D1D539FC700E1D543 /* Game.swift */; };
 		52B595501D539FC700E1D543 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5954D1D539FC700E1D543 /* Game.swift */; };
@@ -128,31 +131,7 @@
 		52B595FE1D5645D200E1D543 /* String+Chess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595FC1D5645D200E1D543 /* String+Chess.swift */; };
 		52B595FF1D5645D200E1D543 /* String+Chess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595FC1D5645D200E1D543 /* String+Chess.swift */; };
 		52B596001D5645D200E1D543 /* String+Chess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595FC1D5645D200E1D543 /* String+Chess.swift */; };
-		52BA7FFF1DAD241400E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFC1DAD241400E15277 /* fischer v fine.pgn */; };
-		52BA80001DAD241400E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFC1DAD241400E15277 /* fischer v fine.pgn */; };
-		52BA80011DAD241400E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFC1DAD241400E15277 /* fischer v fine.pgn */; };
-		52BA80021DAD241400E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFD1DAD241400E15277 /* reti v rubenstein.pgn */; };
-		52BA80031DAD241400E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFD1DAD241400E15277 /* reti v rubenstein.pgn */; };
-		52BA80041DAD241400E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFD1DAD241400E15277 /* reti v rubenstein.pgn */; };
-		52BA80051DAD241400E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFE1DAD241400E15277 /* shirov v polgar.pgn */; };
-		52BA80061DAD241400E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFE1DAD241400E15277 /* shirov v polgar.pgn */; };
-		52BA80071DAD241400E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA7FFE1DAD241400E15277 /* shirov v polgar.pgn */; };
 		52C4DF4C1D83494B00385459 /* Board+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595CA1D5512FD00E1D543 /* Board+View.swift */; };
-		52DB54911D960903008B6F72 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54901D960903008B6F72 /* GameTests.swift */; };
-		52DB54921D960903008B6F72 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54901D960903008B6F72 /* GameTests.swift */; };
-		52DB54931D960903008B6F72 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54901D960903008B6F72 /* GameTests.swift */; };
-		52DB54951D961259008B6F72 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54941D961259008B6F72 /* FileTests.swift */; };
-		52DB54961D961259008B6F72 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54941D961259008B6F72 /* FileTests.swift */; };
-		52DB54971D961259008B6F72 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54941D961259008B6F72 /* FileTests.swift */; };
-		52DB54991D961281008B6F72 /* RankTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54981D961281008B6F72 /* RankTests.swift */; };
-		52DB549A1D961281008B6F72 /* RankTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54981D961281008B6F72 /* RankTests.swift */; };
-		52DB549B1D961281008B6F72 /* RankTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54981D961281008B6F72 /* RankTests.swift */; };
-		52DB549D1D9612FC008B6F72 /* MoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB549C1D9612FC008B6F72 /* MoveTests.swift */; };
-		52DB549E1D9612FC008B6F72 /* MoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB549C1D9612FC008B6F72 /* MoveTests.swift */; };
-		52DB549F1D9612FC008B6F72 /* MoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB549C1D9612FC008B6F72 /* MoveTests.swift */; };
-		52DB54A11D961349008B6F72 /* OutcomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54A01D961349008B6F72 /* OutcomeTests.swift */; };
-		52DB54A21D961349008B6F72 /* OutcomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54A01D961349008B6F72 /* OutcomeTests.swift */; };
-		52DB54A31D961349008B6F72 /* OutcomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54A01D961349008B6F72 /* OutcomeTests.swift */; };
 		52DB54A51D96153D008B6F72 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54A41D96153D008B6F72 /* Event.swift */; };
 		52DB54A61D961540008B6F72 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54A41D96153D008B6F72 /* Event.swift */; };
 		52DB54A71D961541008B6F72 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB54A41D96153D008B6F72 /* Event.swift */; };
@@ -169,26 +148,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		52B595231D539C8700E1D543 /* PBXContainerItemProxy */ = {
+		5297E78D1DCA8DD2007B1066 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 52DE62F01D3D82190022618B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 52DE63301D3D83BC0022618B;
-			remoteInfo = "Chess iOS";
-		};
-		52B595321D539C9800E1D543 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52DE62F01D3D82190022618B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 52DE63571D3D83FC0022618B;
-			remoteInfo = "Chess macOS";
-		};
-		52B595411D539CA300E1D543 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52DE62F01D3D82190022618B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 52DE634A1D3D83D90022618B;
-			remoteInfo = "Chess tvOS";
+			remoteInfo = "Endgame iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -205,12 +170,10 @@
 		528797CB1D90B040009671AC /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		52942EA61D56BEF400525598 /* BoardCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCoordinate.swift; sourceTree = "<group>"; };
 		5295DD501D98A94A0036144D /* ECO Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ECO Tests.swift"; sourceTree = "<group>"; };
+		5297E7871DCA8DD2007B1066 /* EndgameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EndgameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB81D61D917902002C7A0B /* Outcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
 		52AB81D81D917986002C7A0B /* HistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
 		52AC42E81DC9037A00A7E57F /* ECO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ECO.txt; sourceTree = "<group>"; };
-		52B5951D1D539C8700E1D543 /* EndgameTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EndgameTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52B5952C1D539C9800E1D543 /* EndgameTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EndgameTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52B5953B1D539CA300E1D543 /* EndgameTests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EndgameTests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B595471D539D2B00E1D543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B5954D1D539FC700E1D543 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		52B595521D53A02D00E1D543 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -248,27 +211,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		52B5951A1D539C8700E1D543 /* Frameworks */ = {
+		5297E7841DCA8DD2007B1066 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52B595221D539C8700E1D543 /* Endgame.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52B595291D539C9800E1D543 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				52B595311D539C9800E1D543 /* Endgame.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52B595381D539CA300E1D543 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				52B595401D539CA300E1D543 /* Endgame.framework in Frameworks */,
+				5297E7931DCA91B4007B1066 /* Endgame.framework in Frameworks */,
+				5297E78C1DCA8DD2007B1066 /* Endgame.framework in Frameworks */,
+				5297E7951DCA91BA007B1066 /* Endgame.framework in Frameworks */,
+				5297E7941DCA91B7007B1066 /* Endgame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,9 +300,7 @@
 				52DE633E1D3D83CB0022618B /* Endgame.framework */,
 				52DE634B1D3D83D90022618B /* Endgame.framework */,
 				52DE63581D3D83FC0022618B /* Endgame.framework */,
-				52B5951D1D539C8700E1D543 /* EndgameTests iOS.xctest */,
-				52B5952C1D539C9800E1D543 /* EndgameTests macOS.xctest */,
-				52B5953B1D539CA300E1D543 /* EndgameTests tvOS.xctest */,
+				5297E7871DCA8DD2007B1066 /* EndgameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -440,58 +388,22 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		52B5951C1D539C8700E1D543 /* EndgameTests iOS */ = {
+		5297E7861DCA8DD2007B1066 /* EndgameTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52B595251D539C8700E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests iOS" */;
+			buildConfigurationList = 5297E7911DCA8DD2007B1066 /* Build configuration list for PBXNativeTarget "EndgameTests" */;
 			buildPhases = (
-				52B595191D539C8700E1D543 /* Sources */,
-				52B5951A1D539C8700E1D543 /* Frameworks */,
-				52B5951B1D539C8700E1D543 /* Resources */,
+				5297E7831DCA8DD2007B1066 /* Sources */,
+				5297E7841DCA8DD2007B1066 /* Frameworks */,
+				5297E7851DCA8DD2007B1066 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				52B595241D539C8700E1D543 /* PBXTargetDependency */,
+				5297E78E1DCA8DD2007B1066 /* PBXTargetDependency */,
 			);
-			name = "EndgameTests iOS";
-			productName = "ChessTests iOS";
-			productReference = 52B5951D1D539C8700E1D543 /* EndgameTests iOS.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		52B5952B1D539C9800E1D543 /* EndgameTests macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 52B595341D539C9800E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests macOS" */;
-			buildPhases = (
-				52B595281D539C9800E1D543 /* Sources */,
-				52B595291D539C9800E1D543 /* Frameworks */,
-				52B5952A1D539C9800E1D543 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				52B595331D539C9800E1D543 /* PBXTargetDependency */,
-			);
-			name = "EndgameTests macOS";
-			productName = "ChessTests macOS";
-			productReference = 52B5952C1D539C9800E1D543 /* EndgameTests macOS.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		52B5953A1D539CA300E1D543 /* EndgameTests tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 52B595431D539CA300E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests tvOS" */;
-			buildPhases = (
-				52B595371D539CA300E1D543 /* Sources */,
-				52B595381D539CA300E1D543 /* Frameworks */,
-				52B595391D539CA300E1D543 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				52B595421D539CA300E1D543 /* PBXTargetDependency */,
-			);
-			name = "EndgameTests tvOS";
-			productName = "ChessTests tvOS";
-			productReference = 52B5953B1D539CA300E1D543 /* EndgameTests tvOS.xctest */;
+			name = EndgameTests;
+			productName = EndgameTests;
+			productReference = 5297E7871DCA8DD2007B1066 /* EndgameTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		52DE63301D3D83BC0022618B /* Endgame iOS */ = {
@@ -572,21 +484,11 @@
 		52DE62F01D3D82190022618B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
 				TargetAttributes = {
-					52B5951C1D539C8700E1D543 = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 55SVD8WGE3;
-						ProvisioningStyle = Automatic;
-					};
-					52B5952B1D539C9800E1D543 = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 55SVD8WGE3;
-						ProvisioningStyle = Automatic;
-					};
-					52B5953A1D539CA300E1D543 = {
-						CreatedOnToolsVersion = 8.0;
+					5297E7861DCA8DD2007B1066 = {
+						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 55SVD8WGE3;
 						ProvisioningStyle = Automatic;
 					};
@@ -636,41 +538,19 @@
 				52DE633D1D3D83CB0022618B /* Endgame watchOS */,
 				52DE634A1D3D83D90022618B /* Endgame tvOS */,
 				52DE63571D3D83FC0022618B /* Endgame macOS */,
-				52B5951C1D539C8700E1D543 /* EndgameTests iOS */,
-				52B5952B1D539C9800E1D543 /* EndgameTests macOS */,
-				52B5953A1D539CA300E1D543 /* EndgameTests tvOS */,
+				5297E7861DCA8DD2007B1066 /* EndgameTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		52B5951B1D539C8700E1D543 /* Resources */ = {
+		5297E7851DCA8DD2007B1066 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52BA80051DAD241400E15277 /* shirov v polgar.pgn in Resources */,
-				52BA7FFF1DAD241400E15277 /* fischer v fine.pgn in Resources */,
-				52BA80021DAD241400E15277 /* reti v rubenstein.pgn in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52B5952A1D539C9800E1D543 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				52BA80061DAD241400E15277 /* shirov v polgar.pgn in Resources */,
-				52BA80001DAD241400E15277 /* fischer v fine.pgn in Resources */,
-				52BA80031DAD241400E15277 /* reti v rubenstein.pgn in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52B595391D539CA300E1D543 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				52BA80071DAD241400E15277 /* shirov v polgar.pgn in Resources */,
-				52BA80011DAD241400E15277 /* fischer v fine.pgn in Resources */,
-				52BA80041DAD241400E15277 /* reti v rubenstein.pgn in Resources */,
+				5297E7981DCA925F007B1066 /* shirov v polgar.pgn in Resources */,
+				5297E7961DCA925F007B1066 /* fischer v fine.pgn in Resources */,
+				5297E7971DCA925F007B1066 /* reti v rubenstein.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,48 +593,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		52B595191D539C8700E1D543 /* Sources */ = {
+		5297E7831DCA8DD2007B1066 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5212A36B1D92D35A008F2957 /* PositionTests.swift in Sources */,
-				52DB549D1D9612FC008B6F72 /* MoveTests.swift in Sources */,
-				52DB54951D961259008B6F72 /* FileTests.swift in Sources */,
-				52DB54A11D961349008B6F72 /* OutcomeTests.swift in Sources */,
-				5295DD511D98A94A0036144D /* ECO Tests.swift in Sources */,
-				5212A36F1D9319E2008F2957 /* BoardTests.swift in Sources */,
-				52DB54911D960903008B6F72 /* GameTests.swift in Sources */,
-				52DB54991D961281008B6F72 /* RankTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52B595281D539C9800E1D543 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5212A36C1D92D35A008F2957 /* PositionTests.swift in Sources */,
-				52DB549E1D9612FC008B6F72 /* MoveTests.swift in Sources */,
-				52DB54961D961259008B6F72 /* FileTests.swift in Sources */,
-				52DB54A21D961349008B6F72 /* OutcomeTests.swift in Sources */,
-				5295DD521D98A94A0036144D /* ECO Tests.swift in Sources */,
-				5212A3701D9319E2008F2957 /* BoardTests.swift in Sources */,
-				52DB54921D960903008B6F72 /* GameTests.swift in Sources */,
-				52DB549A1D961281008B6F72 /* RankTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52B595371D539CA300E1D543 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5212A36D1D92D35A008F2957 /* PositionTests.swift in Sources */,
-				52DB549F1D9612FC008B6F72 /* MoveTests.swift in Sources */,
-				52DB54971D961259008B6F72 /* FileTests.swift in Sources */,
-				52DB54A31D961349008B6F72 /* OutcomeTests.swift in Sources */,
-				5295DD531D98A94A0036144D /* ECO Tests.swift in Sources */,
-				5212A3711D9319E2008F2957 /* BoardTests.swift in Sources */,
-				52DB54931D960903008B6F72 /* GameTests.swift in Sources */,
-				52DB549B1D961281008B6F72 /* RankTests.swift in Sources */,
+				5297E79E1DCA925F007B1066 /* OutcomeTests.swift in Sources */,
+				5297E79D1DCA925F007B1066 /* MoveTests.swift in Sources */,
+				5297E7991DCA925F007B1066 /* PositionTests.swift in Sources */,
+				5297E79B1DCA925F007B1066 /* FileTests.swift in Sources */,
+				5297E79F1DCA925F007B1066 /* ECO Tests.swift in Sources */,
+				5297E79C1DCA925F007B1066 /* RankTests.swift in Sources */,
+				5297E7921DCA8DF5007B1066 /* GameTests.swift in Sources */,
+				5297E79A1DCA925F007B1066 /* BoardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -900,25 +750,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		52B595241D539C8700E1D543 /* PBXTargetDependency */ = {
+		5297E78E1DCA8DD2007B1066 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 52DE63301D3D83BC0022618B /* Endgame iOS */;
-			targetProxy = 52B595231D539C8700E1D543 /* PBXContainerItemProxy */;
-		};
-		52B595331D539C9800E1D543 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 52DE63571D3D83FC0022618B /* Endgame macOS */;
-			targetProxy = 52B595321D539C9800E1D543 /* PBXContainerItemProxy */;
-		};
-		52B595421D539CA300E1D543 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 52DE634A1D3D83D90022618B /* Endgame tvOS */;
-			targetProxy = 52B595411D539CA300E1D543 /* PBXContainerItemProxy */;
+			targetProxy = 5297E78D1DCA8DD2007B1066 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		52B595261D539C8700E1D543 /* Debug */ = {
+		5297E78F1DCA8DD2007B1066 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -927,44 +767,28 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.ChessTests-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "Todd-Olsen.EndgameTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -973,7 +797,7 @@
 			};
 			name = Debug;
 		};
-		52B595271D539C8700E1D543 /* Release */ = {
+		5297E7901DCA8DD2007B1066 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -982,246 +806,27 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
 				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.ChessTests-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "Todd-Olsen.EndgameTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		52B595351D539C9800E1D543 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 55SVD8WGE3;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.ChessTests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		52B595361D539C9800E1D543 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 55SVD8WGE3;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.ChessTests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		52B595441D539CA300E1D543 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 55SVD8WGE3;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.ChessTests-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Debug;
-		};
-		52B595451D539CA300E1D543 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 55SVD8WGE3;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.ChessTests-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1229,12 +834,48 @@
 		52DE62F41D3D82190022618B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};
 		52DE62F51D3D82190022618B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 			};
 			name = Release;
 		};
@@ -1257,7 +898,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1319,7 +960,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1375,6 +1016,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1438,6 +1080,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1493,6 +1136,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1554,6 +1198,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1710,32 +1355,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		52B595251D539C8700E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests iOS" */ = {
+		5297E7911DCA8DD2007B1066 /* Build configuration list for PBXNativeTarget "EndgameTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				52B595261D539C8700E1D543 /* Debug */,
-				52B595271D539C8700E1D543 /* Release */,
+				5297E78F1DCA8DD2007B1066 /* Debug */,
+				5297E7901DCA8DD2007B1066 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		52B595341D539C9800E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				52B595351D539C9800E1D543 /* Debug */,
-				52B595361D539C9800E1D543 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		52B595431D539CA300E1D543 /* Build configuration list for PBXNativeTarget "EndgameTests tvOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				52B595441D539CA300E1D543 /* Debug */,
-				52B595451D539CA300E1D543 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		52DE62F31D3D82190022618B /* Build configuration list for PBXProject "Endgame" */ = {
 			isa = XCConfigurationList;
