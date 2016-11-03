@@ -30,19 +30,16 @@ public class Game {
     /// The game's outcome.
     public var outcome: Outcome
 
+    /// The game's date.
+    public var date: Date?
+
     // MARK: - Private Stored Properties
 
     /// The starting position.
-    private var _startingPosition: Position
+    fileprivate var _startingPosition: Position
 
     internal var _currentIndex: Int?
-    private var _items: Array<HistoryItem>
-
-    /// All of the conducted moves in the game.
-//    private var _history: Array<HistoryItem>
-
-    /// All of the undone moves in the game.
-//    private var _undoHistory: Array<HistoryItem>
+    fileprivate var _items: Array<HistoryItem>
 
     // MARK: - Public Initializers
 
@@ -60,6 +57,7 @@ public class Game {
         self.whitePlayer = whitePlayer
         self.blackPlayer = blackPlayer
         self.outcome = .undetermined
+        self.date = Date()
         self._startingPosition = startingPosition
         self._items = []
         self._currentIndex = nil
@@ -72,10 +70,15 @@ public class Game {
         self.whitePlayer = game.whitePlayer
         self.blackPlayer = game.blackPlayer
         self.outcome = game.outcome
+        self.date = game.date
         self._startingPosition = game._startingPosition
         self._items = game._items
         self._currentIndex = game._currentIndex
     }
+
+}
+
+extension Game {
 
     // MARK: - Public API
 
@@ -314,54 +317,6 @@ public class Game {
         return (direction, Array(slice))
     }
 
-    // MARK: - PGN
-    // MARK: Public Initializer
-
-    /// Creates a new chess game.
-    ///
-    /// - parameter pgn: A PGN instance.
-    public convenience init(pgn: PGN) {
-
-        let game = Game()
-
-        game.whitePlayer = Player(name: pgn[PGN.Tag.white], kind: pgn[PGN.Tag.whiteType], elo: pgn[PGN.Tag.whiteElo])
-        game.blackPlayer = Player(name: pgn[PGN.Tag.black], kind: pgn[PGN.Tag.blackType], elo: pgn[PGN.Tag.blackElo])
-        game.outcome = pgn.outcome
-
-        do {
-            try game.execute(sanMoves: pgn.sanMoves.joined(separator: " "))
-        } catch {
-            fatalError("could not parse san moves: \(pgn.sanMoves)")
-        }
-        self.init(game: game)
-    }
-
-    private static var dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy.MM.dd"
-        return df
-    }()
-
-    /// Returns a `Dictionary` where `Key` = `PGN.Tag` and `Value` = `String` of
-    /// the PGN tag pairs describing `self`.
-    public func tagPairs() -> Dictionary<String, String> {
-        var pairs: Dictionary<String, String> = [:]
-        pairs[PGN.Tag.white.rawValue] = whitePlayer.name
-        pairs[PGN.Tag.black.rawValue] = blackPlayer.name
-        pairs[PGN.Tag.result.rawValue] = outcome.description
-        if let eco = eco {
-            pairs[PGN.Tag.eco.rawValue] = eco.code.rawValue
-        }
-        pairs[PGN.Tag.date.rawValue] = Game.dateFormatter.string(from: Date())
-        return pairs
-    }
-    
-    /**
-     Returns the PGN representation of `self`.
-     */
-    public var pgn: PGN {
-        return PGN(tagPairs: tagPairs(), moves: self.map({ $0.sanMove }))
-    }
 
 }
 
