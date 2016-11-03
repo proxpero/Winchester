@@ -19,9 +19,7 @@
 		5237A6631D970B7C00BAC16E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6611D970B7C00BAC16E /* Main.storyboard */; };
 		5240586F1D638483000A925C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5240586B1D638483000A925C /* LaunchScreen.storyboard */; };
 		524058781D6384C6000A925C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524058761D6384C6000A925C /* Main.storyboard */; };
-		524058CA1D63FA64000A925C /* EndgameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* EndgameTests.swift */; };
-		524058CB1D63FA65000A925C /* EndgameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* EndgameTests.swift */; };
-		524058CC1D63FA66000A925C /* EndgameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* EndgameTests.swift */; };
+		524058CA1D63FA64000A925C /* WinchesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* WinchesterTests.swift */; };
 		524058D31D63FB24000A925C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524058D21D63FB24000A925C /* AppDelegate.swift */; };
 		524058D71D63FB74000A925C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524058D51D63FB74000A925C /* Main.storyboard */; };
 		524A14DE1DC6CA7B003BC9AC /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524A14DD1DC6CA7B003BC9AC /* Endgame.framework */; };
@@ -99,15 +97,12 @@
 		528E21391DC17E9800C45E17 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E212A1DC17E9800C45E17 /* TitleViewController.swift */; };
 		528E213A1DC17E9800C45E17 /* UIImage+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E212B1DC17E9800C45E17 /* UIImage+View.swift */; };
 		528E213B1DC17E9800C45E17 /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E212C1DC17E9800C45E17 /* UISwipeGestureRecognizer+Extensions.swift */; };
+		5297E7A11DCAC583007B1066 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297E7A01DCAC583007B1066 /* Cache.swift */; };
+		5297E7A21DCAC583007B1066 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297E7A01DCAC583007B1066 /* Cache.swift */; };
+		5297E7A31DCAC583007B1066 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297E7A01DCAC583007B1066 /* Cache.swift */; };
 		52BA800B1DAD244F00E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80081DAD244F00E15277 /* fischer v fine.pgn */; };
-		52BA800C1DAD244F00E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80081DAD244F00E15277 /* fischer v fine.pgn */; };
-		52BA800D1DAD244F00E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80081DAD244F00E15277 /* fischer v fine.pgn */; };
 		52BA800E1DAD244F00E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80091DAD244F00E15277 /* reti v rubenstein.pgn */; };
-		52BA800F1DAD244F00E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80091DAD244F00E15277 /* reti v rubenstein.pgn */; };
-		52BA80101DAD244F00E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80091DAD244F00E15277 /* reti v rubenstein.pgn */; };
 		52BA80111DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
-		52BA80121DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
-		52BA80131DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
 		52BCD0A01DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */; };
 		52BCD0A11DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */; };
 		52BCD0A21DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */; };
@@ -127,20 +122,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 52BAE0911D5FD555006E2652;
 			remoteInfo = "Endgame iOS";
-		};
-		524058B71D63FA15000A925C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52BAE08A1D5FD555006E2652 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 524058531D63749E000A925C;
-			remoteInfo = "Endgame tvOS";
-		};
-		524058C51D63FA25000A925C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52BAE08A1D5FD555006E2652 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5240588A1D638C8D000A925C;
-			remoteInfo = "Endgame macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -189,9 +170,7 @@
 		524058771D6384C6000A925C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = tvOS/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		524058791D638526000A925C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tvOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		5240588B1D638C8D000A925C /* Winchester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Winchester.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		524058A41D63F353000A925C /* WinchesterTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WinchesterTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		524058B21D63FA15000A925C /* WinchesterTests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WinchesterTests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		524058C01D63FA25000A925C /* WinchesterTests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WinchesterTests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		524058A41D63F353000A925C /* WinchesterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WinchesterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		524058CD1D63FA92000A925C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524058D21D63FB24000A925C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = macOS/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		524058D41D63FB32000A925C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = macOS/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -222,7 +201,7 @@
 		52647CBC1DC1849200E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug/Endgame.framework"; sourceTree = "<group>"; };
 		52647CC01DC184DD00E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-appletvsimulator/Endgame.framework"; sourceTree = "<group>"; };
 		526B73B71DC8DAE600D1AE0F /* Winchester.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Winchester.playground; path = ../Winchester.playground; sourceTree = "<group>"; };
-		5282880E1D6113310014B105 /* EndgameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndgameTests.swift; sourceTree = "<group>"; };
+		5282880E1D6113310014B105 /* WinchesterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinchesterTests.swift; sourceTree = "<group>"; };
 		528E211E1DC17E9800C45E17 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = iOS/AppCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		528E211F1DC17E9800C45E17 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = iOS/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		528E21201DC17E9800C45E17 /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardViewController.swift; path = iOS/BoardViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -235,6 +214,7 @@
 		528E212A1DC17E9800C45E17 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleViewController.swift; path = iOS/TitleViewController.swift; sourceTree = SOURCE_ROOT; };
 		528E212B1DC17E9800C45E17 /* UIImage+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+View.swift"; path = "iOS/UIImage+View.swift"; sourceTree = SOURCE_ROOT; };
 		528E212C1DC17E9800C45E17 /* UISwipeGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UISwipeGestureRecognizer+Extensions.swift"; path = "iOS/UISwipeGestureRecognizer+Extensions.swift"; sourceTree = SOURCE_ROOT; };
+		5297E7A01DCAC583007B1066 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		52BA80081DAD244F00E15277 /* fischer v fine.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fischer v fine.pgn"; path = "../../Test Games/fischer v fine.pgn"; sourceTree = "<group>"; };
 		52BA80091DAD244F00E15277 /* reti v rubenstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reti v rubenstein.pgn"; path = "../../Test Games/reti v rubenstein.pgn"; sourceTree = "<group>"; };
 		52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "shirov v polgar.pgn"; path = "../../Test Games/shirov v polgar.pgn"; sourceTree = "<group>"; };
@@ -263,20 +243,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		524058A11D63F353000A925C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		524058AF1D63FA15000A925C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		524058BD1D63FA25000A925C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -350,6 +316,7 @@
 				524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */,
 				524A72B21DC140B00078379A /* TitleViewConfiguration.swift */,
 				524A72B31DC140B00078379A /* TitleViewDataSource.swift */,
+				5297E7A01DCAC583007B1066 /* Cache.swift */,
 				524A727A1DC13E600078379A /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -388,7 +355,7 @@
 				52BA80081DAD244F00E15277 /* fischer v fine.pgn */,
 				52BA80091DAD244F00E15277 /* reti v rubenstein.pgn */,
 				52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */,
-				5282880E1D6113310014B105 /* EndgameTests.swift */,
+				5282880E1D6113310014B105 /* WinchesterTests.swift */,
 				524058CD1D63FA92000A925C /* Info.plist */,
 			);
 			path = Tests;
@@ -425,9 +392,7 @@
 				52BAE0921D5FD555006E2652 /* Winchester.app */,
 				524058541D63749E000A925C /* Winchester.app */,
 				5240588B1D638C8D000A925C /* Winchester.app */,
-				524058A41D63F353000A925C /* WinchesterTests iOS.xctest */,
-				524058B21D63FA15000A925C /* WinchesterTests tvOS.xctest */,
-				524058C01D63FA25000A925C /* WinchesterTests macOS.xctest */,
+				524058A41D63F353000A925C /* WinchesterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -470,9 +435,9 @@
 			productReference = 5240588B1D638C8D000A925C /* Winchester.app */;
 			productType = "com.apple.product-type.application";
 		};
-		524058A31D63F353000A925C /* WinchesterTests iOS */ = {
+		524058A31D63F353000A925C /* WinchesterTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 524058AB1D63F353000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests iOS" */;
+			buildConfigurationList = 524058AB1D63F353000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests" */;
 			buildPhases = (
 				524058A01D63F353000A925C /* Sources */,
 				524058A11D63F353000A925C /* Frameworks */,
@@ -483,45 +448,9 @@
 			dependencies = (
 				524058AA1D63F353000A925C /* PBXTargetDependency */,
 			);
-			name = "WinchesterTests iOS";
+			name = WinchesterTests;
 			productName = "EndgameTests iOS";
-			productReference = 524058A41D63F353000A925C /* WinchesterTests iOS.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		524058B11D63FA15000A925C /* WinchesterTests tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 524058B91D63FA15000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests tvOS" */;
-			buildPhases = (
-				524058AE1D63FA15000A925C /* Sources */,
-				524058AF1D63FA15000A925C /* Frameworks */,
-				524058B01D63FA15000A925C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				524058B81D63FA15000A925C /* PBXTargetDependency */,
-			);
-			name = "WinchesterTests tvOS";
-			productName = "EndgameTests tvOS";
-			productReference = 524058B21D63FA15000A925C /* WinchesterTests tvOS.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		524058BF1D63FA25000A925C /* WinchesterTests macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 524058C71D63FA25000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests macOS" */;
-			buildPhases = (
-				524058BC1D63FA25000A925C /* Sources */,
-				524058BD1D63FA25000A925C /* Frameworks */,
-				524058BE1D63FA25000A925C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				524058C61D63FA25000A925C /* PBXTargetDependency */,
-			);
-			name = "WinchesterTests macOS";
-			productName = "EndgameTests macOS";
-			productReference = 524058C01D63FA25000A925C /* WinchesterTests macOS.xctest */;
+			productReference = 524058A41D63F353000A925C /* WinchesterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		52BAE0911D5FD555006E2652 /* Winchester iOS */ = {
@@ -569,18 +498,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 52BAE0911D5FD555006E2652;
 					};
-					524058B11D63FA15000A925C = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 55SVD8WGE3;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 524058531D63749E000A925C;
-					};
-					524058BF1D63FA25000A925C = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 55SVD8WGE3;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5240588A1D638C8D000A925C;
-					};
 					52BAE0911D5FD555006E2652 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 55SVD8WGE3;
@@ -604,9 +521,7 @@
 				52BAE0911D5FD555006E2652 /* Winchester iOS */,
 				524058531D63749E000A925C /* Winchester tvOS */,
 				5240588A1D638C8D000A925C /* Winchester macOS */,
-				524058A31D63F353000A925C /* WinchesterTests iOS */,
-				524058B11D63FA15000A925C /* WinchesterTests tvOS */,
-				524058BF1D63FA25000A925C /* WinchesterTests macOS */,
+				524058A31D63F353000A925C /* WinchesterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -650,26 +565,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		524058B01D63FA15000A925C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				52BA80121DAD244F00E15277 /* shirov v polgar.pgn in Resources */,
-				52BA800F1DAD244F00E15277 /* reti v rubenstein.pgn in Resources */,
-				52BA800C1DAD244F00E15277 /* fischer v fine.pgn in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		524058BE1D63FA25000A925C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				52BA80131DAD244F00E15277 /* shirov v polgar.pgn in Resources */,
-				52BA80101DAD244F00E15277 /* reti v rubenstein.pgn in Resources */,
-				52BA800D1DAD244F00E15277 /* fischer v fine.pgn in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		52BAE0901D5FD555006E2652 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -698,6 +593,7 @@
 				524A729F1DC13FFC0078379A /* NodeType.swift in Sources */,
 				524A72901DC13FFC0078379A /* ArrowNode.swift in Sources */,
 				524A72C61DC140F30078379A /* HistoryViewDataSource.swift in Sources */,
+				5297E7A21DCAC583007B1066 /* Cache.swift in Sources */,
 				524A72931DC13FFC0078379A /* ArrowNodeModel.swift in Sources */,
 				524A72C91DC140F30078379A /* HistoryViewModel.swift in Sources */,
 				524A72CC1DC140F30078379A /* HistoryViewDelegate.swift in Sources */,
@@ -724,6 +620,7 @@
 				524A72B61DC140B00078379A /* TitleViewConfiguration.swift in Sources */,
 				524A72A91DC13FFC0078379A /* SquareNodeModel.swift in Sources */,
 				524A72B11DC140910078379A /* UserActivityCoordinator.swift in Sources */,
+				5297E7A31DCAC583007B1066 /* Cache.swift in Sources */,
 				524A72CD1DC140F30078379A /* HistoryViewDelegate.swift in Sources */,
 				524A72911DC13FFC0078379A /* ArrowNode.swift in Sources */,
 				524A72A01DC13FFC0078379A /* NodeType.swift in Sources */,
@@ -744,23 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524058CA1D63FA64000A925C /* EndgameTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		524058AE1D63FA15000A925C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				524058CB1D63FA65000A925C /* EndgameTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		524058BC1D63FA25000A925C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				524058CC1D63FA66000A925C /* EndgameTests.swift in Sources */,
+				524058CA1D63FA64000A925C /* WinchesterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,6 +659,7 @@
 				528E21371DC17E9800C45E17 /* RootCollectionViewController.swift in Sources */,
 				524A72AF1DC140910078379A /* UserActivityCoordinator.swift in Sources */,
 				524A14E31DC7E82D003BC9AC /* CaptureViewController.swift in Sources */,
+				5297E7A11DCAC583007B1066 /* Cache.swift in Sources */,
 				524A72981DC13FFC0078379A /* BoardInteractionCoordinator.swift in Sources */,
 				524A72CB1DC140F30078379A /* HistoryViewDelegate.swift in Sources */,
 				528E213A1DC17E9800C45E17 /* UIImage+View.swift in Sources */,
@@ -813,16 +695,6 @@
 			isa = PBXTargetDependency;
 			target = 52BAE0911D5FD555006E2652 /* Winchester iOS */;
 			targetProxy = 524058A91D63F353000A925C /* PBXContainerItemProxy */;
-		};
-		524058B81D63FA15000A925C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 524058531D63749E000A925C /* Winchester tvOS */;
-			targetProxy = 524058B71D63FA15000A925C /* PBXContainerItemProxy */;
-		};
-		524058C61D63FA25000A925C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5240588A1D638C8D000A925C /* Winchester macOS */;
-			targetProxy = 524058C51D63FA25000A925C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -955,74 +827,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Winchester";
-			};
-			name = Release;
-		};
-		524058BA1D63FA15000A925C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 55SVD8WGE3;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.WinchesterTests-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Winchester";
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Debug;
-		};
-		524058BB1D63FA15000A925C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 55SVD8WGE3;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.WinchesterTests-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Winchester";
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Release;
-		};
-		524058C81D63FA25000A925C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 55SVD8WGE3;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.WinchesterTests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Contents/MacOS/Winchester";
-			};
-			name = Debug;
-		};
-		524058C91D63FA25000A925C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 55SVD8WGE3;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "proxpero.WinchesterTests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Winchester.app/Contents/MacOS/Winchester";
 			};
 			name = Release;
 		};
@@ -1172,29 +976,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		524058AB1D63F353000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests iOS" */ = {
+		524058AB1D63F353000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				524058AC1D63F353000A925C /* Debug */,
 				524058AD1D63F353000A925C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		524058B91D63FA15000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests tvOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				524058BA1D63FA15000A925C /* Debug */,
-				524058BB1D63FA15000A925C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		524058C71D63FA25000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				524058C81D63FA25000A925C /* Debug */,
-				524058C91D63FA25000A925C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
