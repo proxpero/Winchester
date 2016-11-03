@@ -11,177 +11,6 @@ import Foundation
 /// A representation of Portable Game Notation data.
 public struct PGN: Equatable {
 
-    // MARK: -
-
-    /// PGN tag.
-    public enum Tag: String, CustomStringConvertible {
-
-        // MARK: Cases
-
-        /// Event tag.
-        case event = "Event"
-
-        /// Site tag.
-        case site = "Site"
-
-        /// Date tag.
-        case date = "Date"
-
-        /// Round tag.
-        case round = "Round"
-
-        /// White tag.
-        case white = "White"
-
-        /// Black tag.
-        case black = "Black"
-
-        /// Result tag.
-        case result = "Result"
-
-        /// Annotator tag.
-        case annotator = "Annotator"
-
-        /// Ply (moves) count tag.
-        case plyCount = "PlyCount"
-
-        /// TimeControl tag.
-        case timeControl = "TimeControl"
-
-        /// Time tag.
-        case time = "Time"
-
-        /// Termination tag.
-        case termination = "Termination"
-
-        /// Playing mode tag.
-        case mode = "Mode"
-
-        /// FEN tag.
-        case fen = "FEN"
-
-        /// White player's title tag.
-        case whiteTitle = "WhiteTitle"
-
-        /// Black player's title tag.
-        case blackTitle = "BlackTitle"
-
-        /// White player's elo rating tag.
-        case whiteElo = "WhiteElo"
-
-        /// Black player's elo rating tag.
-        case blackElo = "BlackElo"
-
-        /// White player's United States Chess Federation rating tag.
-        case whiteUSCF = "WhiteUSCF"
-
-        /// Black player's United States Chess Federation rating tag.
-        case blackUSCF = "BlackUSCF"
-
-        /// White player's network or email address tag.
-        case whiteNA = "WhiteNA"
-
-        /// Black player's network or email address tag.
-        case blackNA = "BlackNA"
-
-        /// White player's type tag; either human or program.
-        case whiteType = "WhiteType"
-
-        /// Black player's type tag; either human or program.
-        case blackType = "BlackType"
-
-        /// The starting date tag of the event.
-        case eventDate = "EventDate"
-
-        /// Tag for the name of the sponsor of the event.
-        case eventSponsor = "EventSponsor"
-
-        /// The playing section tag of a tournament.
-        case section = "Section"
-
-        /// Tag for the stage of a multistage event.
-        case stage = "Stage"
-
-        /// The board number tag in a team event or in a simultaneous exhibition.
-        case board = "Board"
-
-        /// The traditional opening name tag.
-        case opening = "Opening"
-
-        /// Tag used to further refine the opening tag.
-        case variation = "Variation"
-
-        /// Used to further refine the variation tag.
-        case subVariation = "SubVariation"
-
-        /// Tag used for an opening designation from the five volume *Encyclopedia of Chess Openings*.
-        case eco = "ECO"
-
-        /// Tag used for an opening designation from the *New in Chess* database.
-        case nic = "NIC"
-
-        /// Tag similar to the Time tag but given according to the Universal Coordinated Time standard.
-        case utcTime = "UTCTime"
-
-        /// Tag similar to the Date tag but given according to the Universal Coordinated Time standard.
-        case utcDate = "UTCDate"
-
-        /// Tag for the "set-up" status of the game.
-        case setUp = "SetUp"
-
-        // MARK: CustomStringConvertible Protocol Conformance
-
-        /// A textual representation of `self`.
-        public var description: String {
-            return rawValue
-        }
-
-        public static var roster: [(tag: Tag, default: String)] {
-            return [
-                (.event, "?"),
-                (.site, "?"),
-                (.date, "????.??.??"),
-                (.round, "?"),
-                (.white, "?"),
-                (.black, "?"),
-                (.result, "?")]
-        }
-
-    }
-
-    // MARK: -
-
-    /// An error thrown by `PGN.init(parse:)`.
-    public enum ParseError: Error {
-
-        // MARK: Cases
-
-        /// Unexpected quote found in move text.
-        case unexpectedQuote(String)
-
-        /// Unexpected closing brace found outside of comment.
-        case unexpectedClosingBrace(String)
-
-        /// No closing brace for comment.
-        case noClosingBrace(String)
-
-        /// No closing quote for tag value.
-        case noClosingQuote(String)
-
-        /// No closing bracket for tag pair.
-        case noClosingBracket(String)
-        
-        /// Wrong number of tokens for tag pair.
-        case tagPairTokenCount([String])
-        
-        /// Incorrect count of parenthesis for recursive annotation variation.
-        case parenthesisCountForRAV(String)
-        
-        /// Invalid tag name.
-        case invalidTagName(String)
-
-    }
-
     // MARK: - Private Stored Properties
 
     /// The tag pairs for `self`.
@@ -192,7 +21,7 @@ public struct PGN: Equatable {
 
     // MARK: - Initializers
 
-    /// Create PGN by parsing `string`.
+    /// Create a PGN by parsing `string`.
     ///
     /// - throws: `ParseError` if an error occured while parsing.
     public init(parse string: String) throws {
@@ -214,7 +43,7 @@ public struct PGN: Equatable {
         }
     }
 
-    // Create PGN with `tagPairs` and `moves`.
+    // Create a PGN with `tagPairs` and `moves`.
     public init(tagPairs: [Tag: String] = [:], moves: [String] = []) {
         self._sanMoves = moves
         self._tagPairs = tagPairs
@@ -230,7 +59,31 @@ public struct PGN: Equatable {
         self.init(tagPairs: tags, moves: moves)
     }
 
-    // MARK: - Public Computed Properties and Functions
+    // MARK: - Subscripts
+
+    /// Get or set the value for `tag`.
+    public subscript(tag: Tag) -> String? {
+        get {
+            return _tagPairs[tag]
+        }
+        set {
+            _tagPairs[tag] = newValue
+        }
+    }
+
+    public func tagPairs() -> [Tag: String] {
+        return _tagPairs
+    }
+
+    public func sanMoves() -> [String] {
+        return _sanMoves
+    }
+
+}
+
+// MARK: - Public Computed Properties and Functions
+
+extension PGN {
 
     /// The game outcome.
     public var outcome: Outcome {
@@ -242,38 +95,32 @@ public struct PGN: Equatable {
         }
     }
 
-    public var sanMoves: [String] {
-        return _sanMoves
-    }
+    public func exportTagPairs() -> String {
 
-    public var tagPairs: [Tag: String] {
-        return _tagPairs
-    }
-
-    public var exportTagPairs: String {
         var result = ""
-        var tagPairs = self._tagPairs
+        var pairs = tagPairs()
         for (tag, defaultValue) in Tag.roster {
-            if let value = tagPairs[tag] {
-                tagPairs[tag] = nil
+            if let value = pairs[tag] {
+                pairs[tag] = nil
                 result += "[\(tag.rawValue) \"\(value)\"]\n"
             } else {
                 result += "[\(tag.rawValue) \"\(defaultValue)\"]\n"
             }
         }
-        for (tag, value) in tagPairs {
+        for (tag, value) in pairs {
             result += "[\(tag.rawValue) \"\(value)\"]\n"
         }
         return result
+
     }
 
     public var fullMoves: [String] {
         var result = [String]()
-        for num in stride(from: 0, to: _sanMoves.endIndex, by: 2) {
+        for num in stride(from: 0, to: sanMoves().endIndex, by: 2) {
             let moveNumber = (num + 2) / 2
-            var moveString = "\(moveNumber). \(_sanMoves[num])"
-            if num + 1 < _sanMoves.endIndex {
-                moveString += " \(_sanMoves[num+1])"
+            var moveString = "\(moveNumber). \(sanMoves()[num])"
+            if num + 1 < sanMoves().endIndex {
+                moveString += " \(sanMoves()[num+1])"
             }
             result.append(moveString)
         }
@@ -316,24 +163,11 @@ public struct PGN: Equatable {
         return []
     }
 
-    // MARK: - Subscripts
-
-    /// Get or set the value for `tag`.
-    public subscript(tag: Tag) -> String? {
-        get {
-            return _tagPairs[tag]
-        }
-        set {
-            _tagPairs[tag] = newValue
-        }
-    }
-
     // MARK: - Equatable Protocol Conformance
 
     /// Returns a Boolean value indicating whether two values are equal.
     public static func == (lhs: PGN, rhs: PGN) -> Bool {
-        return lhs._tagPairs == rhs._tagPairs
-            && lhs._sanMoves == rhs._sanMoves
+        return lhs.tagPairs() == rhs.tagPairs() && lhs.sanMoves() == rhs.sanMoves()
     }
 
 }
