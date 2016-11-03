@@ -144,6 +144,13 @@ public struct GameCoordinator {
 
     }
 
+    func save() {
+
+//        let pgn = game.pgn.exported()
+//        let cache = Cache(with: game.)
+//        cache.save(object: pgn as NSCoding)
+
+    }
 }
 
 extension UIStoryboard {
