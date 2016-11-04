@@ -44,7 +44,7 @@ public final class GameViewController: UIViewController {
 
     var titleViewController: TitleViewController!
     var boardViewController: BoardViewController!
-    var historyViewController: HistoryViewController!
+    var historyViewController: History.ViewController!
     var captureViewController: CaptureViewController!
 
     @IBAction func settingsButtonAction(_ sender: UIBarButtonItem) {

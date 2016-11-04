@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522202F41DCCE7410060C147 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21241DC17E9800C45E17 /* HistoryViewController.swift */; };
+		522202F51DCCE7410060C147 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21241DC17E9800C45E17 /* HistoryViewController.swift */; };
 		5225DD011DB544CB00F74330 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5225DCFE1DB544CB00F74330 /* fischer v fine.pgn */; };
 		5225DD021DB544CB00F74330 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5225DCFE1DB544CB00F74330 /* fischer v fine.pgn */; };
 		5225DD031DB544CB00F74330 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5225DCFE1DB544CB00F74330 /* fischer v fine.pgn */; };
@@ -57,9 +59,6 @@
 		524A72A71DC13FFC0078379A /* SquareNodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A728E1DC13FFC0078379A /* SquareNodeModel.swift */; };
 		524A72A81DC13FFC0078379A /* SquareNodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A728E1DC13FFC0078379A /* SquareNodeModel.swift */; };
 		524A72A91DC13FFC0078379A /* SquareNodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A728E1DC13FFC0078379A /* SquareNodeModel.swift */; };
-		524A72AC1DC140910078379A /* HistoryInteractionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72AA1DC140910078379A /* HistoryInteractionCoordinator.swift */; };
-		524A72AD1DC140910078379A /* HistoryInteractionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72AA1DC140910078379A /* HistoryInteractionCoordinator.swift */; };
-		524A72AE1DC140910078379A /* HistoryInteractionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72AA1DC140910078379A /* HistoryInteractionCoordinator.swift */; };
 		524A72AF1DC140910078379A /* UserActivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72AB1DC140910078379A /* UserActivityCoordinator.swift */; };
 		524A72B01DC140910078379A /* UserActivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72AB1DC140910078379A /* UserActivityCoordinator.swift */; };
 		524A72B11DC140910078379A /* UserActivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72AB1DC140910078379A /* UserActivityCoordinator.swift */; };
@@ -71,18 +70,6 @@
 		524A72B91DC140B00078379A /* TitleViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72B31DC140B00078379A /* TitleViewDataSource.swift */; };
 		524A72BF1DC140F30078379A /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BA1DC140F30078379A /* HistoryCell.swift */; };
 		524A72C01DC140F30078379A /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BA1DC140F30078379A /* HistoryCell.swift */; };
-		524A72C21DC140F30078379A /* HistoryCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BB1DC140F30078379A /* HistoryCellType.swift */; };
-		524A72C31DC140F30078379A /* HistoryCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BB1DC140F30078379A /* HistoryCellType.swift */; };
-		524A72C41DC140F30078379A /* HistoryCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BB1DC140F30078379A /* HistoryCellType.swift */; };
-		524A72C51DC140F30078379A /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BC1DC140F30078379A /* HistoryViewDataSource.swift */; };
-		524A72C61DC140F30078379A /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BC1DC140F30078379A /* HistoryViewDataSource.swift */; };
-		524A72C71DC140F30078379A /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BC1DC140F30078379A /* HistoryViewDataSource.swift */; };
-		524A72C81DC140F30078379A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BD1DC140F30078379A /* HistoryViewModel.swift */; };
-		524A72C91DC140F30078379A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BD1DC140F30078379A /* HistoryViewModel.swift */; };
-		524A72CA1DC140F30078379A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BD1DC140F30078379A /* HistoryViewModel.swift */; };
-		524A72CB1DC140F30078379A /* HistoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */; };
-		524A72CC1DC140F30078379A /* HistoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */; };
-		524A72CD1DC140F30078379A /* HistoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */; };
 		52647CBD1DC1849200E617A4 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52647CBC1DC1849200E617A4 /* Endgame.framework */; };
 		52647CC11DC184DD00E617A4 /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52647CC01DC184DD00E617A4 /* Endgame.framework */; };
 		528E212D1DC17E9800C45E17 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E211E1DC17E9800C45E17 /* AppCoordinator.swift */; };
@@ -109,6 +96,9 @@
 		52BCD0A31DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
 		52BCD0A41DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
 		52BCD0A51DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
+		52BF668C1DCCD12700E12CCA /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BF668B1DCCD12700E12CCA /* History.swift */; };
+		52BF668D1DCCD12700E12CCA /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BF668B1DCCD12700E12CCA /* History.swift */; };
+		52BF668E1DCCD12700E12CCA /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BF668B1DCCD12700E12CCA /* History.swift */; };
 		52E325011DC282CF001FE392 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E325001DC282CF001FE392 /* SettingsViewController.swift */; };
 		52E325031DC37FAF001FE392 /* BoardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E325021DC37FAF001FE392 /* BoardPresenter.swift */; };
 		52E325041DC37FAF001FE392 /* BoardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E325021DC37FAF001FE392 /* BoardPresenter.swift */; };
@@ -189,15 +179,10 @@
 		524A728C1DC13FFC0078379A /* PieceNodeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceNodeModel.swift; sourceTree = "<group>"; };
 		524A728D1DC13FFC0078379A /* SquareNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareNode.swift; sourceTree = "<group>"; };
 		524A728E1DC13FFC0078379A /* SquareNodeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareNodeModel.swift; sourceTree = "<group>"; };
-		524A72AA1DC140910078379A /* HistoryInteractionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryInteractionCoordinator.swift; sourceTree = "<group>"; };
 		524A72AB1DC140910078379A /* UserActivityCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActivityCoordinator.swift; sourceTree = "<group>"; };
 		524A72B21DC140B00078379A /* TitleViewConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewConfiguration.swift; sourceTree = "<group>"; };
 		524A72B31DC140B00078379A /* TitleViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewDataSource.swift; sourceTree = "<group>"; };
 		524A72BA1DC140F30078379A /* HistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
-		524A72BB1DC140F30078379A /* HistoryCellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCellType.swift; sourceTree = "<group>"; };
-		524A72BC1DC140F30078379A /* HistoryViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDataSource.swift; sourceTree = "<group>"; };
-		524A72BD1DC140F30078379A /* HistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
-		524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDelegate.swift; sourceTree = "<group>"; };
 		52647CBC1DC1849200E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug/Endgame.framework"; sourceTree = "<group>"; };
 		52647CC01DC184DD00E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-appletvsimulator/Endgame.framework"; sourceTree = "<group>"; };
 		526B73B71DC8DAE600D1AE0F /* Winchester.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Winchester.playground; path = ../Winchester.playground; sourceTree = "<group>"; };
@@ -221,6 +206,7 @@
 		52BAE0921D5FD555006E2652 /* Winchester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Winchester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v thomason.pgn"; sourceTree = "<group>"; };
 		52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v warner.pgn"; sourceTree = "<group>"; };
+		52BF668B1DCCD12700E12CCA /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		52E325001DC282CF001FE392 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = iOS/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		52E325021DC37FAF001FE392 /* BoardPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -308,12 +294,8 @@
 				524A72861DC13FFC0078379A /* ArrowNode.swift */,
 				524A72871DC13FFC0078379A /* ArrowNodeModel.swift */,
 				524A72881DC13FFC0078379A /* BoardArrowsCoordinator.swift */,
-				524A72AA1DC140910078379A /* HistoryInteractionCoordinator.swift */,
+				52BF668B1DCCD12700E12CCA /* History.swift */,
 				524A72BA1DC140F30078379A /* HistoryCell.swift */,
-				524A72BB1DC140F30078379A /* HistoryCellType.swift */,
-				524A72BC1DC140F30078379A /* HistoryViewDataSource.swift */,
-				524A72BD1DC140F30078379A /* HistoryViewModel.swift */,
-				524A72BE1DC140F30078379A /* HistoryViewDelegate.swift */,
 				524A72B21DC140B00078379A /* TitleViewConfiguration.swift */,
 				524A72B31DC140B00078379A /* TitleViewDataSource.swift */,
 				5297E7A01DCAC583007B1066 /* Cache.swift */,
@@ -587,16 +569,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524A72AD1DC140910078379A /* HistoryInteractionCoordinator.swift in Sources */,
 				524A72991DC13FFC0078379A /* BoardInteractionCoordinator.swift in Sources */,
 				524A72B01DC140910078379A /* UserActivityCoordinator.swift in Sources */,
 				524A729F1DC13FFC0078379A /* NodeType.swift in Sources */,
 				524A72901DC13FFC0078379A /* ArrowNode.swift in Sources */,
-				524A72C61DC140F30078379A /* HistoryViewDataSource.swift in Sources */,
+				522202F41DCCE7410060C147 /* HistoryViewController.swift in Sources */,
 				5297E7A21DCAC583007B1066 /* Cache.swift in Sources */,
 				524A72931DC13FFC0078379A /* ArrowNodeModel.swift in Sources */,
-				524A72C91DC140F30078379A /* HistoryViewModel.swift in Sources */,
-				524A72CC1DC140F30078379A /* HistoryViewDelegate.swift in Sources */,
+				52BF668D1DCCD12700E12CCA /* History.swift in Sources */,
 				524A72A51DC13FFC0078379A /* SquareNode.swift in Sources */,
 				524A72A21DC13FFC0078379A /* PieceNodeModel.swift in Sources */,
 				524A729C1DC13FFC0078379A /* BoardScene.swift in Sources */,
@@ -606,7 +586,6 @@
 				52E325041DC37FAF001FE392 /* BoardPresenter.swift in Sources */,
 				524A72B51DC140B00078379A /* TitleViewConfiguration.swift in Sources */,
 				524A72C01DC140F30078379A /* HistoryCell.swift in Sources */,
-				524A72C31DC140F30078379A /* HistoryCellType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,21 +598,18 @@
 				524A72971DC13FFC0078379A /* BoardArrowsCoordinator.swift in Sources */,
 				524A72B61DC140B00078379A /* TitleViewConfiguration.swift in Sources */,
 				524A72A91DC13FFC0078379A /* SquareNodeModel.swift in Sources */,
+				522202F51DCCE7410060C147 /* HistoryViewController.swift in Sources */,
 				524A72B11DC140910078379A /* UserActivityCoordinator.swift in Sources */,
 				5297E7A31DCAC583007B1066 /* Cache.swift in Sources */,
-				524A72CD1DC140F30078379A /* HistoryViewDelegate.swift in Sources */,
 				524A72911DC13FFC0078379A /* ArrowNode.swift in Sources */,
+				52BF668E1DCCD12700E12CCA /* History.swift in Sources */,
 				524A72A01DC13FFC0078379A /* NodeType.swift in Sources */,
 				524A729A1DC13FFC0078379A /* BoardInteractionCoordinator.swift in Sources */,
 				524A729D1DC13FFC0078379A /* BoardScene.swift in Sources */,
 				524A72B91DC140B00078379A /* TitleViewDataSource.swift in Sources */,
-				524A72C41DC140F30078379A /* HistoryCellType.swift in Sources */,
-				524A72AE1DC140910078379A /* HistoryInteractionCoordinator.swift in Sources */,
-				524A72C71DC140F30078379A /* HistoryViewDataSource.swift in Sources */,
 				52E325051DC37FAF001FE392 /* BoardPresenter.swift in Sources */,
 				524A72A61DC13FFC0078379A /* SquareNode.swift in Sources */,
 				524A72A31DC13FFC0078379A /* PieceNodeModel.swift in Sources */,
-				524A72CA1DC140F30078379A /* HistoryViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,18 +626,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				528E212D1DC17E9800C45E17 /* AppCoordinator.swift in Sources */,
-				524A72C51DC140F30078379A /* HistoryViewDataSource.swift in Sources */,
 				52E325011DC282CF001FE392 /* SettingsViewController.swift in Sources */,
 				528E21321DC17E9800C45E17 /* GameViewController.swift in Sources */,
 				524A729E1DC13FFC0078379A /* NodeType.swift in Sources */,
-				524A72C21DC140F30078379A /* HistoryCellType.swift in Sources */,
 				524A14E11DC788ED003BC9AC /* PromotionViewController.swift in Sources */,
 				528E21371DC17E9800C45E17 /* RootCollectionViewController.swift in Sources */,
 				524A72AF1DC140910078379A /* UserActivityCoordinator.swift in Sources */,
 				524A14E31DC7E82D003BC9AC /* CaptureViewController.swift in Sources */,
 				5297E7A11DCAC583007B1066 /* Cache.swift in Sources */,
 				524A72981DC13FFC0078379A /* BoardInteractionCoordinator.swift in Sources */,
-				524A72CB1DC140F30078379A /* HistoryViewDelegate.swift in Sources */,
 				528E213A1DC17E9800C45E17 /* UIImage+View.swift in Sources */,
 				528E21301DC17E9800C45E17 /* Game+Endgame.swift in Sources */,
 				524A72A71DC13FFC0078379A /* SquareNodeModel.swift in Sources */,
@@ -676,13 +649,12 @@
 				528E21391DC17E9800C45E17 /* TitleViewController.swift in Sources */,
 				524A72821DC13F2C0078379A /* BoardScene+Touch.swift in Sources */,
 				524A72BF1DC140F30078379A /* HistoryCell.swift in Sources */,
-				524A72AC1DC140910078379A /* HistoryInteractionCoordinator.swift in Sources */,
 				524A72B41DC140B00078379A /* TitleViewConfiguration.swift in Sources */,
-				524A72C81DC140F30078379A /* HistoryViewModel.swift in Sources */,
 				524A729B1DC13FFC0078379A /* BoardScene.swift in Sources */,
 				528E21381DC17E9800C45E17 /* ShowGameCell.swift in Sources */,
 				528E213B1DC17E9800C45E17 /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
 				52E325031DC37FAF001FE392 /* BoardPresenter.swift in Sources */,
+				52BF668C1DCCD12700E12CCA /* History.swift in Sources */,
 				524A728F1DC13FFC0078379A /* ArrowNode.swift in Sources */,
 				528E212F1DC17E9800C45E17 /* BoardViewController.swift in Sources */,
 			);

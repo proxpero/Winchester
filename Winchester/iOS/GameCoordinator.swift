@@ -46,13 +46,13 @@ public struct GameCoordinator {
         return vc
     }
 
-    func historyViewController(model: HistoryViewDataSource, delegate: HistoryInteractionConfiguration) -> HistoryViewController {
-        let vc = UIStoryboard.main.instantiate(HistoryViewController.self)
-        vc.model = model
-        vc.delegate = delegate
-        game.delegate = vc
-        return vc
-    }
+//    func historyViewController(model: HistoryViewDataSource, delegate: HistoryInteractionConfiguration) -> HistoryViewController {
+//        let vc = UIStoryboard.main.instantiate(History.ViewController.self)
+//        vc.model = model
+//        vc.delegate = delegate
+//        game.delegate = vc
+//        return vc
+//    }
 
     func captureViewController() -> CaptureViewController {
         let vc = UIStoryboard.main.instantiate(CaptureViewController.self)
@@ -83,24 +83,24 @@ public struct GameCoordinator {
         let titleModel = TitleViewDataSource(for: game)
         vc.titleViewController = titleViewController(model: titleModel)
 
-        let historyModel = HistoryViewDataSource(for: game)
-        let historyDelegate = HistoryInteractionConfiguration(
-            pieceModel: pieceModel,
-            for: game,
-            with: userActivityCoordinator
-        )
-        vc.historyViewController = historyViewController(
-            model: historyModel,
-            delegate: historyDelegate
-        )
-        // Add left and right swipe gesture recognizers to the view, and target historyViewController
-        for direction in [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right] {
-            vc.view.addSwipeGestureRecognizer(
-                target: vc.historyViewController,
-                action: #selector(vc.historyViewController.handleSwipe),
-                direction: direction
-            )
-        }
+//        let historyModel = HistoryViewDataSource(for: game)
+//        let historyDelegate = HistoryInteractionConfiguration(
+//            pieceModel: pieceModel,
+//            for: game,
+//            with: userActivityCoordinator
+//        )
+//        vc.historyViewController = historyViewController(
+//            model: historyModel,
+//            delegate: historyDelegate
+//        )
+//        // Add left and right swipe gesture recognizers to the view, and target historyViewController
+//        for direction in [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right] {
+//            vc.view.addSwipeGestureRecognizer(
+//                target: vc.historyViewController,
+//                action: #selector(vc.historyViewController.handleSwipe),
+//                direction: direction
+//            )
+//        }
 
         let boardInteractionCoordinator = BoardInteractionCoordinator(
             delegate: userActivityCoordinator,
@@ -119,8 +119,8 @@ public struct GameCoordinator {
             pieceModel.updatePieces(with: self.game.currentPosition.board)
             skview.presentScene(self.scene)
 
-            let currentIndexPath = vc.historyViewController.model.indexPath(for: game.currentIndex)
-            vc.historyViewController.collectionView?.selectItem(at: currentIndexPath, animated: false, scrollPosition: .centeredHorizontally)
+//            let currentIndexPath = vc.historyViewController.model.indexPath(for: game.currentIndex)
+//            vc.historyViewController.collectionView?.selectItem(at: currentIndexPath, animated: false, scrollPosition: .centeredHorizontally)
         }
         vc.presentScene = presentScene
 
@@ -164,5 +164,13 @@ extension UIStoryboard {
         guard let vc = self.instantiateViewController(withIdentifier: String(describing: type.self)) as? A else {
             fatalError("Could not instantiate view controller \(A.self)") }
         return vc
+    }
+
+}
+
+extension UICollectionView {
+    func dequeue<A: UICollectionViewCell>(_ cellType: A.Type, at indexPath: IndexPath) -> A {
+        guard let cell = self.dequeueReusableCell(withReuseIdentifier: "\(cellType.self)", for: indexPath) as? A else { fatalError("Could not dequeue a cell of type: \(A.self)") }
+        return cell
     }
 }
