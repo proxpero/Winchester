@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		52BF667A1DCB901100E12CCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BF66791DCB901100E12CCA /* AppDelegate.swift */; };
-		52BF667C1DCB901100E12CCA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BF667B1DCB901100E12CCA /* ViewController.swift */; };
 		52BF667F1DCB901100E12CCA /* PGN_Tool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52BF667D1DCB901100E12CCA /* PGN_Tool.xcdatamodeld */; };
 		52BF66811DCB901100E12CCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52BF66801DCB901100E12CCA /* Assets.xcassets */; };
 		52BF66841DCB901100E12CCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52BF66821DCB901100E12CCA /* Main.storyboard */; };
@@ -17,7 +16,6 @@
 /* Begin PBXFileReference section */
 		52BF66761DCB901100E12CCA /* PGN-Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PGN-Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BF66791DCB901100E12CCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		52BF667B1DCB901100E12CCA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		52BF667E1DCB901100E12CCA /* PGN_Tool.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PGN_Tool.xcdatamodel; sourceTree = "<group>"; };
 		52BF66801DCB901100E12CCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52BF66831DCB901100E12CCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -55,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				52BF66791DCB901100E12CCA /* AppDelegate.swift */,
-				52BF667B1DCB901100E12CCA /* ViewController.swift */,
 				52BF66801DCB901100E12CCA /* Assets.xcassets */,
 				52BF66821DCB901100E12CCA /* Main.storyboard */,
 				52BF66851DCB901100E12CCA /* Info.plist */,
@@ -137,7 +134,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				52BF667F1DCB901100E12CCA /* PGN_Tool.xcdatamodeld in Sources */,
-				52BF667C1DCB901100E12CCA /* ViewController.swift in Sources */,
 				52BF667A1DCB901100E12CCA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +289,7 @@
 				52BF668A1DCB901100E12CCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
