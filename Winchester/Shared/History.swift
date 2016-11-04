@@ -109,7 +109,7 @@ extension History {
             self.userActivityDelegate = userActivityDelegate
         }
 
-        func configure(_ viewController: History.ViewController) {
+        func configure(_ viewController: HistoryViewControllerType) {
             let delegate = Delegate(pieceModel: pieceNodeModel, for: game, with: userActivityDelegate)
             let dataSource = DataSource(for: game)
             viewController.delegate = delegate
@@ -119,85 +119,6 @@ extension History {
     }
 
 }
-
-extension History {
-
-    final class ViewController: CollectionViewController, HistoryViewControllerType {
-
-        var dataSource: History.DataSource!
-        var delegate: History.Delegate!
-
-    }
-
-}
-
-#if os(iOS) || os(tvOS)
-
-    // MARK: - External Actions
-
-    extension History.ViewController {
-
-        override func viewDidLoad() {
-            view.heightAnchor.constraint(equalToConstant: height).isActive = true
-        }
-
-        func handleSwipe(_ recognizer: UISwipeGestureRecognizer) {
-
-            guard let indexPath = collectionView?.indexPathsForSelectedItems?.first else { return }
-
-            let isLeft = recognizer.direction == UISwipeGestureRecognizerDirection.left
-            let isRight = recognizer.direction == UISwipeGestureRecognizerDirection.right
-            guard isLeft || isRight else { return }
-
-            let candidate = isLeft ? dataSource.nextMoveCell(after: indexPath) : dataSource.previousMoveCell(before: indexPath)
-            guard dataSource.isValidSelection(for: candidate) else { return }
-
-            collectionView?.selectItem(at: candidate, animated: true, scrollPosition: .centeredHorizontally)
-            delegate?.userDidSelectHistoryItem(at: dataSource.itemIndex(for: candidate))
-
-        }
-    }
-
-    // MARK: - UIKit
-
-    extension History.ViewController: UICollectionViewDelegateFlowLayout {
-
-        // MARK: - UICollectionViewDataSource
-
-        override func numberOfSections(in collectionView: UICollectionView) -> Int {
-            return 1
-        }
-
-        override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return dataSource.cellCount()
-        }
-
-        override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeue(HistoryCell.self, at: indexPath)
-            dataSource.itemType(at: indexPath).configureCell(cell: cell)
-            return cell
-        }
-
-        // MARK: - UICollectionViewDelegate
-
-        override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-            return dataSource.itemType(at: indexPath).shouldBeSelected
-        }
-
-        override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            delegate?.userDidSelectHistoryItem(at: dataSource.itemIndex(for: indexPath))
-        }
-
-        // MARK: - UICollectionViewDelegateFlowLayout
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: dataSource.itemType(at: indexPath).width, height: height)
-        }
-        
-    }
-    
-#endif
 
 extension History {
     
