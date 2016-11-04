@@ -15,12 +15,14 @@ public struct GameCoordinator {
     private let navigationController: UINavigationController
     private let game: Game
     private let scene: BoardScene
+    private let isUserGame: Bool
 
     private let settingsViewCoordinator: SettingsViewCoordinator
 
-    init(for game: Game, with navigationController: UINavigationController) {
+    init(for game: Game, with navigationController: UINavigationController, isUserGame: Bool = false) {
         self.navigationController = navigationController
         self.game = game
+        self.isUserGame = isUserGame
         self.scene = BoardScene()
         scene.scaleMode = .resizeFill
         self.settingsViewCoordinator = SettingsViewCoordinator(with: game)
@@ -136,8 +138,8 @@ public struct GameCoordinator {
         )
 
         vc.didTapBackButton = {
+            self.save()
             self.navigationController.popViewController(animated: true)
-            // save game in cache until it can be sent off to the cloud.
         }
 
         navigationController.pushViewController(vc, animated: true)
@@ -145,12 +147,11 @@ public struct GameCoordinator {
     }
 
     func save() {
-
-//        let pgn = game.pgn.exported()
-//        let cache = Cache(with: game.)
-//        cache.save(object: pgn as NSCoding)
-
+        let pgn = game.pgn.exported()
+        let cache = Cache(with: "game")
+        cache.save(object: pgn as NSCoding)
     }
+
 }
 
 extension UIStoryboard {

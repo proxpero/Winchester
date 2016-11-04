@@ -312,7 +312,7 @@ class PGNTests: XCTestCase {
     func testInitialization() {
         let empty = PGN()
         XCTAssertNil(empty[PGN.Tag.white])
-        XCTAssert(empty.sanMoves.isEmpty)
+        XCTAssert(empty.sanMoves().isEmpty)
     }
 
     func testInitialization_ParseString() {
@@ -328,7 +328,7 @@ class PGNTests: XCTestCase {
     func testInitialization_Tag() {
         let tuple = files
             .map { try! PGN.init(parse: $0) }
-            .map { ($0.tagPairs, $0.sanMoves) }
+            .map { ($0.tagPairs(), $0.sanMoves()) }
         for (tagPair, moves) in tuple {
             let game = PGN(tagPairs: tagPair, moves: moves)
             XCTAssertNotNil(game)
@@ -338,7 +338,7 @@ class PGNTests: XCTestCase {
     func testInitialization_String() {
         let tuple = files
             .map { try! PGN.init(parse: $0) }
-            .map { ($0.tagPairs, $0.sanMoves) }
+            .map { ($0.tagPairs(), $0.sanMoves()) }
         for (tagPair, moves) in tuple {
             var dict: [String: String] = [:]
             for pair in tagPair {
@@ -362,7 +362,7 @@ class PGNTests: XCTestCase {
                 let pgn = try PGN(parse: file)
                 XCTAssertEqual(pgn[PGN.Tag.white]!, white)
                 XCTAssertEqual(pgn[PGN.Tag.black]!, black)
-                XCTAssertEqual(pgn.sanMoves.count, count)
+                XCTAssertEqual(pgn.sanMoves().count, count)
                 XCTAssertEqual(pgn.outcome, outcome)
             } catch {
                 XCTFail(error.localizedDescription)
@@ -398,7 +398,7 @@ class PGNTests: XCTestCase {
             + "[Black \"Spassky, Boris V.\"]\n"
             + "[Result \"1/2-1/2\"]\n"
 
-        let result = pgn.exportTagPairs
+        let result = pgn.exportTagPairs()
         XCTAssertEqual(expectation, result)
     }
 
@@ -425,10 +425,10 @@ class PGNTests: XCTestCase {
         let expectation = String()
             + "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 d6 c3 O-O h3 Nb8 d4 Nbd7 c4 c6 cxb5 axb5 Nc3 Bb7 Bg5 b4 Nb1 h6 Bh4 c5 dxe5 Nxe4 Bxe7 Qxe7 exd6 Qf6 Nbd2 Nxd6 Nc4 Nxc4 Bxc4 Nb6 Ne5 Rae8 Bxf7+ Rxf7 Nxf7 Rxe1+ Qxe1 Kxf7 Qe3 Qg5 Qxg5 hxg5 b3 Ke6 a3 Kd6 axb4 cxb4 Ra5 Nd5 f3 Bc8 Kf2 Bf5 Ra7 g6 Ra6+ Kc5 Ke1 Nf4 g3 Nxh3 Kd2 Kb5 Rd6 Kc5 Ra6 Nf2 g4 Bd3 Re6"
 
-        for (expectation, result) in zip(pgn.sanMoves, expectation.splitByWhitespaces()) {
+        for (expectation, result) in zip(pgn.sanMoves(), expectation.splitByWhitespaces()) {
             XCTAssertEqual(expectation, result)
         }
-        XCTAssertEqual(pgn.sanMoves.joined(separator: " "), expectation)
+        XCTAssertEqual(pgn.sanMoves().joined(separator: " "), expectation)
     }
 
     func testPGNExportEquality() {

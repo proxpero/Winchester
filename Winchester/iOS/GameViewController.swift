@@ -84,8 +84,4 @@ public final class GameViewController: UIViewController {
         }
     }
 
-    deinit {
-        print("GameVC deinit")
-
-    }
 }

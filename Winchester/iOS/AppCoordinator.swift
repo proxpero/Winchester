@@ -53,7 +53,7 @@ struct ApplicationCoordinator {
 
         func _presentUserGame(game: Game) {
             game.undoAll()
-            let coordinator = GameCoordinator(for: game, with: _navigationController)
+            let coordinator = GameCoordinator(for: game, with: _navigationController, isUserGame: true)
             coordinator.start()
         }
 
