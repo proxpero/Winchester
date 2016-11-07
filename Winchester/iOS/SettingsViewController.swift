@@ -125,7 +125,7 @@ struct SettingsViewCoordinator {
         self.game = game
     }
 
-    func start(with delegate: Delegate, navigationController: UINavigationController, orientation: @escaping () -> BoardOrientation) -> () -> Void {
+    func start(with delegate: Delegate, navigationController: UINavigationController, orientation: @escaping () -> BoardView.Orientation) -> () -> Void {
         return {
             let vc = UIStoryboard.main.instantiate(SettingsViewController.self)
             vc.view.backgroundColor = .clear

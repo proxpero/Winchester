@@ -182,7 +182,7 @@ extension Game {
             eco = e
         }
 
-        delegate?.game(self, didExecute: move, with: newHistoryItem.capture, with: promotion)
+        delegate?.gameDidExecute(move, with: newHistoryItem.capture, with: promotion)
     }
 
     // MARK: - Public Computed Properties
@@ -291,14 +291,14 @@ extension Game {
     /// - returns: A tuple of the `direction` in which the move happens
     ///   and an array of `HistoryItem`s representing the difference in state.
     ///   A `nil` result indicates that nothing needs doing.
-    public func settingIndex(to newIndex: Int?) -> IndexResult? {
+    public func setIndex(to newIndex: Int?) {
 
         let direction: Direction
         let slice: ArraySlice<HistoryItem>
 
         switch (_currentIndex, newIndex) {
         case (nil, nil):
-            return nil
+            return
         case (nil, _):
             direction = .redo
             slice = self.redo(count: newIndex! + 1)
@@ -314,7 +314,7 @@ extension Game {
             }
         }
 
-        return (direction, Array(slice))
+        delegate?.gameDidTraverse(Array(slice), in: direction)
     }
 
 
@@ -325,9 +325,8 @@ extension Game: Collection { }
 // MARK: - Game Delegate
 
 public protocol GameDelegate {
-    func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?)
-    func game(_ game: Game, didAdvance items: [HistoryItem])
-    func game(_ game: Game, didReverse items: [HistoryItem])
+    func gameDidExecute(_ move: Move, with capture: Capture?, with promotion: Piece?)
+    func gameDidTraverse(_ items: [HistoryItem], in direction: Direction)
 }
 
 public enum Direction: Equatable {

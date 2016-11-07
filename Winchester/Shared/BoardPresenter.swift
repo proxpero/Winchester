@@ -38,3 +38,12 @@ extension BoardPresenter {
                       rank: Rank(index: rankIndex))
     }
 }
+
+#if os(OSX)
+    import Cocoa
+    extension NSView: BoardPresenter { }
+#elseif os(iOS) || os(tvOS)
+    import UIKit
+    extension UIView: BoardPresenter { }
+#endif
+

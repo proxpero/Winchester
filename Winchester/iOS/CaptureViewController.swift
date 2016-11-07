@@ -59,13 +59,8 @@ public final class CaptureViewController: UIViewController, CaptureViewDelegate 
         }
     }
 
-    func capturedPieceNode(for piece: Piece) -> PieceNode {
-        let imageName = "\(piece.color == .white ? "White" : "Black")\(piece.kind.name)"
-        let pieceNode = PieceNode(
-            texture: SKTexture(imageNamed: imageName),
-            color: .clear,
-            size: pieceSize
-        )
+    func capturedPieceNode(for piece: Piece) -> Piece.Node {
+        let pieceNode = Piece.Node(piece: piece, size: pieceSize)
         let side: CGFloat = piece.color.isWhite ? 0.5 : 1.5
         let center = CGPoint(x: (scene.size.width/2) * side, y: scene.size.height/2)
         pieceNode.position = center

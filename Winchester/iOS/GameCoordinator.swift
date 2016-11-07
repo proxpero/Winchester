@@ -34,17 +34,17 @@ public struct GameCoordinator {
         return vc
     }
 
-    func titleViewController(model: TitleViewDataSource) -> TitleViewController {
-        let vc = UIStoryboard.main.instantiate(TitleViewController.self)
-        vc.model = model
-        return vc
-    }
+//    func titleViewController(model: TitleViewDataSource) -> TitleViewController {
+//        let vc = UIStoryboard.main.instantiate(TitleViewController.self)
+//        vc.model = model
+//        return vc
+//    }
 
-    func boardViewController(with delegate: BoardInteractionCoordinator) -> BoardViewController {
-        let vc = UIStoryboard.main.instantiate(BoardViewController.self)
-        vc.delegate = delegate
-        return vc
-    }
+//    func boardViewController(with delegate: BoardInteractionCoordinator) -> BoardViewController {
+//        let vc = UIStoryboard.main.instantiate(BoardViewController.self)
+//        vc.delegate = delegate
+//        return vc
+//    }
 
 //    func historyViewController(model: HistoryViewDataSource, delegate: HistoryInteractionConfiguration) -> HistoryViewController {
 //        let vc = UIStoryboard.main.instantiate(History.ViewController.self)
@@ -65,24 +65,36 @@ public struct GameCoordinator {
 
         vc.captureViewController = captureViewController()
 
-        let pieceModel = PieceNodeModel(
+        let pieceNodeDataSource = Piece.DataSource(
             scene: scene,
             captureViewDelegate: vc.captureViewController
         )
-        let arrowModel = ArrowNodeModel(scene: self.scene)
-        let squareModel = SquareNodeModel(scene: self.scene)
+        let arrowDataSource = Arrow.DataSource(scene: self.scene)
+        let squareDataSource = Square.DataSource(scene: self.scene)
 
         let userActivityCoordinator = UserActivityCoordinator(
             game: game,
-            pieceModel: pieceModel,
-            arrowModel: arrowModel,
-            squareModel: squareModel,
+            pieceNodeDataSource: pieceNodeDataSource,
+            arrowNodeDataSource: arrowDataSource,
+            squareNodeDataSource: squareDataSource,
             presentingViewController: navigationController
         )
 
-        let titleModel = TitleViewDataSource(for: game)
-        vc.titleViewController = titleViewController(model: titleModel)
+        let titleCoordinator = Title.Coordinator(game: game)
+        let titleVC = UIStoryboard.main.instantiate(TitleViewController.self)
+        titleCoordinator.configure(titleVC)
 
+//        let titleModel = TitleViewDataSource(for: game)
+//        vc.titleViewController = titleViewController(model: titleModel)
+
+//        let historyCoordinator = HistoryView.Coordinator(
+//            game: game,
+//            pieceNodeModel: pieceModel,
+//            userActivityDelegate: userActivityCoordinator
+//        )
+//        let historyVC = UIStoryboard.main.instantiate(HistoryViewController.self)
+//        historyCoordinator.configure(historyVC)
+        
 //        let historyModel = HistoryViewDataSource(for: game)
 //        let historyDelegate = HistoryInteractionConfiguration(
 //            pieceModel: pieceModel,
@@ -102,27 +114,26 @@ public struct GameCoordinator {
 //            )
 //        }
 
-        let boardInteractionCoordinator = BoardInteractionCoordinator(
-            delegate: userActivityCoordinator,
-            model: pieceModel
-        )
-        vc.boardViewController = boardViewController(with: boardInteractionCoordinator)
+//        let boardInteractionCoordinator = BoardInteractionCoordinator(
+//            delegate: userActivityCoordinator,
+//            model: pieceModel
+//        )
+//        vc.boardViewController = boardViewController(with: boardInteractionCoordinator)
 
         // A block to present the scene in boardVC's view without boardVC knowing
         // about the scene. By this time, the board has it's size, so set the
         // scene's size to match as well and have place its nodes as well.
-        func presentScene() {
-            guard let skview = vc.boardViewController.view as? SKView else { fatalError() }
-            self.scene.size = skview.bounds.size
-            self.scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            squareModel.placeSquares()
-            pieceModel.updatePieces(with: self.game.currentPosition.board)
-            skview.presentScene(self.scene)
-
+//        func presentScene() {
+//            guard let skview = vc.boardViewController.view as? SKView else { fatalError() }
+//            self.scene.size = skview.bounds.size
+//            self.scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//            squareDataSource.placeSquares()
+//            pieceNodeDataSource.updatePieces(with: self.game.currentPosition.board)
+//            skview.presentScene(self.scene)
 //            let currentIndexPath = vc.historyViewController.model.indexPath(for: game.currentIndex)
 //            vc.historyViewController.collectionView?.selectItem(at: currentIndexPath, animated: false, scrollPosition: .centeredHorizontally)
-        }
-        vc.presentScene = presentScene
+//        }
+//        vc.presentScene = presentScene
 
         func didFinishEditingSettings() {
             // Update board state based on changes in settings

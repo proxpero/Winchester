@@ -35,7 +35,7 @@ struct Design: Equatable {
 public final class GameViewController: UIViewController {
 
     var userActivityCoordinator: UserActivityCoordinator!
-    var boardInteractionCoordinator: BoardInteractionCoordinator!
+
     var didTapSettingsButton: () -> () = { }
     var didTapBackButton: () -> () = { }
     var presentScene: () -> Void  =  { }

@@ -1,59 +1,57 @@
 //
-//  UserActivityCoordinator.swift
+//  UserInteraction+BoardViewDelegate.swift
 //  Winchester
 //
-//  Created by Todd Olsen on 10/19/16.
+//  Created by Todd Olsen on 11/6/16.
 //  Copyright © 2016 Todd Olsen. All rights reserved.
 //
 
-import SpriteKit
 import Endgame
+import SpriteKit
 
-typealias Execution = (Move, Piece?) -> Void
+protocol BoardViewDelegateType: BoardViewDelegate {
 
-final class UserActivityCoordinator {
+    weak var game: Game? { get set }
 
-    private let game: Game
-    private let pieceNodeDataSource: PieceNodeDataSource
-    private let arrowNodeDataSource: ArrowNodeDataSource
-    private let squareNodeDataSource: SquareNodeDataSource
-    private weak var presentingViewController: UIViewController?
+    var pieceNodeDataSource: PieceNodeDataSource { get }
+    var squareNodeDataSource: SquareNodeDataSource { get }
+    var arrowNodeDataSource: ArrowNodeDataSource { get }
 
-    init(game: Game, pieceNodeDataSource: PieceNodeDataSource, arrowNodeDataSource: ArrowNodeDataSource, squareNodeDataSource: SquareNodeDataSource, presentingViewController: UIViewController) {
-        self.game = game
-        self.pieceNodeDataSource = pieceNodeDataSource
-        self.arrowNodeDataSource = arrowNodeDataSource
-        self.squareNodeDataSource = squareNodeDataSource
-        self.presentingViewController = presentingViewController
+    weak var presentingViewController: ViewController? { get }
+
+    var _availableTargetsCache: [Square] { get set }
+    var _availableCapturesCache: [Square] { get set }
+    
+}
+
+extension BoardViewDelegateType {
+
+    mutating func _setAvailableTargets(_ newTargets: [Square]) {
+        _availableTargetsCache = newTargets
+        squareNodeDataSource.presentSquareNodes(for: _availableTargetsCache, ofKind: .target)
     }
 
-    private var _availableTargets: [Square] = [] {
-        didSet {
-            squareNodeDataSource.presentSquareNodes(for: _availableTargets, ofKind: .target)
-        }
+    mutating func _setAvailableCaptures(_ newCaptures: [Square]) {
+        _availableCapturesCache = newCaptures
+        squareNodeDataSource.presentSquareNodes(for: newCaptures, ofKind: .capture)
     }
 
-    private var _availableCaptures: [Square] = [] {
-        didSet {
-            squareNodeDataSource.presentSquareNodes(for: _availableCaptures, ofKind: .capture)
-        }
-    }
-
-    func userDidBeginActivity(on origin: Square) {
+    mutating func didBeginActivity(on origin: Square) {
+        guard let game = game else { fatalError("Expected a game") }
         arrowNodeDataSource.removeArrows(with: .lastMove)
         squareNodeDataSource.presentSquareNodes(for: [origin], ofKind: .origin)
-        _availableTargets = game.availableTargets(forPieceAt: origin)
-        _availableCaptures = game.availableCaptures(forPieceAt: origin)
+        _setAvailableTargets(game.availableTargets(forPieceAt: origin))
+        _setAvailableCaptures(game.availableCaptures(forPieceAt: origin))
     }
 
-    func userDidMovePiece(to candidate: Square) {
+    func didMovePiece(to candidate: Square) {
         squareNodeDataSource.presentSquareNodes(for: [candidate], ofKind: .candidate)
     }
 
-    func userDidEndActivity(with move: Move, for pieceNode: Piece.Node) {
+    func didEndActivity(with move: Move, for pieceNode: Piece.Node) {
 
         var target = move.target
-        if !_availableTargets.contains(move.target) {
+        if !_availableTargetsCache.contains(move.target) {
             target = move.origin
         }
 
@@ -82,14 +80,17 @@ final class UserActivityCoordinator {
         let piece = pieceNode.piece()
         let isPromotion = piece.kind.isPawn && move.target.rank == Rank.init(endFor: piece.color)
 
+        guard let game = game else { fatalError("Expected a game") }
+
         if isPromotion {
+            // WARNING: UIKit Dependency
             let vc = UIStoryboard.main.instantiate(PromotionViewController.self)
             vc.color = piece.color
             vc.completion = { promotion in
                 self.pieceNodeDataSource.remove(pieceNode)
                 self.pieceNodeDataSource.add(self.pieceNodeDataSource.pieceNode(for: promotion), at: move.target)
                 do {
-                    try self.game.execute(move: move, promotion: promotion)
+                    try game.execute(move: move, promotion: promotion)
                 } catch {
                     fatalError("Could not execute move \(move) with promotion: \(promotion)")
                 }
@@ -105,13 +106,14 @@ final class UserActivityCoordinator {
         }
     }
 
-    func userDidNormalizeActivity() {
+    mutating func didNormalizeActivity() {
+        guard let game = game else { fatalError("Expected a game") }
 
         squareNodeDataSource.clearSquareNodes(ofKind: .origin)
         squareNodeDataSource.clearSquareNodes(ofKind: .candidate)
-        _availableCaptures = []
-        _availableTargets = []
-        
+        _setAvailableCaptures([])
+        _setAvailableTargets([])
+
         arrowNodeDataSource.removeArrows(with: .lastMove)
         if let move = game.latestMove {
             let lastMoveArrow = arrowNodeDataSource.arrowNode(for: move, with: .lastMove)
@@ -127,6 +129,8 @@ final class UserActivityCoordinator {
     // MARK: - Private // MARK: - Private Computed Properties and Functions
 
     private func presentCheckingArrows() {
+        guard let game = game else { fatalError("Expected a game") }
+
         arrowNodeDataSource.removeArrows(with: .check)
         let checks = game.squaresAttackingKing
         if checks.isEmpty { return }
@@ -137,19 +141,23 @@ final class UserActivityCoordinator {
     }
 
     private func presentAllAvailableSquares() {
+        guard let game = game else { fatalError("Expected a game") }
+
         squareNodeDataSource.clearSquareNodes(ofKind: .available)
         let squares = game.availableTargets(for: game.playerTurn)
         for square in squares {
             let node = squareNodeDataSource.squareNode(with: square, ofKind: .available)
-            squareNodeDataSource.add(node)            
+            squareNodeDataSource.add(node)
         }
     }
 
-//    private func presentAllAttackingSquares() {
-//
-//    }
+    //    private func presentAllAttackingSquares() {
+    //
+    //    }
 
     private func presentAllDefendedSquares() {
+        guard let game = game else { fatalError("Expected a game") }
+
         squareNodeDataSource.clearSquareNodes(ofKind: .defended)
         let squares = game.defendedOccupations(for: game.playerTurn)
         for square in squares {
@@ -158,5 +166,5 @@ final class UserActivityCoordinator {
             squareNodeDataSource.add(node)
         }
     }
-
+    
 }

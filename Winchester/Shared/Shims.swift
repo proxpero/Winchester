@@ -8,11 +8,13 @@
 
 #if os(OSX)
     import Cocoa
+    public typealias ViewController = NSViewController
     public typealias CollectionViewController = NSCollectionViewController
     public typealias CollectionView = NSCollectionView
     public typealias CollectionViewCell = NSCollectionViewCell
 #elseif os(iOS) || os(tvOS)
     import UIKit
+    public typealias ViewController = UIViewController
     public typealias CollectionViewController = UICollectionViewController
     public typealias CollectionView = UICollectionView
     public typealias CollectionViewCell = UICollectionViewCell

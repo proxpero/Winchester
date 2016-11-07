@@ -13,36 +13,19 @@ let height: CGFloat = 44.0
 
 #if os(OSX)
     import Cocoa
-//    public typealias CollectionViewController = NSCollectionViewController
-//    public typealias CollectionView = NSCollectionView
-//    public typealias CollectionViewCell = NSCollectionViewCell
 #elseif os(iOS) || os(tvOS)
     import UIKit
-//    public typealias CollectionViewController = UICollectionViewController
-//    public typealias CollectionView = UICollectionView
-//    public typealias CollectionViewCell = UICollectionViewCell
 #endif
 
 /*
-final class HistoryViewController: CollectionViewController, GameDelegate {
 
-    var model: HistoryViewModel!
-    var delegate: HistoryViewDelegate?
-
-    func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) {
-        collectionView?.reloadData()
-        collectionView?.selectItem(at: model.lastMove(), animated: true, scrollPosition: .centeredHorizontally)
-    }
-
-    func game(_ game: Game, didAdvance items: [HistoryItem]) { }
-    func game(_ game: Game, didReverse items: [HistoryItem]) { }
-}
-*/
+ History needs to be informed when a user executes a move so that it can appear promptly in the history view controller.
+ */
 
 final class HistoryViewController: CollectionViewController, HistoryViewControllerType {
 
-    var dataSource: History.DataSource!
-    var delegate: History.Delegate!
+    var delegate: HistoryViewDelegate?
+    var dataSource: HistoryViewDataSource?
 
 }
 
@@ -56,6 +39,9 @@ final class HistoryViewController: CollectionViewController, HistoryViewControll
 
         func handleSwipe(_ recognizer: UISwipeGestureRecognizer) {
 
+            guard let dataSource = dataSource else {
+                return
+            }
             guard let indexPath = collectionView?.indexPathsForSelectedItems?.first else { return }
 
             let isLeft = recognizer.direction == UISwipeGestureRecognizerDirection.left
@@ -82,10 +68,12 @@ final class HistoryViewController: CollectionViewController, HistoryViewControll
         }
 
         override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
             return dataSource.cellCount()
         }
 
         override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
             let cell = collectionView.dequeue(HistoryCell.self, at: indexPath)
             dataSource.itemType(at: indexPath).configureCell(cell: cell)
             return cell
@@ -94,17 +82,21 @@ final class HistoryViewController: CollectionViewController, HistoryViewControll
         // MARK: - UICollectionViewDelegate
 
         override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+            guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
             return dataSource.itemType(at: indexPath).shouldBeSelected
         }
 
         override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            delegate?.userDidSelectHistoryItem(at: dataSource.itemIndex(for: indexPath))
+            let itemIndex = dataSource.itemIndex(for: indexPath)
+            delegate?.userDidSelectHistoryItem(at: itemIndex)
         }
 
         // MARK: - UICollectionViewDelegateFlowLayout
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
             return CGSize(width: dataSource.itemType(at: indexPath).width, height: height)
         }
 
