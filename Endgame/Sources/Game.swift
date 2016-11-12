@@ -176,13 +176,13 @@ extension Game {
         }
         _items.append(newHistoryItem)
         _currentIndex = _items.endIndex - 1
+        delegate?.game(self, didAppend: newHistoryItem, at: _currentIndex)
 
         let key = self.map { $0.sanMove }.joined(separator: " ")
         if let e = ECO.codes[key] {
             eco = e
         }
-
-        delegate?.gameDidExecute(move, with: newHistoryItem.capture, with: promotion)
+        delegate?.game(self, didExecute: move, with: newHistoryItem.capture, with: promotion)
     }
 
     // MARK: - Public Computed Properties
@@ -313,21 +313,12 @@ extension Game {
             case .undo: slice = self.undo(count: count)
             }
         }
-
-        delegate?.gameDidTraverse(Array(slice), in: direction)
+        delegate?.game(self, didTraverse: Array(slice), in: direction)
     }
-
 
 }
 
 extension Game: Collection { }
-
-// MARK: - Game Delegate
-
-public protocol GameDelegate {
-    func gameDidExecute(_ move: Move, with capture: Capture?, with promotion: Piece?)
-    func gameDidTraverse(_ items: [HistoryItem], in direction: Direction)
-}
 
 public enum Direction: Equatable {
     case undo
