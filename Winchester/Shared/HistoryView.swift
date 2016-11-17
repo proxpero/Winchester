@@ -9,24 +9,33 @@
 import SpriteKit
 import Endgame
 
-protocol HistoryViewControllerType: class {
+protocol HistoryViewControllerType: class, ViewControllerType {
 
-    var delegate: HistoryViewDelegate? { get set }
-    var dataSource: HistoryViewDataSource? { get set }
-
+    weak var delegate: HistoryViewDelegate? { get set }
+    weak var dataSource: HistoryViewDataSource? { get set }
+    func updateCell(at itemIndex: Int?)
 }
 
-protocol HistoryViewDelegate {
+extension HistoryViewControllerType where Self: CollectionViewController {
+    func updateCell(at itemIndex: Int?) {
+        guard let indexPath = dataSource?.indexPath(for: itemIndex) else { return }
+        collectionView?.reloadData()
+        collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+    }
+}
+
+protocol HistoryViewDelegate: class {
+
     /// Called when the user selects a cell in the HistoryView.
     ///
     /// - Parameter itemIndex: The index of the history item in the game.
     func userDidSelectHistoryItem(at itemIndex: Int?)
 }
 
-protocol HistoryViewDataSource {
+protocol HistoryViewDataSource: class {
 
     /// This `game` instance should be private to this protocol and should not be modified. It is read-only.
-    weak var _game: Game? { get }
+    weak var game: Game? { get }
 
     /// The number of cells in the History View Control.
     func cellCount() -> Int
@@ -45,7 +54,7 @@ extension HistoryViewDataSource {
     // MARK: - Default implementation of protocol.
 
     func cellCount() -> Int {
-        guard let game = _game else { fatalError("Expected a game") }
+        guard let game = game else { fatalError("Expected a game") }
 
         let moves = game.count
         let startCells = 1
@@ -56,7 +65,7 @@ extension HistoryViewDataSource {
     }
 
     func itemType(at indexPath: IndexPath) -> HistoryView.CellType {
-        guard let game = _game else { fatalError("Expected a game") }
+        guard let game = game else { fatalError("Expected a game") }
 
         if isStart(for: indexPath) { return .start }
         if isOutcome(for: indexPath) { return .outcome(game.outcome) }
@@ -133,32 +142,21 @@ extension HistoryView {
 
     struct Coordinator {
 
-        private var delegate: HistoryViewDelegate?
-        private var dataSource: HistoryViewDataSource?
+        private weak var viewController: HistoryViewControllerType!
+        private weak var delegate: HistoryViewDelegate!
+        private weak var dataSource: HistoryViewDataSource!
 
-        init(historyViewDelegate: HistoryViewDelegate, historyViewDataSource: HistoryViewDataSource) {
+        init(storyboard: Storyboard, historyViewDelegate: HistoryViewDelegate, historyViewDataSource: HistoryViewDataSource) {
+            self.viewController = storyboard.instantiate(HistoryViewController.self)
             self.delegate = historyViewDelegate
             self.dataSource = historyViewDataSource
-        }
-
-        func configure(_ viewController: HistoryViewControllerType) {
-            viewController.delegate = delegate
-            viewController.dataSource = dataSource
-        }
-
-    }
-
-    struct DataSource: HistoryViewDataSource {
-
-        weak var _game: Game?
-
-        init(for game: Game) {
-            self._game = game
+            viewController.delegate = historyViewDelegate
+            viewController.dataSource = historyViewDataSource
         }
 
     }
     
-    enum CellType {
+    enum CellType: Equatable {
 
         case start
         case number(Int)
@@ -218,7 +216,6 @@ extension HistoryView {
             default: return true
             }
         }
-
 
         static func == (lhs: HistoryView.CellType, rhs: HistoryView.CellType) -> Bool {
             switch (lhs, rhs) {

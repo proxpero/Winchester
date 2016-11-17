@@ -9,16 +9,6 @@
 import Endgame
 import SpriteKit
 
-protocol ArrowNodeDataSource {
-
-    func arrowNode(for move: Move, with kind: Arrow.Kind) -> Arrow.Node
-    func setTarget(_ target: Square, for node: Arrow.Node)
-    func removeArrows(with kind: Arrow.Kind)
-    func add(_ arrowNode: Arrow.Node)
-    func remove(_ arrowNode: Arrow.Node)
-
-}
-
 enum Arrow { }
 
 extension Arrow {
@@ -38,6 +28,8 @@ extension Arrow {
         case user
 
         static let _lastMove = Configuration(name: "last-move-arrow", stroke: UIColor(white: 0.9, alpha: 0.9), fill: UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 0.6))
+
+        static let all: [Kind] = [.lastMove, .check, .attacking, .guarding, .user]
 
         static let lastMoveName = "last-move-arrow"
         static let checkName = "checking-arrow"
@@ -159,120 +151,4 @@ extension Arrow {
         }
 
     }
-
-    struct DataSource: ArrowNodeDataSource {
-
-        /// Required
-        private weak var scene: BoardScene!
-
-        init(scene: BoardScene) {
-            self.scene = scene
-        }
-
-        /// Creates a new ArrowNode.
-        func arrowNode(for move: Move, with kind: Arrow.Kind) -> Arrow.Node {
-
-            let edge = scene.squareSize.width
-
-            let path = UIBezierPath(
-                origin: scene.position(for: move.origin),
-                target: scene.position(for: move.target),
-                tailWidth: kind.tailWidth(for: edge),
-                headWidth: kind.headWidth(for: edge),
-                headLength: kind.headLength(for: edge),
-                originOffset: kind.originOffset(for: edge),
-                targetOffset: kind.targetOffset(for: edge)
-                ).cgPath
-
-            let node = Arrow.Node(move: move, kind: kind, path: path)
-            node.zPosition = NodeType.arrow.zPosition
-            node.fillColor = kind.fillColor
-            node.strokeColor = kind.strokeColor
-
-            return node
-        }
-
-        func setTarget(_ target: Square, for node: Arrow.Node) {
-            let origin = node.origin
-            let oldTarget = node.target
-            if oldTarget == target { return }
-
-            let kind = node.kind
-            let edge = scene.squareSize.width
-
-            let newPath = UIBezierPath(
-                origin: scene.position(for: origin),
-                target: scene.position(for: target),
-                tailWidth: kind.tailWidth(for: edge),
-                headWidth: kind.headWidth(for: edge),
-                headLength: kind.headLength(for: edge),
-                originOffset: kind.originOffset(for: edge),
-                targetOffset: kind.targetOffset(for: edge)
-                ).cgPath
-            node.path = newPath
-        }
-
-        func removeArrows(with kind: Arrow.Kind) {
-            scene
-                .children.flatMap { $0 as? Arrow.Node }
-                .filter { $0.kind == kind }
-                .forEach(remove)
-        }
-
-        func add(_ arrowNode: Arrow.Node) {
-            arrowNode.alpha = 0.0
-            scene.addChild(arrowNode)
-            arrowNode.run(SKAction.fadeIn(withDuration: 0.2))
-        }
-        
-        func remove(_ arrowNode: Arrow.Node) {
-            arrowNode.run(SKAction.fadeOut(withDuration: 0.0)) {
-                arrowNode.removeFromParent()
-            }
-        }
-
-    }
-
-}
-
-extension UIBezierPath {
-
-    convenience init(origin: CGPoint,
-                     target: CGPoint,
-                     tailWidth: CGFloat,
-                     headWidth: CGFloat,
-                     headLength: CGFloat,
-                     originOffset: CGFloat = 0.0,
-                     targetOffset: CGFloat = 0.0)
-    {
-        let length = CGFloat(hypot(
-            (Double(target.x) - Double(origin.x)),
-            (Double(target.y) - Double(origin.y))
-        ))
-
-        let points: [CGPoint] = {
-            let tailLength = length - headLength - originOffset - targetOffset
-            return [
-                CGPoint(x: 0 + originOffset, y: tailWidth / 2),
-                CGPoint(x: tailLength + originOffset, y: tailWidth / 2),
-                CGPoint(x: tailLength + originOffset, y: headWidth / 2),
-                CGPoint(x: length - targetOffset, y: 0),
-                CGPoint(x: tailLength + originOffset, y: -headWidth / 2),
-                CGPoint(x: tailLength + originOffset, y: -tailWidth/2),
-                CGPoint(x: 0 + originOffset, y: -tailWidth / 2)
-            ]
-        }()
-
-        let transform: CGAffineTransform = {
-            let cosine = (target.x - origin.x) / length
-            let sine = (target.y - origin.y) / length
-            return CGAffineTransform(a: cosine, b: sine, c: -sine, d: cosine, tx: origin.x, ty: origin.y)
-        }()
-
-        let path = CGMutablePath()
-        path.addLines(between: points, transform: transform)
-        path.closeSubpath()
-        self.init(cgPath: path)
-    }
-    
 }

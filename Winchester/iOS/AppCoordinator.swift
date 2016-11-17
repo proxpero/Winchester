@@ -11,22 +11,14 @@ import Endgame
 
 struct ApplicationCoordinator {
 
-    struct Model {
-        let updateUserGames: () -> [Game]
-        let updateClassicGames: () -> [Game]
-    }
-
     // MARK: - Private Stored Properties
 
     private let _navigationController: UINavigationController
-    private let _model: Model
+    private let _model: AppDataSource
 
     // MARK: - Initializers
 
-    init(
-        window: UIWindow,
-        model: Model)
-    {
+    init(window: UIWindow, model: AppDataSource) {
         self._navigationController = window.rootViewController as! UINavigationController
         self._model = model
         start()
@@ -45,21 +37,21 @@ struct ApplicationCoordinator {
         // MARK: Model
 
         vc.model = RootCollectionViewController.Model(
-            userGames: _model.updateUserGames(),
-            classicGames: _model.updateClassicGames()
+            userGames: _model.userGames(),
+            classicGames: _model.classicGames()
         )
 
         // MARK: Delegate
 
         func _presentUserGame(game: Game) {
             game.undoAll()
-            let coordinator = GameCoordinator(for: game, with: _navigationController, isUserGame: true)
+            var coordinator = GameCoordinator(for: game, with: _navigationController, isUserGame: true)
             coordinator.start()
         }
 
         func _presentFavoriteGame(game: Game) {
             game.undoAll()
-            let coordinator = GameCoordinator(for: game, with: _navigationController)
+            var coordinator = GameCoordinator(for: game, with: _navigationController)
             coordinator.start()
         }
 

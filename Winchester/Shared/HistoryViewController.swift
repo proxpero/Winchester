@@ -18,7 +18,6 @@ let height: CGFloat = 44.0
 #endif
 
 /*
-
  History needs to be informed when a user executes a move so that it can appear promptly in the history view controller.
  */
 

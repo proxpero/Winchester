@@ -9,17 +9,6 @@
 import Endgame
 import SpriteKit
 
-protocol SquareNodeDataSource {
-
-    func squareNodes() -> [Square.Node]
-    func squareNode(with square: Square, ofKind kind: Square.Kind) -> Square.Node
-    func presentSquareNodes(for squares: [Square], ofKind kind: Square.Kind)
-    func add(_ squareNode: Square.Node)
-    func clearSquareNodes(ofKind kind: Square.Kind)
-    func placeSquares()
-    
-}
-
 extension Square {
 
     final class Node: SKSpriteNode {
@@ -50,6 +39,9 @@ extension Square {
         case attacked
         case available
         case aggressive
+
+        static var decorators: [Kind] = [.origin, .candidate, .target, .capture, .defended, .attacked, .available, .aggressive]
+        static var all: [Kind] = Kind.decorators + [.normal]
 
         func texture(for square: Square) -> SKTexture? {
             switch self {
@@ -88,58 +80,6 @@ extension Square {
             case .attacked: return normal + 40
             case .available: return normal + 10
             case .aggressive: return normal + 60
-            }
-        }
-
-    }
-
-    struct DataSource: SquareNodeDataSource {
-
-        private weak var scene: BoardScene!
-
-        init(scene: BoardScene) {
-            self.scene = scene
-        }
-
-        func placeSquares() {
-            squareNodes().forEach { $0.removeFromParent() }
-            for square in Square.all {
-                scene.addChild(squareNode(with: square, ofKind: .normal))
-            }
-        }
-
-        func squareNodes() -> [Node] {
-            return scene.children.flatMap { $0 as? Node }
-        }
-
-        func squareNode(with square: Square, ofKind kind: Kind) -> Node {
-            let node = Node(kind: kind, for: square)
-            node.size = scene.squareSize
-            node.position = scene.position(for: square)
-            return node
-        }
-
-        func presentSquareNodes(for squares: [Square], ofKind kind: Kind) {
-            clearSquareNodes(ofKind: kind)
-            for square in squares {
-                let node = squareNode(with: square, ofKind: kind)
-                add(node)
-            }
-        }
-
-        func add(_ squareNode: Node) {
-            squareNode.alpha = 0.0
-            scene.addChild(squareNode)
-            squareNode.run(SKAction.fadeIn(withDuration: 0.2))
-        }
-
-        func clearSquareNodes(ofKind kind: Kind) {
-            squareNodes()
-                .filter { $0.kind == kind }
-                .forEach { squareNode in
-                    squareNode.run(SKAction.fadeOut(withDuration: 0.2)) {
-                        squareNode.removeFromParent()
-                    }
             }
         }
 

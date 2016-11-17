@@ -19,29 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window else { return false }
         coordinator = ApplicationCoordinator(
             window: window,
-            model: ApplicationCoordinator.Model(
-                updateUserGames: updateUserGames,
-                updateClassicGames: updateClassicGames
-            )
+            model: AppDataSource()
         )
         coordinator?.start()
         return true
     }
 
-    let files = ["fischer v fine", "fischer v thomason", "fischer v warner", "reti v rubenstein", "shirov v polgar"]
-
-    func updateUserGames() -> [Game] {
-        let files = UserDefaults.standard.array(forKey: "user-games") as? [String] ?? [String]()
-        return files
-            .map { try! PGN(parse: $0) }
-            .map { Game(pgn: $0) }
-    }
-
-    func updateClassicGames() -> [Game] {
-        return files
-            .flatMap { Bundle.main.url(forResource: $0, withExtension: "pgn") }
-            .map { try! String(contentsOf: $0) }
-            .map { try! PGN(parse: $0) }
-            .map { Game(pgn: $0) }
-    }
 }

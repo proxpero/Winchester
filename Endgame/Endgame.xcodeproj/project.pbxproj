@@ -156,6 +156,10 @@
 		52DB55131D96D5B9008B6F72 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528288281D6168FE0014B105 /* Geometry.swift */; };
 		52DB55141D96D5BA008B6F72 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528288281D6168FE0014B105 /* Geometry.swift */; };
 		52DB55151D96D5BA008B6F72 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528288281D6168FE0014B105 /* Geometry.swift */; };
+		52F8C5D71DD6BB910048F494 /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8C5D61DD6BB910048F494 /* GameDelegate.swift */; };
+		52F8C5D81DD6BB910048F494 /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8C5D61DD6BB910048F494 /* GameDelegate.swift */; };
+		52F8C5D91DD6BB910048F494 /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8C5D61DD6BB910048F494 /* GameDelegate.swift */; };
+		52F8C5DA1DD6BB910048F494 /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8C5D61DD6BB910048F494 /* GameDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +226,7 @@
 		52DE633E1D3D83CB0022618B /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52DE634B1D3D83D90022618B /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52DE63581D3D83FC0022618B /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F8C5D61DD6BB910048F494 /* GameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +329,7 @@
 			children = (
 				52B595931D53AB7700E1D543 /* InternalTypes.swift */,
 				52B5954D1D539FC700E1D543 /* Game.swift */,
+				52F8C5D61DD6BB910048F494 /* GameDelegate.swift */,
 				52BF65161DCB618800E12CCA /* Game+PGN.swift */,
 				52AB81D81D917986002C7A0B /* HistoryItem.swift */,
 				52AB81D61D917902002C7A0B /* Outcome.swift */,
@@ -631,6 +637,7 @@
 			files = (
 				52942EA71D56BEF400525598 /* BoardCoordinate.swift in Sources */,
 				52B5957B1D53A84100E1D543 /* Move.swift in Sources */,
+				52F8C5D71DD6BB910048F494 /* GameDelegate.swift in Sources */,
 				52B595851D53A90F00E1D543 /* PGN.swift in Sources */,
 				52B595B21D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */,
 				5297E7A51DCACDB4007B1066 /* PGN+Tag.swift in Sources */,
@@ -674,6 +681,7 @@
 				52B595B31D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */,
 				52B595CC1D5512FD00E1D543 /* Board+View.swift in Sources */,
 				52B5955E1D53A16F00E1D543 /* Bitboard.swift in Sources */,
+				52F8C5D81DD6BB910048F494 /* GameDelegate.swift in Sources */,
 				52B595B81D54F9D800E1D543 /* AsciiConvertible.swift in Sources */,
 				52B595901D53AB1E00E1D543 /* Sequence+Chess.swift in Sources */,
 				52B595721D53A6F200E1D543 /* Rank.swift in Sources */,
@@ -706,6 +714,7 @@
 			files = (
 				52942EAA1D56BF1900525598 /* BoardCoordinate.swift in Sources */,
 				52B5957D1D53A84100E1D543 /* Move.swift in Sources */,
+				52F8C5D91DD6BB910048F494 /* GameDelegate.swift in Sources */,
 				52B595871D53A90F00E1D543 /* PGN.swift in Sources */,
 				52AB81DB1D917986002C7A0B /* HistoryItem.swift in Sources */,
 				5297E7A71DCACDB4007B1066 /* PGN+Tag.swift in Sources */,
@@ -749,6 +758,7 @@
 				5297E7A81DCACDB4007B1066 /* PGN+Tag.swift in Sources */,
 				52B595B51D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */,
 				52B595601D53A16F00E1D543 /* Bitboard.swift in Sources */,
+				52F8C5DA1DD6BB910048F494 /* GameDelegate.swift in Sources */,
 				52B595BA1D54F9D800E1D543 /* AsciiConvertible.swift in Sources */,
 				5237A65F1D97033200BAC16E /* Position+View.swift in Sources */,
 				52B595921D53AB1E00E1D543 /* Sequence+Chess.swift in Sources */,
