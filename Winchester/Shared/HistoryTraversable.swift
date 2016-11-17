@@ -1,63 +1,57 @@
 //
-//  HistoryInteractionCoordinator.swift
+//  HistoryTraversable.swift
 //  Winchester
 //
-//  Created by Todd Olsen on 10/21/16.
+//  Created by Todd Olsen on 11/16/16.
 //  Copyright © 2016 Todd Olsen. All rights reserved.
 //
 
 import Endgame
 
-struct HistoryInteractionConfiguration: HistoryViewDelegate {
+protocol HistoryTraversable {
+    func traverse(_ items: [HistoryItem], in direction: Direction)
+}
 
-    private let pieceModel: PieceNodeModel
-    private let game: Game
+// An object to encapsulate what needs to happen to each piece.
+private struct Transaction {
+    enum Status {
+        case added
+        case removed
+        case normal
+        case captured
+        case resurrected
 
-    private let userActivityDelegate: UserActivityDelegate?
-
-    init(pieceModel: PieceNodeModel, for game: Game, with userActivityDelegate: UserActivityDelegate?) {
-        self.pieceModel = pieceModel
-        self.game = game
-        self.userActivityDelegate = userActivityDelegate
-    }
-
-    func userDidSelectHistoryItem(at itemIndex: Int?) {
-        guard let (direction, items) = game.settingIndex(to: itemIndex) else { return }
-        mobilize(items, toward: direction)
-        userActivityDelegate?.userDidNormalizeActivity()
-    }
-
-    // Move the pieces from where they are to where they need to be.
-    private func mobilize(_ items: [HistoryItem], toward direction: Direction) {
-
-        typealias TransactionTable = Dictionary<PieceNode, Transaction>
-
-        // Encapsulate what needs to happen to each piece.
-        struct Transaction {
-            enum Status {
-                case added
-                case removed
-                case normal
-                case captured
-                case resurrected
-
-                func isRemoved() -> Bool {
-                    return self == .removed || self == .captured
-                }
-
-            }
-            var origin: Square
-            var target: Square
-            var status: Status
+        func isRemoved() -> Bool {
+            return self == .removed || self == .captured
         }
-        
+
+        func isAdded() -> Bool {
+            return self == .added || self == .resurrected
+        }
+
+        func isNormal() -> Bool {
+            return self == .normal
+        }
+
+    }
+    var origin: Square
+    var target: Square
+    var status: Status
+}
+
+extension HistoryTraversable where Self: BoardViewProtocol, Self: PieceNodeDataSource, Self: PieceNodeCaptureProtocol {
+
+    func traverse(_ items: [HistoryItem], in direction: Direction) {
+
+        typealias TransactionTable = Dictionary<Piece.Node, Transaction>
+
         // Create a table of the pieceNodes that are affected by the change and their origins and final resting places.
         func consolidate(items: [HistoryItem], direction: Direction) -> TransactionTable {
             var result: TransactionTable = [:]
 
-            func findNode(for square: Square) -> PieceNode {
+            func findNode(for square: Square) -> Piece.Node {
                 // If the pieceNode has been moved already
-                func node(at square: Square) -> PieceNode? {
+                func node(at square: Square) -> Piece.Node? {
                     let nodes = result
                         .filter { $0.value.target == square && !$0.value.status.isRemoved() }
                         .map { $0.key }
@@ -67,7 +61,7 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
                 if let candidate = node(at: square) {
                     return candidate
                 }
-                if let candidate = pieceModel.pieceNode(for: square) {
+                if let candidate = pieceNode(for: square) {
                     //                if let candidate = delegate.pieceNode(at: square) {
                     return candidate
                 }
@@ -108,8 +102,7 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
                         }
                         result.updateValue(transaction, forKey: node)
                     case .undo:
-                        let capturedNode = pieceModel.pieceNode(for: capture.piece)
-                        //                        let captureNode = delegate.newPiceNode(for: capture.piece)
+                        let capturedNode = pieceNode(for: capture.piece)
                         result[capturedNode] = Transaction(origin: capture.square, target: capture.square, status: .resurrected)
                     }
                 }
@@ -119,7 +112,7 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
                     transaction.status = .removed
                     let piece = direction.isRedo ? promotion : Piece(pawn: promotion.color)
                     let move = direction.isRedo ? item.move : item.move.reversed()
-                    result[pieceModel.pieceNode(for: piece)] = Transaction(origin: move.origin, target: move.target, status: .added)
+                    result[pieceNode(for: piece)] = Transaction(origin: move.origin, target: move.target, status: .added)
                 }
 
                 // If a castle is involved then the rook need to be moved and added to the table.
@@ -144,18 +137,18 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
             return result
         }
 
-        func perform(_ transaction: Transaction, on pieceNode: PieceNode) {
+        func perform(_ transaction: Transaction, on pieceNode: Piece.Node) {
             if transaction.status == .removed {
-                pieceModel.remove(pieceNode)
+                remove(pieceNode)
             } else if transaction.status == .captured {
-                pieceModel.capture(pieceNode)
+                capture(pieceNode)
             } else {
                 if transaction.status == .added {
-                    pieceModel.add(pieceNode, at: transaction.origin)
+                    add(pieceNode, at: transaction.origin)
                 } else if transaction.status == .resurrected {
-                    pieceModel.resurrect(pieceNode, at: transaction.origin)
+                    resurrect(pieceNode, at: transaction.origin)
                 }
-                pieceModel.move(pieceNode, to: transaction.target)
+                move(pieceNode, to: transaction.target)
             }
         }
 
@@ -165,7 +158,5 @@ struct HistoryInteractionConfiguration: HistoryViewDelegate {
             perform(transaction, on: pieceNode)
         }
     }
-
+    
 }
-
-

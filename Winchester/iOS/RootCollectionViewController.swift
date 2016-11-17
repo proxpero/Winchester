@@ -100,8 +100,6 @@ extension RootCollectionViewController {
                 cell.imageView.image = #imageLiteral(resourceName: "create")
                 cell.whiteRow.isHidden = true
                 cell.blackRow.isHidden = true
-//                cell.whiteLabel.text = ""
-//                cell.blackLabel.text = ""
             }
         }
 
@@ -258,6 +256,10 @@ extension RootCollectionViewController {
 // MARK: - UIKit
 
 extension RootCollectionViewController: UICollectionViewDelegateFlowLayout {
+
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView?.reloadData()
+    }
 
     override func viewDidLoad() {
 

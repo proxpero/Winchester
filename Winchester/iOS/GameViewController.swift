@@ -32,53 +32,56 @@ struct Design: Equatable {
 
 }
 
-public final class GameViewController: UIViewController {
+final class GameViewController: UIViewController, GameViewControllerType {
 
-    var userActivityCoordinator: UserActivityCoordinator!
-    var boardInteractionCoordinator: BoardInteractionCoordinator!
     var didTapSettingsButton: () -> () = { }
     var didTapBackButton: () -> () = { }
     var presentScene: () -> Void  =  { }
 
     @IBOutlet var stackView: UIStackView!
 
-    var titleViewController: TitleViewController!
-    var boardViewController: BoardViewController!
-    var historyViewController: HistoryViewController!
-    var captureViewController: CaptureViewController!
+    var game: Game?
+
+    var boardViewController: BoardViewController?
+    var historyViewController: HistoryViewController?
+    var capturedViewController: CapturedViewController?
+
+    var availableTargetsCache: [Square] = []
 
     @IBAction func settingsButtonAction(_ sender: UIBarButtonItem) {
         didTapSettingsButton()
     }
 
     @IBAction func backButtonAction(_ sender: UIBarButtonItem) {
-        self.didTapBackButton()
+        didTapBackButton()
     }
 
     var displayedDesign: Design? = nil
 
-    public override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    // Lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         let newDesign = Design(size: view.bounds.size)
         if displayedDesign != newDesign {
 
-            addChildViewController(titleViewController)
-            stackView.addArrangedSubview(titleViewController.view)
-            titleViewController.didMove(toParentViewController: self)
+            addChildViewController(boardViewController!)
+            stackView.addArrangedSubview(boardViewController!.view)
+            boardViewController!.didMove(toParentViewController: self)
 
-            addChildViewController(boardViewController)
-            stackView.addArrangedSubview(boardViewController.view)
-            boardViewController.didMove(toParentViewController: self)
+            addChildViewController(historyViewController!)
+            stackView.addArrangedSubview(historyViewController!.view)
+            historyViewController!.didMove(toParentViewController: self)
 
-            addChildViewController(historyViewController)
-            stackView.addArrangedSubview(historyViewController.view)
-            historyViewController.didMove(toParentViewController: self)
-
-            addChildViewController(captureViewController)
-            stackView.addArrangedSubview(captureViewController.view)
-            captureViewController.didMove(toParentViewController: self)
-
-            presentScene()
+            addChildViewController(capturedViewController!)
+            stackView.addArrangedSubview(capturedViewController!.view)
+            capturedViewController!.didMove(toParentViewController: self)
+            
             displayedDesign = newDesign
             
         }
