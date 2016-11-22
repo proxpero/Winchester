@@ -75,11 +75,15 @@ final class GameViewController: UIViewController, GameViewControllerType {
     }
 
     func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) {
-        guard
-            let texture = boardViewController?.boardView.boardTexture
-            else { fatalError() }
-        let image = UIImage(cgImage: texture.cgImage())
-        delegate?.didExecuteTurn(with: image, gameViewController: self)
+        let delay = DispatchTime.now() + .seconds(1)
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            guard
+                let texture = self.boardViewController?.boardView.boardTexture
+                else { fatalError() }
+            let image = UIImage(cgImage: texture.cgImage())
+            self.delegate?.didExecuteTurn(with: image, gameViewController: self)
+        }
+
     }
 
 }
@@ -116,9 +120,6 @@ final class BoardViewController: UIViewController, BoardViewControllerType  {
 
         view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
         boardView.present()
-        //        let scene = SKScene()
-        //        boardView.presentScene(scene)
-        //        boardView.present(Square.all, as: .normal)
 
     }
 
@@ -281,3 +282,4 @@ final class HistoryCell: UICollectionViewCell, HistoryCellType {
     }
     
 }
+

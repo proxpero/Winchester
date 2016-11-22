@@ -18,7 +18,6 @@ class MessagesViewController: MSMessagesAppViewController, GameViewControllerDel
         presentViewController(for: conversation, with: presentationStyle)
     }
 
-
     override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         super.willTransition(to: presentationStyle)
         guard let conversation = activeConversation else { fatalError("Expected an active converstation") }
@@ -118,17 +117,6 @@ class MessagesViewController: MSMessagesAppViewController, GameViewControllerDel
         }
 
         vc.navigationItem.title = game.outcome.description
-
-//        let settingsViewDelegate = SettingsViewCoordinator.Delegate(
-//            game: game,
-//            settingsViewDidRotateBoard: vc.boardViewController!.boardView.rotateView
-//        )
-//        vc.didTapSettingsButton = settingsViewCoordinator.start(
-//            with: settingsViewDelegate,
-//            navigationController: navigationController,
-//            orientation: { vc.boardViewController!.boardView.currentOrientation }
-//        )
-
 
         return vc
     }

@@ -280,15 +280,15 @@
 		520C4DE91DE4080E007DC21A /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				520C4DFA1DE409E6007DC21A /* ChessGameCache.swift */,
+				520C4E021DE409E6007DC21A /* MessagesViewController.swift */,
 				520C4DFB1DE409E6007DC21A /* ChessGamesViewController.swift */,
 				520C4DFC1DE409E6007DC21A /* ChessGameViewController.swift */,
+				520C4DFA1DE409E6007DC21A /* ChessGameCache.swift */,
 				520C4DFD1DE409E6007DC21A /* CreateCell.swift */,
 				520C4DFE1DE409E6007DC21A /* Endgame+Messages.swift */,
 				520C4DFF1DE409E6007DC21A /* GameCell.swift */,
 				520C4E001DE409E6007DC21A /* GameHistory.swift */,
 				520C4E011DE409E6007DC21A /* GameImageCache.swift */,
-				520C4E021DE409E6007DC21A /* MessagesViewController.swift */,
 				520C4E031DE409E6007DC21A /* Opponent.swift */,
 				520C4DEC1DE4080E007DC21A /* MainInterface.storyboard */,
 				520C4DEF1DE4080E007DC21A /* Assets.xcassets */,
@@ -958,6 +958,7 @@
 				520C4DF71DE4080E007DC21A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		524058AB1D63F353000A925C /* Build configuration list for PBXNativeTarget "WinchesterTests" */ = {
 			isa = XCConfigurationList;
