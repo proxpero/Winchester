@@ -31,33 +31,33 @@ extension Board.Space {
         var textFrame = CGRect(x: 0, y: 0, width: size, height: size)
         let fontSize = size * 0.625
         let view = ChessView(frame: frame)
-        let str = piece.map({ String($0.specialCharacter(background: color)) }) ?? ""
+        let pieceString = piece.map({ String($0.specialCharacter(background: color)) }) ?? ""
 
         let white = ChessColor.white
         let black = ChessColor.black
 
-        let bg: ChessColor = color.isWhite ? white : black
-        let tc: ChessColor = color.isWhite ? black : white
+        let backgroundColor: ChessColor = color.isWhite ? white : black
+        let textColor: ChessColor = color.isWhite ? black : white
         #if os(OSX)
             view.wantsLayer = true
             let text = NSText(frame: textFrame)
-            view.layer?.backgroundColor = bg.cgColor
+            view.layer?.backgroundColor = backgroundColor.cgColor
             text.alignment = .center
             text.font = .systemFont(ofSize: fontSize)
             text.isEditable = false
             text.isSelectable = false
 
-            text.string = str
+            text.string = pieceString
             text.drawsBackground = false
-            text.textColor = tc
+            text.textColor = textColor
             view.addSubview(text)
         #else
-            view.backgroundColor = bg
+            view.backgroundColor = backgroundColor
             let label = UILabel(frame: textFrame)
             label.textAlignment = .center
             label.font = .systemFont(ofSize: fontSize)
-            label.text = str
-            label.textColor = tc
+            label.text = pieceString
+            label.textColor = textColor
             view.addSubview(label)
         #endif
         return view

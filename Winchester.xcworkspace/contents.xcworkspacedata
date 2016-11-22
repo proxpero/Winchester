@@ -7,7 +7,4 @@
    <FileRef
       location = "group:Endgame/Endgame.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:PGN-Tool/PGN-Tool.xcodeproj">
-   </FileRef>
 </Workspace>
