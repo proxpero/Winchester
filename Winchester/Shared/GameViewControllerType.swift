@@ -14,11 +14,16 @@ import Endgame
     import UIKit
 #endif
 
-protocol GameViewControllerType: class, GameDelegate, BoardViewDelegateType, HistoryViewDelegate, HistoryViewDataSource {
+public protocol BoardViewControllerType: ViewControllerType, BoardInteractionProtocol { }
+
+public protocol GameViewControllerType: class, GameDelegate, BoardViewDelegateType, HistoryViewDelegate, HistoryViewDataSource {
+
+    associatedtype B: BoardViewControllerType
+    associatedtype H: HistoryViewControllerType
 
     var game: Game? { get }
-    weak var boardViewController: BoardViewController? { get }
-    weak var historyViewController: HistoryViewController? { get }
+    weak var boardViewController: B? { get }
+    weak var historyViewController: H? { get }
     weak var capturedViewController: CapturedViewController? { get }
 
     var availableTargetsCache: [Square] { get set }
@@ -30,17 +35,17 @@ protocol GameViewControllerType: class, GameDelegate, BoardViewDelegateType, His
 
 extension GameViewControllerType {
 
-    func game(_ game: Game, didAppend item: HistoryItem, at index: Int?) {
+    public func game(_ game: Game, didAppend item: HistoryItem, at index: Int?) {
         historyViewController?.updateCell(at: index)
     }
 
-    func game(_ game: Game, didTraverse items: [HistoryItem], in direction: Direction) {
+    public func game(_ game: Game, didTraverse items: [HistoryItem], in direction: Direction) {
         guard let boardView = boardViewController?.view as? BoardView else { fatalError("Programmer Error: Expected a boardView") }
         boardView.traverse(items, in: direction)
         boardViewDidNormalizeActivity(boardView)
     }
 
-    func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) { }
+    public func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) { }
 
 }
 
@@ -48,16 +53,12 @@ extension GameViewControllerType {
 
 extension GameViewControllerType {
 
-    func updateGame(with itemIndex: Int?) {
+    public func updateGame(with itemIndex: Int?) {
         game?.setIndex(to: itemIndex)
     }
 
-    func userDidSelectHistoryItem(at itemIndex: Int?) {
+    public func userDidSelectHistoryItem(at itemIndex: Int?) {
         game?.setIndex(to: itemIndex)
     }
     
-}
-
-fileprivate extension Selector {
-    static let handleSwipe = #selector(HistoryViewController.handleSwipe(_:))
 }

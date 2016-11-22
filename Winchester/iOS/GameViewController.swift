@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import Endgame
+import Shared
 
 struct Design: Equatable {
 
@@ -33,17 +34,20 @@ struct Design: Equatable {
 }
 
 final class GameViewController: UIViewController, GameViewControllerType {
+    typealias B = BoardViewController
+    typealias H = HistoryViewController
+
 
     var didTapSettingsButton: () -> () = { }
     var didTapBackButton: () -> () = { }
-    var presentScene: () -> Void  =  { }
+//    var presentScene: () -> Void  =  { }
 
     @IBOutlet var stackView: UIStackView!
 
     var game: Game?
 
-    var boardViewController: BoardViewController?
-    var historyViewController: HistoryViewController?
+    var boardViewController: B?
+    var historyViewController: H?
     var capturedViewController: CapturedViewController?
 
     var availableTargetsCache: [Square] = []
@@ -59,11 +63,6 @@ final class GameViewController: UIViewController, GameViewControllerType {
     var displayedDesign: Design? = nil
 
     // Lifecycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
 
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

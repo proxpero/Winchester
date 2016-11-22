@@ -8,6 +8,7 @@
 
 import UIKit
 import Endgame
+import Shared
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         guard let window = window else { return false }
         coordinator = ApplicationCoordinator(
-            window: window,
-            model: AppDataSource()
+            window: window
+//            model: AppDataSource()
         )
         coordinator?.start()
         return true

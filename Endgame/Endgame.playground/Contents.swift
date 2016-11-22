@@ -26,8 +26,4 @@ let game = Game(pgn: pgn)
 let delegate = Delegate()
 game.delegate = delegate
 
-print(game.pgn[PGN.Tag.white]!)
-print(game.pgn[PGN.Tag.black]!)
-print(game.pgn.sanMoves().joined(separator: ","))
-
 

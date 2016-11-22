@@ -8,7 +8,7 @@
 
 import Endgame
 
-protocol HistoryTraversable {
+public protocol HistoryTraversable {
     func traverse(_ items: [HistoryItem], in direction: Direction)
 }
 
@@ -41,7 +41,7 @@ private struct Transaction {
 
 extension HistoryTraversable where Self: BoardViewProtocol, Self: PieceNodeDataSource, Self: PieceNodeCaptureProtocol {
 
-    func traverse(_ items: [HistoryItem], in direction: Direction) {
+    public func traverse(_ items: [HistoryItem], in direction: Direction) {
 
         typealias TransactionTable = Dictionary<Piece.Node, Transaction>
 

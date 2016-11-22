@@ -9,7 +9,7 @@
 import CoreGraphics
 import Endgame
 
-protocol BoardInteractionProtocol: class {
+public protocol BoardInteractionProtocol: class {
 
     var boardView: BoardView { get }
     weak var delegate: BoardViewDelegate? { get }
@@ -63,7 +63,7 @@ extension BoardInteractionProtocol {
         }
     }
 
-    func userDidSelect(_ square: Square) {
+    public func userDidSelect(_ square: Square) {
 
         switch state {
         case .active(let origin):
@@ -76,7 +76,7 @@ extension BoardInteractionProtocol {
 
     }
 
-    func userDidDragPiece(to location: CGPoint) {
+    public func userDidDragPiece(to location: CGPoint) {
 
         guard case .active = state, let node = activeNode, let newPosition = node.scene?.convertPoint(fromView: location) else {
             normalize()
@@ -89,7 +89,7 @@ extension BoardInteractionProtocol {
 
     }
 
-    func userDidRelease(on square: Square?) {
+    public func userDidRelease(on square: Square?) {
 
         guard let square = square else { enter(.dormant); return }
         

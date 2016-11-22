@@ -6,6 +6,8 @@
 //  Copyright © 2016 Todd Olsen. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 //! Project version number for Shared.
 FOUNDATION_EXPORT double SharedVersionNumber;
 

@@ -11,24 +11,24 @@ import SpriteKit
 
 extension Square {
 
-    final class Node: SKSpriteNode {
+    public final class Node: SKSpriteNode {
 
-        let kind: Kind
+        public let kind: Kind
 
-        init(kind: Kind, for square: Square) {
+        public init(kind: Kind, for square: Square) {
             self.kind = kind
             super.init(texture: kind.texture(for: square), color: kind.color(for: square), size: CGSize.zero)
             self.zPosition = kind.zPosition
             self.name = square.description
         }
 
-        required init?(coder aDecoder: NSCoder) {
+        public required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
 
     }
 
-    enum Kind {
+    public enum Kind {
 
         case normal
         case origin

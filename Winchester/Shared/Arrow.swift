@@ -9,7 +9,7 @@
 import Endgame
 import SpriteKit
 
-enum Arrow { }
+public enum Arrow { }
 
 extension Arrow {
 
@@ -19,7 +19,7 @@ extension Arrow {
         let fill: UIColor
     }
 
-    enum Kind {
+    public enum Kind {
 
         case lastMove
         case check

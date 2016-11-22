@@ -8,6 +8,7 @@
 
 import UIKit
 import Endgame
+import Shared
 
 final class RootCollectionViewController: UICollectionViewController {
 

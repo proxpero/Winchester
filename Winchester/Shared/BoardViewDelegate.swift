@@ -8,7 +8,7 @@
 
 import Endgame
 
-protocol BoardViewDelegate: class {
+public protocol BoardViewDelegate: class {
     func boardView(_ boardView: BoardViewType, didBeginActivityOn origin: Square)
     func boardView(_ boardView: BoardViewType, didMovePieceTo square: Square)
     func boardView(_ boardView: BoardViewType, didEndActivityWith move: Move, for pieceNode: Piece.Node)

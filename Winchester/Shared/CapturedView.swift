@@ -10,12 +10,12 @@ import SpriteKit
 import Endgame
 
 /// The delegate of a view that shows captures pieces.
-protocol CapturingViewDelegate: class {
+public protocol CapturingViewDelegate: class {
     func capture(_ piece: Piece) -> Void
     func resurrect(_ piece: Piece) -> Void
 }
 
-final class CapturedView: SKView, CapturingViewDelegate {
+public final class CapturedView: SKView, CapturingViewDelegate {
 
     var pieceSize: CGSize!
 
@@ -26,7 +26,7 @@ final class CapturedView: SKView, CapturingViewDelegate {
         scene.addChild(boundaryNode)
     }
 
-    func capture(_ piece: Piece) -> Void {
+    public func capture(_ piece: Piece) -> Void {
         let pieceNode = capturedPieceNode(for: piece)
         scene?.addChild(pieceNode)
         let direction: CGFloat = piece.color.isWhite ? -1 : 1
@@ -34,7 +34,7 @@ final class CapturedView: SKView, CapturingViewDelegate {
         pieceNode.run(SKAction.fadeIn(withDuration: 0.3))
     }
 
-    func resurrect(_ piece: Piece) -> Void {
+    public func resurrect(_ piece: Piece) -> Void {
         let candidates = scene!.children
             .flatMap { $0 as? Piece.Node }
             .filter { $0.name != nil && $0.piece() == piece }

@@ -9,8 +9,9 @@
 import UIKit
 import SpriteKit
 import Endgame
+import Shared
 
-final class BoardViewController: ViewController, BoardInteractionProtocol {
+final class BoardViewController: ViewController, BoardViewControllerType {
 
     var tapGesture: UITapGestureRecognizer!
     var panGesture: UIPanGestureRecognizer!
@@ -37,11 +38,10 @@ final class BoardViewController: ViewController, BoardInteractionProtocol {
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: .userDidPan))
 
         view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
-        let scene = SKScene()
-        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        scene.scaleMode = .resizeFill
-        boardView.presentScene(scene)
-        boardView.present(Square.all, as: .normal)
+        boardView.present()
+//        let scene = SKScene()
+//        boardView.presentScene(scene)
+//        boardView.present(Square.all, as: .normal)
 
     }
 

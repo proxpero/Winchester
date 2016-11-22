@@ -8,19 +8,20 @@
 
 import UIKit
 import Endgame
+import Shared
 
 struct ApplicationCoordinator {
 
     // MARK: - Private Stored Properties
 
     private let _navigationController: UINavigationController
-    private let _model: AppDataSource
+//    private let _model: AppDataSource
 
     // MARK: - Initializers
 
-    init(window: UIWindow, model: AppDataSource) {
+    init(window: UIWindow) {
         self._navigationController = window.rootViewController as! UINavigationController
-        self._model = model
+//        self._model = model
         start()
     }
 
@@ -37,8 +38,8 @@ struct ApplicationCoordinator {
         // MARK: Model
 
         vc.model = RootCollectionViewController.Model(
-            userGames: _model.userGames(),
-            classicGames: _model.classicGames()
+            userGames: userGames(),
+            classicGames: classicGames()
         )
 
         // MARK: Delegate

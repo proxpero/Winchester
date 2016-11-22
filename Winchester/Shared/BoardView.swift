@@ -9,10 +9,41 @@
 import SpriteKit
 import Endgame
 
-final class BoardView: SKView, BoardViewType {
+public protocol BoardViewType: class, BoardViewProtocol, PieceNodeDataSource, PieceNodeCaptureProtocol, HistoryTraversable, PromotionNodeProtocol { }
+
+public final class BoardScene: SKScene {
+
+    let boardNode: SKNode
+    private let blurNode: SKEffectNode
+
+    override init() {
+
+        self.boardNode = SKNode()
+        self.blurNode = SKEffectNode()
+        super.init(size: .zero)
+        blurNode.position = position
+        
+        blurNode.shouldEnableEffects = false
+        blurNode.addChild(boardNode)
+        addChild(blurNode)
+
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    public override func didMove(to view: SKView) {
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        scaleMode = .resizeFill
+    }
+
+}
+
+public final class BoardView: SKView, BoardViewType {
 
     // BoardViewType
-    weak var capturingViewDelegate: CapturingViewDelegate?
+    weak public var capturingViewDelegate: CapturingViewDelegate?
 
     // BoardInteractionProtocol
     var interactionState: BoardView.InteractionState = .dormant
@@ -21,17 +52,41 @@ final class BoardView: SKView, BoardViewType {
 
     public fileprivate(set) var currentOrientation: BoardView.Orientation = .bottom
 
+    public func present() {
+        let scene = BoardScene()
+        presentScene(scene)
+        present(Square.all, as: .normal)
+    }
+
+    public var boardTexture: SKTexture {
+        return texture(from: scene!)!
+    }
 }
 
 extension BoardView {
 
-    enum InteractionState {
+    public func presentPromotion(for color: Color, completion: @escaping (Piece) -> Void) {
+
+        let promotionNode = PromotionNode(color: color, size: self.frame.size, completion: completion)
+
+//        promotionNode.position = scene.position
+        promotionNode.alpha = 0.0
+
+
+    }
+
+}
+
+
+extension BoardView {
+
+    public enum InteractionState {
         case dormant
         case active(Square)
         case ended(Move)
     }
 
-    enum Orientation {
+    public enum Orientation {
 
         case bottom
         case right
@@ -39,10 +94,10 @@ extension BoardView {
         case left
 
         init(angle: CGFloat) {
-
+            let twoPi: CGFloat = 2.0 * .pi
             var ref = angle
-            while ref > 2.0 * .pi {
-                ref -= 2.0 * .pi
+            while ref > twoPi {
+                ref -= twoPi
             }
 
             if (0.75 * .pi) > ref && ref >= (0.25 * .pi) {
@@ -86,7 +141,7 @@ extension BoardView {
 
 extension BoardView {
 
-    func rotateView() {
+    public func rotateView() {
         currentOrientation.rotate()
         SKView.animate(withDuration: 0.3) {
             self.transform = self.transform.rotated(by: .pi * -0.5)
@@ -97,17 +152,9 @@ extension BoardView {
 
 extension BoardView: BoardViewProtocol {
 
-    func setup(with board: Board) {
-//        guard let scene = scene else { fatalError("Error: cannot setup board without a scene.") }
-//        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//        scene.scaleMode = .resizeFill
-//        present(Square.all, as: .normal)
-        updatePieces(with: board)
-    }
-
     // MARK: Square Nodes
 
-    var squareNodes: [Square.Node] {
+    public var squareNodes: [Square.Node] {
         guard let scene = scene else { return [] }
         return scene.children.flatMap { $0 as? Square.Node }
     }
@@ -124,48 +171,48 @@ extension BoardView: BoardViewProtocol {
         _add(node)
     }
 
-    func present(_ squares: [Square], as kind: Square.Kind) {
+    public func present(_ squares: [Square], as kind: Square.Kind) {
         clearSquareNodes(ofKind: kind)
         for square in squares {
             addSquareNode(for: square, ofKind: kind)
         }
     }
 
-    func clearSquareNodes(ofKind kind: Square.Kind) {
+    public func clearSquareNodes(ofKind kind: Square.Kind) {
         squareNodes
             .filter { $0.kind == kind }
             .forEach(_remove)
     }
 
-    func clearSquareNodes() {
+    public func clearSquareNodes() {
         Square.Kind.decorators.forEach(clearSquareNodes)
     }
 
     // MARK: Piece Nodes 
 
     // All the `PieceNode`s in the scene.
-    var pieceNodes: [Piece.Node] {
+    public var pieceNodes: [Piece.Node] {
         guard let scene = scene else { return [] }
         return scene.children.flatMap { $0 as? Piece.Node }
     }
 
     /// Takes a `PieceNode` and places it in the scene at `origin`'s location.
-    func add(_ pieceNode: Piece.Node, at origin: Square) {
+    public func add(_ pieceNode: Piece.Node, at origin: Square) {
         pieceNode.position = position(for: origin)
         _add(pieceNode)
     }
 
 //    /// Removes `pieceNode` from the scene.
-    func remove(_ pieceNode: Piece.Node) {
+    public func remove(_ pieceNode: Piece.Node) {
         _remove(pieceNode)
     }
 
     /// Animates the position of `pieceNode` to the location of `target`
-    func move(_ pieceNode: Piece.Node, to target: Square) {
+    public func move(_ pieceNode: Piece.Node, to target: Square) {
         pieceNode.run(_move(to: target))
     }
 
-    func updatePieces(with board: Board) {
+    public func updatePieces(with board: Board) {
         pieceNodes.forEach { $0.removeFromParent() }
         for space in board {
             if let piece = space.piece {
@@ -204,7 +251,7 @@ extension BoardView: BoardViewProtocol {
         return node
     }
 
-    func presentArrows(for moves: [Move], ofKind kind: Arrow.Kind) {
+    public func presentArrows(for moves: [Move], ofKind kind: Arrow.Kind) {
         removeArrows(with: kind)
         for move in moves {
             addArrow(for: move, with: kind)
@@ -218,13 +265,13 @@ extension BoardView: BoardViewProtocol {
         node.run(SKAction.fadeIn(withDuration: 0.2))
     }
 
-    func removeArrows(with kind: Arrow.Kind) {
+    public func removeArrows(with kind: Arrow.Kind) {
         arrowNodes
             .filter { $0.kind == kind }
             .forEach(_remove)
     }
 
-    func removeAllArrows() {
+    public func removeAllArrows() {
         Arrow.Kind.all.forEach(removeArrows)
     }
 
@@ -246,19 +293,3 @@ extension BoardView: BoardViewProtocol {
         return action
     }
 }
-
-//extension BoardViewType where Self: GameDelegate {
-//
-//    func game(_ game: Game, didAppend item: HistoryItem, at index: Int?) {
-////        updateHistoryItem(index)
-//    }
-//
-//    func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) {
-//
-//    }
-//
-//    func game(_ game: Game, didTraverse items: [HistoryItem], in direction: Direction) {
-//        traverse(items, in: direction)
-//    }
-//
-//}

@@ -9,15 +9,16 @@
 import Endgame
 import SpriteKit
 
-protocol BoardViewDelegateType: class, BoardViewDelegate {
+public protocol BoardViewDelegateType: class, BoardViewDelegate {
 
     weak var game: Game? { get }
     var availableTargetsCache: [Square] { get set }
+
 }
 
-extension BoardViewDelegateType where Self: ViewController {
+extension BoardViewDelegateType {
 
-    func boardView(_ boardView: BoardViewType, didBeginActivityOn origin: Square) {
+    public func boardView(_ boardView: BoardViewType, didBeginActivityOn origin: Square) {
         guard let game = game else { return }
 
         availableTargetsCache = game.availableTargets(forPieceAt: origin)
@@ -27,7 +28,7 @@ extension BoardViewDelegateType where Self: ViewController {
         boardView.present(game.availableCaptures(forPieceAt: origin), as: .capture)
     }
 
-    func boardViewDidNormalizeActivity(_ boardView: BoardViewType) {
+    public func boardViewDidNormalizeActivity(_ boardView: BoardViewType) {
         guard let game = game else { fatalError("ERROR: expected a game.") }
         availableTargetsCache = []
         boardView.clearSquareNodes()
@@ -39,11 +40,11 @@ extension BoardViewDelegateType where Self: ViewController {
         //        boardView.present(<#T##squares: [Square]##[Square]#>, as: .defended)
     }
 
-    func boardView(_ boardView: BoardViewType, didMovePieceTo square: Square) {
+    public func boardView(_ boardView: BoardViewType, didMovePieceTo square: Square) {
         boardView.present([square], as: .candidate)
     }
 
-    func boardView(_ boardView: BoardViewType, didEndActivityWith move: Move, for pieceNode: Piece.Node) {
+    public func boardView(_ boardView: BoardViewType, didEndActivityWith move: Move, for pieceNode: Piece.Node) {
 
         var target = move.target
         if !availableTargetsCache.contains(move.target) {
@@ -78,22 +79,13 @@ extension BoardViewDelegateType where Self: ViewController {
         guard let game = game else { fatalError("Expected a game") }
 
         if isPromotion {
-            // WARNING: UIKit Dependency
-            let vc = UIStoryboard.main().instantiate(PromotionViewController.self)
-            vc.color = piece.color
-            vc.completion = { promotion in
-                boardView.remove(pieceNode)
-                let newPiece = boardView.pieceNode(for: promotion)
-                boardView.add(newPiece, at: move.target)
-
+            boardView.presentPromotion(for: piece.color) { promotion in
                 do {
                     try game.execute(move: move, promotion: promotion)
                 } catch {
                     fatalError("Could not execute move \(move) with promotion: \(promotion)")
                 }
             }
-            vc.modalPresentationStyle = .overFullScreen
-            self.present(vc, animated: true)
         } else {
             do {
                 try game.execute(move: move)

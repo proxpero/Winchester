@@ -11,9 +11,9 @@ import Endgame
 
 extension Piece {
 
-    final class Node: SKSpriteNode {
+    public final class Node: SKSpriteNode {
 
-        init(piece: Piece, size: CGSize) {
+        public init(piece: Piece, size: CGSize) {
             let imageName = "\(piece.color == .white ? "White" : "Black")\(piece.kind.name)"
             super.init(
                 texture: SKTexture(imageNamed: imageName),
@@ -23,11 +23,11 @@ extension Piece {
             zPosition = NodeType.piece.zPosition
         }
         
-        required init?(coder aDecoder: NSCoder) {
+        public required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
 
-        func piece() -> Piece {
+        public func piece() -> Piece {
             guard
                 let name = name,
                 let char = name.characters.first,

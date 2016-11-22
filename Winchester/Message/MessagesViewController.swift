@@ -9,8 +9,9 @@
 import UIKit
 import Messages
 import Endgame
+import Shared
 
-class MessagesViewController: MSMessagesAppViewController {
+class MessagesViewController: MSMessagesAppViewController, GameViewControllerDelegate {
 
     override func willBecomeActive(with conversation: MSConversation) {
         super.willBecomeActive(with: conversation)
@@ -66,13 +67,99 @@ class MessagesViewController: MSMessagesAppViewController {
             .reduce("") { $0 + $1 }
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "ChessGamesViewController") as? ChessGamesViewController else { fatalError() }
         vc.opponent = Opponent(id: interlocutorID)
+        vc.delegate = self
         return vc
     }
 
     private func instantiateGameViewController(with conversation: MSConversation) -> UIViewController {
         let game = Game(message: conversation.selectedMessage) ?? Game()
-        return UIViewController()
+
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController else { fatalError() }
+
+        vc.game = game
+        game.delegate = vc
+        vc.delegate = self
+
+        // MARK: BoardViewController
+
+        do {
+
+            let boardViewController = storyboard!.instantiate(BoardViewController.self)
+            boardViewController.boardView.updatePieces(with: game.currentPosition.board)
+            boardViewController.delegate = vc
+            vc.boardViewController = boardViewController
+
+        }
+
+        // MARK: HistoryViewController
+
+        do {
+
+            let historyViewController = storyboard!.instantiate(HistoryViewController.self)
+            historyViewController.delegate = vc
+            historyViewController.dataSource = vc
+            let currentIndexPath = vc.indexPath(for: game.currentIndex)
+            historyViewController.collectionView?.selectItem(at: currentIndexPath, animated: false, scrollPosition: .centeredHorizontally)
+            vc.historyViewController = historyViewController
+
+            for direction in [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right] {
+                vc.view.addSwipeGestureRecognizer(
+                    target: historyViewController,
+                    action: .handleSwipe,
+                    direction: direction
+                )
+            }
+
+        }
+
+        vc.capturedViewController = storyboard!.instantiate(CapturedViewController.self)
+        if let capturedView = vc.capturedViewController?.view as? CapturedView {
+            vc.boardViewController?.boardView.capturingViewDelegate = capturedView
+        }
+
+        vc.navigationItem.title = game.outcome.description
+
+//        let settingsViewDelegate = SettingsViewCoordinator.Delegate(
+//            game: game,
+//            settingsViewDidRotateBoard: vc.boardViewController!.boardView.rotateView
+//        )
+//        vc.didTapSettingsButton = settingsViewCoordinator.start(
+//            with: settingsViewDelegate,
+//            navigationController: navigationController,
+//            orientation: { vc.boardViewController!.boardView.currentOrientation }
+//        )
+
+
+        return vc
     }
+
+    fileprivate func composeMessage(with image: UIImage, caption: String, url: URL, session: MSSession? = nil) -> MSMessage {
+        let layout = MSMessageTemplateLayout()
+        layout.image = image
+        layout.caption = caption
+
+        let message = MSMessage(session: session ?? MSSession())
+        message.url = url
+        message.layout = layout
+
+        return message
+    }
+
+    func didExecuteTurn(with boardImage: UIImage, gameViewController: GameViewController) {
+
+        guard let conversation = activeConversation else { fatalError("Expected a conversation") }
+        guard let game = gameViewController.game else { fatalError() }
+        guard let caption = game.lastSanMove else { fatalError("This can't be the initial position") }
+
+        let message = composeMessage(with: boardImage, caption: caption, url: game.url, session: conversation.selectedMessage?.session)
+        conversation.insert(message) { error in
+            if let error = error {
+                print(error)
+            }
+        }
+        dismiss()
+    }
+
 
     override func didResignActive(with conversation: MSConversation) {
         // Called when the extension is about to move from the active to inactive state.
@@ -112,3 +199,36 @@ extension MessagesViewController: ChessGamesViewControllerDelegate {
         requestPresentationStyle(.expanded)
     }
 }
+
+fileprivate extension Selector {
+    static let handleSwipe = #selector(HistoryViewController.handleSwipe(_:))
+}
+
+extension UIStoryboard {
+
+    static var main: UIStoryboard {
+        return UIStoryboard(name: "Main", bundle: nil)
+    }
+
+    func instantiate<A: UIViewController>(_ type: A.Type) -> A {
+        guard let vc = self.instantiateViewController(withIdentifier: String(describing: type.self)) as? A else {
+            fatalError("Could not instantiate view controller \(A.self)") }
+        return vc
+    }
+    
+}
+
+extension UISwipeGestureRecognizer {
+    public convenience init(target: Any?, action: Selector?, direction: UISwipeGestureRecognizerDirection) {
+        self.init(target: target, action: action)
+        self.direction = direction
+    }
+}
+
+extension UIView {
+    public func addSwipeGestureRecognizer(target: Any?, action: Selector?, direction: UISwipeGestureRecognizerDirection = .right ) {
+        let swipe = UISwipeGestureRecognizer(target: target, action: action, direction: direction)
+        addGestureRecognizer(swipe)
+    }
+}
+

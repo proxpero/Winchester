@@ -9,15 +9,11 @@
 import CoreGraphics
 import Endgame
 
-protocol BoardViewType: class, BoardViewProtocol, PieceNodeDataSource, PieceNodeCaptureProtocol, HistoryTraversable { }
-
-protocol BoardViewProtocol {
+public protocol BoardViewProtocol {
 
     var frame: CGRect { get }
 
-    func setup(with board: Board)
-
-//    weak var delegate: BoardViewDelegate? { get set }
+//    func setup(with board: Board)
 
     /// Assuming the frame is itself a square and divided into 64 smaller squares like a chessboard, return the `CGPoint` at the center of the provided `Square`.
     ///
@@ -57,13 +53,13 @@ protocol BoardViewProtocol {
 
 extension BoardViewProtocol {
 
-    func position(for square: Square) -> CGPoint {
+    public func position(for square: Square) -> CGPoint {
         let x = start + offset(for: square.file.index)
         let y = start + offset(for: square.rank.index)
         return CGPoint(x: x, y: y)
     }
 
-    func square(for location: CGPoint, isViewFlipped: Bool = true) -> Square? {
+    public func square(for location: CGPoint, isViewFlipped: Bool = true) -> Square? {
         // divide edge by 8 and parition from origin out.
 
         let rowWidth = frame.size.width / 8.0
@@ -87,7 +83,7 @@ extension BoardViewProtocol {
                       rank: Rank(index: rankIndex))
     }
 
-    var squareSize: CGSize {
+    public var squareSize: CGSize {
         let rowCount: CGFloat = 8.0
         let edge = (frame.size.width - (squareInset * (rowCount + 1.0))) / rowCount
         return CGSize(width: edge, height: edge)

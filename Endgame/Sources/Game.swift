@@ -99,6 +99,13 @@ extension Game {
         return _items[current].move
     }
 
+    public var lastSanMove: String? {
+        guard let current = _currentIndex else {
+            return nil
+        }
+        return _items[current].sanMove
+    }
+
     /// Returns whether `move` is a promotion.
     public func isPromotion(for move: Move) -> Bool {
         return currentPosition.board[move.target]?.kind == .pawn && move.reachesEndRank(for: playerTurn)

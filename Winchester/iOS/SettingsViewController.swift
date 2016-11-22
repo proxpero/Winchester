@@ -8,6 +8,7 @@
 
 import UIKit
 import Endgame
+import Shared
 
 final class SettingsViewController: UIViewController {
 
@@ -155,12 +156,12 @@ struct SettingsViewCoordinator {
 
     func start(with delegate: Delegate, navigationController: UINavigationController, orientation: @escaping () -> BoardView.Orientation) -> () -> Void {
         return {
-            let vc = UIStoryboard.main().instantiate(SettingsViewController.self)
+            let vc = UIStoryboard.main.instantiate(SettingsViewController.self)
             vc.view.backgroundColor = .clear
             vc.dataSource = DataSource(game: self.game)
             vc.delegate = delegate
             vc.modalPresentationStyle = .overFullScreen
-            vc.boardImage.transform = CGAffineTransform(rotationAngle: orientation().angle())
+//            vc.boardImage.transform = CGAffineTransform(rotationAngle: orientation().angle())
             navigationController.present(vc, animated: true)
         }
     }

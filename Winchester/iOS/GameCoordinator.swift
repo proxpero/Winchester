@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import Endgame
+import Shared
 
 public struct GameCoordinator {
 
@@ -26,7 +27,7 @@ public struct GameCoordinator {
 
     mutating func start() {
 
-        let vc = UIStoryboard.main().instantiate(GameViewController.self)
+        let vc = UIStoryboard.main.instantiate(GameViewController.self)
         vc.game = game
         game.delegate = vc
 
@@ -34,7 +35,7 @@ public struct GameCoordinator {
 
         do {
 
-            let boardViewController = UIStoryboard.main().instantiate(BoardViewController.self)
+            let boardViewController = UIStoryboard.main.instantiate(BoardViewController.self)
             boardViewController.boardView.updatePieces(with: game.currentPosition.board)
             boardViewController.delegate = vc
             vc.boardViewController = boardViewController
@@ -45,7 +46,7 @@ public struct GameCoordinator {
 
         do {
 
-            let historyViewController = UIStoryboard.main().instantiate(HistoryViewController.self)
+            let historyViewController = UIStoryboard.main.instantiate(HistoryViewController.self)
             historyViewController.delegate = vc
             historyViewController.dataSource = vc
             let currentIndexPath = vc.indexPath(for: game.currentIndex)
@@ -64,7 +65,7 @@ public struct GameCoordinator {
 
         }
 
-        vc.capturedViewController = UIStoryboard.main().instantiate(CapturedViewController.self)
+        vc.capturedViewController = UIStoryboard.main.instantiate(CapturedViewController.self)
         if let capturedView = vc.capturedViewController?.view as? CapturedView {
             vc.boardViewController?.boardView.capturingViewDelegate = capturedView
         }
@@ -109,23 +110,18 @@ fileprivate extension Selector {
     static let handleSwipe = #selector(HistoryViewController.handleSwipe(_:))
 }
 
-extension UIStoryboard: Storyboard {
+extension UIStoryboard {
 
-//    static var main: UIStoryboard {
-//        return UIStoryboard(name: "Main", bundle: nil)
-//    }
-//
-//    func instantiate<A: UIViewController>(_ type: A.Type) -> A {
-//        guard let vc = self.instantiateViewController(withIdentifier: String(describing: type.self)) as? A else {
-//            fatalError("Could not instantiate view controller \(A.self)") }
-//        return vc
-//    }
-
-}
-
-extension UICollectionView {
-    func dequeue<A: UICollectionViewCell>(_ cellType: A.Type, at indexPath: IndexPath) -> A {
-        guard let cell = self.dequeueReusableCell(withReuseIdentifier: "\(cellType.self)", for: indexPath) as? A else { fatalError("Could not dequeue a cell of type: \(A.self)") }
-        return cell
+    static var main: UIStoryboard {
+        return UIStoryboard(name: "Main", bundle: nil)
     }
+
+    func instantiate<A: UIViewController>(_ type: A.Type) -> A {
+        guard let vc = self.instantiateViewController(withIdentifier: String(describing: type.self)) as? A else {
+            fatalError("Could not instantiate view controller \(A.self)") }
+        return vc
+    }
+
 }
+
+

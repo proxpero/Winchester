@@ -9,7 +9,7 @@
 import SpriteKit
 import Endgame
 
-protocol HistoryViewControllerType: class, ViewControllerType {
+public protocol HistoryViewControllerType: class, ViewControllerType {
 
     weak var delegate: HistoryViewDelegate? { get set }
     weak var dataSource: HistoryViewDataSource? { get set }
@@ -17,22 +17,21 @@ protocol HistoryViewControllerType: class, ViewControllerType {
 }
 
 extension HistoryViewControllerType where Self: CollectionViewController {
-    func updateCell(at itemIndex: Int?) {
+    public func updateCell(at itemIndex: Int?) {
         guard let indexPath = dataSource?.indexPath(for: itemIndex) else { return }
         collectionView?.reloadData()
         collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
 }
 
-protocol HistoryViewDelegate: class {
-
+public protocol HistoryViewDelegate: class {
     /// Called when the user selects a cell in the HistoryView.
     ///
     /// - Parameter itemIndex: The index of the history item in the game.
     func userDidSelectHistoryItem(at itemIndex: Int?)
 }
 
-protocol HistoryViewDataSource: class {
+public protocol HistoryViewDataSource: class {
 
     /// This `game` instance should be private to this protocol and should not be modified. It is read-only.
     weak var game: Game? { get }
@@ -53,7 +52,7 @@ extension HistoryViewDataSource {
 
     // MARK: - Default implementation of protocol.
 
-    func cellCount() -> Int {
+    public func cellCount() -> Int {
         guard let game = game else { fatalError("Expected a game") }
 
         let moves = game.count
@@ -64,7 +63,7 @@ extension HistoryViewDataSource {
         return startCells + moveCells + numberCells + outcomeCells
     }
 
-    func itemType(at indexPath: IndexPath) -> HistoryView.CellType {
+    public func itemType(at indexPath: IndexPath) -> HistoryView.CellType {
         guard let game = game else { fatalError("Expected a game") }
 
         if isStart(for: indexPath) { return .start }
@@ -76,19 +75,13 @@ extension HistoryViewDataSource {
 
     }
 
-    func itemIndex(for indexPath: IndexPath) -> Int? {
+    public func itemIndex(for indexPath: IndexPath) -> Int? {
         let row = indexPath.row
         guard row != 0 else { return nil }
         return 2 * row / 3 - 1
     }
 
-    // MARK: Internal Computed Properties and Functions
-
-    func lastMove() -> IndexPath {
-        return IndexPath(row: cellCount() - 2, section: 0)
-    }
-
-    func nextMoveCell(after indexPath: IndexPath) -> IndexPath {
+    public func nextMoveCell(after indexPath: IndexPath) -> IndexPath {
         let next = indexPath.row + 1
         let candidate = IndexPath(row: next, section: 0)
         if isNumberCell(for: candidate) {
@@ -98,7 +91,7 @@ extension HistoryViewDataSource {
         }
     }
 
-    func previousMoveCell(before indexPath: IndexPath) -> IndexPath {
+    public func previousMoveCell(before indexPath: IndexPath) -> IndexPath {
         let prev = indexPath.row - 1
         let candidate = IndexPath(row: prev, section: 0)
         if isNumberCell(for: candidate) {
@@ -108,70 +101,64 @@ extension HistoryViewDataSource {
         }
     }
 
-    func isValidSelection(for indexPath: IndexPath) -> Bool {
+    public func lastMove() -> IndexPath {
+        return IndexPath(row: cellCount() - 2, section: 0)
+    }
+
+    public func isValidSelection(for indexPath: IndexPath) -> Bool {
         return (0 ..< cellCount()-1).contains(indexPath.row)
     }
 
-    func isStart(for indexPath: IndexPath) -> Bool {
+    public func isStart(for indexPath: IndexPath) -> Bool {
         return indexPath.row == 0
     }
 
-    func isOutcome(for indexPath: IndexPath) -> Bool {
+    public func isOutcome(for indexPath: IndexPath) -> Bool {
         return indexPath.row == cellCount() - 1
     }
 
-    func isNumberCell(for indexPath: IndexPath) -> Bool {
+    public func isNumberCell(for indexPath: IndexPath) -> Bool {
         return (indexPath.row-1) % 3 == 0
     }
 
-    func indexPath(for itemIndex: Int?) -> IndexPath {
+    public func indexPath(for itemIndex: Int?) -> IndexPath {
         guard let itemIndex = itemIndex else { return IndexPath(row: 0, section: 0) }
         let row = ((itemIndex % 2 == 0 ? 2 : 0) + (6 * (itemIndex + 1))) / 4
         return IndexPath(row: row, section: 0)
     }
 
-    func fullmoveValue(for indexPath: IndexPath) -> Int {
+    public func fullmoveValue(for indexPath: IndexPath) -> Int {
         return (indexPath.row - 1) / 3 + 1
     }
     
 }
 
-enum HistoryView { }
+public enum HistoryView { }
+
+public protocol HistoryCellType: class {
+
+    func setText(text: String)
+    func setIsBordered(isBordered: Bool)
+    func setTextAlignment(textAlignment: NSTextAlignment)
+
+}
 
 extension HistoryView {
 
-    struct Coordinator {
-
-        private weak var viewController: HistoryViewControllerType!
-        private weak var delegate: HistoryViewDelegate!
-        private weak var dataSource: HistoryViewDataSource!
-
-        init(storyboard: Storyboard, historyViewDelegate: HistoryViewDelegate, historyViewDataSource: HistoryViewDataSource) {
-            self.viewController = storyboard.instantiate(HistoryViewController.self)
-            self.delegate = historyViewDelegate
-            self.dataSource = historyViewDataSource
-            viewController.delegate = historyViewDelegate
-            viewController.dataSource = historyViewDataSource
-        }
-
-    }
-    
-    enum CellType: Equatable {
+    public enum CellType: Equatable {
 
         case start
         case number(Int)
         case move(String)
         case outcome(Outcome)
 
-        // MARK: - Internal Functions
-
-        func configureCell(cell: HistoryCell) {
-            cell.label.text = self.text
-            cell.isBordered = self.isBordered
-            cell.label.textAlignment = self.textAlignment
+        public func configureCell(cell: HistoryCellType) {
+            cell.setText(text: self.text)
+            cell.setIsBordered(isBordered: self.isBordered)
+            cell.setTextAlignment(textAlignment: self.textAlignment)
         }
 
-        var shouldBeSelected: Bool {
+        public var shouldBeSelected: Bool {
             switch self {
             case .start: return true
             case .number: return false
@@ -180,7 +167,7 @@ extension HistoryView {
             }
         }
 
-        var width: CGFloat {
+        public var width: CGFloat {
             switch self {
             case .start: return 80.0
             case .number: return 45.0
@@ -217,7 +204,7 @@ extension HistoryView {
             }
         }
 
-        static func == (lhs: HistoryView.CellType, rhs: HistoryView.CellType) -> Bool {
+        public static func == (lhs: HistoryView.CellType, rhs: HistoryView.CellType) -> Bool {
             switch (lhs, rhs) {
             case (.start, .start): return true
             case (.number(let a), .number(let b)): return a == b
