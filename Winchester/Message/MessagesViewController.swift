@@ -75,6 +75,8 @@ class MessagesViewController: MSMessagesAppViewController, GameViewControllerDel
 
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController else { fatalError() }
 
+        vc.rotate(to: game.playerTurn == .white ? .bottom : .top)
+
         vc.game = game
         game.delegate = vc
         vc.delegate = self

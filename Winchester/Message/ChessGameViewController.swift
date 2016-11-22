@@ -86,6 +86,10 @@ final class GameViewController: UIViewController, GameViewControllerType {
 
     }
 
+    func rotate(to orientation: BoardView.Orientation) {
+        boardViewController?.boardView.currentOrientation = orientation
+    }
+
 }
 
 protocol GameViewControllerDelegate: class {

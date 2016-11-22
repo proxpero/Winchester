@@ -50,7 +50,11 @@ public final class BoardView: SKView, BoardViewType {
     var initialSquare: Square?
     weak var activeNode: Piece.Node?
 
-    public fileprivate(set) var currentOrientation: BoardView.Orientation = .bottom
+    public var currentOrientation: BoardView.Orientation = .bottom {
+        didSet {
+            self.transform = CGAffineTransform.identity.rotated(by: currentOrientation.angle())
+        }
+    }
 
     public func present() {
         let scene = BoardScene()
@@ -69,10 +73,7 @@ extension BoardView {
 
         let promotionNode = PromotionNode(color: color, size: self.frame.size, completion: completion)
 
-//        promotionNode.position = scene.position
         promotionNode.alpha = 0.0
-
-
     }
 
 }
@@ -146,6 +147,10 @@ extension BoardView {
         SKView.animate(withDuration: 0.3) {
             self.transform = self.transform.rotated(by: .pi * -0.5)
         }
+    }
+
+    public func rotate(to orientation: Orientation) {
+
     }
 
 }
