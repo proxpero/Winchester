@@ -16,9 +16,9 @@ final class SettingsViewController: UIViewController {
 
     @IBOutlet var background: UIView!
 
-    @IBOutlet var whitePlayerLabel: UILabel!
+    @IBOutlet var whitePlayerLabel: UITextField!
+    @IBOutlet var blackPlayerLabel: UITextField!
     @IBOutlet var whiteOutcomeLabel: UILabel!
-    @IBOutlet var blackPlayerLabel: UILabel!
     @IBOutlet var blackOutcomeLabel: UILabel!
     @IBOutlet var eventLabel: UILabel!
     @IBOutlet var ecoLabel: UILabel!
@@ -33,13 +33,13 @@ final class SettingsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        whitePlayerLabel.text = dataSource?.whitePlayerName()
-        whiteOutcomeLabel.text = dataSource?.whitePlayerOutcomeName()
-        blackPlayerLabel.text = dataSource?.blackPlayerName()
-        blackOutcomeLabel.text = dataSource?.blackPlayerOutcomeName()
-        eventLabel.text = dataSource?.eventName()
-        ecoLabel.text = dataSource?.ecoName()
-        moveCountLabel.text = dataSource?.movesName()
+        whitePlayerLabel.text = dataSource?.whitePlayerName
+        whiteOutcomeLabel.text = dataSource?.whitePlayerOutcome
+        blackPlayerLabel.text = dataSource?.blackPlayerName
+        blackOutcomeLabel.text = dataSource?.blackPlayerOutcome
+        eventLabel.text = dataSource?.event
+        ecoLabel.text = dataSource?.eco
+        moveCountLabel.text = dataSource?.moves
     }
 
     @IBAction func rotateAction(_ sender: UIButton) {
@@ -50,73 +50,101 @@ final class SettingsViewController: UIViewController {
     }
 
     @IBAction func doneAction(_ sender: UIButton) {
-        self.dismiss(animated: true) {
-            self.delegate?.settingsViewDidFinish()
-        }
+        self.dismiss(animated: true)
     }
 }
 
 protocol SettingsViewDataSource {
-    func whitePlayerName() -> String
-    func whitePlayerOutcomeName() -> String
-    func blackPlayerName() -> String
-    func blackPlayerOutcomeName() -> String
-    func eventName() -> String
-    func ecoName() -> String
-    func movesName() -> String
+    weak var game: Game? { get }
+    var whitePlayerName: String { get set }
+    var whitePlayerOutcome: String { get }
+    var blackPlayerName: String { get set }
+    var blackPlayerOutcome: String { get }
+    var event: String { get set }
+    var eco: String { get }
+    var moves: String { get }
+}
+
+extension SettingsViewDataSource {
+
 }
 
 protocol SettingsViewDelegate {
     var settingsViewDidRotateBoard: () -> Void { get }
-    var settingsViewDidFinish: () -> Void { get }
 }
 
 struct SettingsViewCoordinator {
 
     struct DataSource: SettingsViewDataSource {
 
-        private let game: Game
+        weak var game: Game?
         init(game: Game) {
             self.game = game
         }
 
-        func whitePlayerName() -> String {
-            return game.whitePlayer.name ?? "?"
+        var whitePlayerName: String {
+            get {
+                return game?.whitePlayer.name ?? "?"
+            }
+            set {
+                game?.whitePlayer.name = newValue
+            }
         }
 
-        func whitePlayerOutcomeName() -> String {
-            return game.outcome.description(for: .white)
+        var whitePlayerOutcome: String {
+            get {
+                guard let game = game else { return "" }
+                return game.outcome.description(for: .white)
+            }
         }
 
-        func blackPlayerName() -> String {
-            return game.blackPlayer.name ?? "?"
+        var blackPlayerName: String {
+            get {
+                return game?.blackPlayer.name ?? "?"
+            }
+            set {
+                game?.blackPlayer.name = newValue
+            }
         }
 
-        func blackPlayerOutcomeName() -> String {
-            return game.outcome.description(for: .black)
+        var blackPlayerOutcome: String {
+            get {
+                guard let game = game else { return "" }
+                return game.outcome.description(for: .black)
+            }
         }
 
-        func eventName() -> String {
-            return ""
+        var event: String {
+            get {
+                return ""
+            }
+            set {
+                // game does not support event property
+            }
         }
 
-        func ecoName() -> String {
-            return "\(game.eco?.name)"
+        var eco: String {
+            return game?.eco?.name ?? ""
         }
 
-        func movesName() -> String {
+        var moves: String {
+            guard let game = game else { return "0" }
             return "\(game.count)"
         }
 
     }
 
     struct Delegate: SettingsViewDelegate {
+        
+        weak var game: Game?
+
         let settingsViewDidRotateBoard: () -> Void
-        let settingsViewDidFinish: () -> Void
-        init(settingsViewDidRotateBoard: @escaping () -> Void, settingsViewDidFinish: @escaping () -> Void) {
+
+        init(game: Game, settingsViewDidRotateBoard: @escaping () -> Void) {
+            self.game = game
             self.settingsViewDidRotateBoard = settingsViewDidRotateBoard
-            self.settingsViewDidFinish = settingsViewDidFinish
         }
+
     }
 
     private let game: Game
@@ -125,9 +153,9 @@ struct SettingsViewCoordinator {
         self.game = game
     }
 
-    func start(with delegate: Delegate, navigationController: UINavigationController, orientation: @escaping () -> BoardOrientation) -> () -> Void {
+    func start(with delegate: Delegate, navigationController: UINavigationController, orientation: @escaping () -> BoardView.Orientation) -> () -> Void {
         return {
-            let vc = UIStoryboard.main.instantiate(SettingsViewController.self)
+            let vc = UIStoryboard.main().instantiate(SettingsViewController.self)
             vc.view.backgroundColor = .clear
             vc.dataSource = DataSource(game: self.game)
             vc.delegate = delegate

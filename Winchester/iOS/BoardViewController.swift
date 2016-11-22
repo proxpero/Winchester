@@ -7,96 +7,56 @@
 //
 
 import UIKit
+import SpriteKit
 import Endgame
 
-enum BoardOrientation {
+final class BoardViewController: ViewController, BoardInteractionProtocol {
 
-    case bottom
-    case right
-    case top
-    case left
+    var tapGesture: UITapGestureRecognizer!
+    var panGesture: UIPanGestureRecognizer!
+    weak var delegate: BoardViewDelegate?
 
-    init(angle: CGFloat) {
-
-        var ref = angle
-        while ref > 2.0 * .pi {
-            ref -= 2.0 * .pi
+    var boardView: BoardView {
+        guard let boardView = view as? BoardView else {
+            fatalError("\(self) requires its view to be a \(BoardView.self)")
         }
-
-        if (0.75 * .pi) > ref && ref >= (0.25 * .pi) {
-            self = .right
-        } else if (1.25 * .pi) > ref && ref >= (0.75 * .pi) {
-            self = .top
-        } else if (1.75 * .pi) > ref && ref >= (1.25 * .pi) {
-            self = .left
-        } else {
-            self = .bottom
-        }
+        return boardView
     }
 
-    static var all: [BoardOrientation] {
-        return [.bottom, .right, .top, .left]
-    }
+    var state: BoardView.InteractionState = .dormant
+    var initialSquare: Square? = nil
+    weak var activeNode: Piece.Node? = nil
 
-    func angle() -> CGFloat {
-        let multiplier: CGFloat
-        switch self {
-        case .bottom: multiplier = 0.0
-        case .right: multiplier = 0.5
-        case .top: multiplier = 1.0
-        case .left: multiplier = 1.5
-        }
-        return .pi * -multiplier
-    }
-
-    mutating func rotate() {
-        switch self {
-        case .bottom: self = .right
-        case .right: self = .top
-        case .top: self = .left
-        case .left: self = .bottom
-        }
-    }
-
-}
-
-final class BoardViewController: UIViewController {
-
-    var delegate: BoardInteractionDelegate?
-
-    fileprivate var tapGesture: UITapGestureRecognizer!
-    fileprivate var panGesture: UIPanGestureRecognizer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(userDidTap))
-        panGesture = UIPanGestureRecognizer(target: self, action: #selector(userDidPan))
-        view.addGestureRecognizer(tapGesture)
-        view.addGestureRecognizer(panGesture)
-    }
 
-    public private(set) var currentOrientation: BoardOrientation = .bottom
-    func rotateView() {
-        self.currentOrientation.rotate()
-        UIView.animate(withDuration: 0.3) {
-            self.view.transform = self.view.transform.rotated(by: .pi * -0.5)
-        }
+        tapGesture = UITapGestureRecognizer(target: self, action: .userDidTap)
+        panGesture = UIPanGestureRecognizer(target: self, action: .userDidPan)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: .userDidTap))
+        view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: .userDidPan))
+
+        view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
+        let scene = SKScene()
+        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        scene.scaleMode = .resizeFill
+        boardView.presentScene(scene)
+        boardView.present(Square.all, as: .normal)
+
     }
 
 }
 
-extension UIView: BoardPresenter { }
 extension BoardViewController {
 
     func userDidTap(_ gesture: UITapGestureRecognizer) {
-        if let square = view.square(for: gesture.location(in: view)) {
+        if let square = boardView.square(for: gesture.location(in: view)) {
             switch panGesture.isEnabled {
             case true:
-                delegate?.userDidTap(on: square)
+                userDidSelect(square)
                 panGesture.isEnabled = false
             case false:
-                delegate?.userDidRelease(on: square)
+                userDidSelect(square)
                 panGesture.isEnabled = true
             }
         }
@@ -104,18 +64,18 @@ extension BoardViewController {
 
     func userDidPan(_ gesture: UIPanGestureRecognizer) {
         let location = gesture.location(in: view)
-        guard let square = view.square(for: location) else {
-            delegate?.userDidRelease(on: nil)
+        guard let square = boardView.square(for: location) else {
+            userDidRelease(on: nil)
             return
         }
         switch gesture.state {
         case .began:
             tapGesture.isEnabled = false
-            delegate?.userDidTap(on: square)
+            userDidSelect(square)
         case .changed:
-            delegate?.userDidMove(to: square, at: location)
+            userDidDragPiece(to: location)
         case .ended, .failed, .cancelled:
-            delegate?.userDidRelease(on: square)
+            userDidRelease(on: square)
             tapGesture.isEnabled = true
         case .possible:
             return
@@ -123,3 +83,9 @@ extension BoardViewController {
     }
 
 }
+
+fileprivate extension Selector {
+    static let userDidTap = #selector(BoardViewController.userDidTap(_:))
+    static let userDidPan = #selector(BoardViewController.userDidPan(_:))
+}
+
