@@ -707,15 +707,15 @@
             </objects>
             <point key="canvasLocation" x="714" y="294"/>
         </scene>
-        <!--Captured View Controller-->
+        <!--Captured Pieces View Controller-->
         <scene sceneID="QL0-ov-OP7">
             <objects>
-                <viewController storyboardIdentifier="CapturedViewController" id="w0e-7w-yj3" customClass="CapturedViewController" customModule="Shared" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CapturedPiecesViewController" id="w0e-7w-yj3" customClass="CapturedPiecesViewController" customModule="Shared" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cuh-dJ-MrL"/>
                         <viewControllerLayoutGuide type="bottom" id="5WQ-3Y-azR"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CaJ-lz-szR" customClass="CapturedView" customModule="Shared">
+                    <view key="view" contentMode="scaleToFill" id="CaJ-lz-szR" customClass="CapturedPiecesView" customModule="Shared">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

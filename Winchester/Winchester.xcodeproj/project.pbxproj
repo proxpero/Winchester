@@ -89,6 +89,9 @@
 		52FDDBE91DE5E391008E9621 /* HistoryViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBE81DE5E391008E9621 /* HistoryViewControllerType.swift */; };
 		52FDDBEB1DE5E406008E9621 /* BoardViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBEA1DE5E406008E9621 /* BoardViewControllerType.swift */; };
 		52FDDBEF1DE5E828008E9621 /* PieceCapturingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBEE1DE5E828008E9621 /* PieceCapturingViewDelegate.swift */; };
+		52FDDBF21DE5EF50008E9621 /* Chessboard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FDDBF11DE5EF50008E9621 /* Chessboard.xcassets */; };
+		52FDDBF31DE5EFED008E9621 /* Chessboard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FDDBF11DE5EF50008E9621 /* Chessboard.xcassets */; };
+		52FDDBF41DE5EFEE008E9621 /* Chessboard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FDDBF11DE5EF50008E9621 /* Chessboard.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +232,7 @@
 		52FDDBE81DE5E391008E9621 /* HistoryViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewControllerType.swift; sourceTree = "<group>"; };
 		52FDDBEA1DE5E406008E9621 /* BoardViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewControllerType.swift; sourceTree = "<group>"; };
 		52FDDBEE1DE5E828008E9621 /* PieceCapturingViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceCapturingViewDelegate.swift; sourceTree = "<group>"; };
+		52FDDBF11DE5EF50008E9621 /* Chessboard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Chessboard.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +288,7 @@
 				520C4D9B1DE37DE8007DC21A /* Shims.swift */,
 				520C4D7D1DE37DB3007DC21A /* Shared.h */,
 				520C4D7E1DE37DB3007DC21A /* Info.plist */,
+				52FDDBF11DE5EF50008E9621 /* Chessboard.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -626,6 +631,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				520C4D9F1DE37DE8007DC21A /* Assets.xcassets in Resources */,
+				52FDDBF21DE5EF50008E9621 /* Chessboard.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +640,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				520C4DF01DE4080E007DC21A /* Assets.xcassets in Resources */,
+				52FDDBF41DE5EFEE008E9621 /* Chessboard.xcassets in Resources */,
 				520C4E0E1DE41243007DC21A /* Assets.xcassets in Resources */,
 				520C4DEE1DE4080E007DC21A /* MainInterface.storyboard in Resources */,
 			);
@@ -661,6 +668,7 @@
 				5225DD071DB544CB00F74330 /* shirov v polgar.pgn in Resources */,
 				520C4DBD1DE40215007DC21A /* Assets.xcassets in Resources */,
 				5225DD041DB544CB00F74330 /* reti v rubenstein.pgn in Resources */,
+				52FDDBF31DE5EFED008E9621 /* Chessboard.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -275,15 +275,15 @@
             </objects>
             <point key="canvasLocation" x="2167" y="134"/>
         </scene>
-        <!--Captured View Controller-->
+        <!--Captured Pieces View Controller-->
         <scene sceneID="caz-mt-rdW">
             <objects>
-                <viewController storyboardIdentifier="CapturedViewController" id="Qt6-xO-Fuc" customClass="CapturedViewController" customModule="Shared" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CapturedPiecesViewController" id="Qt6-xO-Fuc" customClass="CapturedPiecesViewController" customModule="Shared" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9GA-DI-aXz"/>
                         <viewControllerLayoutGuide type="bottom" id="0xb-Le-XM5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gSM-Wo-NNb" customClass="CapturedView" customModule="Shared">
+                    <view key="view" contentMode="scaleToFill" id="gSM-Wo-NNb" customClass="CapturedPiecesView" customModule="Shared">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
