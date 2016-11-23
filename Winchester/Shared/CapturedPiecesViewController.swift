@@ -1,5 +1,5 @@
 //
-//  CaptureViewController.swift
+//  CapturedPiecesViewController.swift
 //  Winchester
 //
 //  Created by Todd Olsen on 10/31/16.
@@ -9,11 +9,11 @@
 import SpriteKit
 import Endgame
 
-public final class CapturedViewController: ViewController {
+public final class CapturedPiecesViewController: ViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        guard let skview = self.view as? CapturedView else { fatalError("ERROR: Expected a CapturedView") }
+        guard let skview = self.view as? CapturedPiecesView else { fatalError("ERROR: Expected a CapturedView") }
         let scene = SKScene()
         scene.backgroundColor = UIColor.clear
         scene.scaleMode = .aspectFill
@@ -24,7 +24,7 @@ public final class CapturedViewController: ViewController {
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
-        guard let skview = self.view as? CapturedView, let scene = skview.scene else { fatalError("ERROR: Expected a CapturedView") }
+        guard let skview = self.view as? CapturedPiecesView, let scene = skview.scene else { fatalError("ERROR: Expected a CapturedView") }
         scene.size = view.bounds.size
         skview.pieceSize = CGSize(edge: (scene.size.area()/16.0).squareRoot())
         skview.presentScene(scene)

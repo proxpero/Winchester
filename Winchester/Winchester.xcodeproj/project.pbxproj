@@ -19,8 +19,8 @@
 		520C4DA31DE37DE8007DC21A /* BoardViewDelegateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4D8D1DE37DE8007DC21A /* BoardViewDelegateType.swift */; };
 		520C4DA41DE37DE8007DC21A /* BoardViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4D8E1DE37DE8007DC21A /* BoardViewProtocol.swift */; };
 		520C4DA51DE37DE8007DC21A /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4D8F1DE37DE8007DC21A /* Cache.swift */; };
-		520C4DA61DE37DE8007DC21A /* CapturedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4D901DE37DE8007DC21A /* CapturedView.swift */; };
-		520C4DA71DE37DE8007DC21A /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4D911DE37DE8007DC21A /* CaptureViewController.swift */; };
+		520C4DA61DE37DE8007DC21A /* CapturedPiecesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4D901DE37DE8007DC21A /* CapturedPiecesView.swift */; };
+		520C4DA71DE37DE8007DC21A /* CapturedPiecesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4D911DE37DE8007DC21A /* CapturedPiecesViewController.swift */; };
 		520C4DA91DE37DE8007DC21A /* GameViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4D931DE37DE8007DC21A /* GameViewControllerType.swift */; };
 		520C4DAA1DE37DE8007DC21A /* HistoryTraversable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4D941DE37DE8007DC21A /* HistoryTraversable.swift */; };
 		520C4DAB1DE37DE8007DC21A /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4D951DE37DE8007DC21A /* HistoryView.swift */; };
@@ -78,6 +78,18 @@
 		52BCD0A01DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */; };
 		52BCD0A31DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
 		52E325011DC282CF001FE392 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E325001DC282CF001FE392 /* SettingsViewController.swift */; };
+		52FDDBD41DE5DBD2008E9621 /* BoardViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBD31DE5DBD2008E9621 /* BoardViewType.swift */; };
+		52FDDBD61DE5DCA8008E9621 /* PromotionNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBD51DE5DCA8008E9621 /* PromotionNodeProtocol.swift */; };
+		52FDDBD81DE5DF3D008E9621 /* BoardView+BoardViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBD71DE5DF3D008E9621 /* BoardView+BoardViewProtocol.swift */; };
+		52FDDBDA1DE5E03A008E9621 /* BoardView+Interaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBD91DE5E03A008E9621 /* BoardView+Interaction.swift */; };
+		52FDDBDC1DE5E074008E9621 /* BoardView+Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBDB1DE5E074008E9621 /* BoardView+Promotion.swift */; };
+		52FDDBDF1DE5E1DA008E9621 /* GameViewControllerType+GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBDE1DE5E1DA008E9621 /* GameViewControllerType+GameDelegate.swift */; };
+		52FDDBE21DE5E27D008E9621 /* GameViewController+BoardViewDelegateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBE11DE5E27D008E9621 /* GameViewController+BoardViewDelegateType.swift */; };
+		52FDDBE41DE5E2EF008E9621 /* HistoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBE31DE5E2EF008E9621 /* HistoryViewDelegate.swift */; };
+		52FDDBE61DE5E319008E9621 /* HistoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBE51DE5E319008E9621 /* HistoryViewDataSource.swift */; };
+		52FDDBE91DE5E391008E9621 /* HistoryViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBE81DE5E391008E9621 /* HistoryViewControllerType.swift */; };
+		52FDDBEB1DE5E406008E9621 /* BoardViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBEA1DE5E406008E9621 /* BoardViewControllerType.swift */; };
+		52FDDBEF1DE5E828008E9621 /* PieceCapturingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBEE1DE5E828008E9621 /* PieceCapturingViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,8 +158,8 @@
 		520C4D8D1DE37DE8007DC21A /* BoardViewDelegateType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewDelegateType.swift; sourceTree = "<group>"; };
 		520C4D8E1DE37DE8007DC21A /* BoardViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewProtocol.swift; sourceTree = "<group>"; };
 		520C4D8F1DE37DE8007DC21A /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		520C4D901DE37DE8007DC21A /* CapturedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedView.swift; sourceTree = "<group>"; };
-		520C4D911DE37DE8007DC21A /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		520C4D901DE37DE8007DC21A /* CapturedPiecesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedPiecesView.swift; sourceTree = "<group>"; };
+		520C4D911DE37DE8007DC21A /* CapturedPiecesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedPiecesViewController.swift; sourceTree = "<group>"; };
 		520C4D921DE37DE8007DC21A /* CoreGraphics+Winchester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Winchester.swift"; sourceTree = "<group>"; };
 		520C4D931DE37DE8007DC21A /* GameViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewControllerType.swift; sourceTree = "<group>"; };
 		520C4D941DE37DE8007DC21A /* HistoryTraversable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTraversable.swift; sourceTree = "<group>"; };
@@ -207,6 +219,18 @@
 		52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v thomason.pgn"; sourceTree = "<group>"; };
 		52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v warner.pgn"; sourceTree = "<group>"; };
 		52E325001DC282CF001FE392 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = iOS/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
+		52FDDBD31DE5DBD2008E9621 /* BoardViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewType.swift; sourceTree = "<group>"; };
+		52FDDBD51DE5DCA8008E9621 /* PromotionNodeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionNodeProtocol.swift; sourceTree = "<group>"; };
+		52FDDBD71DE5DF3D008E9621 /* BoardView+BoardViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BoardView+BoardViewProtocol.swift"; sourceTree = "<group>"; };
+		52FDDBD91DE5E03A008E9621 /* BoardView+Interaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BoardView+Interaction.swift"; sourceTree = "<group>"; };
+		52FDDBDB1DE5E074008E9621 /* BoardView+Promotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BoardView+Promotion.swift"; sourceTree = "<group>"; };
+		52FDDBDE1DE5E1DA008E9621 /* GameViewControllerType+GameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameViewControllerType+GameDelegate.swift"; sourceTree = "<group>"; };
+		52FDDBE11DE5E27D008E9621 /* GameViewController+BoardViewDelegateType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameViewController+BoardViewDelegateType.swift"; sourceTree = "<group>"; };
+		52FDDBE31DE5E2EF008E9621 /* HistoryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDelegate.swift; sourceTree = "<group>"; };
+		52FDDBE51DE5E319008E9621 /* HistoryViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewDataSource.swift; sourceTree = "<group>"; };
+		52FDDBE81DE5E391008E9621 /* HistoryViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewControllerType.swift; sourceTree = "<group>"; };
+		52FDDBEA1DE5E406008E9621 /* BoardViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewControllerType.swift; sourceTree = "<group>"; };
+		52FDDBEE1DE5E828008E9621 /* PieceCapturingViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceCapturingViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,26 +275,15 @@
 			isa = PBXGroup;
 			children = (
 				520C4D871DE37DE8007DC21A /* AppDataSource.swift */,
-				520C4D8A1DE37DE8007DC21A /* BoardInteractionProtocol.swift */,
-				520C4D8B1DE37DE8007DC21A /* BoardView.swift */,
-				520C4D8C1DE37DE8007DC21A /* BoardViewDelegate.swift */,
-				520C4D8D1DE37DE8007DC21A /* BoardViewDelegateType.swift */,
-				520C4D8E1DE37DE8007DC21A /* BoardViewProtocol.swift */,
+				52FDDBD21DE5D7E1008E9621 /* BoardView */,
+				52FDDBDD1DE5E14C008E9621 /* Sprites */,
+				52FDDBE01DE5E1E6008E9621 /* GameViewController */,
+				52FDDBEC1DE5E41A008E9621 /* BoardViewController */,
+				52FDDBE71DE5E37B008E9621 /* HistoryViewController */,
+				52FDDBED1DE5E7F1008E9621 /* Capturing */,
+				52FDDBF01DE5EA1A008E9621 /* Promotion */,
 				520C4D8F1DE37DE8007DC21A /* Cache.swift */,
-				520C4D901DE37DE8007DC21A /* CapturedView.swift */,
-				520C4D911DE37DE8007DC21A /* CaptureViewController.swift */,
-				520C4D921DE37DE8007DC21A /* CoreGraphics+Winchester.swift */,
-				520C4D931DE37DE8007DC21A /* GameViewControllerType.swift */,
-				520C4DB81DE39816007DC21A /* PromotionNode.swift */,
-				520C4D941DE37DE8007DC21A /* HistoryTraversable.swift */,
-				520C4D951DE37DE8007DC21A /* HistoryView.swift */,
-				520C4D971DE37DE8007DC21A /* NodeType.swift */,
-				520C4D881DE37DE8007DC21A /* Arrow.swift */,
-				520C4D981DE37DE8007DC21A /* Piece+Winchester.swift */,
-				520C4D991DE37DE8007DC21A /* PieceNodeCaptureProtocol.swift */,
-				520C4D9A1DE37DE8007DC21A /* PieceNodeDataSource.swift */,
 				520C4D9B1DE37DE8007DC21A /* Shims.swift */,
-				520C4D9C1DE37DE8007DC21A /* Square+Winchester.swift */,
 				520C4D7D1DE37DB3007DC21A /* Shared.h */,
 				520C4D7E1DE37DB3007DC21A /* Info.plist */,
 			);
@@ -385,6 +398,85 @@
 				520C4DE71DE4080E007DC21A /* Winchester.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		52FDDBD21DE5D7E1008E9621 /* BoardView */ = {
+			isa = PBXGroup;
+			children = (
+				52FDDBD31DE5DBD2008E9621 /* BoardViewType.swift */,
+				520C4D8B1DE37DE8007DC21A /* BoardView.swift */,
+				520C4D8E1DE37DE8007DC21A /* BoardViewProtocol.swift */,
+				52FDDBD71DE5DF3D008E9621 /* BoardView+BoardViewProtocol.swift */,
+				52FDDBD91DE5E03A008E9621 /* BoardView+Interaction.swift */,
+				520C4D9A1DE37DE8007DC21A /* PieceNodeDataSource.swift */,
+				520C4D991DE37DE8007DC21A /* PieceNodeCaptureProtocol.swift */,
+				520C4D941DE37DE8007DC21A /* HistoryTraversable.swift */,
+				52FDDBDB1DE5E074008E9621 /* BoardView+Promotion.swift */,
+			);
+			name = BoardView;
+			sourceTree = "<group>";
+		};
+		52FDDBDD1DE5E14C008E9621 /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				520C4D921DE37DE8007DC21A /* CoreGraphics+Winchester.swift */,
+				520C4D971DE37DE8007DC21A /* NodeType.swift */,
+				520C4D881DE37DE8007DC21A /* Arrow.swift */,
+				520C4D981DE37DE8007DC21A /* Piece+Winchester.swift */,
+				520C4D9C1DE37DE8007DC21A /* Square+Winchester.swift */,
+			);
+			name = Sprites;
+			sourceTree = "<group>";
+		};
+		52FDDBE01DE5E1E6008E9621 /* GameViewController */ = {
+			isa = PBXGroup;
+			children = (
+				520C4D931DE37DE8007DC21A /* GameViewControllerType.swift */,
+				52FDDBDE1DE5E1DA008E9621 /* GameViewControllerType+GameDelegate.swift */,
+				520C4D8D1DE37DE8007DC21A /* BoardViewDelegateType.swift */,
+				52FDDBE11DE5E27D008E9621 /* GameViewController+BoardViewDelegateType.swift */,
+				52FDDBE31DE5E2EF008E9621 /* HistoryViewDelegate.swift */,
+				52FDDBE51DE5E319008E9621 /* HistoryViewDataSource.swift */,
+			);
+			name = GameViewController;
+			sourceTree = "<group>";
+		};
+		52FDDBE71DE5E37B008E9621 /* HistoryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				520C4D951DE37DE8007DC21A /* HistoryView.swift */,
+				52FDDBE81DE5E391008E9621 /* HistoryViewControllerType.swift */,
+			);
+			name = HistoryViewController;
+			sourceTree = "<group>";
+		};
+		52FDDBEC1DE5E41A008E9621 /* BoardViewController */ = {
+			isa = PBXGroup;
+			children = (
+				52FDDBEA1DE5E406008E9621 /* BoardViewControllerType.swift */,
+				520C4D8A1DE37DE8007DC21A /* BoardInteractionProtocol.swift */,
+				520C4D8C1DE37DE8007DC21A /* BoardViewDelegate.swift */,
+			);
+			name = BoardViewController;
+			sourceTree = "<group>";
+		};
+		52FDDBED1DE5E7F1008E9621 /* Capturing */ = {
+			isa = PBXGroup;
+			children = (
+				520C4D901DE37DE8007DC21A /* CapturedPiecesView.swift */,
+				520C4D911DE37DE8007DC21A /* CapturedPiecesViewController.swift */,
+				52FDDBEE1DE5E828008E9621 /* PieceCapturingViewDelegate.swift */,
+			);
+			name = Capturing;
+			sourceTree = "<group>";
+		};
+		52FDDBF01DE5EA1A008E9621 /* Promotion */ = {
+			isa = PBXGroup;
+			children = (
+				52FDDBD51DE5DCA8008E9621 /* PromotionNodeProtocol.swift */,
+				520C4DB81DE39816007DC21A /* PromotionNode.swift */,
+			);
+			name = Promotion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -583,26 +675,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				520C4DAD1DE37DE8007DC21A /* NodeType.swift in Sources */,
+				52FDDBEB1DE5E406008E9621 /* BoardViewControllerType.swift in Sources */,
+				52FDDBD41DE5DBD2008E9621 /* BoardViewType.swift in Sources */,
 				520C4DA41DE37DE8007DC21A /* BoardViewProtocol.swift in Sources */,
+				52FDDBE91DE5E391008E9621 /* HistoryViewControllerType.swift in Sources */,
 				520C4DA91DE37DE8007DC21A /* GameViewControllerType.swift in Sources */,
 				520C4DAE1DE37DE8007DC21A /* Piece+Winchester.swift in Sources */,
 				520C4DB01DE37DE8007DC21A /* PieceNodeDataSource.swift in Sources */,
 				520C4DA21DE37DE8007DC21A /* BoardViewDelegate.swift in Sources */,
 				520C4DA51DE37DE8007DC21A /* Cache.swift in Sources */,
 				520C4D9D1DE37DE8007DC21A /* AppDataSource.swift in Sources */,
+				52FDDBDC1DE5E074008E9621 /* BoardView+Promotion.swift in Sources */,
 				520C4DB21DE37DE8007DC21A /* Square+Winchester.swift in Sources */,
 				520C4DA11DE37DE8007DC21A /* BoardView.swift in Sources */,
 				520C4DBC1DE3AAA0007DC21A /* CoreGraphics+Winchester.swift in Sources */,
+				52FDDBE21DE5E27D008E9621 /* GameViewController+BoardViewDelegateType.swift in Sources */,
 				520C4DAB1DE37DE8007DC21A /* HistoryView.swift in Sources */,
+				52FDDBDF1DE5E1DA008E9621 /* GameViewControllerType+GameDelegate.swift in Sources */,
 				520C4DA01DE37DE8007DC21A /* BoardInteractionProtocol.swift in Sources */,
 				520C4DAA1DE37DE8007DC21A /* HistoryTraversable.swift in Sources */,
+				52FDDBD61DE5DCA8008E9621 /* PromotionNodeProtocol.swift in Sources */,
 				520C4DB91DE39816007DC21A /* PromotionNode.swift in Sources */,
 				520C4DAF1DE37DE8007DC21A /* PieceNodeCaptureProtocol.swift in Sources */,
 				520C4DA31DE37DE8007DC21A /* BoardViewDelegateType.swift in Sources */,
-				520C4DA61DE37DE8007DC21A /* CapturedView.swift in Sources */,
+				52FDDBE41DE5E2EF008E9621 /* HistoryViewDelegate.swift in Sources */,
+				520C4DA61DE37DE8007DC21A /* CapturedPiecesView.swift in Sources */,
 				520C4D9E1DE37DE8007DC21A /* Arrow.swift in Sources */,
+				52FDDBEF1DE5E828008E9621 /* PieceCapturingViewDelegate.swift in Sources */,
+				52FDDBD81DE5DF3D008E9621 /* BoardView+BoardViewProtocol.swift in Sources */,
 				520C4DB11DE37DE8007DC21A /* Shims.swift in Sources */,
-				520C4DA71DE37DE8007DC21A /* CaptureViewController.swift in Sources */,
+				520C4DA71DE37DE8007DC21A /* CapturedPiecesViewController.swift in Sources */,
+				52FDDBE61DE5E319008E9621 /* HistoryViewDataSource.swift in Sources */,
+				52FDDBDA1DE5E03A008E9621 /* BoardView+Interaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

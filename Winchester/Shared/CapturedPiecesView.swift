@@ -1,5 +1,5 @@
 //
-//  CapturedView.swift
+//  CapturedPiecesView.swift
 //  Winchester
 //
 //  Created by Todd Olsen on 11/16/16.
@@ -9,13 +9,7 @@
 import SpriteKit
 import Endgame
 
-/// The delegate of a view that shows captures pieces.
-public protocol CapturingViewDelegate: class {
-    func capture(_ piece: Piece) -> Void
-    func resurrect(_ piece: Piece) -> Void
-}
-
-public final class CapturedView: SKView, CapturingViewDelegate {
+public final class CapturedPiecesView: SKView, PieceCapturingViewDelegate {
 
     var pieceSize: CGSize!
 
