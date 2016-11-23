@@ -115,9 +115,9 @@ class MessagesViewController: MSMessagesAppViewController, GameViewControllerDel
 
         }
 
-        vc.capturedViewController = storyboard!.instantiate(CapturedViewController.self)
-        if let capturedView = vc.capturedViewController?.view as? CapturedView {
-            vc.boardViewController?.boardView.capturingViewDelegate = capturedView
+        vc.capturedPiecesViewController = storyboard!.instantiate(CapturedPiecesViewController.self)
+        if let capturedPiecesView = vc.capturedPiecesViewController?.view as? CapturedPiecesView {
+            vc.boardViewController?.boardView.pieceCapturingViewDelegate = capturedPiecesView
         }
 
         vc.navigationItem.title = game.outcome.description

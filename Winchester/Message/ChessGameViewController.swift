@@ -44,7 +44,7 @@ final class GameViewController: UIViewController, GameViewControllerType {
     var boardViewController: B?
     var historyViewController: H?
 
-    var capturedViewController: CapturedViewController?
+    var capturedPiecesViewController: CapturedPiecesViewController?
 
     var availableTargetsCache: [Square] = []
 
@@ -79,9 +79,9 @@ final class GameViewController: UIViewController, GameViewControllerType {
             stackView.addArrangedSubview(historyViewController!.view)
             historyViewController!.didMove(toParentViewController: self)
 
-            addChildViewController(capturedViewController!)
-            stackView.addArrangedSubview(capturedViewController!.view)
-            capturedViewController!.didMove(toParentViewController: self)
+            addChildViewController(capturedPiecesViewController!)
+            stackView.addArrangedSubview(capturedPiecesViewController!.view)
+            capturedPiecesViewController!.didMove(toParentViewController: self)
 
             displayedDesign = newDesign
 
@@ -91,8 +91,7 @@ final class GameViewController: UIViewController, GameViewControllerType {
     func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) {
 
         normalize()
-
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(40)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(50)) {
             guard
                 let texture = self.boardViewController?.boardView.boardTexture
                 else { fatalError() }

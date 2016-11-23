@@ -65,9 +65,9 @@ public struct GameCoordinator {
 
         }
 
-        vc.capturedViewController = UIStoryboard.main.instantiate(CapturedViewController.self)
-        if let capturedView = vc.capturedViewController?.view as? CapturedView {
-            vc.boardViewController?.boardView.capturingViewDelegate = capturedView
+        vc.capturedPiecesViewController = UIStoryboard.main.instantiate(CapturedPiecesViewController.self)
+        if let capturedView = vc.capturedPiecesViewController?.view as? CapturedPiecesView {
+            vc.boardViewController?.boardView.pieceCapturingViewDelegate = capturedView
         }
 
         vc.navigationItem.title = game.outcome.description
