@@ -1,5 +1,5 @@
 //
-//  HistoryViewDataSource.swift
+//  GameViewController+BoardViewDelegateType.swift
 //  Winchester
 //
 //  Created by Todd Olsen on 11/23/16.
