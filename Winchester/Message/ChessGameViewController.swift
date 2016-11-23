@@ -52,6 +52,20 @@ final class GameViewController: UIViewController, GameViewControllerType {
 
     // Lifecycle
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        selectMostRecentMove()
+    }
+
+    func selectMostRecentMove() {
+
+        guard let game = game else { return }
+        let itemIndex: Int? = game.isEmpty ? nil : game.endIndex-1
+        game.setIndex(to: itemIndex)
+        historyViewController?.selectCell(at: itemIndex)
+
+    }
+
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let newDesign = Design(size: view.bounds.size)
@@ -70,13 +84,15 @@ final class GameViewController: UIViewController, GameViewControllerType {
             capturedViewController!.didMove(toParentViewController: self)
 
             displayedDesign = newDesign
-            
+
         }
     }
 
     func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) {
-        let delay = DispatchTime.now() + .seconds(1)
-        DispatchQueue.main.asyncAfter(deadline: delay) {
+
+        normalize()
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(40)) {
             guard
                 let texture = self.boardViewController?.boardView.boardTexture
                 else { fatalError() }
@@ -84,10 +100,6 @@ final class GameViewController: UIViewController, GameViewControllerType {
             self.delegate?.didExecuteTurn(with: image, gameViewController: self)
         }
 
-    }
-
-    func rotate(to orientation: BoardView.Orientation) {
-        boardViewController?.boardView.currentOrientation = orientation
     }
 
 }
@@ -126,8 +138,6 @@ final class BoardViewController: UIViewController, BoardViewControllerType  {
         boardView.present()
 
     }
-
-
 
 }
 
