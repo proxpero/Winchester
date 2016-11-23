@@ -75,8 +75,6 @@ class MessagesViewController: MSMessagesAppViewController, GameViewControllerDel
 
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController else { fatalError() }
 
-        vc.rotate(to: game.playerTurn == .white ? .bottom : .top)
-
         vc.game = game
         game.delegate = vc
         vc.delegate = self
@@ -89,6 +87,10 @@ class MessagesViewController: MSMessagesAppViewController, GameViewControllerDel
             boardViewController.boardView.updatePieces(with: game.currentPosition.board)
             boardViewController.delegate = vc
             vc.boardViewController = boardViewController
+
+            if game.playerTurn == .black {
+                boardViewController.boardView.currentOrientation = .top
+            }
 
         }
 
