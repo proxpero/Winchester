@@ -11,9 +11,6 @@ import Endgame
 
 public protocol BoardInteractionProtocol: class {
 
-    var boardView: BoardView { get }
-    weak var delegate: BoardViewDelegate? { get }
-
     func userDidSelect(_ square: Square)
     func userDidDragPiece(to location: CGPoint)
     func userDidRelease(on square: Square?)
@@ -24,7 +21,7 @@ public protocol BoardInteractionProtocol: class {
 
 }
 
-extension BoardInteractionProtocol {
+extension BoardInteractionProtocol where Self: BoardViewControllerType {
 
     private func normalize() {
         initialSquare = nil
