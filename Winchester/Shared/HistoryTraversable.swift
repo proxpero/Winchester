@@ -46,7 +46,7 @@ extension HistoryTraversable where Self: BoardViewProtocol, Self: PieceNodeDataS
         typealias TransactionTable = Dictionary<Piece.Node, Transaction>
 
         // Create a table of the pieceNodes that are affected by the change and their origins and final resting places.
-        func consolidate(items: [HistoryItem], direction: Direction) -> TransactionTable {
+        func consolidate(_ items: [HistoryItem], in direction: Direction) -> TransactionTable {
             var result: TransactionTable = [:]
 
             func findNode(for square: Square) -> Piece.Node {
@@ -150,10 +150,11 @@ extension HistoryTraversable where Self: BoardViewProtocol, Self: PieceNodeDataS
                 }
                 move(pieceNode, to: transaction.target)
             }
+            
         }
 
         // Move each piece in the transaction table to its right place.
-        for (pieceNode, transaction) in consolidate(items: items, direction: direction) {
+        for (pieceNode, transaction) in consolidate(items, in: direction) {
             // Add, remove, or move the piece based on its transaction.
             perform(transaction, on: pieceNode)
         }
