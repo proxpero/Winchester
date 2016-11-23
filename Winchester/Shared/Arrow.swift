@@ -31,7 +31,7 @@ extension Arrow {
 
         static let all: [Kind] = [.lastMove, .check, .attacking, .guarding, .user]
 
-        static let lastMoveName = "last-move-arrow"
+        static let lastMoveName = Kind._lastMove.name
         static let checkName = "checking-arrow"
         static let attackingName = "attacking-arrow"
         static let guardingName = "guarding-arrow"
@@ -135,7 +135,32 @@ extension Arrow {
         var origin: Square
         var target: Square
         var kind: Kind
-        
+
+        init(kind: Kind, origin: CGPoint, target: CGPoint, edge: CGFloat) {
+            self.origin = .a1
+            self.target = .a8
+            self.kind = kind
+
+            super.init()
+
+            let path = CGPath.arrow(
+                origin: origin,
+                target: target,
+                tailWidth: kind.tailWidth(for: edge),
+                headWidth: kind.headWidth(for: edge),
+                headLength: kind.headLength(for: edge),
+                originOffset: kind.originOffset(for: edge),
+                targetOffset: kind.targetOffset(for: edge)
+            )
+            self.path = path
+            self.zPosition = NodeType.arrow.zPosition
+            self.name = kind.name
+
+            self.fillColor = kind.fillColor
+            self.strokeColor = kind.strokeColor
+            
+        }
+
         init(move: Move, kind: Kind, path: CGPath) {
             self.origin = move.origin
             self.target = move.target
