@@ -60,7 +60,6 @@
 		5237A6631D970B7C00BAC16E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6611D970B7C00BAC16E /* Main.storyboard */; };
 		5240586F1D638483000A925C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5240586B1D638483000A925C /* LaunchScreen.storyboard */; };
 		524058CA1D63FA64000A925C /* WinchesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* WinchesterTests.swift */; };
-		524A14E11DC788ED003BC9AC /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A14E01DC788ED003BC9AC /* PromotionViewController.swift */; };
 		528E212D1DC17E9800C45E17 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E211E1DC17E9800C45E17 /* AppCoordinator.swift */; };
 		528E212E1DC17E9800C45E17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E211F1DC17E9800C45E17 /* AppDelegate.swift */; };
 		528E21301DC17E9800C45E17 /* Game+Endgame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21211DC17E9800C45E17 /* Game+Endgame.swift */; };
@@ -196,7 +195,6 @@
 		524058A41D63F353000A925C /* WinchesterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WinchesterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		524058CD1D63FA92000A925C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524A14DD1DC6CA7B003BC9AC /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		524A14E01DC788ED003BC9AC /* PromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionViewController.swift; path = iOS/PromotionViewController.swift; sourceTree = SOURCE_ROOT; };
 		52647CBC1DC1849200E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug/Endgame.framework"; sourceTree = "<group>"; };
 		52647CC01DC184DD00E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-appletvsimulator/Endgame.framework"; sourceTree = "<group>"; };
 		526B73B71DC8DAE600D1AE0F /* Winchester.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Winchester.playground; path = ../Winchester.playground; sourceTree = "<group>"; };
@@ -336,7 +334,6 @@
 				528E212A1DC17E9800C45E17 /* TitleViewController.swift */,
 				528E21211DC17E9800C45E17 /* Game+Endgame.swift */,
 				52E325001DC282CF001FE392 /* SettingsViewController.swift */,
-				524A14E01DC788ED003BC9AC /* PromotionViewController.swift */,
 				528E21291DC17E9800C45E17 /* ShowGameCell.swift */,
 				528E212B1DC17E9800C45E17 /* UIImage+View.swift */,
 				528E212C1DC17E9800C45E17 /* UISwipeGestureRecognizer+Extensions.swift */,
@@ -742,7 +739,6 @@
 				528E212D1DC17E9800C45E17 /* AppCoordinator.swift in Sources */,
 				52E325011DC282CF001FE392 /* SettingsViewController.swift in Sources */,
 				528E21321DC17E9800C45E17 /* GameViewController.swift in Sources */,
-				524A14E11DC788ED003BC9AC /* PromotionViewController.swift in Sources */,
 				528E21371DC17E9800C45E17 /* RootCollectionViewController.swift in Sources */,
 				520C4DB51DE38E52007DC21A /* HistoryViewController.swift in Sources */,
 				528E213A1DC17E9800C45E17 /* UIImage+View.swift in Sources */,
