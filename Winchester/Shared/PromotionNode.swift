@@ -9,10 +9,6 @@
 import SpriteKit
 import Endgame
 
-public protocol PromotionNodeProtocol {
-    func presentPromotion(for color: Color, completion: @escaping (Piece) -> Void)
-}
-
 public final class PromotionNode: SKSpriteNode {
 
     private let pieceColor: Color
@@ -30,7 +26,7 @@ public final class PromotionNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupPieceNodes() {
+    private func setupPieceNodes() {
 
         let inset = CGSize(width: size.width*0.8, height: size.height*0.8)
         let pieceSize = CGSize(width: inset.width/4, height: inset.height/4)
@@ -61,7 +57,7 @@ public final class PromotionNode: SKSpriteNode {
         
     }
 
-    func handlePromotion(_ recognizer: UITapGestureRecognizer) {
+    internal func handlePromotion(_ recognizer: UITapGestureRecognizer) {
         guard let scene = scene, let view = scene.view as? BoardView else { return }
         let location = scene.convertPoint(fromView: recognizer.location(in: view))
         for pieceNode in children.flatMap({ $0 as? Piece.Node }) {
