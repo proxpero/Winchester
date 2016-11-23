@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window else { return false }
         coordinator = ApplicationCoordinator(
             window: window
-//            model: AppDataSource()
         )
         coordinator?.start()
         return true
