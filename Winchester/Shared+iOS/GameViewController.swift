@@ -33,9 +33,9 @@ struct Design: Equatable {
 
 }
 
-final class GameViewController: UIViewController, GameViewControllerType {
-    typealias B = BoardViewController
-    typealias H = HistoryViewController
+public final class GameViewController: UIViewController, GameViewControllerType {
+    public typealias B = BoardViewController
+    public typealias H = HistoryViewController
 
 
     var didTapSettingsButton: () -> () = { }
@@ -44,13 +44,13 @@ final class GameViewController: UIViewController, GameViewControllerType {
 
     @IBOutlet var stackView: UIStackView!
 
-    var game: Game?
+    public var game: Game?
 
-    var boardViewController: B?
-    var historyViewController: H?
-    var capturedPiecesViewController: CapturedPiecesViewController?
+    public var boardViewController: B?
+    public var historyViewController: H?
+    public var capturedPiecesViewController: CapturedPiecesViewController?
 
-    var availableTargetsCache: [Square] = []
+    public var availableTargetsCache: [Square] = []
 
     @IBAction func settingsButtonAction(_ sender: UIBarButtonItem) {
         didTapSettingsButton()

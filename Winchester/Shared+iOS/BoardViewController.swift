@@ -11,25 +11,25 @@ import SpriteKit
 import Endgame
 import Shared
 
-final class BoardViewController: ViewController, BoardViewControllerType {
+public final class BoardViewController: ViewController, BoardViewControllerType {
 
     var tapGesture: UITapGestureRecognizer!
     var panGesture: UIPanGestureRecognizer!
-    weak var delegate: BoardViewDelegate?
+    weak public var delegate: BoardViewDelegate?
 
-    var boardView: BoardView {
+    public var boardView: BoardView {
         guard let boardView = view as? BoardView else {
             fatalError("\(self) requires its view to be a \(BoardView.self)")
         }
         return boardView
     }
 
-    var state: BoardView.InteractionState = .dormant
-    var initialSquare: Square? = nil
-    weak var activeNode: Piece.Node? = nil
+    public var state: BoardView.InteractionState = .dormant
+    public var initialSquare: Square? = nil
+    weak public var activeNode: Piece.Node? = nil
 
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         tapGesture = UITapGestureRecognizer(target: self, action: .userDidTap)

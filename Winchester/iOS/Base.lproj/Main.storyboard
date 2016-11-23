@@ -195,7 +195,7 @@
         <!--Game-->
         <scene sceneID="l6v-zF-CR0">
             <objects>
-                <viewController storyboardIdentifier="GameViewController" title="Game" id="Zuu-iC-iUE" customClass="GameViewController" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameViewController" title="Game" id="Zuu-iC-iUE" customClass="GameViewController" customModule="Shared_iOS" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="thj-Bv-yC3"/>
                         <viewControllerLayoutGuide type="bottom" id="M4c-9T-tDy"/>
@@ -297,7 +297,7 @@
         <!--Board View Controller-->
         <scene sceneID="64k-Y3-JWX">
             <objects>
-                <viewController storyboardIdentifier="BoardViewController" id="iNc-xJ-9Rk" customClass="BoardViewController" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BoardViewController" id="iNc-xJ-9Rk" customClass="BoardViewController" customModule="Shared_iOS" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DCI-z1-juO"/>
                         <viewControllerLayoutGuide type="bottom" id="maT-Pd-Mdp"/>
@@ -560,101 +560,11 @@
             </objects>
             <point key="canvasLocation" x="2550" y="44"/>
         </scene>
-        <!--Promotion View Controller-->
-        <scene sceneID="089-ei-Ejd">
-            <objects>
-                <viewController storyboardIdentifier="PromotionViewController" id="oKT-HH-ihD" customClass="PromotionViewController" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="unk-Qc-r1k">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4ha-Y3-iBk">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IkC-N6-iO8">
-                                    <rect key="frame" x="20" y="165.5" width="335" height="335"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="zvF-Ma-oFj">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="335"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="QEi-qP-8kP">
-                                                    <rect key="frame" x="0.0" y="0.0" width="167" height="335"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cB6-Uh-EDb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="167" height="167"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="cB6-Uh-EDb" secondAttribute="height" multiplier="1:1" id="rEi-Vu-I1P"/>
-                                                            </constraints>
-                                                            <state key="normal" image="WhiteQueen"/>
-                                                            <connections>
-                                                                <action selector="promotionSelected:" destination="oKT-HH-ihD" eventType="touchUpInside" id="R4l-pa-cbh"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6W-sZ-sCB">
-                                                            <rect key="frame" x="0.0" y="168" width="167" height="167"/>
-                                                            <state key="normal" image="WhiteBishop"/>
-                                                            <connections>
-                                                                <action selector="promotionSelected:" destination="oKT-HH-ihD" eventType="touchUpInside" id="7PA-S0-Yfr"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="S6p-6J-Aj1">
-                                                    <rect key="frame" x="168" y="0.0" width="167" height="335"/>
-                                                    <subviews>
-                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rf-gB-Ryx">
-                                                            <rect key="frame" x="0.0" y="0.0" width="167" height="167"/>
-                                                            <state key="normal" image="WhiteRook"/>
-                                                            <connections>
-                                                                <action selector="promotionSelected:" destination="oKT-HH-ihD" eventType="touchUpInside" id="xDE-9F-OHu"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJk-FT-HPS">
-                                                            <rect key="frame" x="0.0" y="168" width="167" height="167"/>
-                                                            <state key="normal" image="WhiteKnight"/>
-                                                            <connections>
-                                                                <action selector="promotionSelected:" destination="oKT-HH-ihD" eventType="touchUpInside" id="ktY-6f-DWl"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        </stackView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="zvF-Ma-oFj" secondAttribute="trailing" id="6x9-Mz-XFh"/>
-                                        <constraint firstAttribute="bottom" secondItem="zvF-Ma-oFj" secondAttribute="bottom" id="PBb-ch-jYJ"/>
-                                        <constraint firstItem="zvF-Ma-oFj" firstAttribute="top" secondItem="IkC-N6-iO8" secondAttribute="top" id="UW5-db-Ln9"/>
-                                        <constraint firstItem="zvF-Ma-oFj" firstAttribute="leading" secondItem="IkC-N6-iO8" secondAttribute="leading" id="vbe-zV-yLw"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="IkC-N6-iO8" secondAttribute="trailing" constant="20" symbolic="YES" id="CG9-49-qgB"/>
-                                <constraint firstItem="IkC-N6-iO8" firstAttribute="centerY" secondItem="4ha-Y3-iBk" secondAttribute="centerY" id="Oun-Rb-24O"/>
-                                <constraint firstItem="IkC-N6-iO8" firstAttribute="leading" secondItem="4ha-Y3-iBk" secondAttribute="leading" constant="20" symbolic="YES" id="XcI-wx-dhX"/>
-                            </constraints>
-                        </view>
-                        <blurEffect style="light"/>
-                    </visualEffectView>
-                    <connections>
-                        <outlet property="bishopButton" destination="d6W-sZ-sCB" id="6P8-88-qGm"/>
-                        <outlet property="knightButton" destination="lJk-FT-HPS" id="cVp-31-UAg"/>
-                        <outlet property="queenButton" destination="cB6-Uh-EDb" id="CqO-hT-F9i"/>
-                        <outlet property="rookButton" destination="8rf-gB-Ryx" id="oZ2-ub-aaO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EHD-JY-cs3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3274.4000000000001" y="43.628185907046479"/>
-        </scene>
         <!--History View Controller-->
         <scene sceneID="j8s-wE-4f8">
             <objects>
-                <collectionViewController storyboardIdentifier="HistoryViewController" clearsSelectionOnViewWillAppear="NO" id="2Y4-G0-7JH" customClass="HistoryViewController" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Dnm-CP-oqf">
+                <collectionViewController storyboardIdentifier="HistoryViewController" clearsSelectionOnViewWillAppear="NO" id="2Y4-G0-7JH" customClass="HistoryViewController" customModule="Shared_iOS" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Dnm-CP-oqf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -665,7 +575,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HistoryCell" id="UiL-qL-2ue" customClass="HistoryCell" customModule="Winchester" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HistoryCell" id="UiL-qL-2ue" customClass="HistoryCell" customModule="Shared_iOS">
                                 <rect key="frame" x="0.0" y="-3" width="61" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -733,10 +643,7 @@
         <image name="BlackQueen" width="96" height="96"/>
         <image name="Cog" width="18" height="18"/>
         <image name="Rotation" width="50" height="50"/>
-        <image name="WhiteBishop" width="96" height="96"/>
-        <image name="WhiteKnight" width="96" height="96"/>
         <image name="WhiteQueen" width="96" height="96"/>
-        <image name="WhiteRook" width="96" height="96"/>
         <image name="create" width="66" height="100"/>
     </resources>
 </document>

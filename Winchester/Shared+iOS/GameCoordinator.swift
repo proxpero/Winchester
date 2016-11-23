@@ -16,16 +16,16 @@ public struct GameCoordinator {
     private let navigationController: UINavigationController
     private let game: Game
     private let isUserGame: Bool
-    private let settingsViewCoordinator: SettingsViewCoordinator
+//    private let settingsViewCoordinator: SettingsViewCoordinator
 
-    init(for game: Game, with navigationController: UINavigationController, isUserGame: Bool = false) {
+    public init(for game: Game, with navigationController: UINavigationController, isUserGame: Bool = false) {
         self.navigationController = navigationController
         self.game = game
         self.isUserGame = isUserGame
-        self.settingsViewCoordinator = SettingsViewCoordinator(with: game)
+//        self.settingsViewCoordinator = SettingsViewCoordinator(with: game)
     }
 
-    mutating func start() {
+    public mutating func start() {
 
         let vc = UIStoryboard.main.instantiate(GameViewController.self)
         vc.game = game
@@ -72,15 +72,15 @@ public struct GameCoordinator {
 
         vc.navigationItem.title = game.outcome.description
 
-        let settingsViewDelegate = SettingsViewCoordinator.Delegate(
-            game: game,
-            settingsViewDidRotateBoard: vc.boardViewController!.boardView.rotateView
-        )
-        vc.didTapSettingsButton = settingsViewCoordinator.start(
-            with: settingsViewDelegate,
-            navigationController: navigationController,
-            orientation: { vc.boardViewController!.boardView.currentOrientation }
-        )
+//        let settingsViewDelegate = SettingsViewCoordinator.Delegate(
+//            game: game,
+//            settingsViewDidRotateBoard: vc.boardViewController!.boardView.rotateView
+//        )
+//        vc.didTapSettingsButton = settingsViewCoordinator.start(
+//            with: settingsViewDelegate,
+//            navigationController: navigationController,
+//            orientation: { vc.boardViewController!.boardView.currentOrientation }
+//        )
 
         vc.didTapBackButton = backButtonHandler
         navigationController.pushViewController(vc, animated: true)

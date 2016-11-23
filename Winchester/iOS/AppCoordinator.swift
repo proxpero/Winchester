@@ -9,6 +9,7 @@
 import UIKit
 import Endgame
 import Shared
+import Shared_iOS
 
 struct ApplicationCoordinator {
 

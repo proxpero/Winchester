@@ -14,16 +14,16 @@ let height: CGFloat = 44.0
 
 import UIKit
 
-final class HistoryViewController: UICollectionViewController, HistoryViewControllerType {
+public final class HistoryViewController: UICollectionViewController, HistoryViewControllerType {
 
-    weak var delegate: HistoryViewDelegate?
-    weak var dataSource: HistoryViewDataSource?
+    weak public var delegate: HistoryViewDelegate?
+    weak public var dataSource: HistoryViewDataSource?
 
 }
 
 extension HistoryViewController {
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         view.heightAnchor.constraint(equalToConstant: height).isActive = true
     }
 
@@ -51,16 +51,16 @@ extension HistoryViewController: UICollectionViewDelegateFlowLayout {
 
     // MARK: - UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    override public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
         return dataSource.cellCount()
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
         let cell = collectionView.dequeue(HistoryCell.self, at: indexPath)
         dataSource.itemType(at: indexPath).configureCell(cell: cell)
@@ -69,12 +69,12 @@ extension HistoryViewController: UICollectionViewDelegateFlowLayout {
 
     // MARK: - UICollectionViewDelegate
 
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    override public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
         return dataSource.itemType(at: indexPath).shouldBeSelected
     }
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         let itemIndex = dataSource.itemIndex(for: indexPath)
@@ -83,7 +83,7 @@ extension HistoryViewController: UICollectionViewDelegateFlowLayout {
 
     // MARK: - UICollectionViewDelegateFlowLayout
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
         return CGSize(width: dataSource.itemType(at: indexPath).width, height: height)
     }
