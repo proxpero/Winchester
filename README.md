@@ -4,6 +4,7 @@ Winchester is a cross-platform app framework which uses [Endgame](https://github
 
 Features:
 
+* iMessage App support.
 * History scroll: a clear and easy way to quickly move forward and backward through a game's moves.
 * Both "two tap" and "drag-and-drop" move gestures.
 * Captured pieces view.
@@ -23,6 +24,5 @@ Coming soon:
 * Puzzle solving, a large selection varying both in difficulty and application.
 * EPD editing.
 * The Game Center support.
-* iMessage App support.
 * macOS.
 * tvOS.
