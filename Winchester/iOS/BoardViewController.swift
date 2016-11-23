@@ -39,9 +39,6 @@ final class BoardViewController: ViewController, BoardViewControllerType {
 
         view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
         boardView.present()
-//        let scene = SKScene()
-//        boardView.presentScene(scene)
-//        boardView.present(Square.all, as: .normal)
 
     }
 
