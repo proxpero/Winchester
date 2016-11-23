@@ -48,7 +48,7 @@ final class GameViewController: UIViewController, GameViewControllerType {
 
     var boardViewController: B?
     var historyViewController: H?
-    var capturedViewController: CapturedViewController?
+    var capturedPiecesViewController: CapturedPiecesViewController?
 
     var availableTargetsCache: [Square] = []
 
@@ -77,9 +77,9 @@ final class GameViewController: UIViewController, GameViewControllerType {
             stackView.addArrangedSubview(historyViewController!.view)
             historyViewController!.didMove(toParentViewController: self)
 
-            addChildViewController(capturedViewController!)
-            stackView.addArrangedSubview(capturedViewController!.view)
-            capturedViewController!.didMove(toParentViewController: self)
+            addChildViewController(capturedPiecesViewController!)
+            stackView.addArrangedSubview(capturedPiecesViewController!.view)
+            capturedPiecesViewController!.didMove(toParentViewController: self)
             
             displayedDesign = newDesign
             
