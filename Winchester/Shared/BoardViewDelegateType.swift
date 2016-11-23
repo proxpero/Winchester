@@ -81,6 +81,8 @@ extension BoardViewDelegateType {
         if isPromotion {
             boardView.presentPromotion(for: piece.color) { promotion in
                 do {
+                    boardView.add(boardView.pieceNode(for: promotion), at: target)
+                    boardView.remove(pieceNode)
                     try game.execute(move: move, promotion: promotion)
                 } catch {
                     fatalError("Could not execute move \(move) with promotion: \(promotion)")

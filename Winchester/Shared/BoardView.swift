@@ -38,6 +38,18 @@ public final class BoardScene: SKScene {
         scaleMode = .resizeFill
     }
 
+    func blur(with duration: Double, completion: @escaping () -> Void) {
+
+        let blur = CIFilter(name: "CIGaussianBlur", withInputParameters: ["inputRadius": 1.0])
+        scene?.filter = blur
+        scene?.shouldEnableEffects = true
+        let blurMax: CGFloat = 45
+        let blurAction = SKAction.customAction(withDuration: duration) { (node:SKNode!, elapsed: CGFloat) -> Void in
+            blur?.setValue((CGFloat(elapsed) / CGFloat(duration))*blurMax, forKey: "inputRadius")
+        }
+        scene?.run(blurAction, completion: completion)
+    }
+
 }
 
 public final class BoardView: SKView, BoardViewType {
@@ -71,13 +83,28 @@ extension BoardView {
 
     public func presentPromotion(for color: Color, completion: @escaping (Piece) -> Void) {
 
-        let promotionNode = PromotionNode(color: color, size: self.frame.size, completion: completion)
+        guard let scene = scene as? BoardScene else { fatalError() }
+        let gesture = UITapGestureRecognizer()
+        scene.blur(with: 0.2) {
 
-        promotionNode.alpha = 0.0
+            let promotionNode = PromotionNode(pieceColor: color, background: self.boardTexture) { promotion in
+                self.removeGestureRecognizer(gesture)
+                completion(promotion)
+            }
+            gesture.addTarget(promotionNode, action: .handlePromotion)
+            self.addGestureRecognizer(gesture)
+            scene.addChild(promotionNode)
+            scene.filter = nil
+
+        }
+
     }
 
 }
 
+fileprivate extension Selector {
+    static let handlePromotion = #selector(PromotionNode.handlePromotion(_:))
+}
 
 extension BoardView {
 
@@ -116,7 +143,7 @@ extension BoardView {
             return [.bottom, .right, .top, .left]
         }
 
-        func angle() -> CGFloat {
+        public func angle() -> CGFloat {
             let multiplier: CGFloat
             switch self {
             case .bottom: multiplier = 0.0
@@ -141,18 +168,12 @@ extension BoardView {
 }
 
 extension BoardView {
-
     public func rotateView() {
         currentOrientation.rotate()
         SKView.animate(withDuration: 0.3) {
             self.transform = self.transform.rotated(by: .pi * -0.5)
         }
     }
-
-    public func rotate(to orientation: Orientation) {
-
-    }
-
 }
 
 extension BoardView: BoardViewProtocol {

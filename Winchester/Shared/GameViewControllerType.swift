@@ -40,13 +40,28 @@ extension GameViewControllerType {
     }
 
     public func game(_ game: Game, didTraverse items: [HistoryItem], in direction: Direction) {
-        guard let boardView = boardViewController?.view as? BoardView else { fatalError("Programmer Error: Expected a boardView") }
-        boardView.traverse(items, in: direction)
-        boardViewDidNormalizeActivity(boardView)
+        normalize()
+//        guard let boardView = boardViewController?.view as? BoardView else { fatalError("Programmer Error: Expected a boardView") }
+//        boardView.traverse(items, in: direction)
+//        boardViewDidNormalizeActivity(boardView)
     }
 
-    public func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) { }
+    public func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) {
+        normalize()
+//        guard let boardView = boardViewController?.view as? BoardView else { fatalError("Programmer Error: Expected a boardView") }
+//        let delay = DispatchTime.now() + .milliseconds(30)
+//        DispatchQueue.main.asyncAfter(deadline: delay) {
+//            self.boardViewDidNormalizeActivity(boardView)
+//        }
+    }
 
+    public func normalize() {
+        guard let boardView = boardViewController?.view as? BoardView else { fatalError("Programmer Error: Expected a boardView") }
+        let delay = DispatchTime.now() + .milliseconds(30)
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            self.boardViewDidNormalizeActivity(boardView)
+        }
+    }
 }
 
 // MARK: HistoryViewDelegate

@@ -13,78 +13,67 @@ public protocol PromotionNodeProtocol {
     func presentPromotion(for color: Color, completion: @escaping (Piece) -> Void)
 }
 
-public enum PromotionType: Int {
-    case queen
-    case rook
-    case bishop
-    case knight
-
-    func piece(for color: Color) -> Piece {
-        switch  self {
-        case .queen: return Piece(queen: color)
-        case .rook: return Piece(rook: color)
-        case .bishop: return Piece(bishop: color)
-        case .knight: return Piece(knight: color)
-        }
-    }
-}
-
 public final class PromotionNode: SKSpriteNode {
 
-    private let queenNode: Piece.Node
-    private let rookNode: Piece.Node
-    private let bishopNode: Piece.Node
-    private let knightNode: Piece.Node
-
+    private let pieceColor: Color
     private let completion: (Piece) -> Void
-    private let promotingColor: Color
 
-    public init(color: Color,  size: CGSize, completion: @escaping (Piece) -> Void) {
-        self.promotingColor = color
+    public init(pieceColor: Color, background: SKTexture, completion: @escaping (Piece) -> Void) {
+        self.pieceColor = pieceColor
         self.completion = completion
-
-        let inset = CGSize(width: size.width*0.9, height: size.height*0.9)
-        let pieceSize = CGSize(width: inset.width/4, height: inset.height/4)
-        self.queenNode = Piece.Node(piece: Piece(queen: color), size: pieceSize)
-        self.rookNode = Piece.Node(piece: Piece(rook: color), size: pieceSize)
-        self.bishopNode = Piece.Node(piece: Piece(bishop: color), size: pieceSize)
-        self.knightNode = Piece.Node(piece: Piece(knight: color), size: pieceSize)
-
-
-        super.init(texture: nil, color: .clear, size: size)
-
-        addChild(queenNode)
-        addChild(rookNode)
-        addChild(bishopNode)
-        addChild(knightNode)
-
-        let offset = inset.width/4.0
-        queenNode.position = CGPoint(x: position.x-offset, y: position.y+offset)
-        rookNode.position = CGPoint(x: position.x+offset, y: position.y+offset)
-        bishopNode.position = CGPoint(x: position.x-offset, y: position.y-offset)
-        knightNode.position = CGPoint(x: position.x+offset, y: position.y-offset)
-
-        queenNode.zPosition = zPosition + 10
-        rookNode.zPosition = zPosition + 10
-        bishopNode.zPosition = zPosition + 10
-        knightNode.zPosition = zPosition + 10
-
+        super.init(texture: background, color: .clear, size: background.size())
+        zPosition = 900
+        setupPieceNodes()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard
-            let touch = touches.first,
-            let node = [queenNode, rookNode, bishopNode, knightNode].filter({ $0.contains(touch.location(in: self)) }).first
-            else { return }
-        let promotion = node.piece()
-        completion(promotion)
-        self.run(SKAction.fadeOut(withDuration: 0.2)) {
-            self.removeFromParent()
+    func setupPieceNodes() {
+
+        let inset = CGSize(width: size.width*0.8, height: size.height*0.8)
+        let pieceSize = CGSize(width: inset.width/4, height: inset.height/4)
+        let offset = inset.width/6.0
+
+        let pieces = [
+            Piece.Kind.queen,
+            Piece.Kind.rook,
+            Piece.Kind.bishop,
+            Piece.Kind.knight
+        ]
+
+        let positions = [
+            CGPoint(x: position.x-offset, y: position.y+offset),
+            CGPoint(x: position.x+offset, y: position.y+offset),
+            CGPoint(x: position.x-offset, y: position.y-offset),
+            CGPoint(x: position.x+offset, y: position.y-offset)
+        ]
+
+        let sequence = zip(pieces.map { Piece(kind: $0, color: pieceColor) }, positions)
+
+        for (piece, position) in sequence {
+            let node = Piece.Node(piece: piece, size: pieceSize)
+            node.position = position
+            node.zPosition = zPosition + 20
+            addChild(node)
         }
+        
     }
 
+    func handlePromotion(_ recognizer: UITapGestureRecognizer) {
+        guard let scene = scene, let view = scene.view as? BoardView else { return }
+        let location = scene.convertPoint(fromView: recognizer.location(in: view))
+        for pieceNode in children.flatMap({ $0 as? Piece.Node }) {
+            if pieceNode.contains(location) {
+                let promotion = pieceNode.piece()
+                completion(promotion)
+                run(SKAction.fadeOut(withDuration: 0.2)) {
+                    self.removeFromParent()
+                }
+                return
+            }
+        }
+    }
 }
+
