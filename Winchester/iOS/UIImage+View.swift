@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIImage {
+    
     convenience init?(view: UIView) {
         UIGraphicsBeginImageContext(view.frame.size)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
@@ -20,4 +21,12 @@ extension UIImage {
         UIGraphicsEndImageContext()
         self.init(cgImage: cgImage)
     }
+
+    func rotated() -> UIImage {
+        let imageView = UIImageView(image: self)
+        imageView.transform = CGAffineTransform(rotationAngle: .pi * 2.0)
+        let rotated = UIImage(view: imageView)!
+        return rotated
+    }
+
 }
