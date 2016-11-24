@@ -120,8 +120,10 @@ extension RootCollectionViewController {
 
         func configureShowPuzzleCell(cell: UICollectionViewCell) -> (Playable) -> () {
             guard let cell = cell as? ShowPuzzleCell else { fatalError("Expected a `ShowPuzzleCell`") }
+            print(cell)
             return { puzzle in
                 guard let puzzle = puzzle as? Puzzle else { fatalError("Expected a puzzle") }
+                print(puzzle)
             }
         }
     }

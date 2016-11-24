@@ -47,14 +47,16 @@ struct ApplicationCoordinator {
 
         func _presentUserGame(game: Game) {
             game.undoAll()
-            var coordinator = GameCoordinator(for: game, with: _navigationController, isUserGame: true)
-            coordinator.start()
+            var coordinator = GameCoordinator(for: game, isUserGame: true)
+            let vc = coordinator.loadViewController()
+            _navigationController.pushViewController(vc, animated: true)
         }
 
         func _presentFavoriteGame(game: Game) {
             game.undoAll()
-            var coordinator = GameCoordinator(for: game, with: _navigationController)
-            coordinator.start()
+            var coordinator = GameCoordinator(for: game)
+            let vc = coordinator.loadViewController()
+            _navigationController.pushViewController(vc, animated: true)
         }
 
         func _presentPuzzle(puzzle: Puzzle) {
