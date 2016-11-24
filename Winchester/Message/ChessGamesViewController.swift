@@ -9,14 +9,14 @@
 import UIKit
 import Endgame
 
-final class ChessGamesViewController: UICollectionViewController {
+final class GameCollectionViewController: UICollectionViewController {
 
     enum Item {
         case game(Game)
         case create
     }
 
-    weak var delegate: ChessGamesViewControllerDelegate?
+    weak var delegate: GameCollectionViewControllerDelegate?
 
     var opponent: Opponent? = nil {
         didSet {
@@ -33,7 +33,7 @@ final class ChessGamesViewController: UICollectionViewController {
 
 }
 
-extension ChessGamesViewController {
+extension GameCollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -43,7 +43,7 @@ extension ChessGamesViewController {
         let item = items[indexPath.row]
         switch item {
         case .create:
-            delegate?.chessGamesViewControllerDidSelectCreate(self)
+            delegate?.gameCollectionViewControllerDidSelectCreate(self)
         default:
             break
         }
@@ -56,12 +56,12 @@ extension ChessGamesViewController {
         case .game(let game):
             return dequeueGameCell(for: game, at: indexPath)
         case .create:
-            return collectionView.dequeueReusableCell(CreateCell.self, at: indexPath)
+            return collectionView.dequeueCell(ofType: CreateCell.self, at: indexPath)
         }
     }
 
     private func dequeueGameCell(for game: Game, at indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView?.dequeueReusableCell(GameCell.self, at: indexPath) else { fatalError() }
+        guard let cell = collectionView?.dequeueCell(ofType: GameCell.self, at: indexPath) else { fatalError() }
 
         // Use a placeholder sticker while we fetch the real one from the cache.
         let cache = GameImageCache.cache
@@ -79,14 +79,14 @@ extension ChessGamesViewController {
 
 }
 
-protocol ChessGamesViewControllerDelegate: class {
+protocol GameCollectionViewControllerDelegate: class {
     /// Called when a user chooses to play a new chess game. 
-    func chessGamesViewControllerDidSelectCreate(_ controller: ChessGamesViewController)
+    func gameCollectionViewControllerDidSelectCreate(_ controller: GameCollectionViewController)
 }
 
 extension UICollectionView {
 
-    func dequeueReusableCell<A: UICollectionViewCell>(_ type: A.Type, at indexPath: IndexPath) -> A {
+    func dequeueCell<A: UICollectionViewCell>(ofType type: A.Type, at indexPath: IndexPath) -> A {
         guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing: type), for: indexPath) as? A else { fatalError("Could not dequeue cell.") }
         return cell
     }
