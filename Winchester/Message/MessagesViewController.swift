@@ -10,8 +10,9 @@ import UIKit
 import Messages
 import Endgame
 import Shared
+import Shared_iOS
 
-class MessagesViewController: MSMessagesAppViewController, GameViewControllerDelegate {
+class MessagesViewController: MSMessagesAppViewController, GameDelegate {
 
     override func willBecomeActive(with conversation: MSConversation) {
         super.willBecomeActive(with: conversation)
@@ -32,7 +33,7 @@ class MessagesViewController: MSMessagesAppViewController, GameViewControllerDel
         let controller: UIViewController
         switch presentationStyle {
         case .compact:
-            controller = instantiateChessGamesViewController(with: conversation)
+            controller = instantiateGameCollectionViewController(with: conversation)
         case .expanded:
             controller = instantiateGameViewController(with: conversation)
         }
@@ -59,73 +60,31 @@ class MessagesViewController: MSMessagesAppViewController, GameViewControllerDel
 
     }
 
-    private func instantiateChessGamesViewController(with conversation: MSConversation) -> ChessGamesViewController {
+    private func instantiateGameCollectionViewController(with conversation: MSConversation) -> GameCollectionViewController {
 
         let interlocutorID = conversation.remoteParticipantIdentifiers
             .map { $0.uuidString }
             .reduce("") { $0 + $1 }
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ChessGamesViewController") as? ChessGamesViewController else { fatalError() }
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "GameCollectionViewController") as? GameCollectionViewController else { fatalError() }
         vc.opponent = Opponent(id: interlocutorID)
         vc.delegate = self
         return vc
     }
 
     private func instantiateGameViewController(with conversation: MSConversation) -> UIViewController {
+
         let game = Game(message: conversation.selectedMessage) ?? Game()
-
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController else { fatalError() }
-
-        vc.game = game
-        game.delegate = vc
-        vc.delegate = self
-
-        // MARK: BoardViewController
-
-        do {
-
-            let boardViewController = storyboard!.instantiate(BoardViewController.self)
-            boardViewController.boardView.updatePieces(with: game.currentPosition.board)
-            boardViewController.delegate = vc
-            vc.boardViewController = boardViewController
-
-            if game.playerTurn == .black {
-                boardViewController.boardView.currentOrientation = .top
-            }
-
+        var coordinator = GameCoordinator(for: game, isUserGame: true)
+        let vc = coordinator.loadViewController()
+        game.delegate = self
+        if game.playerTurn == .black {
+            vc.boardViewController?.boardView.currentOrientation = .top
         }
-
-        // MARK: HistoryViewController
-
-        do {
-
-            let historyViewController = storyboard!.instantiate(HistoryViewController.self)
-            historyViewController.delegate = vc
-            historyViewController.dataSource = vc
-            let currentIndexPath = vc.indexPath(for: game.currentIndex)
-            historyViewController.collectionView?.selectItem(at: currentIndexPath, animated: false, scrollPosition: .centeredHorizontally)
-            vc.historyViewController = historyViewController
-
-            for direction in [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right] {
-                vc.view.addSwipeGestureRecognizer(
-                    target: historyViewController,
-                    action: .handleSwipe,
-                    direction: direction
-                )
-            }
-
-        }
-
-        vc.capturedPiecesViewController = storyboard!.instantiate(CapturedPiecesViewController.self)
-        if let capturedPiecesView = vc.capturedPiecesViewController?.view as? CapturedPiecesView {
-            vc.boardViewController?.boardView.pieceCapturingViewDelegate = capturedPiecesView
-        }
-
-        vc.navigationItem.title = game.outcome.description
-
         return vc
     }
 
     fileprivate func composeMessage(with image: UIImage, caption: String, url: URL, session: MSSession? = nil) -> MSMessage {
+
         let layout = MSMessageTemplateLayout()
         layout.image = image
         layout.caption = caption
@@ -152,75 +111,57 @@ class MessagesViewController: MSMessagesAppViewController, GameViewControllerDel
         dismiss()
     }
 
+}
 
-    override func didResignActive(with conversation: MSConversation) {
-        // Called when the extension is about to move from the active to inactive state.
-        // This will happen when the user dissmises the extension, changes to a different
-        // conversation or quits Messages.
-        
-        // Use this method to release shared resources, save user data, invalidate timers,
-        // and store enough state information to restore your extension to its current state
-        // in case it is terminated later.
-    }
-   
-    override func didReceive(_ message: MSMessage, conversation: MSConversation) {
-        // Called when a message arrives that was generated by another instance of this
-        // extension on a remote device.
-        
-        // Use this method to trigger UI updates in response to the message.
-    }
-    
-    override func didStartSending(_ message: MSMessage, conversation: MSConversation) {
-        // Called when the user taps the send button.
-    }
-    
-    override func didCancelSending(_ message: MSMessage, conversation: MSConversation) {
-        // Called when the user deletes the message without sending it.
-    
-        // Use this to clean up state related to the deleted message.
-    }
-    
+extension MessagesViewController {
 
-    
+    func game(_ game: Game, didTraverse items: [HistoryItem], in direction: Direction) {
+        guard let gameViewController = childViewControllers.flatMap({ $0 as? GameViewController }).first else { return }
+        gameViewController.game(game, didTraverse: items, in: direction)
+    }
 
+    func game(_ game: Game, didAppend item: HistoryItem, at index: Int?) {
+        guard let gameViewController = childViewControllers.flatMap({ $0 as? GameViewController }).first else { return }
+        gameViewController.game(game, didAppend: item, at: index)
+    }
+
+    func game(_ game: Game, didExecute move: Move, with capture: Capture?, with promotion: Piece?) {
+        guard let gameViewController = childViewControllers.flatMap({ $0 as? GameViewController }).first else { return }
+        gameViewController.game(game, didExecute: move, with: capture, with: promotion)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
+            let image = game.playerTurn.isWhite ? gameViewController.boardImage() : gameViewController.boardImage().rotated()
+            self.didExecuteTurn(with: image, gameViewController: gameViewController)
+        }
+    }
 
 }
 
-extension MessagesViewController: ChessGamesViewControllerDelegate {
-    func chessGamesViewControllerDidSelectCreate(_ controller: ChessGamesViewController) {
+extension MessagesViewController: GameCollectionViewControllerDelegate {
+    func gameCollectionViewControllerDidSelectCreate(_ controller: GameCollectionViewController) {
         requestPresentationStyle(.expanded)
     }
 }
 
-fileprivate extension Selector {
-    static let handleSwipe = #selector(HistoryViewController.handleSwipe(_:))
-}
+extension UIImage {
 
-extension UIStoryboard {
+//    convenience init?(view: UIView) {
+//        UIGraphicsBeginImageContext(view.frame.size)
+//        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+//        view.layer.render(in: context)
+//        guard
+//            let image = UIGraphicsGetImageFromCurrentImageContext(),
+//            let cgImage = image.cgImage
+//            else { return nil }
+//        UIGraphicsEndImageContext()
+//        self.init(cgImage: cgImage)
+//    }
 
-    static var main: UIStoryboard {
-        return UIStoryboard(name: "Main", bundle: nil)
-    }
-
-    func instantiate<A: UIViewController>(_ type: A.Type) -> A {
-        guard let vc = self.instantiateViewController(withIdentifier: String(describing: type.self)) as? A else {
-            fatalError("Could not instantiate view controller \(A.self)") }
-        return vc
+    func rotated() -> UIImage {
+        let imageView = UIImageView(image: self)
+        imageView.transform = CGAffineTransform(rotationAngle: .pi * 2.0)
+        let rotated = UIImage(view: imageView)!
+        return rotated
     }
     
-}
-
-extension UISwipeGestureRecognizer {
-    public convenience init(target: Any?, action: Selector?, direction: UISwipeGestureRecognizerDirection) {
-        self.init(target: target, action: action)
-        self.direction = direction
-    }
-}
-
-extension UIView {
-    public func addSwipeGestureRecognizer(target: Any?, action: Selector?, direction: UISwipeGestureRecognizerDirection = .right ) {
-        let swipe = UISwipeGestureRecognizer(target: target, action: action, direction: direction)
-        addGestureRecognizer(swipe)
-    }
 }
 
