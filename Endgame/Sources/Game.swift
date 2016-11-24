@@ -39,6 +39,7 @@ public class Game {
     fileprivate var _startingPosition: Position
 
     internal var _currentIndex: Int?
+
     fileprivate var _items: Array<HistoryItem>
 
     // MARK: - Public Initializers

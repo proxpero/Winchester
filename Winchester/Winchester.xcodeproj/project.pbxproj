@@ -44,7 +44,6 @@
 		520C4DF91DE4082B007DC21A /* Endgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524A14DD1DC6CA7B003BC9AC /* Endgame.framework */; };
 		520C4E041DE409E6007DC21A /* ChessGameCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4DFA1DE409E6007DC21A /* ChessGameCache.swift */; };
 		520C4E051DE409E6007DC21A /* ChessGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4DFB1DE409E6007DC21A /* ChessGamesViewController.swift */; };
-		520C4E061DE409E6007DC21A /* ChessGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4DFC1DE409E6007DC21A /* ChessGameViewController.swift */; };
 		520C4E071DE409E6007DC21A /* CreateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4DFD1DE409E6007DC21A /* CreateCell.swift */; };
 		520C4E081DE409E6007DC21A /* Endgame+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4DFE1DE409E6007DC21A /* Endgame+Messages.swift */; };
 		520C4E091DE409E6007DC21A /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4DFF1DE409E6007DC21A /* GameCell.swift */; };
@@ -59,7 +58,8 @@
 		5237A6631D970B7C00BAC16E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6611D970B7C00BAC16E /* Main.storyboard */; };
 		5240586F1D638483000A925C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5240586B1D638483000A925C /* LaunchScreen.storyboard */; };
 		524058CA1D63FA64000A925C /* WinchesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* WinchesterTests.swift */; };
-		526751261DE60A59006B11C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 520C4D891DE37DE8007DC21A /* Assets.xcassets */; };
+		526751281DE60D64006B11C1 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526751271DE60D64006B11C1 /* Game.storyboard */; };
+		526751291DE61442006B11C1 /* Shared_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FDDBFA1DE602E6008E9621 /* Shared_iOS.framework */; };
 		528E212D1DC17E9800C45E17 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E211E1DC17E9800C45E17 /* AppCoordinator.swift */; };
 		528E212E1DC17E9800C45E17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E211F1DC17E9800C45E17 /* AppDelegate.swift */; };
 		528E21301DC17E9800C45E17 /* Game+Endgame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21211DC17E9800C45E17 /* Game+Endgame.swift */; };
@@ -120,6 +120,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 52BAE0911D5FD555006E2652;
 			remoteInfo = "Endgame iOS";
+		};
+		5267512A1DE61460006B11C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52BAE08A1D5FD555006E2652 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52FDDBF91DE602E6008E9621;
+			remoteInfo = "Shared+iOS";
 		};
 		52FDDC031DE602FD008E9621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -200,7 +207,6 @@
 		520C4DF11DE4080E007DC21A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		520C4DFA1DE409E6007DC21A /* ChessGameCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChessGameCache.swift; sourceTree = "<group>"; };
 		520C4DFB1DE409E6007DC21A /* ChessGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChessGamesViewController.swift; sourceTree = "<group>"; };
-		520C4DFC1DE409E6007DC21A /* ChessGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChessGameViewController.swift; sourceTree = "<group>"; };
 		520C4DFD1DE409E6007DC21A /* CreateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCell.swift; sourceTree = "<group>"; };
 		520C4DFE1DE409E6007DC21A /* Endgame+Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Endgame+Messages.swift"; sourceTree = "<group>"; };
 		520C4DFF1DE409E6007DC21A /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
@@ -219,6 +225,7 @@
 		524A14DD1DC6CA7B003BC9AC /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52647CBC1DC1849200E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug/Endgame.framework"; sourceTree = "<group>"; };
 		52647CC01DC184DD00E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-appletvsimulator/Endgame.framework"; sourceTree = "<group>"; };
+		526751271DE60D64006B11C1 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		526B73B71DC8DAE600D1AE0F /* Winchester.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Winchester.playground; path = ../Winchester.playground; sourceTree = "<group>"; };
 		5282880E1D6113310014B105 /* WinchesterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinchesterTests.swift; sourceTree = "<group>"; };
 		528E211E1DC17E9800C45E17 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = iOS/AppCoordinator.swift; sourceTree = SOURCE_ROOT; };
@@ -271,6 +278,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				526751291DE61442006B11C1 /* Shared_iOS.framework in Frameworks */,
 				520C4DF91DE4082B007DC21A /* Endgame.framework in Frameworks */,
 				520C4DF81DE40825007DC21A /* Shared.framework in Frameworks */,
 				520C4DE81DE4080E007DC21A /* Messages.framework in Frameworks */,
@@ -330,7 +338,6 @@
 			children = (
 				520C4E021DE409E6007DC21A /* MessagesViewController.swift */,
 				520C4DFB1DE409E6007DC21A /* ChessGamesViewController.swift */,
-				520C4DFC1DE409E6007DC21A /* ChessGameViewController.swift */,
 				520C4DFA1DE409E6007DC21A /* ChessGameCache.swift */,
 				520C4DFD1DE409E6007DC21A /* CreateCell.swift */,
 				520C4DFE1DE409E6007DC21A /* Endgame+Messages.swift */,
@@ -518,6 +525,7 @@
 				52FDDC111DE606C7008E9621 /* HistoryViewController.swift */,
 				52FDDC121DE606C7008E9621 /* TitleViewController.swift */,
 				52FDDC131DE606C7008E9621 /* UISwipeGestureRecognizer+Extensions.swift */,
+				526751271DE60D64006B11C1 /* Game.storyboard */,
 				52FDDBFC1DE602E6008E9621 /* Shared+iOS.h */,
 				52FDDBFD1DE602E6008E9621 /* Info.plist */,
 			);
@@ -575,6 +583,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5267512B1DE61460006B11C1 /* PBXTargetDependency */,
 			);
 			name = Message;
 			productName = Message;
@@ -754,7 +763,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				526751261DE60A59006B11C1 /* Assets.xcassets in Resources */,
+				526751281DE60D64006B11C1 /* Game.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,7 +819,6 @@
 				520C4E0D1DE409E6007DC21A /* Opponent.swift in Sources */,
 				520C4E051DE409E6007DC21A /* ChessGamesViewController.swift in Sources */,
 				520C4E0C1DE409E6007DC21A /* MessagesViewController.swift in Sources */,
-				520C4E061DE409E6007DC21A /* ChessGameViewController.swift in Sources */,
 				520C4E081DE409E6007DC21A /* Endgame+Messages.swift in Sources */,
 				520C4E0A1DE409E6007DC21A /* GameHistory.swift in Sources */,
 				520C4E071DE409E6007DC21A /* CreateCell.swift in Sources */,
@@ -871,6 +879,11 @@
 			target = 52BAE0911D5FD555006E2652 /* Winchester iOS */;
 			targetProxy = 524058A91D63F353000A925C /* PBXContainerItemProxy */;
 		};
+		5267512B1DE61460006B11C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52FDDBF91DE602E6008E9621 /* Shared+iOS */;
+			targetProxy = 5267512A1DE61460006B11C1 /* PBXContainerItemProxy */;
+		};
 		52FDDC041DE602FD008E9621 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 520C4D7A1DE37DB3007DC21A /* Shared */;
@@ -916,6 +929,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
@@ -941,6 +955,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
@@ -1155,6 +1170,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
@@ -1168,7 +1184,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Todd-Olsen.Shared-iOS";
 				PRODUCT_NAME = Shared_iOS;
 				SKIP_INSTALL = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Shared+iOS.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1182,6 +1198,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 55SVD8WGE3;
@@ -1195,7 +1212,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Todd-Olsen.Shared-iOS";
 				PRODUCT_NAME = Shared_iOS;
 				SKIP_INSTALL = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Shared+iOS.h";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
