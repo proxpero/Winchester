@@ -13,64 +13,51 @@ import Shared
 
 public struct GameCoordinator {
 
-    private let navigationController: UINavigationController
     private let game: Game
     private let isUserGame: Bool
-//    private let settingsViewCoordinator: SettingsViewCoordinator
 
-    public init(for game: Game, with navigationController: UINavigationController, isUserGame: Bool = false) {
-        self.navigationController = navigationController
+    public init(for game: Game, isUserGame: Bool = false) {
         self.game = game
         self.isUserGame = isUserGame
-//        self.settingsViewCoordinator = SettingsViewCoordinator(with: game)
     }
 
-    public mutating func start() {
+    @discardableResult
+    public mutating func loadViewController() -> GameViewController {
 
-        let vc = UIStoryboard.main.instantiate(GameViewController.self)
-        vc.game = game
-        game.delegate = vc
+        let gameViewController = UIStoryboard.game.instantiate(GameViewController.self)
+        gameViewController.game = game
+        game.delegate = gameViewController
 
         // MARK: BoardViewController
 
-        do {
+        let boardViewController = UIStoryboard.game.instantiate(BoardViewController.self)
+        boardViewController.boardView.updatePieces(with: game.currentPosition.board)
+        boardViewController.delegate = gameViewController
+        gameViewController.boardViewController = boardViewController
 
-            let boardViewController = UIStoryboard.main.instantiate(BoardViewController.self)
-            boardViewController.boardView.updatePieces(with: game.currentPosition.board)
-            boardViewController.delegate = vc
-            vc.boardViewController = boardViewController
-
-        }
-        
         // MARK: HistoryViewController
 
-        do {
+        let historyViewController = UIStoryboard.game.instantiate(HistoryViewController.self)
+        historyViewController.delegate = gameViewController
+        historyViewController.dataSource = gameViewController
+        let currentIndexPath = gameViewController.indexPath(for: game.currentIndex)
+        historyViewController.collectionView?.selectItem(at: currentIndexPath, animated: false, scrollPosition: .centeredHorizontally)
+        gameViewController.historyViewController = historyViewController
 
-            let historyViewController = UIStoryboard.main.instantiate(HistoryViewController.self)
-            historyViewController.delegate = vc
-            historyViewController.dataSource = vc
-            let currentIndexPath = vc.indexPath(for: game.currentIndex)
-            historyViewController.collectionView?.selectItem(at: currentIndexPath, animated: false, scrollPosition: .centeredHorizontally)
-            vc.historyViewController = historyViewController
-
-            #if os(iOS) || os(tvOS)
-                for direction in [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right] {
-                    vc.view.addSwipeGestureRecognizer(
-                        target: historyViewController,
-                        action: .handleSwipe,
-                        direction: direction
-                    )
-                }
-            #endif
-
+        for direction in [UISwipeGestureRecognizerDirection.left, UISwipeGestureRecognizerDirection.right] {
+            gameViewController.view.addSwipeGestureRecognizer(
+                target: historyViewController,
+                action: .handleSwipe,
+                direction: direction
+            )
         }
 
-        vc.capturedPiecesViewController = UIStoryboard.main.instantiate(CapturedPiecesViewController.self)
-        if let capturedView = vc.capturedPiecesViewController?.view as? CapturedPiecesView {
-            vc.boardViewController?.boardView.pieceCapturingViewDelegate = capturedView
+        gameViewController.capturedPiecesViewController = UIStoryboard.game.instantiate(CapturedPiecesViewController.self)
+        if let capturedView = gameViewController.capturedPiecesViewController?.view as? CapturedPiecesView {
+            gameViewController.boardViewController?.boardView.pieceCapturingViewDelegate = capturedView
         }
 
-        vc.navigationItem.title = game.outcome.description
+//        gameViewController.navigationItem.title = game.outcome.description
 
 //        let settingsViewDelegate = SettingsViewCoordinator.Delegate(
 //            game: game,
@@ -82,15 +69,16 @@ public struct GameCoordinator {
 //            orientation: { vc.boardViewController!.boardView.currentOrientation }
 //        )
 
-        vc.didTapBackButton = backButtonHandler
-        navigationController.pushViewController(vc, animated: true)
+        gameViewController.didTapBackButton = backButtonHandler
+//        navigationController.pushViewController(gameViewController, animated: true)
 
+        return gameViewController
     }
 
     func backButtonHandler() {
         save()
-        guard let vc = navigationController.popViewController(animated: true) as? GameViewController else { return }
-        vc.boardViewController = nil
+//        guard let gameViewController = navigationController.popViewController(animated: true) as? GameViewController else { return }
+//        gameViewController.boardViewController = nil
         if isUserGame {
             save()
         }
@@ -112,8 +100,9 @@ fileprivate extension Selector {
 
 extension UIStoryboard {
 
-    static var main: UIStoryboard {
-        return UIStoryboard(name: "Main", bundle: nil)
+    static var game: UIStoryboard {
+        let bundle = Bundle(for: GameViewController.self)
+        return UIStoryboard(name: "Game", bundle: bundle)
     }
 
     func instantiate<A: UIViewController>(_ type: A.Type) -> A {
