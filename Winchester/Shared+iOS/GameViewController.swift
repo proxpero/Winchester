@@ -11,36 +11,13 @@ import SpriteKit
 import Endgame
 import Shared
 
-struct Design: Equatable {
-
-    let isWide: Bool
-    let isBiased: Bool
-    let showGridLabels: Bool
-
-    init(size: CGSize, isBiased: Bool = false, showGridLabels: Bool = false) {
-        self.isWide = size.width > size.height
-        self.isBiased = isBiased
-        self.showGridLabels = showGridLabels
-    }
-
-    var axis: UILayoutConstraintAxis {
-        return isWide ? .horizontal : .vertical
-    }
-
-    static func == (lhs: Design, rhs: Design) -> Bool {
-        return lhs.isWide == rhs.isWide && lhs.isBiased == rhs.isBiased && lhs.showGridLabels == rhs.showGridLabels
-    }
-
-}
-
-public final class GameViewController: UIViewController, GameViewControllerType {
+open class GameViewController: UIViewController, GameViewControllerType {
     public typealias B = BoardViewController
     public typealias H = HistoryViewController
 
 
     var didTapSettingsButton: () -> () = { }
     var didTapBackButton: () -> () = { }
-//    var presentScene: () -> Void  =  { }
 
     @IBOutlet var stackView: UIStackView!
 
@@ -60,15 +37,34 @@ public final class GameViewController: UIViewController, GameViewControllerType 
         didTapBackButton()
     }
 
-    var displayedDesign: Design? = nil
-
     // Lifecycle
 
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let newDesign = Design(size: view.bounds.size)
-        if displayedDesign != newDesign {
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let game = game else { return }
+        let itemIndex: Int?
+        if game.isEmpty || game.outcome != .undetermined {
+            itemIndex = nil
+        } else {
+            itemIndex = game.endIndex-1
+        }
+        game.setIndex(to: itemIndex)
+        historyViewController?.selectCell(at: itemIndex)
+    }
 
+    public func selectMostRecentMove() {
+        guard let game = game else { return }
+        let itemIndex: Int? = game.isEmpty ? nil : game.endIndex-1
+        game.setIndex(to: itemIndex)
+        historyViewController?.selectCell(at: itemIndex)
+    }
+
+    private var _isNotVisited = true
+
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if _isNotVisited {
             addChildViewController(boardViewController!)
             stackView.addArrangedSubview(boardViewController!.view)
             boardViewController!.didMove(toParentViewController: self)
@@ -80,10 +76,9 @@ public final class GameViewController: UIViewController, GameViewControllerType 
             addChildViewController(capturedPiecesViewController!)
             stackView.addArrangedSubview(capturedPiecesViewController!.view)
             capturedPiecesViewController!.didMove(toParentViewController: self)
-            
-            displayedDesign = newDesign
-            
+            _isNotVisited = false
         }
+
     }
 
 }
