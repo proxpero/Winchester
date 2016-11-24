@@ -26,6 +26,19 @@ public protocol GameViewControllerType: class, GameDelegate, BoardViewDelegateTy
 
     var availableTargetsCache: [Square] { get set }
 
+    func boardImage(isRotated: Bool) -> UIImage
+
+}
+
+extension GameViewControllerType {
+
+    public func boardImage() -> UIImage {
+        guard
+            let texture = boardViewController?.boardView.boardTexture
+        else { fatalError() }
+        return UIImage(cgImage: texture.cgImage())
+    }
+
 }
 
 // MARK: HistoryViewDelegate
@@ -39,5 +52,6 @@ extension GameViewControllerType {
     public func userDidSelectHistoryItem(at itemIndex: Int?) {
         game?.setIndex(to: itemIndex)
     }
-    
+
+
 }
