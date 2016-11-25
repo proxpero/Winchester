@@ -2,10 +2,10 @@ import UIKit
 import Endgame
 import Winchester
 
-let image = UIImage(named: "test.tiff")!
+//let image = UIImage(named: "test.tiff")!
 
-let view = UIImageView(image: image)
-view.transform = CGAffineTransform(rotationAngle: .pi * 2.0)
+//let view = UIImageView(image: image)
+//view.transform = CGAffineTransform(rotationAngle: .pi * 2.0)
 //let png = view.
 
 extension UIImage {
@@ -22,7 +22,7 @@ extension UIImage {
     }
 }
 
-let rotated = UIImage(view: view)
+//let rotated = UIImage(view: view)
 
 
 extension CGFloat {

@@ -26,8 +26,6 @@ public protocol GameViewControllerType: class, GameDelegate, BoardViewDelegateTy
 
     var availableTargetsCache: [Square] { get set }
 
-    func boardImage(isRotated: Bool) -> UIImage
-
 }
 
 extension GameViewControllerType {
