@@ -51,41 +51,41 @@ extension HistoryViewController: UICollectionViewDelegateFlowLayout {
 
     // MARK: - UICollectionViewDataSource
 
+    private var _dataSource: HistoryViewDataSource {
+        guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
+        return dataSource
+    }
+
     override public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
     override public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
-        return dataSource.cellCount()
+        return _dataSource.cellCount()
     }
 
     override public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
-        let cell = collectionView.dequeue(HistoryCell.self, at: indexPath)
-        dataSource.itemType(at: indexPath).configureCell(cell: cell)
+        let cell = collectionView.dequeueCell(ofType: HistoryCell.self, at: indexPath)
+        _dataSource.itemType(at: indexPath).configureCell(cell: cell)
         return cell
     }
 
     // MARK: - UICollectionViewDelegate
 
     override public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
-        return dataSource.itemType(at: indexPath).shouldBeSelected
+        return _dataSource.itemType(at: indexPath).shouldBeSelected
     }
 
     override public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        let itemIndex = dataSource.itemIndex(for: indexPath)
+        let itemIndex = _dataSource.itemIndex(for: indexPath)
         delegate?.userDidSelectHistoryItem(at: itemIndex)
     }
 
     // MARK: - UICollectionViewDelegateFlowLayout
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let dataSource = dataSource else { fatalError("Expected a dataSource") }
-        return CGSize(width: dataSource.itemType(at: indexPath).width, height: height)
+        return CGSize(width: _dataSource.itemType(at: indexPath).width, height: height)
     }
 
 }
