@@ -6,11 +6,18 @@
 //
 //
 
-import Foundation
-import CoreGraphics
-
-extension Position {
-    public func thumbnail(edge: CGFloat) -> ChessView {
-        return board.view(edge: edge)
+#if os(OSX)
+    import Cocoa
+    extension Position {
+        public func thumbnail(edge: CGFloat) -> NSView {
+            return board.view(edge: edge)
+        }
     }
-}
+#elseif os(iOS) || os(tvOS)
+    import UIKit
+    extension Position {
+        public func thumbnail(edge: CGFloat) -> UIView {
+            return board.view(edge: edge)
+        }
+    }
+#endif
