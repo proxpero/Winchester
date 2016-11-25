@@ -15,7 +15,6 @@ open class GameViewController: UIViewController, GameViewControllerType {
     public typealias B = BoardViewController
     public typealias H = HistoryViewController
 
-
     var didTapSettingsButton: () -> () = { }
     var didTapBackButton: () -> () = { }
 
@@ -60,7 +59,6 @@ open class GameViewController: UIViewController, GameViewControllerType {
     }
 
     private var _isNotVisited = true
-
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         

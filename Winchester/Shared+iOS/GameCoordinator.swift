@@ -24,20 +24,22 @@ public struct GameCoordinator {
     @discardableResult
     public mutating func loadViewController() -> GameViewController {
 
-        let gameViewController = UIStoryboard.game.instantiate(GameViewController.self)
+        let storyboard = UIStoryboard.game
+
+        let gameViewController = storyboard.instantiate(GameViewController.self)
         gameViewController.game = game
         game.delegate = gameViewController
 
         // MARK: BoardViewController
 
-        let boardViewController = UIStoryboard.game.instantiate(BoardViewController.self)
+        let boardViewController = storyboard.instantiate(BoardViewController.self)
         boardViewController.boardView.updatePieces(with: game.currentPosition.board)
         boardViewController.delegate = gameViewController
         gameViewController.boardViewController = boardViewController
 
         // MARK: HistoryViewController
 
-        let historyViewController = UIStoryboard.game.instantiate(HistoryViewController.self)
+        let historyViewController = storyboard.instantiate(HistoryViewController.self)
         historyViewController.delegate = gameViewController
         historyViewController.dataSource = gameViewController
         let currentIndexPath = gameViewController.indexPath(for: game.currentIndex)
@@ -52,7 +54,7 @@ public struct GameCoordinator {
             )
         }
 
-        gameViewController.capturedPiecesViewController = UIStoryboard.game.instantiate(CapturedPiecesViewController.self)
+        gameViewController.capturedPiecesViewController = storyboard.instantiate(CapturedPiecesViewController.self)
         if let capturedView = gameViewController.capturedPiecesViewController?.view as? CapturedPiecesView {
             gameViewController.boardViewController?.boardView.pieceCapturingViewDelegate = capturedView
         }
@@ -76,9 +78,6 @@ public struct GameCoordinator {
     }
 
     func backButtonHandler() {
-        save()
-//        guard let gameViewController = navigationController.popViewController(animated: true) as? GameViewController else { return }
-//        gameViewController.boardViewController = nil
         if isUserGame {
             save()
         }
@@ -97,20 +96,4 @@ public struct GameCoordinator {
 fileprivate extension Selector {
     static let handleSwipe = #selector(HistoryViewController.handleSwipe(_:))
 }
-
-extension UIStoryboard {
-
-    static var game: UIStoryboard {
-        let bundle = Bundle(for: GameViewController.self)
-        return UIStoryboard(name: "Game", bundle: bundle)
-    }
-
-    func instantiate<A: UIViewController>(_ type: A.Type) -> A {
-        guard let vc = self.instantiateViewController(withIdentifier: String(describing: type.self)) as? A else {
-            fatalError("Could not instantiate view controller \(A.self)") }
-        return vc
-    }
-
-}
-
 
