@@ -108,7 +108,8 @@ extension RootCollectionViewController {
             guard let cell = cell as? ShowGameCell else { fatalError("Expected a `ShowGameCell`") }
             return { game in
                 guard let game = game as? Game else { fatalError("Expected a game") }
-                let image = game[game.endIndex-1].position.board.view(edge: cell.bounds.height).image()
+                guard let image = UIImage(view: game[game.endIndex-1].position.board.view(edge: cell.bounds.height)) else { fatalError("Could not create an image from view") }
+
                 cell.imageView.image = image
                 cell.whiteLabel.text = game.whitePlayer.name
                 cell.blackLabel.text = game.blackPlayer.name
