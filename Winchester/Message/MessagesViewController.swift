@@ -65,7 +65,7 @@ class MessagesViewController: MSMessagesAppViewController, GameDelegate {
         let interlocutorID = conversation.remoteParticipantIdentifiers
             .map { $0.uuidString }
             .reduce("") { $0 + $1 }
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "GameCollectionViewController") as? GameCollectionViewController else { fatalError() }
+        let vc = UIStoryboard.game.instantiate(GameCollectionViewController.self)
         vc.opponent = Opponent(id: interlocutorID)
         vc.delegate = self
         return vc
@@ -143,75 +143,3 @@ extension MessagesViewController: GameCollectionViewControllerDelegate {
     }
 }
 
-extension UIImage {
-
-//    convenience init?(view: UIView) {
-//        UIGraphicsBeginImageContext(view.frame.size)
-//        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-//        view.layer.render(in: context)
-//        guard
-//            let image = UIGraphicsGetImageFromCurrentImageContext(),
-//            let cgImage = image.cgImage
-//            else { return nil }
-//        UIGraphicsEndImageContext()
-//        self.init(cgImage: cgImage)
-//    }
-
-    func rotated() -> UIImage {
-        let imageView = UIImageView(image: self)
-        imageView.transform = CGAffineTransform(rotationAngle: .pi)
-        let rotated = UIImage(view: imageView)!
-        return rotated
-    }
-
-    public func rotated(by degrees: CGFloat, flip: Bool = false) -> UIImage {
-
-        let radians = degrees.toRadians
-
-        // calculate the size of the rotated view's containing box for our drawing space
-        let rotatedViewBox = UIView(frame: CGRect(origin: CGPoint.zero, size: size))
-        let t = CGAffineTransform(rotationAngle: radians);
-        rotatedViewBox.transform = t
-        let rotatedSize = rotatedViewBox.frame.size
-
-        // Create the bitmap context
-        UIGraphicsBeginImageContext(rotatedSize)
-        let bitmap = UIGraphicsGetCurrentContext()!
-
-        // Move the origin to the middle of the image so we will rotate and scale around the center.
-        bitmap.translateBy(x: rotatedSize.width / 2.0, y: rotatedSize.height / 2.0)
-
-        // Rotate the image context
-        bitmap.rotate(by: radians)
-
-        // Now, draw the rotated/scaled image into the context
-        var yFlip: CGFloat
-
-        if(flip){
-            yFlip = CGFloat(-1.0)
-        } else {
-            yFlip = CGFloat(1.0)
-        }
-
-        bitmap.scaleBy(x: yFlip, y: -1.0)
-        let rect = CGRect(x: -size.width / 2, y: -size.height / 2, width: size.width, height: size.height)
-
-        bitmap.draw(self.cgImage!, in: rect)
-
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        return newImage
-        
-    }
-    
-}
-
-extension CGFloat {
-    var toDegrees: CGFloat {
-        return (self * 180.0) / .pi
-    }
-    var toRadians: CGFloat {
-        return (self / 180.0) * .pi
-    }
-}

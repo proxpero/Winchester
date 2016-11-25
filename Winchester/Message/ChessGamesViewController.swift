@@ -83,12 +83,3 @@ protocol GameCollectionViewControllerDelegate: class {
     /// Called when a user chooses to play a new chess game. 
     func gameCollectionViewControllerDidSelectCreate(_ controller: GameCollectionViewController)
 }
-
-extension UICollectionView {
-
-    func dequeueCell<A: UICollectionViewCell>(ofType type: A.Type, at indexPath: IndexPath) -> A {
-        guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing: type), for: indexPath) as? A else { fatalError("Could not dequeue cell.") }
-        return cell
-    }
-
-}

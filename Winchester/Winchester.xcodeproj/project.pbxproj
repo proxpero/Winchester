@@ -65,12 +65,12 @@
 		528E21301DC17E9800C45E17 /* Game+Endgame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21211DC17E9800C45E17 /* Game+Endgame.swift */; };
 		528E21371DC17E9800C45E17 /* RootCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21281DC17E9800C45E17 /* RootCollectionViewController.swift */; };
 		528E21381DC17E9800C45E17 /* ShowGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E21291DC17E9800C45E17 /* ShowGameCell.swift */; };
-		528E213A1DC17E9800C45E17 /* UIImage+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528E212B1DC17E9800C45E17 /* UIImage+View.swift */; };
 		52BA800B1DAD244F00E15277 /* fischer v fine.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80081DAD244F00E15277 /* fischer v fine.pgn */; };
 		52BA800E1DAD244F00E15277 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA80091DAD244F00E15277 /* reti v rubenstein.pgn */; };
 		52BA80111DAD244F00E15277 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */; };
 		52BCD0A01DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */; };
 		52BCD0A31DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
+		52C0C08F1DE8A1C200F60B17 /* UIKit+Winchester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C0C08E1DE8A1C200F60B17 /* UIKit+Winchester.swift */; };
 		52E325011DC282CF001FE392 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E325001DC282CF001FE392 /* SettingsViewController.swift */; };
 		52FDDBD41DE5DBD2008E9621 /* BoardViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBD31DE5DBD2008E9621 /* BoardViewType.swift */; };
 		52FDDBD61DE5DCA8008E9621 /* PromotionNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBD51DE5DCA8008E9621 /* PromotionNodeProtocol.swift */; };
@@ -95,7 +95,6 @@
 		52FDDC141DE606C7008E9621 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDC101DE606C7008E9621 /* BoardViewController.swift */; };
 		52FDDC151DE606C7008E9621 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDC111DE606C7008E9621 /* HistoryViewController.swift */; };
 		52FDDC161DE606C7008E9621 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDC121DE606C7008E9621 /* TitleViewController.swift */; };
-		52FDDC171DE606C7008E9621 /* UISwipeGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDC131DE606C7008E9621 /* UISwipeGestureRecognizer+Extensions.swift */; };
 		52FDDC191DE6083D008E9621 /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDC181DE6083D008E9621 /* GameCoordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -233,13 +232,13 @@
 		528E21211DC17E9800C45E17 /* Game+Endgame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Game+Endgame.swift"; path = "iOS/Game+Endgame.swift"; sourceTree = SOURCE_ROOT; };
 		528E21281DC17E9800C45E17 /* RootCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootCollectionViewController.swift; path = iOS/RootCollectionViewController.swift; sourceTree = SOURCE_ROOT; };
 		528E21291DC17E9800C45E17 /* ShowGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowGameCell.swift; path = iOS/ShowGameCell.swift; sourceTree = SOURCE_ROOT; };
-		528E212B1DC17E9800C45E17 /* UIImage+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+View.swift"; path = "iOS/UIImage+View.swift"; sourceTree = SOURCE_ROOT; };
 		52BA80081DAD244F00E15277 /* fischer v fine.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fischer v fine.pgn"; path = "../../Test Games/fischer v fine.pgn"; sourceTree = "<group>"; };
 		52BA80091DAD244F00E15277 /* reti v rubenstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reti v rubenstein.pgn"; path = "../../Test Games/reti v rubenstein.pgn"; sourceTree = "<group>"; };
 		52BA800A1DAD244F00E15277 /* shirov v polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "shirov v polgar.pgn"; path = "../../Test Games/shirov v polgar.pgn"; sourceTree = "<group>"; };
 		52BAE0921D5FD555006E2652 /* Winchester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Winchester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v thomason.pgn"; sourceTree = "<group>"; };
 		52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v warner.pgn"; sourceTree = "<group>"; };
+		52C0C08E1DE8A1C200F60B17 /* UIKit+Winchester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Winchester.swift"; sourceTree = "<group>"; };
 		52E325001DC282CF001FE392 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = iOS/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		52FDDBD31DE5DBD2008E9621 /* BoardViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewType.swift; sourceTree = "<group>"; };
 		52FDDBD51DE5DCA8008E9621 /* PromotionNodeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionNodeProtocol.swift; sourceTree = "<group>"; };
@@ -261,7 +260,6 @@
 		52FDDC101DE606C7008E9621 /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		52FDDC111DE606C7008E9621 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		52FDDC121DE606C7008E9621 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
-		52FDDC131DE606C7008E9621 /* UISwipeGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISwipeGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		52FDDC181DE6083D008E9621 /* GameCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -374,7 +372,6 @@
 				528E21211DC17E9800C45E17 /* Game+Endgame.swift */,
 				52E325001DC282CF001FE392 /* SettingsViewController.swift */,
 				528E21291DC17E9800C45E17 /* ShowGameCell.swift */,
-				528E212B1DC17E9800C45E17 /* UIImage+View.swift */,
 				5240586B1D638483000A925C /* LaunchScreen.storyboard */,
 				5237A6611D970B7C00BAC16E /* Main.storyboard */,
 				524058711D638497000A925C /* Info.plist */,
@@ -524,7 +521,7 @@
 				52FDDC101DE606C7008E9621 /* BoardViewController.swift */,
 				52FDDC111DE606C7008E9621 /* HistoryViewController.swift */,
 				52FDDC121DE606C7008E9621 /* TitleViewController.swift */,
-				52FDDC131DE606C7008E9621 /* UISwipeGestureRecognizer+Extensions.swift */,
+				52C0C08E1DE8A1C200F60B17 /* UIKit+Winchester.swift */,
 				526751271DE60D64006B11C1 /* Game.storyboard */,
 				52FDDBFC1DE602E6008E9621 /* Shared+iOS.h */,
 				52FDDBFD1DE602E6008E9621 /* Info.plist */,
@@ -841,7 +838,6 @@
 				528E212D1DC17E9800C45E17 /* AppCoordinator.swift in Sources */,
 				52E325011DC282CF001FE392 /* SettingsViewController.swift in Sources */,
 				528E21371DC17E9800C45E17 /* RootCollectionViewController.swift in Sources */,
-				528E213A1DC17E9800C45E17 /* UIImage+View.swift in Sources */,
 				528E21301DC17E9800C45E17 /* Game+Endgame.swift in Sources */,
 				528E212E1DC17E9800C45E17 /* AppDelegate.swift in Sources */,
 				528E21381DC17E9800C45E17 /* ShowGameCell.swift in Sources */,
@@ -852,8 +848,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C0C08F1DE8A1C200F60B17 /* UIKit+Winchester.swift in Sources */,
 				52FDDC191DE6083D008E9621 /* GameCoordinator.swift in Sources */,
-				52FDDC171DE606C7008E9621 /* UISwipeGestureRecognizer+Extensions.swift in Sources */,
 				52FDDC151DE606C7008E9621 /* HistoryViewController.swift in Sources */,
 				52FDDC161DE606C7008E9621 /* TitleViewController.swift in Sources */,
 				52FDDC0B1DE6042C008E9621 /* GameViewController.swift in Sources */,

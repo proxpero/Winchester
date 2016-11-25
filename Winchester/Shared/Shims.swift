@@ -27,9 +27,3 @@ public protocol ViewControllerType: class {
     var view: View! { get }
 }
 
-extension CollectionView {
-    public func dequeue<Cell: CollectionViewCell>(_ cellType: Cell.Type, at indexPath: IndexPath) -> Cell {
-        guard let cell = self.dequeueReusableCell(withReuseIdentifier: "\(cellType.self)", for: indexPath) as? Cell else { fatalError("Could not dequeue a cell of type: \(Cell.self)") }
-        return cell
-    }
-}

@@ -8,23 +8,12 @@
 
 import Endgame
 import UIKit
-
-extension UIView {
-
-    func image() -> UIImage {
-        UIGraphicsBeginImageContext(self.bounds.size)
-        self.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return image
-    }
-
-}
+import Shared_iOS
 
 extension Game {
 
     func images(with edge: CGFloat) -> [UIImage] {
-        return self.map { $0.position.thumbnail(edge: edge) }.map { $0.image() }
+        return self.map { $0.position.thumbnail(edge: edge) }.map { UIImage(view: $0)! }
     }
 
 }
