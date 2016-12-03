@@ -94,29 +94,6 @@ extension BoardView {
         return Arrow.Node(kind: kind, origin: origin, target: target, edge: edge)
     }
 
-    /// Creates a new ArrowNode.
-    //    private func createArrowNode(for move: Move, with kind: Arrow.Kind) -> Arrow.Node {
-    //
-    //        let edge = squareSize.width
-    //
-    //        let path = CGPath.arrow(
-    //            origin: position(for: move.origin),
-    //            target: position(for: move.target),
-    //            tailWidth: kind.tailWidth(for: edge),
-    //            headWidth: kind.headWidth(for: edge),
-    //            headLength: kind.headLength(for: edge),
-    //            originOffset: kind.originOffset(for: edge),
-    //            targetOffset: kind.targetOffset(for: edge)
-    //            )
-    //
-    //        let node = Arrow.Node(move: move, kind: kind, path: path)
-    //        node.zPosition = NodeType.arrow.zPosition
-    //        node.fillColor = kind.fillColor
-    //        node.strokeColor = kind.strokeColor
-    //
-    //        return node
-    //    }
-
     public func presentArrows(for moves: [Move], ofKind kind: Arrow.Kind) {
         removeArrows(with: kind)
         for move in moves {

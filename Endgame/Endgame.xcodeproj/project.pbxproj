@@ -120,10 +120,6 @@
 		52B595901D53AB1E00E1D543 /* Sequence+Chess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5958E1D53AB1E00E1D543 /* Sequence+Chess.swift */; };
 		52B595911D53AB1E00E1D543 /* Sequence+Chess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5958E1D53AB1E00E1D543 /* Sequence+Chess.swift */; };
 		52B595921D53AB1E00E1D543 /* Sequence+Chess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5958E1D53AB1E00E1D543 /* Sequence+Chess.swift */; };
-		52B595941D53AB7700E1D543 /* InternalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595931D53AB7700E1D543 /* InternalTypes.swift */; };
-		52B595951D53AB7700E1D543 /* InternalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595931D53AB7700E1D543 /* InternalTypes.swift */; };
-		52B595961D53AB7700E1D543 /* InternalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595931D53AB7700E1D543 /* InternalTypes.swift */; };
-		52B595971D53AB7700E1D543 /* InternalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595931D53AB7700E1D543 /* InternalTypes.swift */; };
 		52B595B21D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595B11D54F6CF00E1D543 /* BitmaskConvertible.swift */; };
 		52B595B31D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595B11D54F6CF00E1D543 /* BitmaskConvertible.swift */; };
 		52B595B41D54F6CF00E1D543 /* BitmaskConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B595B11D54F6CF00E1D543 /* BitmaskConvertible.swift */; };
@@ -206,7 +202,6 @@
 		52B595841D53A90F00E1D543 /* PGN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGN.swift; sourceTree = "<group>"; };
 		52B595891D53A93F00E1D543 /* EPD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EPD.swift; sourceTree = "<group>"; };
 		52B5958E1D53AB1E00E1D543 /* Sequence+Chess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+Chess.swift"; sourceTree = "<group>"; };
-		52B595931D53AB7700E1D543 /* InternalTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalTypes.swift; sourceTree = "<group>"; };
 		52B595B11D54F6CF00E1D543 /* BitmaskConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitmaskConvertible.swift; sourceTree = "<group>"; };
 		52B595B61D54F9D800E1D543 /* AsciiConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciiConvertible.swift; sourceTree = "<group>"; };
 		52B595CA1D5512FD00E1D543 /* Board+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Board+View.swift"; sourceTree = "<group>"; };
@@ -327,7 +322,6 @@
 		52DE632B1D3D82AC0022618B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				52B595931D53AB7700E1D543 /* InternalTypes.swift */,
 				52B5954D1D539FC700E1D543 /* Game.swift */,
 				52F8C5D61DD6BB910048F494 /* GameDelegate.swift */,
 				52BF65161DCB618800E12CCA /* Game+PGN.swift */,
@@ -661,7 +655,6 @@
 				52B5954E1D539FC700E1D543 /* Game.swift in Sources */,
 				52AB81D91D917986002C7A0B /* HistoryItem.swift in Sources */,
 				52B595761D53A72600E1D543 /* Square.swift in Sources */,
-				52B595941D53AB7700E1D543 /* InternalTypes.swift in Sources */,
 				52AB81D71D917902002C7A0B /* Outcome.swift in Sources */,
 				52B595581D53A05100E1D543 /* Board.swift in Sources */,
 				52B595671D53A5E100E1D543 /* Color.swift in Sources */,
@@ -699,7 +692,6 @@
 				52BF65181DCB618800E12CCA /* Game+PGN.swift in Sources */,
 				52B595771D53A72600E1D543 /* Square.swift in Sources */,
 				52DB550D1D96D597008B6F72 /* Outcome.swift in Sources */,
-				52B595951D53AB7700E1D543 /* InternalTypes.swift in Sources */,
 				52B595591D53A05100E1D543 /* Board.swift in Sources */,
 				5297E7A61DCACDB4007B1066 /* PGN+Tag.swift in Sources */,
 				52DB55101D96D5A5008B6F72 /* Position.swift in Sources */,
@@ -739,7 +731,6 @@
 				52B595501D539FC700E1D543 /* Game.swift in Sources */,
 				52B595781D53A72600E1D543 /* Square.swift in Sources */,
 				52DB550E1D96D598008B6F72 /* Outcome.swift in Sources */,
-				52B595961D53AB7700E1D543 /* InternalTypes.swift in Sources */,
 				52B5955A1D53A05100E1D543 /* Board.swift in Sources */,
 				52DB55111D96D5A5008B6F72 /* Position.swift in Sources */,
 				52A485611D9D862B004AB5A6 /* Capture.swift in Sources */,
@@ -777,7 +768,6 @@
 				52B595791D53A72600E1D543 /* Square.swift in Sources */,
 				52C4DF4C1D83494B00385459 /* Board+View.swift in Sources */,
 				52DB550F1D96D598008B6F72 /* Outcome.swift in Sources */,
-				52B595971D53AB7700E1D543 /* InternalTypes.swift in Sources */,
 				52B5955B1D53A05100E1D543 /* Board.swift in Sources */,
 				52DB55121D96D5A6008B6F72 /* Position.swift in Sources */,
 				52A485621D9D862C004AB5A6 /* Capture.swift in Sources */,
