@@ -97,6 +97,11 @@ extension UICollectionView {
         guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing: type), for: indexPath) as? A else { fatalError("Could not dequeue cell.") }
         return cell
     }
+
+    public func dequeueHeader<A: UICollectionReusableView>(ofType type: A.Type, at indexPath: IndexPath) -> A {
+        guard let header = dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: type), for: indexPath) as? A else { fatalError("Could not dequeue header.") }
+        return header
+    }
     
 }
 
@@ -116,4 +121,15 @@ extension UIStoryboard {
 }
 
 
-
+extension UIColor {
+    /// Creates a color from `rgb`, typically `rgb` takes
+    /// the form of a hexadecimal. For example: `0x31f3b9`.
+    public convenience init(rgb: UInt32, alpha: CGFloat = 1.0) {
+        self.init(
+            red:    CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
+            green:  CGFloat((rgb & 0x00FF00) >>  8) / 255.0,
+            blue:   CGFloat((rgb & 0x0000FF) >>  0) / 255.0,
+            alpha:  alpha
+        )
+    }
+}

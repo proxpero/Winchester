@@ -25,6 +25,10 @@ extension HistoryViewController {
 
     override public func viewDidLoad() {
         view.heightAnchor.constraint(equalToConstant: height).isActive = true
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        collectionView?.collectionViewLayout = layout
     }
 
     func handleSwipe(_ recognizer: UISwipeGestureRecognizer) {
@@ -99,16 +103,16 @@ final class HistoryCell: UICollectionViewCell, HistoryCellType {
         super.draw(rect)
         if !isBordered { return }
         let path = UIBezierPath(roundedRect: rect.insetBy(dx: 3, dy: 6), cornerRadius: 6)
-        UIColor.darkText.set()
+        UIColor(rgb: 0x4A4A50).set()
         path.stroke()
-        (isSelected ? UIColor.darkGray : UIColor.clear).set()
+        (isSelected ? UIColor(rgb: 0x4A4A50) : UIColor.clear).set()
         path.fill()
     }
 
     override var isSelected: Bool {
         didSet {
             setNeedsDisplay()
-            label.textColor = isSelected ? UIColor.white : UIColor.darkText
+            label.textColor = isSelected ? UIColor.white : UIColor(rgb: 0x4A4A50)
         }
     }
 
