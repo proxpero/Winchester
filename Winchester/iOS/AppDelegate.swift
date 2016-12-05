@@ -10,6 +10,10 @@ import UIKit
 import Endgame
 import Shared
 
+public protocol CloudObserver: class {
+    func storeDidChange(with notification: Notification)
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,11 +22,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         guard let window = window else { return false }
-        coordinator = ApplicationCoordinator(
-            window: window
-        )
-        coordinator?.start()
+        let appCoordinator = ApplicationCoordinator(window: window)
+        registerCloud(for: appCoordinator)
+        
         return true
     }
+
+    func registerCloud(for observer: CloudObserver) {
+//        NotificationCenter.default.addObserver(observer,
+//                                               selector: #selector(storeDidChange),
+//                                               name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+//                                               object: NSUbiquitousKeyValueStore.default)
+    }
+
+//    func storeDidChange(with notification: Notification) {
+//        print("\(notification.object)")
+//    }
 
 }
