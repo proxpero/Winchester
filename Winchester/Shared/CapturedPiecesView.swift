@@ -17,6 +17,7 @@ public final class CapturedPiecesView: SKView, PieceCapturingViewDelegate {
         guard let scene = scene else {
             return
         }
+        scene.backgroundColor = UIColor(rgb: 0x4A4A50)
         scene.addChild(boundaryNode)
     }
 
@@ -84,5 +85,18 @@ extension CGSize {
     }
     init(edge: CGFloat) {
         self = CGSize(width: edge, height: edge)
+    }
+}
+
+extension UIColor {
+    /// Creates a color from `rgb`, typically `rgb` takes
+    /// the form of a hexadecimal. For example: `0x31f3b9`.
+    public convenience init(rgb: UInt32, alpha: CGFloat = 1.0) {
+        self.init(
+            red:    CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
+            green:  CGFloat((rgb & 0x00FF00) >>  8) / 255.0,
+            blue:   CGFloat((rgb & 0x0000FF) >>  0) / 255.0,
+            alpha:  alpha
+        )
     }
 }
