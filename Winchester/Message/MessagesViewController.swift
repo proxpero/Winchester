@@ -12,7 +12,9 @@ import Endgame
 import Shared
 import Shared_iOS
 
-class MessagesViewController: MSMessagesAppViewController, GameDelegate {
+class MessagesViewController: MSMessagesAppViewController, GameCollectionViewControllerDataSource {
+
+    var sections: [GameCollectionViewController.Section] = []
 
     override func willBecomeActive(with conversation: MSConversation) {
         super.willBecomeActive(with: conversation)
@@ -20,7 +22,7 @@ class MessagesViewController: MSMessagesAppViewController, GameDelegate {
     }
 
     override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-        super.willTransition(to: presentationStyle)
+//        super.willTransition(to: presentationStyle)
         guard let conversation = activeConversation else { fatalError("Expected an active converstation") }
         presentViewController(for: conversation, with: presentationStyle)
     }
@@ -33,7 +35,8 @@ class MessagesViewController: MSMessagesAppViewController, GameDelegate {
         let controller: UIViewController
         switch presentationStyle {
         case .compact:
-            controller = instantiateGameCollectionViewController(with: conversation)
+//            controller = instantiateGameCollectionViewController(with: conversation)
+            controller = instantiateNewGameViewController()
         case .expanded:
             controller = instantiateGameViewController(with: conversation)
         }
@@ -55,20 +58,34 @@ class MessagesViewController: MSMessagesAppViewController, GameDelegate {
         controller.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         controller.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-
         controller.didMove(toParentViewController: self)
+
+    }
+
+    private func instantiateNewGameViewController() -> NewGameViewController {
+
+        guard let vc = storyboard?.instantiate(NewGameViewController.self) else { fatalError("") }
+        vc.delegate = self
+        return vc
 
     }
 
     private func instantiateGameCollectionViewController(with conversation: MSConversation) -> GameCollectionViewController {
 
-        let interlocutorID = conversation.remoteParticipantIdentifiers
-            .map { $0.uuidString }
-            .reduce("") { $0 + $1 }
+//        let interlocutorID = conversation.remoteParticipantIdentifiers
+//            .map { $0.uuidString }
+//            .reduce("&") { $0 + $1 }
         let vc = UIStoryboard.game.instantiate(GameCollectionViewController.self)
-        vc.opponent = Opponent(id: interlocutorID)
+//        vc.opponent = Opponent(id: interlocutorID)
+
+        sections = [
+            GameCollectionViewController.Section(title: "", items: [GameCollectionViewController.Item.create])
+        ]
+
         vc.delegate = self
+        vc.dataSource = self
         return vc
+
     }
 
     private func instantiateGameViewController(with conversation: MSConversation) -> UIViewController {
@@ -76,6 +93,7 @@ class MessagesViewController: MSMessagesAppViewController, GameDelegate {
         let game = Game(message: conversation.selectedMessage) ?? Game()
         var coordinator = GameCoordinator(for: game, isUserGame: true)
         let vc = coordinator.loadViewController()
+        
         game.delegate = self
         if game.playerTurn == .black {
             vc.boardViewController?.boardView.currentOrientation = .top
@@ -114,7 +132,7 @@ class MessagesViewController: MSMessagesAppViewController, GameDelegate {
 
 }
 
-extension MessagesViewController {
+extension MessagesViewController: GameDelegate {
 
     func game(_ game: Game, didTraverse items: [HistoryItem], in direction: Direction) {
         guard let gameViewController = childViewControllers.flatMap({ $0 as? GameViewController }).first else { return }
@@ -137,9 +155,20 @@ extension MessagesViewController {
 
 }
 
+extension MessagesViewController: NewGameViewControllerDelegate {
+    func didSelectNewGame() {
+        requestPresentationStyle(.expanded)
+    }
+}
+
 extension MessagesViewController: GameCollectionViewControllerDelegate {
+
     func gameCollectionViewControllerDidSelectCreate(_ controller: GameCollectionViewController) {
         requestPresentationStyle(.expanded)
     }
+    
+//    func gameCollectionViewControllerDidSelectCreate(_ controller: GameCollectionViewController) {
+//        requestPresentationStyle(.expanded)
+//    }
 }
 
