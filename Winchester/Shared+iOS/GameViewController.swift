@@ -15,9 +15,6 @@ open class GameViewController: UIViewController, GameViewControllerType {
     public typealias B = BoardViewController
     public typealias H = HistoryViewController
 
-    var didTapSettingsButton: () -> () = { }
-    var didTapBackButton: () -> () = { }
-
     @IBOutlet var stackView: UIStackView!
 
     public var game: Game?
@@ -27,14 +24,6 @@ open class GameViewController: UIViewController, GameViewControllerType {
     public var capturedPiecesViewController: CapturedPiecesViewController?
 
     public var availableTargetsCache: [Square] = []
-
-    @IBAction func settingsButtonAction(_ sender: UIBarButtonItem) {
-        didTapSettingsButton()
-    }
-
-    @IBAction func backButtonAction(_ sender: UIBarButtonItem) {
-        didTapBackButton()
-    }
 
     // Lifecycle
 
@@ -58,11 +47,11 @@ open class GameViewController: UIViewController, GameViewControllerType {
         historyViewController?.selectCell(at: itemIndex)
     }
 
-    private var _isNotVisited = true
+    private var _isSetup = false
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if _isNotVisited {
+        if !_isSetup {
             addChildViewController(boardViewController!)
             stackView.addArrangedSubview(boardViewController!.view)
             boardViewController!.didMove(toParentViewController: self)
@@ -74,7 +63,7 @@ open class GameViewController: UIViewController, GameViewControllerType {
             addChildViewController(capturedPiecesViewController!)
             stackView.addArrangedSubview(capturedPiecesViewController!.view)
             capturedPiecesViewController!.didMove(toParentViewController: self)
-            _isNotVisited = false
+            _isSetup = true
         }
 
     }

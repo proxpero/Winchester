@@ -19,5 +19,4 @@ struct Opponent {
         self.history = GameHistory.load(with: id)
     }
 
-
 }

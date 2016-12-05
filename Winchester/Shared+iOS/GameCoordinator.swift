@@ -59,29 +59,8 @@ public struct GameCoordinator {
             gameViewController.boardViewController?.boardView.pieceCapturingViewDelegate = capturedView
         }
 
-//        gameViewController.navigationItem.title = game.outcome.description
-
-//        let settingsViewDelegate = SettingsViewCoordinator.Delegate(
-//            game: game,
-//            settingsViewDidRotateBoard: vc.boardViewController!.boardView.rotateView
-//        )
-//        vc.didTapSettingsButton = settingsViewCoordinator.start(
-//            with: settingsViewDelegate,
-//            navigationController: navigationController,
-//            orientation: { vc.boardViewController!.boardView.currentOrientation }
-//        )
-
-        gameViewController.didTapBackButton = backButtonHandler
-//        navigationController.pushViewController(gameViewController, animated: true)
-
+        boardViewController.boardView.updatePieces(with: game.currentPosition.board)
         return gameViewController
-    }
-
-    func backButtonHandler() {
-        if isUserGame {
-            save()
-        }
-        
     }
 
     func save() {

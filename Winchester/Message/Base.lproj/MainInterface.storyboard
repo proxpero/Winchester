@@ -6,9 +6,44 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--New Game View Controller-->
+        <scene sceneID="3Tn-c9-pee">
+            <objects>
+                <viewController storyboardIdentifier="NewGameViewController" id="34a-Ta-Iwg" customClass="NewGameViewController" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hGY-Gn-NrF"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Lc-CR-Mvd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UmM-cu-Ang">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzu-ff-jZk">
+                                <rect key="frame" x="137" y="40" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Gzu-ff-jZk" secondAttribute="height" multiplier="1:1" id="9Mh-m5-NmF"/>
+                                </constraints>
+                                <state key="normal" image="create"/>
+                                <connections>
+                                    <action selector="newGameAction:" destination="34a-Ta-Iwg" eventType="touchUpInside" id="4T5-u5-xYb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.7546698857413362" green="0.87022067636361733" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Gzu-ff-jZk" firstAttribute="top" secondItem="hGY-Gn-NrF" secondAttribute="bottom" constant="20" id="7tM-8V-CRR"/>
+                            <constraint firstItem="Gzu-ff-jZk" firstAttribute="centerX" secondItem="UmM-cu-Ang" secondAttribute="centerX" id="QsF-xN-EFr"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fZ0-lA-DEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.40000000000001" y="-486.20689655172418"/>
+        </scene>
         <!--Messages View Controller-->
         <scene sceneID="7MM-of-jgj">
             <objects>
@@ -18,80 +53,16 @@
                         <viewControllerLayoutGuide type="bottom" id="n38-gi-rB5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.2901960784" green="0.2901960784" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="528"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-        </scene>
-        <!--Game Collection View Controller-->
-        <scene sceneID="pXd-0K-GOm">
-            <objects>
-                <collectionViewController storyboardIdentifier="GameCollectionViewController" id="ioP-Xq-BA9" customClass="GameCollectionViewController" customModule="Winchester" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="muX-ES-Qh5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2Lr-d0-TxK">
-                            <size key="itemSize" width="70" height="70"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CreateCell" id="g8u-6I-4cD" customClass="CreateCell" customModule="Winchester" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="create" translatesAutoresizingMaskIntoConstraints="NO" id="3eP-3S-4Dp">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                        </imageView>
-                                    </subviews>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="3eP-3S-4Dp" firstAttribute="top" secondItem="g8u-6I-4cD" secondAttribute="top" id="1U7-py-uDs"/>
-                                    <constraint firstAttribute="bottom" secondItem="3eP-3S-4Dp" secondAttribute="bottom" id="71k-qr-lIA"/>
-                                    <constraint firstAttribute="trailing" secondItem="3eP-3S-4Dp" secondAttribute="trailing" id="CxG-fQ-fdk"/>
-                                    <constraint firstItem="3eP-3S-4Dp" firstAttribute="leading" secondItem="g8u-6I-4cD" secondAttribute="leading" id="b3o-Am-48C"/>
-                                </constraints>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GameCell" id="B1n-8q-qta" customClass="GameCell" customModule="Winchester" customModuleProvider="target">
-                                <rect key="frame" x="102" y="0.0" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eEq-Jy-LVH">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                        </imageView>
-                                    </subviews>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="eEq-Jy-LVH" secondAttribute="bottom" id="63y-rK-94H"/>
-                                    <constraint firstItem="eEq-Jy-LVH" firstAttribute="leading" secondItem="B1n-8q-qta" secondAttribute="leading" id="Mm1-t1-uYj"/>
-                                    <constraint firstItem="eEq-Jy-LVH" firstAttribute="top" secondItem="B1n-8q-qta" secondAttribute="top" id="kef-6N-vIL"/>
-                                    <constraint firstAttribute="trailing" secondItem="eEq-Jy-LVH" secondAttribute="trailing" id="llp-jz-n56"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="imageView" destination="eEq-Jy-LVH" id="H7m-MG-V3J"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="ioP-Xq-BA9" id="7AM-Rn-9bY"/>
-                            <outlet property="delegate" destination="ioP-Xq-BA9" id="1nc-8r-cgT"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EjL-cl-huW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="753" y="753"/>
+            <point key="canvasLocation" x="170" y="212"/>
         </scene>
     </scenes>
     <resources>

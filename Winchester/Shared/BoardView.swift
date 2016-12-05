@@ -21,7 +21,7 @@ public final class BoardView: SKView, BoardViewType {
     /// The current state in the user's interaction with the board.
     internal var interactionState: BoardView.InteractionState = .dormant
 
-    /// The
+    /// The initial square selected during a board interaction.
     internal var initialSquare: Square?
     internal weak var activeNode: Piece.Node?
 

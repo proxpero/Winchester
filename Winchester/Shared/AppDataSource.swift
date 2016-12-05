@@ -11,11 +11,16 @@ import Endgame
 
 let _files = ["fischer v fine", "fischer v thomason", "fischer v warner", "reti v rubenstein", "shirov v polgar"]
 
-public func userGames() -> [Game] {
-    let files = UserDefaults.standard.array(forKey: "user-games") as? [String] ?? [String]()
-    return files
-        .map { try! PGN(parse: $0) }
-        .map { Game(pgn: $0) }
+public typealias Games = Dictionary<String, Game>
+
+public func userGames() -> Games {
+    let files = UserDefaults.standard.dictionary(forKey: "user-games") as? Dictionary<String, String> ?? Dictionary<String, String>()
+    var games = Games()
+    for (key, value) in files {
+        let pgn = try! PGN(parse: value)
+        games[key] = Game(pgn: pgn)
+    }
+    return games
 }
 
 public func classicGames() -> [Game] {
