@@ -52,8 +52,7 @@ public class Game {
     public init(
         whitePlayer: Player = Player(),
         blackPlayer: Player = Player(),
-        startingPosition: Position = Position(),
-        moveIndex: Int = 0)
+        startingPosition: Position = Position())
     {
         self.whitePlayer = whitePlayer
         self.blackPlayer = blackPlayer
@@ -254,7 +253,9 @@ extension Game {
         let newIndex: Int?
         let range: Range<Int>
 
-        if count == current + 1 {
+        if count == 0 {
+            return []
+        } else if count == current + 1 {
             newIndex = nil
             range = startIndex ..< current+1
         } else {
@@ -263,7 +264,6 @@ extension Game {
         }
 
         _currentIndex = newIndex
-//        precondition(_items.indices.overlaps(range), "Error: Trying to undo more items than are in contained in items.")
         return _items[range]
     }
 
@@ -275,8 +275,14 @@ extension Game {
     /// - returns: An optional array of history items.
     @discardableResult
     public func redo(count: Int = 1) -> ArraySlice<HistoryItem> {
+
+        if count == 0 {
+            return []
+        }
+
         let newIndex: Int
         let range: Range<Int>
+
         if let current = _currentIndex {
             newIndex = current + count
             range = (current+1) ..< (newIndex+1)
