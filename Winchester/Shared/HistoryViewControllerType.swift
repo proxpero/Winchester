@@ -12,14 +12,15 @@ public protocol HistoryViewControllerType: class, ViewControllerType {
     weak var dataSource: HistoryViewDataSource? { get set }
     func updateCell(at itemIndex: Int?)
     func selectCell(at itemIndex: Int?)
+    
 }
 
 extension HistoryViewControllerType where Self: CollectionViewController {
+
     public func updateCell(at itemIndex: Int?) {
-        guard let indexPath = dataSource?.indexPath(for: itemIndex) else { return }
         collectionView?.reloadData()
-        collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
+
     public func selectCell(at itemIndex: Int?) {
         guard let indexPath = dataSource?.indexPath(for: itemIndex) else { return }
         collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
