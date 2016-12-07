@@ -11,7 +11,7 @@ import Endgame
 import Shared
 import Shared_iOS
 
-class ApplicationCoordinator: CloudObserver, GameCollectionViewControllerDataSource {
+class ApplicationCoordinator: GameCollectionViewControllerDataSource {
 
     var sections: [GameCollectionViewController.Section] = []
 
