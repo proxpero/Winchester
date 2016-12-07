@@ -10,6 +10,52 @@ import Foundation
 import Messages
 import Endgame
 
+extension PGN {
+
+    init(with queryItems: [URLQueryItem]) {
+
+        var tags: [Tag: String] = [:]
+        var moves: [String] = []
+        for queryItem in queryItems {
+            guard let value = queryItem.value else { continue }
+            switch queryItem.name {
+            case "white": tags[Tag.white] = value
+            case "black": tags[Tag.black] = value
+            case "result": tags[Tag.result] = value
+            case "date": tags[Tag.date] = value
+            case "moves": moves = value.components(separatedBy: ",")
+            default: continue
+            }
+        }
+        self = PGN(tagPairs: tags, moves: moves)
+    }
+
+    var queryItems: [URLQueryItem] {
+
+        var items = [URLQueryItem]()
+
+        if let white = self[Tag.white] {
+            items.append(URLQueryItem(name: "white", value: white))
+        }
+
+        if let black = self[Tag.black] {
+            items.append(URLQueryItem(name: "black", value: black))
+        }
+
+        if let result = self[Tag.result] {
+            items.append(URLQueryItem(name: "result", value: result))
+        }
+
+        if let date = self[Tag.date] {
+            items.append(URLQueryItem(name: "date", value: date))
+        }
+
+        items.append(URLQueryItem(name: "moves", value: sanMoves().joined(separator: ",")))
+
+        return items
+
+    }
+}
 
 extension Game {
 
@@ -17,22 +63,13 @@ extension Game {
         guard let messageURL = message?.url else { return nil }
         guard let urlComponents = NSURLComponents(url: messageURL, resolvingAgainstBaseURL: false), let queryItems = urlComponents.queryItems
             else { return nil }
-
-        guard let item = queryItems.filter({ $0.name == "moves" }).first, let moves = item.value else {
-            return nil
-        }
-        let pgn = PGN(tagPairs: Dictionary<String, String>(), moves: moves.components(separatedBy: ","))
-        self.init(pgn: pgn)
+        self.init(pgn: PGN(with: queryItems))
     }
 
     var url: URL {
         var components = URLComponents()
-        components.queryItems = [queryItem]
+        components.queryItems = pgn.queryItems
         return components.url!
-    }
-
-    var queryItem: URLQueryItem {
-        return URLQueryItem(name: "moves", value: pgn.sanMoves().joined(separator: ","))
     }
 
 }
