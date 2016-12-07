@@ -31,7 +31,7 @@ public class Game {
     public var outcome: Outcome
 
     /// The game's date.
-    public var date: Date
+    public let date: Date
 
     // MARK: - Private Stored Properties
 
