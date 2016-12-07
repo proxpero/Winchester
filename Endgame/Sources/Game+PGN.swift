@@ -51,10 +51,7 @@ extension Game {
         if let eco = eco {
             pairs[.eco] = eco.code.rawValue
         }
-        if let date = date {
-            pairs[.date] = Game.dateFormatter.string(from: date)
-        }
-
+        pairs[.date] = Game.dateFormatter.string(from: date)
         return pairs
     }
 
