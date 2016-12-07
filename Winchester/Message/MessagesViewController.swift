@@ -22,7 +22,7 @@ class MessagesViewController: MSMessagesAppViewController, GameCollectionViewCon
     }
 
     override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-//        super.willTransition(to: presentationStyle)
+        super.willTransition(to: presentationStyle)
         guard let conversation = activeConversation else { fatalError("Expected an active converstation") }
         presentViewController(for: conversation, with: presentationStyle)
     }
@@ -34,11 +34,8 @@ class MessagesViewController: MSMessagesAppViewController, GameCollectionViewCon
         // Determine the controller to present.
         let controller: UIViewController
         switch presentationStyle {
-        case .compact:
-//            controller = instantiateGameCollectionViewController(with: conversation)
-            controller = instantiateNewGameViewController()
-        case .expanded:
-            controller = instantiateGameViewController(with: conversation)
+        case .compact: controller = instantiateNewGameViewController()
+        case .expanded: controller = instantiateGameViewController(with: conversation)
         }
 
         // Remove any existing child controllers.
@@ -70,27 +67,21 @@ class MessagesViewController: MSMessagesAppViewController, GameCollectionViewCon
 
     }
 
-    private func instantiateGameCollectionViewController(with conversation: MSConversation) -> GameCollectionViewController {
-
-//        let interlocutorID = conversation.remoteParticipantIdentifiers
-//            .map { $0.uuidString }
-//            .reduce("&") { $0 + $1 }
-        let vc = UIStoryboard.game.instantiate(GameCollectionViewController.self)
-//        vc.opponent = Opponent(id: interlocutorID)
-
-        sections = [
-            GameCollectionViewController.Section(title: "", items: [GameCollectionViewController.Item.create])
-        ]
-
-        vc.delegate = self
-        vc.dataSource = self
-        return vc
-
-    }
-
     private func instantiateGameViewController(with conversation: MSConversation) -> UIViewController {
 
-        let game = Game(message: conversation.selectedMessage) ?? Game()
+        let game = Game(message: conversation.selectedMessage) ?? {
+            // If there's not a game in the conversation, it must be a brand new game.
+            let user = Player(name: "user-id", kind: Player.Kind.human, elo: nil)
+            let opponent = Player(name: conversation.remoteParticipantIdentifiers.first?.uuidString, kind: Player.Kind.human, elo: nil)
+            return Game(whitePlayer: user, blackPlayer: opponent, startingPosition: Position())
+        }()
+
+        if game.playerTurn.isBlack && game.whitePlayer.name == "user-id" {
+            var white = game.whitePlayer
+            white.name = conversation.remoteParticipantIdentifiers.first?.uuidString
+            game.whitePlayer = white
+        }
+
         var coordinator = GameCoordinator(for: game, isUserGame: true)
         let vc = coordinator.loadViewController()
         
@@ -120,6 +111,18 @@ class MessagesViewController: MSMessagesAppViewController, GameCollectionViewCon
         guard let game = gameViewController.game else { fatalError() }
         guard let caption = game.lastSanMove else { fatalError("This can't be the initial position") }
 
+        if let sharedDefaults = UserDefaults(suiteName: "group.com.proxpero.winchester.shared") {
+            let pgn = game.pgn.exported()
+            if let opponent = conversation.remoteParticipantIdentifiers.first?.uuidString {
+                var games = sharedDefaults.dictionary(forKey: opponent)
+            }
+        }
+
+
+        if game.outcome.isUndetermined {
+
+        }
+
         let image = game.playerTurn.isWhite ? gameViewController.boardImage() : gameViewController.boardImage().rotated(by: 180.0)
         let message = composeMessage(with: image, caption: caption, url: game.url, session: conversation.selectedMessage?.session)
         conversation.insert(message) { error in
@@ -127,7 +130,9 @@ class MessagesViewController: MSMessagesAppViewController, GameCollectionViewCon
                 print(error)
             }
         }
+
         dismiss()
+        
     }
 
 }
