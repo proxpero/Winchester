@@ -14,6 +14,10 @@
 		5237A6AA1D98233500BAC16E /* ECO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6A81D98233500BAC16E /* ECO.swift */; };
 		5237A6AB1D98233500BAC16E /* ECO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6A81D98233500BAC16E /* ECO.swift */; };
 		5237A6AC1D98233500BAC16E /* ECO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5237A6A81D98233500BAC16E /* ECO.swift */; };
+		523A21811DF85F5700F99370 /* Game+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A21801DF85F5700F99370 /* Game+URL.swift */; };
+		523A21821DF85F5700F99370 /* Game+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A21801DF85F5700F99370 /* Game+URL.swift */; };
+		523A21831DF85F5700F99370 /* Game+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A21801DF85F5700F99370 /* Game+URL.swift */; };
+		523A21841DF85F5700F99370 /* Game+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A21801DF85F5700F99370 /* Game+URL.swift */; };
 		52678A321D9BF7FC00AB1B9E /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52678A311D9BF7FC00AB1B9E /* Capture.swift */; };
 		528288291D6168FE0014B105 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528288281D6168FE0014B105 /* Geometry.swift */; };
 		5282882D1D622BCB0014B105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5282882C1D622BCB0014B105 /* Assets.xcassets */; };
@@ -174,6 +178,7 @@
 		522324C31D3DEDC70034E292 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5237A65B1D97033200BAC16E /* Position+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Position+View.swift"; sourceTree = "<group>"; };
 		5237A6A81D98233500BAC16E /* ECO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECO.swift; sourceTree = "<group>"; };
+		523A21801DF85F5700F99370 /* Game+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Game+URL.swift"; sourceTree = "<group>"; };
 		52678A311D9BF7FC00AB1B9E /* Capture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capture.swift; sourceTree = "<group>"; };
 		528288281D6168FE0014B105 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		5282882C1D622BCB0014B105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -325,6 +330,7 @@
 				52B5954D1D539FC700E1D543 /* Game.swift */,
 				52F8C5D61DD6BB910048F494 /* GameDelegate.swift */,
 				52BF65161DCB618800E12CCA /* Game+PGN.swift */,
+				523A21801DF85F5700F99370 /* Game+URL.swift */,
 				52AB81D81D917986002C7A0B /* HistoryItem.swift */,
 				52AB81D61D917902002C7A0B /* Outcome.swift */,
 				52678A311D9BF7FC00AB1B9E /* Capture.swift */,
@@ -630,6 +636,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52942EA71D56BEF400525598 /* BoardCoordinate.swift in Sources */,
+				523A21811DF85F5700F99370 /* Game+URL.swift in Sources */,
 				52B5957B1D53A84100E1D543 /* Move.swift in Sources */,
 				52F8C5D71DD6BB910048F494 /* GameDelegate.swift in Sources */,
 				52B595851D53A90F00E1D543 /* PGN.swift in Sources */,
@@ -668,6 +675,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52942EA81D56BF1800525598 /* BoardCoordinate.swift in Sources */,
+				523A21821DF85F5700F99370 /* Game+URL.swift in Sources */,
 				52B5957C1D53A84100E1D543 /* Move.swift in Sources */,
 				52B595861D53A90F00E1D543 /* PGN.swift in Sources */,
 				52AB81DA1D917986002C7A0B /* HistoryItem.swift in Sources */,
@@ -705,6 +713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52942EAA1D56BF1900525598 /* BoardCoordinate.swift in Sources */,
+				523A21831DF85F5700F99370 /* Game+URL.swift in Sources */,
 				52B5957D1D53A84100E1D543 /* Move.swift in Sources */,
 				52F8C5D91DD6BB910048F494 /* GameDelegate.swift in Sources */,
 				52B595871D53A90F00E1D543 /* PGN.swift in Sources */,
@@ -743,6 +752,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52942EA91D56BF1900525598 /* BoardCoordinate.swift in Sources */,
+				523A21841DF85F5700F99370 /* Game+URL.swift in Sources */,
 				52B5957E1D53A84100E1D543 /* Move.swift in Sources */,
 				52B595881D53A90F00E1D543 /* PGN.swift in Sources */,
 				52AB81DC1D917986002C7A0B /* HistoryItem.swift in Sources */,

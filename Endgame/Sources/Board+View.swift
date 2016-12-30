@@ -11,11 +11,8 @@ import UIKit
 extension Board.Space {
 
     internal func _view(size: CGFloat) -> UIView {
-//        #if os(OSX)
-//            let rectY = CGFloat(rank.index) * size
-//        #else
-            let rectY = CGFloat(7 - rank.index) * size
-//        #endif
+
+        let rectY = CGFloat(7 - rank.index) * size
         let frame = CGRect(x: CGFloat(file.index) * size,
                            y: rectY,
                            width: size,
@@ -27,29 +24,13 @@ extension Board.Space {
 
         let white = UIColor.white
         let black = UIColor.black
-
-//        #if os(OSX)
-//            view.wantsLayer = true
-//            let text = NSText(frame: textFrame)
-//            view.layer?.backgroundColor = bg.cgColor
-//            text.alignment = .center
-//            text.font = .systemFont(ofSize: fontSize)
-//            text.isEditable = false
-//            text.isSelectable = false
-//
-//            text.string = str
-//            text.drawsBackground = false
-//            text.textColor = tc
-//            view.addSubview(text)
-//        #else
-            view.backgroundColor = color.isWhite ? white : black
-            let label = UILabel(frame: textFrame)
-            label.textAlignment = .center
-            label.font = .systemFont(ofSize: fontSize)
-            label.text = str
-            label.textColor = color.isWhite ? black : white
-            view.addSubview(label)
-//        #endif
+        view.backgroundColor = color.isWhite ? white : black
+        let label = UILabel(frame: textFrame)
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: fontSize)
+        label.text = str
+        label.textColor = color.isWhite ? black : white
+        view.addSubview(label)
         return view
     }
 
