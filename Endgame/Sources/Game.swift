@@ -10,6 +10,8 @@ import Foundation
 
 /// A player turn.
 public typealias PlayerTurn = Color
+
+/// 
 public typealias IndexResult = (direction: Direction, items: Array<HistoryItem>)
 
 /// A chess game.
@@ -18,6 +20,8 @@ public class Game {
     // MARK: - Public Stored Properties
 
     public var delegate: GameDelegate?
+
+    public let id: String
 
     /// The white player.
     public var whitePlayer: Player
@@ -31,7 +35,7 @@ public class Game {
     public var outcome: Outcome
 
     /// The game's date.
-    public let date: Date
+    public var date: Date
 
     // MARK: - Private Stored Properties
 
@@ -50,14 +54,18 @@ public class Game {
     /// - parameter blackPlayer: The game's black player. Default is a nameless human.
     /// - parameter startingPosition: The games's starting position. Default is standard.
     public init(
+        id: String = UUID().uuidString,
         whitePlayer: Player = Player(),
         blackPlayer: Player = Player(),
+        outcome: Outcome = .undetermined,
+        date: Date = Date(),
         startingPosition: Position = Position())
     {
+        self.id = id
         self.whitePlayer = whitePlayer
         self.blackPlayer = blackPlayer
-        self.outcome = .undetermined
-        self.date = Date()
+        self.outcome = outcome
+        self.date = date
         self._startingPosition = startingPosition
         self._items = []
         self._currentIndex = nil
@@ -67,6 +75,7 @@ public class Game {
 
     /// Create a game from another game.
     internal init(game: Game) {
+        self.id = game.id
         self.whitePlayer = game.whitePlayer
         self.blackPlayer = game.blackPlayer
         self.outcome = game.outcome
@@ -85,6 +94,18 @@ extension Game {
     /// Returns the color of the player whose turn it is.
     public var playerTurn: Color {
         return currentPosition.playerTurn
+    }
+
+    public subscript(color: Color) -> Player {
+        get {
+            return color.isWhite ? whitePlayer : blackPlayer
+        }
+        set {
+            switch color {
+            case .white: whitePlayer = newValue
+            case .black: blackPlayer = newValue
+            }
+        }
     }
 
     public var currentIndex: Int? {
