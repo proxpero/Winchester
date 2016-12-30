@@ -17,9 +17,6 @@ class ApplicationCoordinator: GameCollectionViewControllerDataSource {
 
     // MARK: - Private Stored Properties
 
-//    private let _userGames = Dictionary<String, Game>()
-//    private let _classicGames = Dictionary<String, Game>()
-
     fileprivate let navigationController: UINavigationController
     fileprivate let gameCollectionViewController: GameCollectionViewController
 
@@ -28,62 +25,40 @@ class ApplicationCoordinator: GameCollectionViewControllerDataSource {
     init(window: UIWindow) {
         self.navigationController = window.rootViewController as! UINavigationController
         self.gameCollectionViewController = UIStoryboard.game.instantiate(GameCollectionViewController.self)
-        navigationController.addChildViewController(gameCollectionViewController)
     }
 
     func start() {
-        gameCollectionViewController.collectionView?.reloadData()
-    }
 
-    func storeDidChange(with notification: Notification) {
-
-        guard let store = notification.object as? NSUbiquitousKeyValueStore else { fatalError("Did not return ubiquitous store.") }
-        func games(in key: String) -> GameCollection {
-            var games = GameCollection()
-            guard let dict = store.dictionary(forKey: key) as? Dictionary<String, String> else { fatalError("") }
-            for (key, value) in dict {
-                let pgn = try! PGN(parse: value) // FIXME: try!
-                let game = Game(pgn: pgn)
-                games[key] = game
-            }
-            return games
+        guard let sharedDefaults = UserDefaults(suiteName: "group.com.proxpero.winchester.shared") else {
+            return
         }
-        let userGames = games(in: "user-games")
-        let classicGames = games(in: "classic-games")
-        sections = [
-            GameCollectionViewController.Section(title: "My Games", items: userGames.map { GameCollectionViewController.Item.game(game: $0.value)  }),
-            GameCollectionViewController.Section(title: "Classic Games", items: classicGames.map { GameCollectionViewController.Item.game(game: $0.value)  })
-        ]
+
+        let opponents = sharedDefaults.dictionary(forKey: "opponents") as? Dictionary<String, Dictionary<String, String>> ??  Dictionary<String, Dictionary<String, String>>()
+
+        sections = opponents.map { (player, dict) in
+            let games = dict.flatMap { (id, string) in
+                guard let url = URL(string: string), let game = Game(with: url) else { return nil }
+                    return game
+                }
+                .map { GameCollectionViewController.Item.game(game: $0) }
+            return GameCollectionViewController.Section(title: player, items: games)
+        }
+
+        gameCollectionViewController.dataSource = self
+        gameCollectionViewController.delegate = self
         gameCollectionViewController.collectionView?.reloadData()
+
+        navigationController.pushViewController(gameCollectionViewController, animated: true)
+        gameCollectionViewController.navigationItem.backBarButtonItem = UIBarButtonItem()
+//        var navItem = gameCollectionViewController.navigationItem
+//        let backButton = UIBarButtonItem(title: "Games", style: .plain, target: self, action: #selector(backAction))
+//        navItem.backBarButtonItem = UIBarButtonItem()
+
     }
-    
-//    func start() {
-//        _presentRootCollectionView()
-//    }
-//    
-//    // MARK: -
-//
-//    private func _presentRootCollectionView() {
-//
-//        let vc = gameCollectionViewController
-//
-//        // MARK: Delegate
-//
-//        func _presentUserGame(game: Game) {
-//            game.undoAll()
-//            var coordinator = GameCoordinator(for: game, isUserGame: true)
-//            let vc = coordinator.loadViewController()
-//            navigationController.pushViewController(vc, animated: true)
-//        }
-//
-//        func _presentFavoriteGame(game: Game) {
-//            game.undoAll()
-//            var coordinator = GameCoordinator(for: game)
-//            let vc = coordinator.loadViewController()
-//            navigationController.pushViewController(vc, animated: true)
-//        }
-//
-//    }
+
+    @objc func backAction() {
+
+    }
 
 }
 

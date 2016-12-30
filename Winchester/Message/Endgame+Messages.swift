@@ -58,18 +58,11 @@ extension PGN {
 }
 
 extension Game {
-
-    convenience init?(message: MSMessage?) {
+    
+    convenience init?(with message: MSMessage?) {
         guard let messageURL = message?.url else { return nil }
         guard let urlComponents = NSURLComponents(url: messageURL, resolvingAgainstBaseURL: false), let queryItems = urlComponents.queryItems
             else { return nil }
-        self.init(pgn: PGN(with: queryItems))
+        self.init(with: queryItems)
     }
-
-    var url: URL {
-        var components = URLComponents()
-        components.queryItems = pgn.queryItems
-        return components.url!
-    }
-
 }
