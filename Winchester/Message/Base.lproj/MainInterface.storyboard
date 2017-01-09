@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,10 +23,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzu-ff-jZk">
-                                <rect key="frame" x="137" y="40" width="100" height="100"/>
+                                <rect key="frame" x="137" y="283.5" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Gzu-ff-jZk" secondAttribute="height" multiplier="1:1" id="9Mh-m5-NmF"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="22"/>
                                 <state key="normal" image="create"/>
                                 <connections>
                                     <action selector="newGameAction:" destination="34a-Ta-Iwg" eventType="touchUpInside" id="4T5-u5-xYb"/>
@@ -35,10 +36,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.7546698857413362" green="0.87022067636361733" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Gzu-ff-jZk" firstAttribute="top" secondItem="hGY-Gn-NrF" secondAttribute="bottom" constant="20" id="7tM-8V-CRR"/>
+                            <constraint firstItem="Gzu-ff-jZk" firstAttribute="centerY" secondItem="UmM-cu-Ang" secondAttribute="centerY" id="DNb-1O-d1u"/>
                             <constraint firstItem="Gzu-ff-jZk" firstAttribute="centerX" secondItem="UmM-cu-Ang" secondAttribute="centerX" id="QsF-xN-EFr"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="newGameButton" destination="Gzu-ff-jZk" id="1Ak-Zb-b2M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZ0-lA-DEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

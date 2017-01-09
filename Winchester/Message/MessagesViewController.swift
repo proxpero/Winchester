@@ -12,9 +12,7 @@ import Endgame
 import Shared
 import Shared_iOS
 
-class MessagesViewController: MSMessagesAppViewController, GameCollectionViewControllerDataSource {
-
-    var sections: [GameCollectionViewController.Section] = []
+class MessagesViewController: MSMessagesAppViewController {
 
     override func willBecomeActive(with conversation: MSConversation) {
         super.willBecomeActive(with: conversation)
@@ -27,16 +25,8 @@ class MessagesViewController: MSMessagesAppViewController, GameCollectionViewCon
         presentViewController(for: conversation, with: presentationStyle)
     }
 
-    // MARK: Child view controller presentation
-
-    private func presentViewController(for conversation: MSConversation, with presentationStyle: MSMessagesAppPresentationStyle) {
-
-        // Determine the controller to present.
-        let controller: UIViewController
-        switch presentationStyle {
-        case .compact: controller = instantiateNewGameViewController()
-        case .expanded: controller = instantiateGameViewController(with: conversation)
-        }
+    // Embed a new child view controller 
+    private func embed(controller: UIViewController) {
 
         // Remove any existing child controllers.
         for child in childViewControllers {
@@ -59,27 +49,42 @@ class MessagesViewController: MSMessagesAppViewController, GameCollectionViewCon
 
     }
 
-    private func instantiateNewGameViewController() -> NewGameViewController {
+    // MARK: Child view controller presentation
 
+    private func presentViewController(for conversation: MSConversation, with presentationStyle: MSMessagesAppPresentationStyle) {
+
+        // Determine the controller to present.
+        switch presentationStyle {
+        case .compact:
+            embed(controller: instantiateNewGameViewController())
+        case .expanded:
+            embed(controller: instantiateGameViewController(with: conversation))
+            if OpponentStore.defaultStore[conversation] == nil {
+                setOpponentName(for: conversation)
+            }
+        }
+
+    }
+
+    private func instantiateNewGameViewController() -> NewGameViewController {
         guard let vc = storyboard?.instantiate(NewGameViewController.self) else { fatalError("") }
         vc.delegate = self
         return vc
-
     }
 
     private func instantiateGameViewController(with conversation: MSConversation) -> UIViewController {
 
-        let game = Game(message: conversation.selectedMessage) ?? {
-            // If there's not a game in the conversation, it must be a brand new game.
-            let user = Player(name: "user-id", kind: Player.Kind.human, elo: nil)
-            let opponent = Player(name: conversation.remoteParticipantIdentifiers.first?.uuidString, kind: Player.Kind.human, elo: nil)
-            return Game(whitePlayer: user, blackPlayer: opponent, startingPosition: Position())
+        let game = Game(with: conversation.selectedMessage) ?? {
+            let game = Game()
+            if let opponent = OpponentStore.defaultStore[conversation] {
+                print(opponent.name)
+                game[.black] = Player(opponent: opponent)
+            }
+            return game
         }()
 
-        if game.playerTurn.isBlack && game.whitePlayer.name == "user-id" {
-            var white = game.whitePlayer
-            white.name = conversation.remoteParticipantIdentifiers.first?.uuidString
-            game.whitePlayer = white
+        if !game.outcome.isUndetermined {
+            handleEnd(of: game, with: game.outcome)
         }
 
         var coordinator = GameCoordinator(for: game, isUserGame: true)
@@ -89,7 +94,42 @@ class MessagesViewController: MSMessagesAppViewController, GameCollectionViewCon
         if game.playerTurn == .black {
             vc.boardViewController?.boardView.currentOrientation = .top
         }
+
         return vc
+        
+    }
+
+    private func setOpponentName(for conversation: MSConversation) {
+
+        guard let key = conversation.remoteParticipantIdentifiers.first?.uuidString else {
+            fatalError("Could not create an opponent key")
+        }
+
+        // Create Alert Controller
+        let alertController = UIAlertController(
+            title: "Enter Name",
+            message: "What is your opponent's name?",
+            preferredStyle: .alert
+        )
+
+        // Add textfield
+        alertController.addTextField { textField in
+            textField.placeholder = "Bobby Fischer"
+        }
+
+        // Configure alert action and completion handler.
+        let action = UIAlertAction(title: "Submit", style: UIAlertActionStyle.default) { _ in
+            guard
+                let textFields = alertController.textFields,
+                let textField = textFields.first,
+                let name = textField.text,
+                !name.isEmpty
+            else { return }
+            OpponentStore.defaultStore.createOpponent(name, for: key)
+        }
+
+        alertController.addAction(action)
+        self.present(alertController, animated: true)
     }
 
     fileprivate func composeMessage(with image: UIImage, caption: String, url: URL, session: MSSession? = nil) -> MSMessage {
@@ -103,36 +143,48 @@ class MessagesViewController: MSMessagesAppViewController, GameCollectionViewCon
         message.layout = layout
 
         return message
+
     }
 
     func didExecuteTurn(with gameViewController: GameViewController) {
 
-        guard let conversation = activeConversation else { fatalError("Expected a conversation") }
-        guard let game = gameViewController.game else { fatalError() }
-        guard let caption = game.lastSanMove else { fatalError("This can't be the initial position") }
+        guard
+            let conversation = activeConversation,
+            let game = gameViewController.game,
+            let caption = game.lastSanMove
+        else { fatalError() }
 
-        if let sharedDefaults = UserDefaults(suiteName: "group.com.proxpero.winchester.shared") {
-            let pgn = game.pgn.exported()
-            if let opponent = conversation.remoteParticipantIdentifiers.first?.uuidString {
-                var games = sharedDefaults.dictionary(forKey: opponent)
+        if game[game.playerTurn].name == nil {
+            if let opponent = OpponentStore.defaultStore[conversation] {
+                let player = Player(name: opponent.name, kind: .human, elo: nil)
+                game[game.playerTurn] = player
             }
         }
 
-
-        if game.outcome.isUndetermined {
-
-        }
-
         let image = game.playerTurn.isWhite ? gameViewController.boardImage() : gameViewController.boardImage().rotated(by: 180.0)
-        let message = composeMessage(with: image, caption: caption, url: game.url, session: conversation.selectedMessage?.session)
+        let message = MSMessage(image: image, caption: caption, url: game.url, session: conversation.selectedMessage?.session)
+
         conversation.insert(message) { error in
             if let error = error {
                 print(error)
             }
         }
-
         dismiss()
-        
+    }
+
+}
+
+extension MSMessage {
+
+    convenience init(image: UIImage, caption: String, url: URL, session: MSSession?) {
+
+        let layout = MSMessageTemplateLayout()
+        layout.image = image
+        layout.caption = caption
+
+        self.init(session: session ?? MSSession())
+        self.url = url
+        self.layout = layout
     }
 
 }
@@ -158,6 +210,24 @@ extension MessagesViewController: GameDelegate {
         
     }
 
+    func game(_ game: Game, didEndWith outcome: Outcome) {
+        handleEnd(of: game, with: outcome)
+    }
+
+
+    func handleEnd(of game: Game, with outcome: Outcome) {
+        guard let conversation = activeConversation else {
+            print("Error: no active conversation")
+            return
+        }
+        guard let opponent = OpponentStore.defaultStore[conversation] else {
+            fatalError("Could not get opponent")
+        }
+        var urls = opponent.urls
+        urls.append(game.url)
+        OpponentStore.defaultStore[conversation] = Opponent(name: opponent.name, urls: urls)
+    }
+
 }
 
 extension MessagesViewController: NewGameViewControllerDelegate {
@@ -171,9 +241,32 @@ extension MessagesViewController: GameCollectionViewControllerDelegate {
     func gameCollectionViewControllerDidSelectCreate(_ controller: GameCollectionViewController) {
         requestPresentationStyle(.expanded)
     }
-    
-//    func gameCollectionViewControllerDidSelectCreate(_ controller: GameCollectionViewController) {
-//        requestPresentationStyle(.expanded)
-//    }
+
 }
 
+extension MSConversation {
+    var opponentKey: String? {
+        return remoteParticipantIdentifiers.first?.uuidString
+    }
+}
+
+extension OpponentStore {
+
+    func append(game: Game, for conversation: MSConversation) {
+        guard let old = self[conversation] else { fatalError("Could not create Opponent form conversation") }
+        self[conversation] = old.appending(url: game.url)
+    }
+
+    subscript(conversation: MSConversation) -> Opponent? {
+        get {
+            guard let key = conversation.opponentKey else { print("no opponent for this conversation."); return nil }
+            return self[key]
+        }
+        set {
+            guard let key = conversation.opponentKey else { return }
+            self[key] = newValue
+        }
+    }
+
+
+}
