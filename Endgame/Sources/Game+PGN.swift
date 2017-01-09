@@ -22,7 +22,9 @@ extension Game {
 
         game.whitePlayer = Player(name: pgn[PGN.Tag.white], kind: pgn[PGN.Tag.whiteType], elo: pgn[PGN.Tag.whiteElo])
         game.blackPlayer = Player(name: pgn[PGN.Tag.black], kind: pgn[PGN.Tag.blackType], elo: pgn[PGN.Tag.blackElo])
-        game.date = Game.dateFormatter.date(from: pgn[PGN.Tag.date]!)!
+        if let date = pgn[PGN.Tag.date] {
+            game.date = Game.dateFormatter.date(from: date)
+        }
         game.outcome = pgn.outcome
 
         let sanMoves = pgn.sanMoves()
@@ -52,7 +54,9 @@ extension Game {
         if let eco = eco {
             pairs[.eco] = eco.code.rawValue
         }
-        pairs[.date] = Game.dateFormatter.string(from: date)
+        if let date = date {
+            pairs[.date] = Game.dateFormatter.string(from: date)
+        }
         return pairs
     }
 

@@ -11,9 +11,6 @@ import Foundation
 /// A player turn.
 public typealias PlayerTurn = Color
 
-/// 
-public typealias IndexResult = (direction: Direction, items: Array<HistoryItem>)
-
 /// A chess game.
 public class Game {
     
@@ -35,7 +32,7 @@ public class Game {
     public var outcome: Outcome
 
     /// The game's date.
-    public var date: Date
+    public var date: Date?
 
     // MARK: - Private Stored Properties
 
@@ -210,7 +207,16 @@ extension Game {
         if let e = ECO.codes[key] {
             eco = e
         }
+        
         delegate?.game(self, didExecute: move, with: newHistoryItem.capture, with: promotion)
+
+        if outcome != currentPosition._outcome {
+            outcome = currentPosition._outcome
+            if !outcome.isUndetermined {
+                delegate?.game(self, didEndWith: outcome)
+            }
+        }
+
     }
 
     // MARK: - Public Computed Properties

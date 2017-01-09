@@ -61,7 +61,7 @@ extension Game {
         items.append(URLQueryItem(name: "white", value: whitePlayer.name))
         items.append(URLQueryItem(name: "black", value: blackPlayer.name))
         items.append(URLQueryItem(name: "result", value: outcome.description))
-        items.append(URLQueryItem(name: "date", value: date.description))
+        items.append(URLQueryItem(name: "date", value: date?.description))
         items.append(URLQueryItem(name: "moves", value: self.map({ $0.sanMove }).joined(separator: ",")))
 
         return items
