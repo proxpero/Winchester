@@ -47,7 +47,6 @@
 		520C4E0A1DE409E6007DC21A /* GameHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4E001DE409E6007DC21A /* GameHistory.swift */; };
 		520C4E0B1DE409E6007DC21A /* GameImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4E011DE409E6007DC21A /* GameImageCache.swift */; };
 		520C4E0C1DE409E6007DC21A /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4E021DE409E6007DC21A /* MessagesViewController.swift */; };
-		520C4E0D1DE409E6007DC21A /* Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C4E031DE409E6007DC21A /* Opponent.swift */; };
 		520C4E0E1DE41243007DC21A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 520C4D891DE37DE8007DC21A /* Assets.xcassets */; };
 		5215B1391DECA2E60023E5C3 /* GameCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215B1381DECA2E60023E5C3 /* GameCollectionViewController.swift */; };
 		5215B13B1DECA3EC0023E5C3 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215B13A1DECA3EC0023E5C3 /* GameCell.swift */; };
@@ -60,9 +59,12 @@
 		5225DD041DB544CB00F74330 /* reti v rubenstein.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5225DCFF1DB544CB00F74330 /* reti v rubenstein.pgn */; };
 		5225DD071DB544CB00F74330 /* shirov v polgar.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 5225DD001DB544CB00F74330 /* shirov v polgar.pgn */; };
 		5237A6631D970B7C00BAC16E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5237A6611D970B7C00BAC16E /* Main.storyboard */; };
+		523B0B351E1D8D040093D625 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B0B341E1D8D040093D625 /* ItemsViewController.swift */; };
 		5240586F1D638483000A925C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5240586B1D638483000A925C /* LaunchScreen.storyboard */; };
 		524058CA1D63FA64000A925C /* WinchesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282880E1D6113310014B105 /* WinchesterTests.swift */; };
-		5245C26A1E16A36500AA5912 /* OpponentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245C2691E16A36500AA5912 /* OpponentsViewController.swift */; };
+		5255B7E91E1C07D400E869F4 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255B7E81E1C07D400E869F4 /* StackViewController.swift */; };
+		5255B7EB1E1C0CCD00E869F4 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255B7EA1E1C0CCD00E869F4 /* UIView+Extensions.swift */; };
+		5255B7ED1E1C10BC00E869F4 /* Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255B7EC1E1C10BC00E869F4 /* Opponent.swift */; };
 		5263CFEC1DF25E64003DC1C1 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263CFEB1DF25E64003DC1C1 /* NewGameViewController.swift */; };
 		526751281DE60D64006B11C1 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526751271DE60D64006B11C1 /* Game.storyboard */; };
 		526751291DE61442006B11C1 /* Shared_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FDDBFA1DE602E6008E9621 /* Shared_iOS.framework */; };
@@ -76,6 +78,7 @@
 		52BCD0A01DC198B7005D1CC2 /* fischer v thomason.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09E1DC198B7005D1CC2 /* fischer v thomason.pgn */; };
 		52BCD0A31DC198B7005D1CC2 /* fischer v warner.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */; };
 		52C0C08F1DE8A1C200F60B17 /* UIKit+Winchester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C0C08E1DE8A1C200F60B17 /* UIKit+Winchester.swift */; };
+		52D83FE11E233B52009CD887 /* SectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D83FE01E233B52009CD887 /* SectionViewController.swift */; };
 		52FDDBD41DE5DBD2008E9621 /* BoardViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBD31DE5DBD2008E9621 /* BoardViewType.swift */; };
 		52FDDBD61DE5DCA8008E9621 /* PromotionNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBD51DE5DCA8008E9621 /* PromotionNodeProtocol.swift */; };
 		52FDDBD81DE5DF3D008E9621 /* BoardView+BoardViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDDBD71DE5DF3D008E9621 /* BoardView+BoardViewProtocol.swift */; };
@@ -212,7 +215,6 @@
 		520C4E001DE409E6007DC21A /* GameHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHistory.swift; sourceTree = "<group>"; };
 		520C4E011DE409E6007DC21A /* GameImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameImageCache.swift; sourceTree = "<group>"; };
 		520C4E021DE409E6007DC21A /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
-		520C4E031DE409E6007DC21A /* Opponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Opponent.swift; sourceTree = "<group>"; };
 		5215B1381DECA2E60023E5C3 /* GameCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCollectionViewController.swift; sourceTree = "<group>"; };
 		5215B13A1DECA3EC0023E5C3 /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		5215B13C1DECA3F90023E5C3 /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
@@ -225,12 +227,15 @@
 		5225DCFF1DB544CB00F74330 /* reti v rubenstein.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reti v rubenstein.pgn"; sourceTree = "<group>"; };
 		5225DD001DB544CB00F74330 /* shirov v polgar.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shirov v polgar.pgn"; sourceTree = "<group>"; };
 		5237A6621D970B7C00BAC16E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOS/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		523B0B341E1D8D040093D625 /* ItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsViewController.swift; path = iOS/ItemsViewController.swift; sourceTree = SOURCE_ROOT; };
 		5240586C1D638483000A925C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iOS/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		524058711D638497000A925C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		524058A41D63F353000A925C /* WinchesterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WinchesterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		524058CD1D63FA92000A925C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5245C2691E16A36500AA5912 /* OpponentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpponentsViewController.swift; path = iOS/OpponentsViewController.swift; sourceTree = SOURCE_ROOT; };
 		524A14DD1DC6CA7B003BC9AC /* Endgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Endgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5255B7E81E1C07D400E869F4 /* StackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackViewController.swift; path = "Shared+iOS/StackViewController.swift"; sourceTree = SOURCE_ROOT; };
+		5255B7EA1E1C0CCD00E869F4 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		5255B7EC1E1C10BC00E869F4 /* Opponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Opponent.swift; sourceTree = "<group>"; };
 		5263CFEB1DF25E64003DC1C1 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 		52647CBC1DC1849200E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug/Endgame.framework"; sourceTree = "<group>"; };
 		52647CC01DC184DD00E617A4 /* Endgame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Endgame.framework; path = "../../../Library/Developer/Xcode/DerivedData/Chess-bgemltbgjmhdicfowhuwvomtfnpb/Build/Products/Debug-appletvsimulator/Endgame.framework"; sourceTree = "<group>"; };
@@ -248,6 +253,7 @@
 		52BCD09F1DC198B7005D1CC2 /* fischer v warner.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fischer v warner.pgn"; sourceTree = "<group>"; };
 		52C0C08E1DE8A1C200F60B17 /* UIKit+Winchester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Winchester.swift"; sourceTree = "<group>"; };
 		52C0C0901DE9354300F60B17 /* Winchester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Winchester.entitlements; sourceTree = "<group>"; };
+		52D83FE01E233B52009CD887 /* SectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionViewController.swift; path = "Shared+iOS/SectionViewController.swift"; sourceTree = SOURCE_ROOT; };
 		52FDDBD31DE5DBD2008E9621 /* BoardViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewType.swift; sourceTree = "<group>"; };
 		52FDDBD51DE5DCA8008E9621 /* PromotionNodeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionNodeProtocol.swift; sourceTree = "<group>"; };
 		52FDDBD71DE5DF3D008E9621 /* BoardView+BoardViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BoardView+BoardViewProtocol.swift"; sourceTree = "<group>"; };
@@ -323,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				520C4D871DE37DE8007DC21A /* AppDataSource.swift */,
+				5255B7EC1E1C10BC00E869F4 /* Opponent.swift */,
 				52FDDBD21DE5D7E1008E9621 /* BoardView */,
 				52FDDBDD1DE5E14C008E9621 /* Sprites */,
 				52FDDBE01DE5E1E6008E9621 /* GameViewController */,
@@ -331,6 +338,8 @@
 				52FDDBED1DE5E7F1008E9621 /* Capturing */,
 				52FDDBF01DE5EA1A008E9621 /* Promotion */,
 				520C4D8F1DE37DE8007DC21A /* Cache.swift */,
+				5255B7E81E1C07D400E869F4 /* StackViewController.swift */,
+				5255B7EA1E1C0CCD00E869F4 /* UIView+Extensions.swift */,
 				520C4D9B1DE37DE8007DC21A /* Shims.swift */,
 				520C4D7D1DE37DB3007DC21A /* Shared.h */,
 				520C4D7E1DE37DB3007DC21A /* Info.plist */,
@@ -348,7 +357,6 @@
 				520C4DFE1DE409E6007DC21A /* Endgame+Messages.swift */,
 				520C4E001DE409E6007DC21A /* GameHistory.swift */,
 				520C4E011DE409E6007DC21A /* GameImageCache.swift */,
-				520C4E031DE409E6007DC21A /* Opponent.swift */,
 				520C4DEC1DE4080E007DC21A /* MainInterface.storyboard */,
 				520C4DEF1DE4080E007DC21A /* Assets.xcassets */,
 				520C4DF11DE4080E007DC21A /* Info.plist */,
@@ -373,8 +381,9 @@
 			isa = PBXGroup;
 			children = (
 				528E211F1DC17E9800C45E17 /* AppDelegate.swift */,
-				5245C2691E16A36500AA5912 /* OpponentsViewController.swift */,
 				528E211E1DC17E9800C45E17 /* AppCoordinator.swift */,
+				523B0B341E1D8D040093D625 /* ItemsViewController.swift */,
+				52D83FE01E233B52009CD887 /* SectionViewController.swift */,
 				528E21211DC17E9800C45E17 /* Game+Endgame.swift */,
 				5240586B1D638483000A925C /* LaunchScreen.storyboard */,
 				5237A6611D970B7C00BAC16E /* Main.storyboard */,
@@ -664,7 +673,7 @@
 		52BAE08A1D5FD555006E2652 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Todd Olsen";
 				TargetAttributes = {
@@ -805,16 +814,19 @@
 			files = (
 				520C4DAD1DE37DE8007DC21A /* NodeType.swift in Sources */,
 				52FDDBEB1DE5E406008E9621 /* BoardViewControllerType.swift in Sources */,
+				5255B7ED1E1C10BC00E869F4 /* Opponent.swift in Sources */,
 				52FDDBD41DE5DBD2008E9621 /* BoardViewType.swift in Sources */,
 				520C4DA41DE37DE8007DC21A /* BoardViewProtocol.swift in Sources */,
 				52FDDBE91DE5E391008E9621 /* HistoryViewControllerType.swift in Sources */,
 				520C4DA91DE37DE8007DC21A /* GameViewControllerType.swift in Sources */,
+				5255B7EB1E1C0CCD00E869F4 /* UIView+Extensions.swift in Sources */,
 				520C4DAE1DE37DE8007DC21A /* Piece+Winchester.swift in Sources */,
 				520C4DB01DE37DE8007DC21A /* PieceNodeDataSource.swift in Sources */,
 				520C4DA21DE37DE8007DC21A /* BoardViewDelegate.swift in Sources */,
 				520C4DA51DE37DE8007DC21A /* Cache.swift in Sources */,
 				520C4D9D1DE37DE8007DC21A /* AppDataSource.swift in Sources */,
 				52FDDBDC1DE5E074008E9621 /* BoardView+Promotion.swift in Sources */,
+				5255B7E91E1C07D400E869F4 /* StackViewController.swift in Sources */,
 				520C4DB21DE37DE8007DC21A /* Square+Winchester.swift in Sources */,
 				520C4DA11DE37DE8007DC21A /* BoardView.swift in Sources */,
 				520C4DBC1DE3AAA0007DC21A /* CoreGraphics+Winchester.swift in Sources */,
@@ -845,7 +857,6 @@
 				520C4E0B1DE409E6007DC21A /* GameImageCache.swift in Sources */,
 				520C4E041DE409E6007DC21A /* ChessGameCache.swift in Sources */,
 				5263CFEC1DF25E64003DC1C1 /* NewGameViewController.swift in Sources */,
-				520C4E0D1DE409E6007DC21A /* Opponent.swift in Sources */,
 				520C4E0C1DE409E6007DC21A /* MessagesViewController.swift in Sources */,
 				520C4E081DE409E6007DC21A /* Endgame+Messages.swift in Sources */,
 				520C4E0A1DE409E6007DC21A /* GameHistory.swift in Sources */,
@@ -864,8 +875,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523B0B351E1D8D040093D625 /* ItemsViewController.swift in Sources */,
+				52D83FE11E233B52009CD887 /* SectionViewController.swift in Sources */,
 				528E212D1DC17E9800C45E17 /* AppCoordinator.swift in Sources */,
-				5245C26A1E16A36500AA5912 /* OpponentsViewController.swift in Sources */,
 				528E21301DC17E9800C45E17 /* Game+Endgame.swift in Sources */,
 				528E212E1DC17E9800C45E17 /* AppDelegate.swift in Sources */,
 			);

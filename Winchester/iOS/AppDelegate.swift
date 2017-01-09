@@ -14,12 +14,11 @@ import Shared
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var coordinator: ApplicationCoordinator?
+    var coordinator: AppCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        guard let window = window else { return false }
-        coordinator = ApplicationCoordinator(window: window)
-        coordinator?.start()
+        guard let window = window else { return false }        
+        coordinator = AppCoordinator(window: window)
         return true
     }
 

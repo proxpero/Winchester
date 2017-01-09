@@ -11,81 +11,66 @@ import Endgame
 import Shared
 import Shared_iOS
 
-class ApplicationCoordinator: GameCollectionViewControllerDataSource {
+final class GameCell: UITableViewCell {
 
-    var sections: [GameCollectionViewController.Section] = []
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
 
-    // MARK: - Private Stored Properties
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
-    fileprivate let navigationController: UINavigationController
-    fileprivate let gameCollectionViewController: GameCollectionViewController
+}
 
-    // MARK: - Initializers
+final class OpponentCell: UITableViewCell {
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+class AppCoordinator {
+
+    let navigationController: UINavigationController
 
     init(window: UIWindow) {
+
         self.navigationController = window.rootViewController as! UINavigationController
-        self.gameCollectionViewController = UIStoryboard.game.instantiate(GameCollectionViewController.self)
-    }
 
-    func start() {
+        let opponents = OpponentStore.defaultStore.opponents.map { $0.value }
 
-        guard let sharedDefaults = UserDefaults(suiteName: "group.com.proxpero.winchester.shared") else {
-            return
+        let opponentsVC = ItemsViewController(items: opponents, configure: { (cell: OpponentCell, opponent) in
+            cell.textLabel?.text = opponent.name
+        })
+
+        navigationController.setViewControllers([opponentsVC], animated: false)
+
+        opponentsVC.didSelect = { opponent in
+            let games = opponent.games
+    
+            let gamesVC = ItemsViewController(items: games, configure: self.configure)
+
+            gamesVC.title = opponent.name
+            gamesVC.didSelect = { game in
+                var coordinator = GameCoordinator(for: game, isUserGame: false)
+                let vc = coordinator.loadViewController()
+                self.navigationController.pushViewController(vc, animated: true)
+            }
+            self.navigationController.pushViewController(gamesVC, animated: true)
         }
 
-        let opponents = sharedDefaults.dictionary(forKey: "opponents") as? Dictionary<String, Dictionary<String, String>> ??  Dictionary<String, Dictionary<String, String>>()
-
-        sections = opponents.map { (player, dict) in
-            let games = dict.flatMap { (id, string) in
-                guard let url = URL(string: string), let game = Game(with: url) else { return nil }
-                    return game
-                }
-                .map { GameCollectionViewController.Item.game(game: $0) }
-            return GameCollectionViewController.Section(title: player, items: games)
-        }
-
-        gameCollectionViewController.dataSource = self
-        gameCollectionViewController.delegate = self
-        gameCollectionViewController.collectionView?.reloadData()
-
-        navigationController.pushViewController(gameCollectionViewController, animated: true)
-        gameCollectionViewController.navigationItem.backBarButtonItem = UIBarButtonItem()
-//        var navItem = gameCollectionViewController.navigationItem
-//        let backButton = UIBarButtonItem(title: "Games", style: .plain, target: self, action: #selector(backAction))
-//        navItem.backBarButtonItem = UIBarButtonItem()
+        opponentsVC.title = "Opponents"
 
     }
 
-    @objc func backAction() {
-
+    func configure(gameCell: GameCell, with game: Game) {
+        gameCell.textLabel?.text = game.whitePlayer.name
     }
 
 }
-
-extension ApplicationCoordinator: GameCollectionViewControllerDelegate {
-
-    func gameCollectionViewControllerDidSelectCreate(_ controller: GameCollectionViewController) {
-
-        let game = Game()
-        var coordinator = GameCoordinator(for: game, isUserGame: true)
-        let vc = coordinator.loadViewController()
-        navigationController.pushViewController(vc, animated: true)
-
-    }
-
-    func gameCollectionViewControllerDidSelectShowMore(_ controller: GameCollectionViewController, for section: GameCollectionViewController.Section) {
-
-    }
-
-    func gameCollectionViewController(_ controller: GameCollectionViewController, didSelect game: Game) {
-        var coordinator = GameCoordinator(for: game, isUserGame: true)
-        let vc = coordinator.loadViewController()
-        navigationController.pushViewController(vc, animated: true)
-    }
-
-    func gameCollectionViewController(_ controller: GameCollectionViewController, shouldShowSection: GameCollectionViewController.Section) -> Bool {
-        return true
-    }
-
-}
-
