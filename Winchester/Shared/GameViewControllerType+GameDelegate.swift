@@ -24,6 +24,8 @@ extension GameViewControllerType {
         normalize()
     }
 
+    public func game(_ game: Game, didEndWith outcome: Outcome) {}
+
     public func normalize() {
         guard let boardView = boardViewController?.view as? BoardView else { fatalError("Programmer Error: Expected a boardView") }
         let delay = DispatchTime.now() + .milliseconds(30)

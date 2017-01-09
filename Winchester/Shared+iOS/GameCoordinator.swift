@@ -60,6 +60,7 @@ public struct GameCoordinator {
         }
 
         boardViewController.boardView.updatePieces(with: game.currentPosition.board)
+
         return gameViewController
     }
 
