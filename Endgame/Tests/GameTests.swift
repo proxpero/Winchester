@@ -182,74 +182,75 @@ class GameTests: XCTestCase {
         test(game: reti)
     }
 
-    func testSettingIndex() {
-
-        func test(game: Game) {
-
-            func randomIndex(lower: Int, upper: Int) -> Int {
-                return Int(arc4random_uniform(UInt32(upper-lower))) + lower
-            }
-
-            func randomUndoIndex() -> (Int, Int) {
-                let index = randomIndex(lower: 0, upper: game._currentIndex!-1)
-                return (index, abs(game._currentIndex! - index))
-            }
-
-            func randomRedoIndex() -> (Int, Int) {
-                let current = game._currentIndex == nil ? -1 : game._currentIndex!
-                let lower = current+1
-                let upper = game.endIndex-1
-                if upper <= lower { return randomRedoIndex() }
-                let index = randomIndex(lower: lower, upper: upper)
-                return (index, abs(current - index))
-            }
-
-            var newIndex: Int
-            var count: Int
-            var result: IndexResult?
-            
-            (newIndex, count) = randomUndoIndex()
-            result = game.settingIndex(to: newIndex)
-            XCTAssertNotNil(result)
-            XCTAssertEqual(result!.direction, .undo)
-            XCTAssertEqual(result!.items.count, count)
-
-            (newIndex, count) = randomRedoIndex()
-            result = game.settingIndex(to: newIndex)
-            XCTAssertNotNil(result)
-            XCTAssertEqual(result!.direction, .redo)
-            XCTAssertEqual(result!.items.count, count)
-
-            count = game._currentIndex! + 1 // a current index of zero would still need to unwind one more item to get to start.
-            result = game.settingIndex(to: nil)
-            XCTAssertNotNil(result)
-            XCTAssertEqual(result!.direction, .undo)
-            XCTAssertEqual(result!.items.count, count)
-
-            (newIndex, count) = randomRedoIndex()
-            result = game.settingIndex(to: newIndex)
-            XCTAssertNotNil(result)
-            XCTAssertEqual(result!.direction, .redo)
-            XCTAssertEqual(result!.items.count, count)
-
-            (newIndex, count) = (game.endIndex - 1, game.endIndex - game._currentIndex! - 1)
-            result = game.settingIndex(to: game.endIndex-1)
-            XCTAssertNotNil(result)
-            XCTAssertEqual(result!.direction, .redo)
-            XCTAssertEqual(result!.items.count, count)
-
-            (newIndex, count) = randomUndoIndex()
-            result = game.settingIndex(to: newIndex)
-            XCTAssertNotNil(result)
-            XCTAssertEqual(result!.direction, .undo)
-            XCTAssertEqual(result!.items.count, count)
-
-        }
-        
-        test(game: fischer)
-        test(game: polgar)
-        test(game: reti)
-    }
+//    func testSettingIndex() {
+//
+//        func test(game: Game) {
+//
+//            func randomIndex(lower: Int, upper: Int) -> Int {
+//                return Int(arc4random_uniform(UInt32(upper-lower))) + lower
+//            }
+//
+//            func randomUndoIndex() -> (Int, Int) {
+//                let index = randomIndex(lower: 0, upper: game._currentIndex!-1)
+//                return (index, abs(game._currentIndex! - index))
+//            }
+//
+//            func randomRedoIndex() -> (Int, Int) {
+//                let current = game._currentIndex == nil ? -1 : game._currentIndex!
+//                let lower = current+1
+//                let upper = game.endIndex-1
+//                if upper <= lower { return randomRedoIndex() }
+//                let index = randomIndex(lower: lower, upper: upper)
+//                return (index, abs(current - index))
+//            }
+//
+//            var newIndex: Int
+//            var count: Int
+//            var result: IndexResult?
+//            
+//            (newIndex, count) = randomUndoIndex()
+//            result = game.
+//            result = game.settingIndex(to: newIndex)
+//            XCTAssertNotNil(result)
+//            XCTAssertEqual(result!.direction, .undo)
+//            XCTAssertEqual(result!.items.count, count)
+//
+//            (newIndex, count) = randomRedoIndex()
+//            result = game.settingIndex(to: newIndex)
+//            XCTAssertNotNil(result)
+//            XCTAssertEqual(result!.direction, .redo)
+//            XCTAssertEqual(result!.items.count, count)
+//
+//            count = game._currentIndex! + 1 // a current index of zero would still need to unwind one more item to get to start.
+//            result = game.settingIndex(to: nil)
+//            XCTAssertNotNil(result)
+//            XCTAssertEqual(result!.direction, .undo)
+//            XCTAssertEqual(result!.items.count, count)
+//
+//            (newIndex, count) = randomRedoIndex()
+//            result = game.settingIndex(to: newIndex)
+//            XCTAssertNotNil(result)
+//            XCTAssertEqual(result!.direction, .redo)
+//            XCTAssertEqual(result!.items.count, count)
+//
+//            (newIndex, count) = (game.endIndex - 1, game.endIndex - game._currentIndex! - 1)
+//            result = game.settingIndex(to: game.endIndex-1)
+//            XCTAssertNotNil(result)
+//            XCTAssertEqual(result!.direction, .redo)
+//            XCTAssertEqual(result!.items.count, count)
+//
+//            (newIndex, count) = randomUndoIndex()
+//            result = game.settingIndex(to: newIndex)
+//            XCTAssertNotNil(result)
+//            XCTAssertEqual(result!.direction, .undo)
+//            XCTAssertEqual(result!.items.count, count)
+//
+//        }
+//        
+//        test(game: fischer)
+//        test(game: polgar)
+//        test(game: reti)
+//    }
 
     func testSubscript() {
 
