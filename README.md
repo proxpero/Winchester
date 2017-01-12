@@ -18,8 +18,6 @@ Features:
 
 Coming soon:
 
-* The ability to save games locally.
-* The ability to save games across devices.
 * The ability to choose classic games to view from a large database.
 * Puzzle solving, a large selection varying both in difficulty and application.
 * EPD editing.
