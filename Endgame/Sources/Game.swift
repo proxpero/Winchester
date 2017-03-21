@@ -16,8 +16,10 @@ public class Game {
     
     // MARK: - Public Stored Properties
 
-    public var delegate: GameDelegate?
+    /// The game's delegate
+    public weak var delegate: GameDelegate?
 
+    /// The unique id for this game.
     public let id: String
 
     /// The white player.
@@ -26,10 +28,7 @@ public class Game {
     /// The black player.
     public var blackPlayer: Player
 
-    public var eco: ECO?
-
-    /// The game's outcome.
-    public var outcome: Outcome
+//    public var eco: ECO?
 
     /// The game's date.
     public var date: Date?
@@ -37,11 +36,11 @@ public class Game {
     // MARK: - Private Stored Properties
 
     /// The starting position.
-    fileprivate var _startingPosition: Position
+//    var _startingPosition: Position
 
-    internal var _currentIndex: Int?
+    var _currentIndex: Int?
 
-    fileprivate var _items: Array<HistoryItem>
+    var _items: Array<HistoryItem>
 
     // MARK: - Public Initializers
 
@@ -54,30 +53,31 @@ public class Game {
         id: String = UUID().uuidString,
         whitePlayer: Player = Player(),
         blackPlayer: Player = Player(),
-        outcome: Outcome = .undetermined,
-        date: Date = Date(),
+        date: Date? = Date(),
         startingPosition: Position = Position())
     {
         self.id = id
         self.whitePlayer = whitePlayer
         self.blackPlayer = blackPlayer
-        self.outcome = outcome
         self.date = date
-        self._startingPosition = startingPosition
-        self._items = []
+//        self._startingPosition = startingPosition
+        let initialItem = HistoryItem(position: startingPosition, move: nil, piece: nil, capture: nil, promotion: nil, sanMove: nil)
+        self._items = [initialItem]
         self._currentIndex = nil
     }
 
-    // MARK: - Private Initializers
+    // MARK: - Internal Initializers
 
     /// Create a game from another game.
-    internal init(game: Game) {
-        self.id = game.id
-        self.whitePlayer = game.whitePlayer
-        self.blackPlayer = game.blackPlayer
-        self.outcome = game.outcome
-        self.date = game.date
-        self._startingPosition = game._startingPosition
+    convenience init(game: Game) {
+        self.init(
+            id: game.id,
+            whitePlayer: game.whitePlayer,
+            blackPlayer: game.blackPlayer,
+            date: game.date
+//            startingPosition: game._startingPosition
+        )
+
         self._items = game._items
         self._currentIndex = game._currentIndex
     }
@@ -85,245 +85,6 @@ public class Game {
 }
 
 extension Game {
-
-    // MARK: - Public API
-
-    /// Returns the color of the player whose turn it is.
-    public var playerTurn: Color {
-        return currentPosition.playerTurn
-    }
-
-    public subscript(color: Color) -> Player {
-        get {
-            return color.isWhite ? whitePlayer : blackPlayer
-        }
-        set {
-            switch color {
-            case .white: whitePlayer = newValue
-            case .black: blackPlayer = newValue
-            }
-        }
-    }
-
-    public var currentIndex: Int? {
-        return _currentIndex
-    }
-
-    /// Returns the last move of the position.
-    public var latestMove: Move? {
-        guard let current = _currentIndex else {
-            return nil
-        }
-        return _items[current].move
-    }
-
-    public var lastSanMove: String? {
-        guard let current = _currentIndex else {
-            return nil
-        }
-        return _items[current].sanMove
-    }
-
-    /// Returns whether `move` is a promotion.
-    public func isPromotion(for move: Move) -> Bool {
-        return currentPosition.board[move.target]?.kind == .pawn && move.reachesEndRank(for: playerTurn)
-    }
-
-    /// Returns the squares a side could potentially occupy.
-    ///
-    /// - parameter color: The player on whose behalf the computation is made.
-    ///
-    /// - returns: An array of `Square`s.
-    public func availableTargets(for color: Color) -> [Square] {
-        return currentPosition._legalTargetSquares(for: color)
-    }
-
-    public func availableCaptures(for color: Color) -> [Square] {
-        return currentPosition._legalCaptures(for: color)
-    }
-
-    public func availableTargets(forPieceAt square: Square) -> [Square] {
-        return currentPosition._legalTargetSquares(from: square)
-    }
-
-    public func availableCaptures(forPieceAt square: Square) -> [Square] {
-        return currentPosition._legalCaptures(forPieceAt: square)
-    }
-
-    public var squaresAttackingKing: [Square] {
-        return currentPosition._attackersToKing.map { $0 }
-    }
-
-    public func movesAttackingKing() -> [Move] {
-        guard let kingSquare = currentPosition.board.squareForKing(for: currentPosition.playerTurn) else { return [] }
-        return currentPosition._attackersToKing.map { Move(origin: $0, target: kingSquare) }
-    }
-
-    public func attackedOccupations(for color: Color) -> [Square] {
-        return currentPosition._attackedOccupations(for: color)
-    }
-
-    public func defendedOccupations(for color: Color) -> [Square] {
-        return currentPosition._defendedOccupations(for: color)
-    }
-
-    public func undefendedOccupations(for color: Color) -> [Square] {
-        return currentPosition._undefendedOccupations(for: color)
-    }
-
-    public func threatenedEnemies(for color: Color) -> [Square] {
-        return currentPosition._threatenedEnemies(for: color)
-    }
-
-    public func attackers(targeting square: Square, for color: Color) -> ([Square]) {
-        return currentPosition._attackers(targeting: square, for: color)
-    }
-
-    public func execute(sanMoves: String) throws {
-        for sanMove in sanMoves.components(separatedBy: " ") {
-            guard let (move, promotion) = currentPosition.move(forSan: sanMove)
-            else { fatalError("I should throw an error") }
-            try execute(move: move, promotion: promotion)
-        }
-    }
-
-    /// Execute `move`.  
-    public func execute(move: Move, promotion: Piece? = nil) throws {
-
-        // execute move
-        guard let newHistoryItem = currentPosition._execute(uncheckedMove: move, promotion: promotion) else {
-            fatalError("Could not execute move: \(move.description)")
-        }
-
-        // Remove "undone moves" from the items array.
-        if let current = _currentIndex, current + 1 < endIndex {
-            _items.removeSubrange((current + 1)..<_items.endIndex)
-        }
-        _items.append(newHistoryItem)
-        _currentIndex = _items.endIndex - 1
-        delegate?.game(self, didAppend: newHistoryItem, at: _currentIndex)
-
-        let key = self.map { $0.sanMove }.joined(separator: " ")
-        if let e = ECO.codes[key] {
-            eco = e
-        }
-        
-        delegate?.game(self, didExecute: move, with: newHistoryItem.capture, with: promotion)
-
-        if outcome != currentPosition._outcome {
-            outcome = currentPosition._outcome
-            if !outcome.isUndetermined {
-                delegate?.game(self, didEndWith: outcome)
-            }
-        }
-
-    }
-
-    // MARK: - Public Computed Properties
-
-    public var currentPosition: Position {
-        guard let current = _currentIndex else {
-            return _startingPosition
-        }
-        return _items[current].position
-    }
-
-    // MARK: - Collection Protocol Conformance
-
-    public var startIndex: Int {
-        return _items.startIndex
-    }
-
-    public var endIndex: Int {
-        return _items.endIndex
-    }
-
-    public func index(after i: Int) -> Int {
-        precondition(i < endIndex)
-        return i + 1
-    }
-
-    public subscript(position: Int) -> HistoryItem {
-        precondition(_items.indices.contains(position), "Index out of bounds")
-        return _items[position]
-    }
-
-    // MARK: - Move Undo/Redo: Public Functions
-
-    /// Sets the game's currentIndex to the starting position.
-    @discardableResult
-    public func undoAll() -> ArraySlice<HistoryItem> {
-        guard let count = _currentIndex else { return [] }
-        return undo(count: count + 1)
-    }
-
-    /// Sets the game's currentIndex to the ending position.
-    ///
-    /// - returns: A corresponding slice of `items`. 
-    @discardableResult
-    public func redoAll() -> ArraySlice<HistoryItem> {
-        return redo(count: _items.count)
-    }
-
-    /// Decrements `currentIndex` and returns the undone history items in the
-    /// order in which they must be executed in order to recreate the redone state.
-    ///
-    /// - parameter count: The number of moves to undo. Default is 1.
-    ///
-    /// - returns: An optional array of history items.
-    @discardableResult
-    public func undo(count: Int = 1) -> ArraySlice<HistoryItem> {
-        guard let current = _currentIndex else {
-            return ArraySlice<HistoryItem>()
-//            fatalError("Cannot undo the initial position")
-        }
-        let newIndex: Int?
-        let range: Range<Int>
-
-        if count == 0 {
-            return []
-        } else if count == current + 1 {
-            newIndex = nil
-            range = startIndex ..< current+1
-        } else {
-            newIndex = current - count
-            range = (newIndex!+1)..<(current+1)
-        }
-
-        _currentIndex = newIndex
-        return _items[range]
-    }
-
-    /// Increments the currentIndex and returns the redone history items in the order
-    /// in which they must executed in order to recreate the undone state.
-    ///
-    /// - parameter count: The number of moves to redo. Default is 1.
-    ///
-    /// - returns: An optional array of history items.
-    @discardableResult
-    public func redo(count: Int = 1) -> ArraySlice<HistoryItem> {
-
-        if count == 0 {
-            return []
-        }
-
-        let newIndex: Int
-        let range: Range<Int>
-
-        if let current = _currentIndex {
-            newIndex = current + count
-            range = (current+1) ..< (newIndex+1)
-        } else {
-            newIndex = count - 1
-            range = _items.startIndex ..< count
-        }
-        _currentIndex = newIndex
-        if !_items.indices.contains(range.lowerBound) || !_items.indices.contains(range.upperBound-1) {
-            return []
-        }
-        return _items[range]
-    }
-
     /// Sets the current index of `self`.
     ///
     /// - parameter newIndex: The index to set currentIndex to. If nil then
@@ -359,39 +120,4 @@ extension Game {
 
 }
 
-extension Game: Collection { }
 
-public enum Direction: Equatable {
-    case undo
-    case redo
-
-    public var isUndo: Bool {
-        switch self {
-        case .undo:
-            return true
-        default:
-            return false
-        }
-    }
-
-    public var isRedo: Bool {
-        switch self {
-        case .redo:
-            return true
-        default:
-            return false
-        }
-    }
-
-    public init?(currentIndex: Int?, newIndex: Int?) {
-
-        switch (currentIndex, newIndex) {
-        case (nil, nil): return nil
-        case (nil, _): self = .redo
-        case (_, nil): self = .undo
-        default:
-            self = (currentIndex! < newIndex!) ? .undo : .redo
-        }
-
-    }
-}
