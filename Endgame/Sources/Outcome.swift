@@ -18,10 +18,10 @@ public enum Outcome: CustomStringConvertible, Hashable  {
     case draw
 
     /// An indeterminant outcome.
-    case undetermined
+//    case undetermined
 
     static var all: [Outcome] {
-        return [.win(.white), .win(.black), .draw, .undetermined]
+        return [.win(.white), .win(.black), .draw /*, .undetermined */]
     }
 
     // MARK: Initializers
@@ -35,7 +35,7 @@ public enum Outcome: CustomStringConvertible, Hashable  {
         case Outcome.whiteWin: self = .win(.white)
         case Outcome.blackWin: self = .win(.black)
         case Outcome.drawnGame: self = .draw
-        case Outcome.indeterminantGame: self = .undetermined
+//        case Outcome.indeterminantGame: self = .undetermined
         default:
             return nil
         }
@@ -59,9 +59,9 @@ public enum Outcome: CustomStringConvertible, Hashable  {
         if case .draw = self { return true } else { return false }
     }
 
-    public var isUndetermined: Bool {
-        if case .undetermined = self { return true } else { return false }
-    }
+//    public var isUndetermined: Bool {
+//        if case .undetermined = self { return true } else { return false }
+//    }
 
     /// The point value for a player. The default values are: win: 1.0, loss: 0.0, draw: 0.5.
     public func value(for playerColor: Color) -> Double {
@@ -82,8 +82,8 @@ public enum Outcome: CustomStringConvertible, Hashable  {
             return color.isWhite ? Outcome.whiteWin : Outcome.blackWin
         case .draw:
             return Outcome.drawnGame
-        case .undetermined:
-            return Outcome.indeterminantGame
+//        case .undetermined:
+//            return Outcome.indeterminantGame
         }
     }
 
@@ -94,8 +94,8 @@ public enum Outcome: CustomStringConvertible, Hashable  {
             return color.isWhite ? "1﹘0" : "0﹘1"
         case .draw:
             return "½﹘½"
-        case .undetermined:
-            return "❊"
+//        case .undetermined:
+//            return "❊"
         }
     }
 
