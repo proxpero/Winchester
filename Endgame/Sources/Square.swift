@@ -296,39 +296,10 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
         return (file.index & 1 != rank.index & 1) ? .white : .black
     }
 
-    // MARK: - Attacks
-
-    /// Returns a bitboard mask of attacks for a king at `self`.
-    public func kingAttacks() -> Bitboard {
-        return _kingAttackTable[rawValue]
-    }
-
-    /// Returns a bitboard mask of attacks for a knight at `self`.
-    public func knightAttacks() -> Bitboard {
-        return _knightAttackTable[rawValue]
-    }
-
-    /// Returns a bitboard mask of attacks for a piece at `self`.
-    ///
-    /// - parameter piece: The piece for the attacks.
-    /// - parameter obstacles: The pieces stopping a sliding move. The returned bitboard includes the stopped space.
-    public func attacks(for occupyingPiece: Piece, obstacles: Bitboard = 0) -> Bitboard {
-        switch occupyingPiece.kind {
-        case .king:
-            return kingAttacks()
-        case .knight:
-            return knightAttacks()
-        case .pawn:
-            return _pawnAttackTable(for: occupyingPiece.color)[rawValue]
-        default:
-            return bitmask._attacks(for: occupyingPiece, obstacles: obstacles)
-        }
-    }
-
     // MARK: - Static Properties and Functions
 
     /// An array of all squares.
-    public static let all: [Square] = (0 ..< 64).flatMap(Square.init(rawValue:))
+    static let all: [Square] = (0 ..< 64).flatMap(Square.init(rawValue:))
 
     // MARK: - Protocol Conformance
 
@@ -337,10 +308,19 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
         return "\(file)\(rank)"
     }
 
+    // MARK: - Attacks
+
+    /// Returns a bitboard mask of attacks for a piece at `self`.
+    ///
+    /// - parameter piece: The piece for the attacks.
+    /// - parameter obstacles: The pieces stopping a sliding move. The returned bitboard includes the stopped space.
+//    func attacks(for attacker: Piece, obstacles: Bitboard = 0) -> Bitboard {
+//        return bitboard.attacks(for: attacker, obstacles: obstacles)
+//    }
 }
 
 extension Sequence where Iterator.Element == Square {
-    var bitmask: Bitboard {
-        return self.reduce(0) { $0 | $1.bitmask }
+    var bitboard: Bitboard {
+        return self.reduce(0) { $0 | $1.bitboard }
     }
 }
