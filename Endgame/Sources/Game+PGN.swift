@@ -25,7 +25,8 @@ extension Game {
         if let date = pgn[PGN.Tag.date] {
             game.date = Game.dateFormatter.date(from: date)
         }
-        game.outcome = pgn.outcome
+//        game.outcome = pgn.outcome
+        print(pgn.outcome ?? "❊")
 
         let sanMoves = pgn.sanMoves()
 
@@ -50,10 +51,10 @@ extension Game {
         var pairs: Dictionary<PGN.Tag, String> = [:]
         pairs[.white] = whitePlayer.name
         pairs[.black] = blackPlayer.name
-        pairs[.result] = outcome.description
-        if let eco = eco {
-            pairs[.eco] = eco.code.rawValue
-        }
+//        pairs[.result] = outcome.description
+//        if let eco = eco {
+//            pairs[.eco] = eco.code.rawValue
+//        }
         if let date = date {
             pairs[.date] = Game.dateFormatter.string(from: date)
         }
@@ -64,7 +65,7 @@ extension Game {
      Returns the PGN representation of `self`.
      */
     public var pgn: PGN {
-        return PGN(tagPairs: tagPairs(), moves: self.map({ $0.sanMove }))
+        return PGN(tagPairs: tagPairs(), moves: self.flatMap({ $0.sanMove }))
     }
 
 }

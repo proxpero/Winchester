@@ -26,7 +26,7 @@ extension Game {
         var id: String = UUID().uuidString
         var white: Player = Player(name: "?")
         var black: Player = Player(name: "?")
-        var outcome: Outcome = .undetermined
+//        var outcome: Outcome = .undetermined
         var date: Date = Date()
         var moves: String = ""
 
@@ -36,14 +36,14 @@ extension Game {
             case "id": id = value
             case "white": white = Player(name: value)
             case "black": black = Player(name: value)
-            case "result": outcome = Outcome(value) ?? .undetermined
+//            case "result": outcome = Outcome(value) ?? .undetermined
             case "date": date = DateFormatter().date(from: value) ?? Date()
             case "moves": moves = value
             default: continue
             }
         }
 
-        self.init(id: id, whitePlayer: white, blackPlayer: black, outcome: outcome, date: date)
+        self.init(id: id, whitePlayer: white, blackPlayer: black, date: date)
 
         do {
             try execute(sanMoves: moves.replacingOccurrences(of: ",", with: " "))
@@ -60,9 +60,9 @@ extension Game {
 
         items.append(URLQueryItem(name: "white", value: whitePlayer.name))
         items.append(URLQueryItem(name: "black", value: blackPlayer.name))
-        items.append(URLQueryItem(name: "result", value: outcome.description))
+//        items.append(URLQueryItem(name: "result", value: outcome.description))
         items.append(URLQueryItem(name: "date", value: date?.description))
-        items.append(URLQueryItem(name: "moves", value: self.map({ $0.sanMove }).joined(separator: ",")))
+        items.append(URLQueryItem(name: "moves", value: self.flatMap({ $0.sanMove }).joined(separator: ",")))
 
         return items
 
