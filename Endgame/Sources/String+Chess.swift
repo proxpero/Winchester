@@ -8,6 +8,8 @@
 
 public extension String {
 
+    /// The index of the last character in `self`, just before `endeIndex`.
+    /// Will crash if `self.isEmpty`.
     public var lastIndex: Index {
         return index(before: endIndex)
     }
@@ -34,7 +36,7 @@ public extension String {
 }
 
 
-
+/// Extensions to `Character` needed in order to avoid using `CharacterSet` which is Foundation-only.
 public extension Character {
 
     static let newlines: Set<Character> = ["\u{000A}", "\u{000B}", "\u{000C}", "\u{000D}",
