@@ -11,19 +11,13 @@
 /// A `File` can be one of eight possible values beginning with `A` on the left through `H` on the right.
 public enum File: Int, BoardCoordinate, CustomStringConvertible, ExpressibleByExtendedGraphemeClusterLiteral {
 
-    // MARK: -
-
     /// A direction in file.
     public enum Direction {
-
-        // MARK: Cases
-
         /// Left direction.
         case left
 
         /// Right direction.
         case right
-
     }
 
     // MARK: - Cases
@@ -133,11 +127,6 @@ public enum File: Int, BoardCoordinate, CustomStringConvertible, ExpressibleByEx
     /// An array of all files.
     public static let all: [File] = [.a, .b, .c, .d, .e, .f, .g, .h]
 
-    internal static let notA: Bitboard = 0xfefefefefefefefe
-    internal static let notAB: Bitboard = 0xfcfcfcfcfcfcfcfc
-    internal static let notH: Bitboard = 0x7f7f7f7f7f7f7f7f
-    internal static let notGH: Bitboard = 0x3f3f3f3f3f3f3f3f
-
     // MARK: - Protocol Conformance
 
     /// A textual representation of `self`.
@@ -145,8 +134,16 @@ public enum File: Int, BoardCoordinate, CustomStringConvertible, ExpressibleByEx
         return String(character)
     }
 
+    public static prefix func ~(file: File) -> Bitboard {
+        return ~file.bitboard
+    }
+
+    public static func |(lhs: File, rhs: File) -> Bitboard {
+        return lhs.bitboard | rhs.bitboard
+    }
+
     /// Returns `true` if one `File` is further left than the other.
-    public static func < (lhs: File, rhs: File) -> Bool {
+    public static func <(lhs: File, rhs: File) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
 

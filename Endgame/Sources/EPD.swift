@@ -249,12 +249,6 @@ public struct EPD {
         }
     }
 
-    /// An error thrown by `EPD.init(parse:)`.
-    public enum ParseError: Error {
-        case emptyString
-//         TODO: Error Handling
-    }
-
     /// The position for `self`.
     public var position: Position
 
@@ -271,16 +265,18 @@ public struct EPD {
     }
 
     /// Creates an `EPD` from a string.
-    public init?(parse epd: String) {
+    public init(parse epd: String) throws {
         let components = epd.split(by: Character.whitespaces)
         let fen = (0...3).map { components[$0] }.joined(separator: " ") + " 0 1"
-        guard let position = Position(fen: fen) else { return nil }
+        let position = try Position(fen: fen)
         var opcodes: [EPD.Opcode] = []
 
         let codes = (4..<components.endIndex).map { components[$0] }.joined(separator: " ").splitBySemicolon()
 
         for entry in codes.map({ $0.splitByWhitespaces() }) {
-            guard let op = entry.first else { fatalError() }
+            guard let op = entry.first else {
+                throw ParseError.invalidCode(epd)
+            }
             let rest = entry.dropFirst().map { $0.trimmingCharacters(in: .punctuationCharacters) }
             guard !rest.isEmpty else { fatalError() }
             if let opcode = EPD.Opcode(tag: op, value: rest) {
