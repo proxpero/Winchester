@@ -25,7 +25,7 @@ class OutcomeTests: XCTestCase {
     func testWinningColor() {
         let results: [Color?] = [Color.white, Color.black, nil]
         for (outcome, color) in zip(outcomes, results) {
-            XCTAssertEqual(outcome?.winningColor, color)
+            XCTAssertEqual(outcome?.winner, color)
         }
     }
 

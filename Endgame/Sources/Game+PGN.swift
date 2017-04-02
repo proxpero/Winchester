@@ -10,9 +10,6 @@ import Foundation
 
 extension Game {
 
-    // MARK: - PGN
-    // MARK: Public Initializer
-
     /// Creates a new chess game.
     ///
     /// - parameter pgn: A PGN instance.
@@ -25,15 +22,11 @@ extension Game {
         if let date = pgn[PGN.Tag.date] {
             game.date = Game.dateFormatter.date(from: date)
         }
-//        game.outcome = pgn.outcome
-        print(pgn.outcome ?? "❊")
-
-        let sanMoves = pgn.sanMoves()
 
         do {
-            try game.execute(sanMoves: sanMoves.joined(separator: " "))
+            try game.execute(sanMoves: pgn.sanMoves)
         } catch {
-            fatalError("could not parse san moves: \(sanMoves)")
+            fatalError("could not parse san moves: \(pgn.sanMoves)")
         }
         self.init(game: game)
     }
@@ -65,7 +58,12 @@ extension Game {
      Returns the PGN representation of `self`.
      */
     public var pgn: PGN {
-        return PGN(tagPairs: tagPairs(), moves: self.flatMap({ $0.sanMove }))
+        return PGN(tagPairs: tagPairs(), moves: sanMoves)
     }
 
+    var sanMoves: [String] {
+        return self.dropFirst().flatMap { $0.history?.sanMove }
+    }
 }
+
+

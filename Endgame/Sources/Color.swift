@@ -9,9 +9,7 @@
 /// A color for one player or the other.
 ///
 /// A `Color` can be one of two colors: black or white.
-public enum Color: String, CustomStringConvertible {
-
-    // MARK: Cases
+public enum Color: String {
 
     /// The color of the pieces that occupy the first two ranks
     /// of a standard chess game opening.
@@ -21,9 +19,7 @@ public enum Color: String, CustomStringConvertible {
     /// of a standard chess game opening.
     case black
 
-    // MARK: - Initializers
-
-    /// Craetes a color from a character (case insensitive).
+    /// Creates a color from a character (case insensitive).
     public init?(character: Character) {
         switch character {
         case "W", "w": self = .white
@@ -32,7 +28,18 @@ public enum Color: String, CustomStringConvertible {
         }
     }
 
-    // MARK: - Computed Properties
+}
+
+extension Color: CustomStringConvertible {
+
+    /// A textual representation of `self`.
+    public var description: String {
+        return rawValue
+    }
+
+}
+
+extension Color {
 
     /// Is `self` white of not.
     public var isWhite: Bool {
@@ -52,20 +59,6 @@ public enum Color: String, CustomStringConvertible {
     /// Returns the inverse of `self`.
     public func inverse() -> Color {
         return self.isWhite ? .black : .white
-    }
-
-    // MARK: - Mutating Functions
-
-    /// Inverts the color of `self`.
-    public mutating func invert() {
-        self = inverse()
-    }
-
-    // MARK: - CustomStringConvertible Protocol Conformance
-
-    /// A textual representation of `self`.
-    public var description: String {
-        return rawValue
     }
 
 }

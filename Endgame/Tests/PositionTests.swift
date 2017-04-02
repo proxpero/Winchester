@@ -37,7 +37,7 @@ class PositionTests: XCTestCase {
 
     func testInitialization() {
         for fen in sampleFens {
-            let p = Position(fen: fen)
+            let p = try? Position(fen: fen)
             XCTAssertNotNil(p)
         }
     }
@@ -48,8 +48,8 @@ class PositionTests: XCTestCase {
 
     func testFen() {
         for fen in sampleFens {
-            let p = Position(fen: fen)!
-            XCTAssertEqual(p.fen, fen)
+            let p = try? Position(fen: fen)
+            XCTAssertEqual(p!.fen, fen)
         }
     }
 
@@ -70,11 +70,11 @@ class PositionTests: XCTestCase {
          */
 
         let fen = "2bk3r/N3NPP1/8/5pP1/4p3/P2P4/1PP5/R3K2R w KQkq f6 0 1"
-        let position = Position(fen: fen)
+        let position = try? Position(fen: fen)
         XCTAssertNotNil(position)
 
         let moves: [(String, Move, Piece?)] = [
-            ("Ra2", Move(.a1, .a2), nil),   // regular
+//            ("Ra2", Move(.a1, .a2), nil),   // regular
             ("gxf6", Move(.g5, .f6), nil),  // en passant
             ("Kd2", Move(.e1, .d2), nil),   // regular
             ("a4", Move(.a3, .a4), nil),    // pawn push
@@ -84,12 +84,12 @@ class PositionTests: XCTestCase {
             ("O-O", Move(.e1, .g1), nil),   // Castle kingside
             ("Nec6", Move(.e7, .c6), nil),  // disambiguated move
             ("Nexc8", Move(.e7, .c8), nil),  // disambiguated capture
-            ("f8=Q", Move(.f7, .f8), Piece(queen: .white)), // pawn promotion
+            ("f8=Q+", Move(.f7, .f8), Piece(queen: .white)), // pawn promotion
             ("gxh8=N", Move(.g7, .h8), Piece(knight: .white)) // pawn capture + promotion
         ]
 
         for (san, move, promotion) in moves {
-            let result = position!.move(forSan: san)
+            let result = try? position!.move(for: san)
             XCTAssertNotNil(result, "San: \(san) returned nil.")
             XCTAssertEqual(move, result!.0)
             XCTAssertEqual(promotion, result!.1)
@@ -100,7 +100,7 @@ class PositionTests: XCTestCase {
         ]
 
         for (san, _) in nils {
-            let result = position!.move(forSan: san)
+            let result = try? position!.move(for: san)
             XCTAssertNil(result, "san: \(san) should have returned nil. returned: \(result!)")
         }
     }
@@ -124,7 +124,7 @@ class MoveLegality: XCTestCase {
              a b c d e f g h
          */
         let p = Position()
-        XCTAssertEqual(p._legalTargetSquares(from: .d2), [.d3, .d4])
+        XCTAssertEqual(p.legalTargetSquares(from: .d2), [.d3, .d4])
     }
 
     func testPawnCaptures() {
@@ -141,8 +141,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "k7/8/4p3/3P4/8/8/8/7K w - - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .d5), [.d6, .e6])
+        let p = try? Position(fen: "k7/8/4p3/3P4/8/8/8/7K w - - 0 1")
+        XCTAssertEqual(p!.legalTargetSquares(from: .d5), [.d6, .e6])
     }
 
     func testEnPassant() {
@@ -159,8 +159,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "k7/8/8/2pP4/8/8/8/7K w - c6 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .d5), [.c6, .d6])
+        let p = try! Position(fen: "k7/8/8/2pP4/8/8/8/7K w - c6 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .d5), [.c6, .d6])
     }
 
     func testKnightMoves() {
@@ -177,8 +177,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "k7/8/8/8/3q5/1N6/8/2K5 w - - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .b3), [.a1, .d2, .d4, .a5, .c5])
+        let p = try! Position(fen: "k7/8/8/8/3q5/1N6/8/2K5 w - - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .b3), [.a1, .d2, .d4, .a5, .c5])
     }
 
     func testBishopMoves() {
@@ -195,8 +195,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "k7/8/3r4/2B5/8/4P3/8/7K w - - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .c5), [.a3, .b4, .d4, .b6, .d6, .a7])
+        let p = try! Position(fen: "k7/8/3r4/2B5/8/4P3/8/7K w - - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .c5), [.a3, .b4, .d4, .b6, .d6, .a7])
     }
 
 //    func testRookMoves() {
@@ -229,8 +229,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "k4r2/8/8/8/8/4n3/6p1/6K1 w - - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .g1), [.h2])
+        let p = try! Position(fen: "k4r2/8/8/8/8/4n3/6p1/6K1 w - - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .g1), [.h2])
         XCTAssertFalse(p.isKingInCheck)
     }
 
@@ -248,9 +248,9 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "k4r2/8/8/8/8/4n3/R6p/6K1 w - - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .g1), [.h1, .h2])
-        XCTAssertEqual(p._legalTargetSquares(from: .a2), [.h2])
+        let p = try! Position(fen: "k4r2/8/8/8/8/4n3/R6p/6K1 w - - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .g1), [.h1, .h2])
+        XCTAssertEqual(p.legalTargetSquares(from: .a2), [.h2])
         XCTAssertTrue(p.isKingInCheck)
         XCTAssertFalse(p.isKingInMultipleCheck)
     }
@@ -269,9 +269,9 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "k4r2/8/8/8/8/5n2/R6p/6K1 w - - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .g1), [.f1, .h1, .f2, .g2])
-        XCTAssertEqual(p._legalTargetSquares(from: .a2), [])
+        let p = try! Position(fen: "k4r2/8/8/8/8/5n2/R6p/6K1 w - - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .g1), [.f1, .h1, .f2, .g2])
+        XCTAssertEqual(p.legalTargetSquares(from: .a2), [])
         XCTAssertTrue(p.isKingInCheck)
         XCTAssertTrue(p.isKingInMultipleCheck)
     }
@@ -290,8 +290,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "k5r1/8/8/8/6N1/8/8/6K1 w - - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .g4), [])
+        let p = try! Position(fen: "k5r1/8/8/8/6N1/8/8/6K1 w - - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .g4), [])
     }
 
     func testBlockingCheck() {
@@ -308,8 +308,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "k5r1/8/8/8/8/8/8/3B2K1 w - - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .d1), [.g4])
+        let p = try! Position(fen: "k5r1/8/8/8/8/8/8/3B2K1 w - - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .d1), [.g4])
     }
 
     func testRegularCastle() {
@@ -326,8 +326,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "4k3/8/8/8/8/8/PPPPPPPP/R3K2R w KQ - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .e1), [.c1, .d1, .f1, .g1])
+        let p = try! Position(fen: "4k3/8/8/8/8/8/PPPPPPPP/R3K2R w KQ - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .e1), [.c1, .d1, .f1, .g1])
     }
 
     func testCastlingAcrossObastacles() {
@@ -344,8 +344,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "4k3/8/8/8/8/8/PPPPPPPP/R2QK2R w KQ - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .e1), [.f1, .g1])
+        let p = try! Position(fen: "4k3/8/8/8/8/8/PPPPPPPP/R2QK2R w KQ - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .e1), [.f1, .g1])
     }
 
     func testCastleRights() {
@@ -362,10 +362,10 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p1 = Position(fen: "4k3/8/8/8/8/8/PPPPPPPP/R3K2R w K - 0 1")!
-        XCTAssertEqual(p1._legalTargetSquares(from: .e1), [.d1, .f1, .g1])
-        let p2 = Position(fen: "4k3/8/8/8/8/8/PPPPPPPP/R3K2R w Q - 0 1")!
-        XCTAssertEqual(p2._legalTargetSquares(from: .e1), [.c1, .d1, .f1])
+        let p1 = try! Position(fen: "4k3/8/8/8/8/8/PPPPPPPP/R3K2R w K - 0 1")
+        XCTAssertEqual(p1.legalTargetSquares(from: .e1), [.d1, .f1, .g1])
+        let p2 = try! Position(fen: "4k3/8/8/8/8/8/PPPPPPPP/R3K2R w Q - 0 1")
+        XCTAssertEqual(p2.legalTargetSquares(from: .e1), [.c1, .d1, .f1])
     }
 
     func testCastlingInCheck() {
@@ -382,8 +382,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "4k3/4q3/8/8/8/8/PPPP1PPP/R3K2R w KQ - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .e1), [.d1, .f1])
+        let p = try! Position(fen: "4k3/4q3/8/8/8/8/PPPP1PPP/R3K2R w KQ - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .e1), [.d1, .f1])
     }
 
     func testCastlingAcrossAttackedSquares() {
@@ -400,8 +400,8 @@ class MoveLegality: XCTestCase {
            +-----------------+
              a b c d e f g h
          */
-        let p = Position(fen: "4k3/3q4/8/8/8/8/PPP1PPPP/R3K2R w KQ - 0 1")!
-        XCTAssertEqual(p._legalTargetSquares(from: .e1), [.f1, .g1])
+        let p = try! Position(fen: "4k3/3q4/8/8/8/8/PPP1PPPP/R3K2R w KQ - 0 1")
+        XCTAssertEqual(p.legalTargetSquares(from: .e1), [.f1, .g1])
     }
 }
 

@@ -9,17 +9,19 @@
 /// A chess board.
 /// This struct holds only what you would literally see looking at a chessboard.
 /// There is no metadata.
-public struct Board: CustomStringConvertible, Hashable {
+public struct Board {
 
     // MARK: - Private Stored Properties
 
     /// Returns the bitboards used to store positions for all twelve cases of
     /// `Piece`. This is the only stored property of a `Board`.
-    private var _bitboards: Array<Bitboard>
+    fileprivate var _bitboards: Array<Bitboard>
 
-    // MARK: - Public Initializers
+}
 
-    /// Create a chess board.
+extension Board {
+
+    /// Create a standard chess board.
     public init() {
         _bitboards = Array(repeating: 0, count: 12)
         for piece in Piece.all {
@@ -86,7 +88,9 @@ public struct Board: CustomStringConvertible, Hashable {
         self = board
     }
 
-    // MARK: - Public Subscripts
+}
+
+extension Board {
 
     /// Gets and sets the bitboard for `piece`.
     subscript(piece: Piece) -> Bitboard {
@@ -128,7 +132,10 @@ public struct Board: CustomStringConvertible, Hashable {
         }
     }
 
-    // MARK: - Public Computed Properties and Functions
+}
+
+
+extension Board {
 
     /// Returns the number of pieces for `color`, or all if `nil`.
     public func pieceCount(for color: Color? = nil) -> Int {
@@ -250,8 +257,6 @@ public struct Board: CustomStringConvertible, Hashable {
             .reduce(0) { $0 | _bitboards[$1] }
     }
 
-    // MARK: - Getting Spaces
-
     /// Returns the spaces at `file`.
     public func spaces(at file: File) -> [Space] {
         return Rank.all.map { space(at: (file, $0)) }
@@ -280,9 +285,9 @@ public struct Board: CustomStringConvertible, Hashable {
         return self.filter { $0.piece?.color == color }
     }
 
-    // MARK: - Getting Pieces
-
     /// Removes a piece at `square`, and returns it.
+    ///
+    /// - parameter square: The square of the piece on the board.
     @discardableResult
     mutating func removePiece(at square: Square) -> Piece? {
         if let piece = self[square] {
@@ -301,12 +306,12 @@ public struct Board: CustomStringConvertible, Hashable {
         return removePiece(at: Square(location: location))
     }
 
-//    /// Swaps the pieces between the two locations.
+    /// Swaps the pieces between the two locations.
     public mutating func swap(_ first: Location, _ second: Location) {
         swap(Square(location: first), Square(location: second))
     }
-//
-//    /// Swaps the pieces between the two squares.
+
+    /// Swaps the pieces between the two squares.
     public mutating func swap(_ first: Square, _ second: Square) {
         switch (self[first], self[second]) {
         case let (firstPiece?, secondPiece?):
@@ -321,7 +326,11 @@ public struct Board: CustomStringConvertible, Hashable {
         }
     }
 
-    // MARK: - Getting Locations and Squares
+}
+
+// MARK: - Getting Locations and Squares
+
+extension Board {
 
     /// Returns the locations where `piece` exists.
     public func locations(for piece: Piece) -> [Location] {
@@ -343,63 +352,31 @@ public struct Board: CustomStringConvertible, Hashable {
         return bitboard(for: Piece(king: color)).lsbSquare
     }
 
+}
+
+extension Board: CustomStringConvertible {
+
     /// A textual representation of `self`.
     public var description: String {
         return "Board(\(fen))"
     }
 
-    /// The hash value.
-    public var hashValue: Int {
-        return Set(self).hashValue
-    }
+}
+
+extension Board: Equatable {
 
     /// Returns `true` if both boards are the same.
     public static func == (lhs: Board, rhs: Board) -> Bool {
         return lhs._bitboards == rhs._bitboards
     }
 
-    // MARK: - Attackers
+}
 
-    internal func execute(uncheckedMove move: Move, for color: PlayerTurn, isEnPassant: Bool, promotion: Piece?) -> (Board, Capture?)? {
+extension Board: Hashable {
 
-        guard let piece = self[move.origin] else { return nil }
-
-        var newBoard = self
-        var endPiece = piece
-        var captureSquare = move.target
-        var capturePiece = self[captureSquare]
-
-        if piece.kind.isPawn {
-            if move.target.rank == Rank(endFor: color)  {
-                guard
-                    let promo = promotion,
-                    promo.kind.isPromotionType else {
-                        fatalError("Unexpected Promotion: \(promotion)")
-                }
-                endPiece = Piece(kind: promo.kind, color: color)
-            } else if isEnPassant {
-                capturePiece = Piece(pawn: color.inverse())
-                captureSquare = Square(file: move.target.file, rank: move.origin.rank)
-            }
-        } else if piece.kind.isKing {
-            if move.isCastle() {
-                let (old, new) = move.castleSquares()
-                let rook = Piece(rook: color)
-                newBoard[rook][old] = false
-                newBoard[rook][new] = true
-            }
-        }
-
-        var capture: Capture?
-
-        newBoard[piece][move.origin] = false
-        newBoard[endPiece][move.target] = true
-        if let capturePiece = capturePiece {
-            newBoard[capturePiece][captureSquare] = false
-            capture = Capture(piece: capturePiece, square: captureSquare)
-        }
-
-        return (newBoard, capture)
+    /// The hash value.
+    public var hashValue: Int {
+        return Set(self).hashValue
     }
 
 }

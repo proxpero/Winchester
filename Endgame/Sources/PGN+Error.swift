@@ -38,7 +38,9 @@ extension PGN {
 
         /// Invalid tag name.
         case invalidTagName(String)
-        
+
+        /// Invalid termination marker.
+        case invalidGameTerminationMarker
     }
 
 }

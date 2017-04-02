@@ -7,6 +7,8 @@
 //
 
 protocol BitboardConvertible {
+
+    /// A Bitboard representation of `self`.
     var bitboard: Bitboard { get }
 }
 

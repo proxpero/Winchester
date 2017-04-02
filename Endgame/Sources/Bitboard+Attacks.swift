@@ -9,7 +9,7 @@
 extension Bitboard {
 
     /// Returns the pawn pushes available for `color` in `self`.
-    func _pawnPushes(for color: Color, empty: Bitboard) -> Bitboard {
+    func pawnPushes(for color: Color, empty: Bitboard) -> Bitboard {
         return (color.isWhite ? shifted(toward: .north) : shifted(toward: .south)) & empty
     }
 
@@ -85,36 +85,3 @@ extension Bitboard {
     }
 
 }
-
-// MARK: Free Internal Functions and Computed Properties
-
-/// Returns the pawn attack table for `color`.
-//internal func _pawnAttackTable(for color: Color) -> Array<Bitboard> {
-//    let _whitePawnAttackTable = Array(Square.all.map { square in
-//        return square.bitboard._pawnAttacks(for: .white)
-//    })
-//    switch color {
-//    case .white: return _whitePawnAttackTable
-//    case .black: return _blackPawnAttackTable
-//    }
-//}
-//
-///// A lookup table of all white pawn attack bitboards.
-//internal let _whitePawnAttackTable = Array(Square.all.map { square in
-//    return square.bitboard._pawnAttacks(for: .white)
-//})
-//
-///// A lookup table of all black pawn attack bitboards.
-//internal let _blackPawnAttackTable = Array(Square.all.map { square in
-//    return square.bitboard._pawnAttacks(for: .black)
-//})
-//
-///// A lookup table of all king attack bitboards.
-//internal let _kingAttackTable = Array(Square.all.map { square in
-//    return square.bitboard._kingAttacks()
-//})
-//
-///// A lookup table of all knight attack bitboards.
-//internal let _knightAttackTable = Array(Square.all.map { square in
-//    return square.bitboard._knightAttacks()
-//})

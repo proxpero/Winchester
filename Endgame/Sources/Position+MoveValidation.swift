@@ -8,60 +8,61 @@
 
 extension Position {
 
-    /// Returns `true` if the move is legal.
+    /// Returns `true` iff the move is legal.
     func canExecute(move: Move) -> Bool {
-        return move.target.bitboard.intersects(_legalTargetSquares(from: move.origin, considerHalfmoves: true).bitboard)
+        return move.target.bitboard.intersects(legalTargetSquares(from: move.origin, considerHalfmoves: true).bitboard)
     }
 
-    func _legalTargetSquares(considerHalfmoves: Bool) -> [Square] {
-        return _legalTargetSquares(for: playerTurn, considerHalfmoves: considerHalfmoves)
+    /// Returns an array of squares for `playerTurn`.
+    func legalTargetSquares(considerHalfmoves: Bool) -> [Square] {
+        return legalTargetSquares(for: playerTurn, considerHalfmoves: considerHalfmoves)
     }
 
-    func _legalTargetsBitboard(for color: Color, considerHalfmoves: Bool) -> Bitboard {
-        return board.bitboard(for: color).reduce(0) { $0 | _legalTargetSquares(from: $1, considerHalfmoves: considerHalfmoves).bitboard }
+    func legalTargetsBitboard(for color: Color, considerHalfmoves: Bool) -> Bitboard {
+        return board.bitboard(for: color).reduce(0) { $0 | legalTargetSquares(from: $1, considerHalfmoves: considerHalfmoves).bitboard }
     }
 
-    func _legalTargetSquares(for color: Color, considerHalfmoves: Bool = false) -> [Square] {
-        return _legalTargetsBitboard(for: color, considerHalfmoves: considerHalfmoves).map { $0 }
+    func legalTargetSquares(for color: Color, considerHalfmoves: Bool = false) -> [Square] {
+        return legalTargetsBitboard(for: color, considerHalfmoves: considerHalfmoves).map { $0 }
     }
 
-    func _attackedOccupations(for color: Color) -> [Square] {
+    func attackedOccupations(for color: Color) -> [Square] {
         return board.attackedOccupations(for: color).map { $0 }
     }
 
     func pieceDefenses() -> [Color: [Square: Bitboard]] {
         /// TODO
         return [:]
-        //        return board._pieceDefenses()
+        //        return board.pieceDefenses()
     }
 
-    func _defendedOccupations(for color: Color) -> [Square] {
+    func defendedOccupations(for color: Color) -> [Square] {
         return []
-        //        return _pieceDefenses[color]!.filter { !$0.value.isEmpty }.map { $0.key }
+        //        return pieceDefenses[color]!.filter { !$0.value.isEmpty }.map { $0.key }
     }
 
-    func _undefendedOccupations(for color: Color) -> [Square] {
+    func undefendedOccupations(for color: Color) -> [Square] {
         return []
-        //        return _pieceDefenses[color]!.filter { $0.value.isEmpty }.map { $0.key }
+        //        return pieceDefenses[color]!.filter { $0.value.isEmpty }.map { $0.key }
     }
 
-    func _threatenedEnemies(for color: Color) -> [Square] {
+    func threatenedEnemies(for color: Color) -> [Square] {
         return board.threatenedEnemies(for: color).map { $0 }
     }
 
-    func _attackers(targeting square: Square, for color: Color) -> [Square] {
+    func attackers(targeting square: Square, for color: Color) -> [Square] {
         return board.attackers(targeting: square, color: color).map { $0 }
     }
 
-    func _legalCaptures(for color: Color) -> [Square] {
+    func legalCaptures(for color: Color) -> [Square] {
         let moves = board.bitboard(for: color)
-            .reduce(0) { $0 | _legalTargetSquares(from: $1).bitboard }
+            .reduce(0) { $0 | legalTargetSquares(from: $1).bitboard }
         let opponents = board.bitboard(for: color.inverse())
         return (moves & opponents).map { $0 }
     }
 
-    func _legalCaptures(forPieceAt origin: Square) -> [Square] {
-        let targets = _legalTargetSquares(from: origin).bitboard
+    func legalCaptures(forPieceAt origin: Square) -> [Square] {
+        let targets = legalTargetSquares(from: origin).bitboard
         let opponents = board.bitboard(for: playerTurn.inverse())
         return (targets & opponents).map { $0 }
     }
@@ -71,7 +72,7 @@ extension Position {
     }
 
     /// Returns the moves bitboard currently available for the piece at `square`, if any.
-    func _legalTargetSquares(from origin: Square, considerHalfmoves: Bool = false) -> [Square] {
+    func legalTargetSquares(from origin: Square, considerHalfmoves: Bool = false) -> [Square] {
 
         if considerHalfmoves && halfmoves >= 100 {
             return []
@@ -102,10 +103,10 @@ extension Position {
 
         if piece.kind.isPawn {
             let enPassant = enPassantTarget.map { $0.bitboard } ?? 0
-            let pushes = squareBit._pawnPushes(for: playerTurn, empty: emptyBits)
+            let pushes = squareBit.pawnPushes(for: playerTurn, empty: emptyBits)
             let doublePushes = (squareBit & piece.startingPositions)
-                ._pawnPushes(for: playerTurn, empty: emptyBits)
-                ._pawnPushes(for: playerTurn, empty: emptyBits)
+                .pawnPushes(for: playerTurn, empty: emptyBits)
+                .pawnPushes(for: playerTurn, empty: emptyBits)
             movesBitboard |= pushes | doublePushes | (attacks & enemyBits) | (attacks & enPassant)
         } else {
             movesBitboard |= attacks & ~playerBits

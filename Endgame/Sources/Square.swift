@@ -10,9 +10,7 @@
 public typealias Location = (file: File, rank: Rank)
 
 /// A square on the chess board.
-public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
-
-    // MARK: - Cases
+public enum Square: Int {
 
     /// A1 square.
     case a1
@@ -206,8 +204,6 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
     /// H8 square.
     case h8
 
-    // MARK: - Initialization
-
     /// Create a square from `file` and `rank`.
     public init(file: File, rank: Rank) {
         self.init(rawValue: file.index + (rank.index << 3))!
@@ -241,6 +237,10 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
         self.init(file: file, rank: rank)
     }
 
+}
+
+extension Square: ExpressibleByStringLiteral {
+
     /// Create an instance initialized to `value`.
     public init(stringLiteral value: String) {
         guard let square = Square(value) else {
@@ -249,17 +249,36 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
         self = square
     }
 
+}
+
+extension Square: ExpressibleByUnicodeScalarLiteral {
+
     /// Create an instance initialized to `value`.
     public init(unicodeScalarLiteral value: String) {
         self.init(stringLiteral: value)
     }
+
+}
+
+extension Square: ExpressibleByExtendedGraphemeClusterLiteral {
 
     /// Create an instance initialized to `value`.
     public init(extendedGraphemeClusterLiteral value: String) {
         self.init(stringLiteral: value)
     }
 
-    // MARK: - Computed Properties and Functions
+}
+
+extension Square: CustomStringConvertible {
+
+    /// A textual representation of `self`.
+    public var description: String {
+        return "\(file)\(rank)"
+    }
+
+}
+
+extension Square {
 
     /// The file of `self`.
     public var file: File {
@@ -295,32 +314,33 @@ public enum Square: Int, CustomStringConvertible, ExpressibleByStringLiteral {
     public var color: Color {
         return (file.index & 1 != rank.index & 1) ? .white : .black
     }
+    
+}
 
-    // MARK: - Static Properties and Functions
+extension Square {
 
     /// An array of all squares.
     static let all: [Square] = (0 ..< 64).flatMap(Square.init(rawValue:))
 
-    // MARK: - Protocol Conformance
-
-    /// A textual representation of `self`.
-    public var description: String {
-        return "\(file)\(rank)"
-    }
-
-    // MARK: - Attacks
-
-    /// Returns a bitboard mask of attacks for a piece at `self`.
-    ///
-    /// - parameter piece: The piece for the attacks.
-    /// - parameter obstacles: The pieces stopping a sliding move. The returned bitboard includes the stopped space.
-//    func attacks(for attacker: Piece, obstacles: Bitboard = 0) -> Bitboard {
-//        return bitboard.attacks(for: attacker, obstacles: obstacles)
-//    }
 }
 
 extension Sequence where Iterator.Element == Square {
+
+    /// A bitboard representing the sequence of squares.
     var bitboard: Bitboard {
         return self.reduce(0) { $0 | $1.bitboard }
     }
+
+    /// Creates an array of moves each having `origin` as the origin square
+    /// and the squares in `self` are mapped to the move's target square.
+    public func moves(from origin: Square) -> [Move] {
+        return self.map { Move(origin: origin, target: $0) }
+    }
+
+    /// Creates an array of moves, each having `target` as the move's target square
+    /// and the squares in `self` are mapped to the move's origin square.
+    public func moves(to target: Square) -> [Move] {
+        return self.map { Move(origin: $0, target: target) }
+    }
+
 }

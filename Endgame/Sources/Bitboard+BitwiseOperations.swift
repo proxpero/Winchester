@@ -6,6 +6,15 @@
 //
 //
 
+extension Bitboard {
+
+    /// Returns `true` if `self` intersects `other`.
+    public func intersects(_ other: Bitboard) -> Bool {
+        return rawValue & other.rawValue != 0
+    }
+
+}
+
 extension Bitboard: BitwiseOperations {
 
     /// The empty bitboard.

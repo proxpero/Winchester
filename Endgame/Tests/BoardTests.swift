@@ -66,6 +66,10 @@ class BoardTests: XCTestCase {
         XCTAssertEqual(Board(), b2)
     }
 
+    func testInvariant_LimitOnePiecePerSquare() {
+        XCTFail("TODO: This test not yet implemented")
+    }
+
     func testFen() {
         for fen in sampleFens {
             let b = Board(fen: fen)!

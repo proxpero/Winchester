@@ -9,25 +9,18 @@
 extension Game: Collection {
 
     public var startIndex: Int {
-        return _items.startIndex
+        return events.startIndex
     }
 
     public var endIndex: Int {
-        return _items.endIndex
+        return events.endIndex
     }
 
     public func index(after i: Int) -> Int {
-        precondition(i < endIndex)
         return i + 1
     }
 
-    public subscript(position: Int) -> HistoryItem {
-
-        get {
-            return _items[position]
-        }
-
+    public subscript(position: Int) -> Event {
+        return events[position]
     }
-
-
 }

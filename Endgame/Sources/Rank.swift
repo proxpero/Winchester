@@ -9,22 +9,7 @@
 /// A rank (or row) of the chess board.
 ///
 /// A `Rank` can be any one of the eight rows of the board, beginning with 1 up throgh 8.
-public enum Rank: Int, CustomStringConvertible, ExpressibleByIntegerLiteral, BoardCoordinate {
-
-    // MARK: -
-
-    /// A direction in rank.
-    public enum Direction {
-
-        /// Up direction.
-        case up
-
-        /// Down direction.
-        case down
-
-    }
-
-    // MARK: Cases
+public enum Rank: Int, BoardCoordinate {
 
     /// Rank 1.
     case one = 1
@@ -57,34 +42,9 @@ public enum Rank: Int, CustomStringConvertible, ExpressibleByIntegerLiteral, Boa
         self.init(rawValue: value)
     }
 
-    /// Creates the starting `Rank` for the color.
-    public init(startFor color: Color) {
-        self = color.isWhite ? 1 : 8
-    }
+}
 
-    /// Creates the ending `Rank` for the color.
-    public init(endFor color: Color) {
-        self = color.isWhite ? 8 : 1
-    }
-    
-    // MARK: - Computed Properties and Functions
-
-    /// Returns a rank from advancing `self` by `value` with respect to `color`.
-    public func advanced(by value: Int, for color: Color = .white) -> Rank? {
-        return Rank(rawValue: rawValue + (color.isWhite ? value : -value))
-    }
-
-    // MARK: - Static Properties and Function
-
-    /// An array of all ranks.
-    public static let all: [Rank] = [1, 2, 3, 4, 5, 6, 7, 8]
-
-    // MARK: Protocol Conformance
-
-    /// A textual representation of `self`.
-    public var description: String {
-        return String(rawValue)
-    }
+extension Rank: ExpressibleByIntegerLiteral {
 
     /// Create an instance initialized to `value`.
     public init(integerLiteral value: Int) {
@@ -94,9 +54,55 @@ public enum Rank: Int, CustomStringConvertible, ExpressibleByIntegerLiteral, Boa
         self = rank
     }
 
+}
+
+
+extension Rank: CustomStringConvertible {
+
+    /// A textual representation of `self`.
+    public var description: String {
+        return String(rawValue)
+    }
+
+}
+
+extension Rank {
+
+    /// Returns a rank from advancing `self` by `value` with respect to `color`.
+    public func advanced(by value: Int, for color: Color = .white) -> Rank? {
+        return Rank(rawValue: rawValue + (color.isWhite ? value : -value))
+    }
+
+    /// An array of all ranks.
+    public static let all: [Rank] = [1, 2, 3, 4, 5, 6, 7, 8]
+
+
+    public static func starting(for color: Color) -> Rank {
+        return color.isWhite ? 1 : 8
+    }
+
+    public static func ending(for color: Color) -> Rank {
+        return color.isWhite ? 8 : 1
+    }
+
     /// Returns `true` if one rank is higher than the other.
     public static func < (lhs: Rank, rhs: Rank) -> Bool {
         return lhs.rawValue < rhs.rawValue
+    }
+
+}
+
+extension Rank {
+
+    /// A direction in rank.
+    public enum Direction {
+
+        /// Up direction.
+        case up
+
+        /// Down direction.
+        case down
+        
     }
 
 }

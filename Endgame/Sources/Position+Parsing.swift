@@ -21,7 +21,7 @@ extension Position {
             let board = Board(fen: parts[0]),
             parts[1].characters.count == 1,
             let playerTurn = parts[1].characters.first.flatMap(Color.init),
-            let rights = CastlingRights(string: parts[2]),
+            let rights = Castle(string: parts[2]),
             let halfmoves = UInt(parts[4]),
             let fullmoves = UInt(parts[5]),
             fullmoves > 0
@@ -67,14 +67,18 @@ extension Position {
             return (Move(castle: playerTurn, side: .queenside), nil)
         }
 
+        var san = sanMove
+
         let promotion: Piece? = {
             guard let eqIdx = sanMove.characters.index(of: "="), eqIdx != sanMove.lastIndex else { return nil }
-            let char = sanMove[sanMove.index(after: eqIdx)]
+            let charIndex = sanMove.index(after: eqIdx)
+            let char = sanMove[charIndex]
             guard let kind = Piece.Kind(character: char), kind.isPromotionType else { return nil }
+            san.remove(at: charIndex)
             return Piece(kind: kind, color: playerTurn)
         }()
 
-        let san = sanMove.trimmingCharacters(in: CharacterSet(charactersIn: "=!?+#"))
+        san = san.trimmingCharacters(in: CharacterSet(charactersIn: "=!?+#"))
 
         let index = san.index(san.endIndex, offsetBy: -2)
 

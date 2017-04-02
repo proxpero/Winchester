@@ -9,18 +9,7 @@
 /// A file (column) of the chess board.
 ///
 /// A `File` can be one of eight possible values beginning with `A` on the left through `H` on the right.
-public enum File: Int, BoardCoordinate, CustomStringConvertible, ExpressibleByExtendedGraphemeClusterLiteral {
-
-    /// A direction in file.
-    public enum Direction {
-        /// Left direction.
-        case left
-
-        /// Right direction.
-        case right
-    }
-
-    // MARK: - Cases
+public enum File: Int, BoardCoordinate {
 
     /// File "A".
     case a = 1
@@ -46,8 +35,6 @@ public enum File: Int, BoardCoordinate, CustomStringConvertible, ExpressibleByEx
     /// File "H".
     case h = 8
 
-    // MARK: Initializers
-
     /// Create an instance from a character value (case insensitive).
     public init?(_ character: Character) {
         switch character {
@@ -68,6 +55,10 @@ public enum File: Int, BoardCoordinate, CustomStringConvertible, ExpressibleByEx
         self.init(rawValue: index + 1)
     }
 
+}
+
+extension File: ExpressibleByUnicodeScalarLiteral {
+
     /// Create an instance initialized to `value`.
     public init(unicodeScalarLiteral value: Character) {
         guard let file = File(value) else {
@@ -75,13 +66,27 @@ public enum File: Int, BoardCoordinate, CustomStringConvertible, ExpressibleByEx
         }
         self = file
     }
+}
+
+extension File: ExpressibleByExtendedGraphemeClusterLiteral {
 
     /// Create an instance initialized to `value`.
     public init(extendedGraphemeClusterLiteral value: Character) {
         self.init(unicodeScalarLiteral: value)
     }
 
-    // MARK: - Computed Properties
+}
+
+extension File: CustomStringConvertible {
+
+    /// `CustomStringConvertible` protocol conformance.
+    public var description: String {
+        return String(character)
+    }
+
+}
+
+extension File {
 
     /// The character value of `self` (lowercase).
     public var character: Character {
@@ -122,22 +127,19 @@ public enum File: Int, BoardCoordinate, CustomStringConvertible, ExpressibleByEx
         return File(rawValue: 9 - rawValue)!
     }
 
-    // MARK: - Static Properties
+}
+
+extension File {
 
     /// An array of all files.
     public static let all: [File] = [.a, .b, .c, .d, .e, .f, .g, .h]
 
-    // MARK: - Protocol Conformance
-
-    /// A textual representation of `self`.
-    public var description: String {
-        return String(character)
-    }
-
+    /// Returns a bitboard of all files that are not `file`.
     public static prefix func ~(file: File) -> Bitboard {
         return ~file.bitboard
     }
 
+    /// Returns a bitboard combining the two files `lhs` and `rhs`.
     public static func |(lhs: File, rhs: File) -> Bitboard {
         return lhs.bitboard | rhs.bitboard
     }
@@ -145,6 +147,19 @@ public enum File: Int, BoardCoordinate, CustomStringConvertible, ExpressibleByEx
     /// Returns `true` if one `File` is further left than the other.
     public static func <(lhs: File, rhs: File) -> Bool {
         return lhs.rawValue < rhs.rawValue
+    }
+
+}
+
+extension File {
+
+    /// A direction in file.
+    public enum Direction {
+        /// Left direction.
+        case left
+
+        /// Right direction.
+        case right
     }
 
 }

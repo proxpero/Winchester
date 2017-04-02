@@ -9,9 +9,7 @@
 /// A single chess move.
 ///
 /// A chess move starts at an "origin" `Square` and ends at a "target" `Square`.
-public struct Move: Hashable, CustomStringConvertible {
-
-    // MARK: - Stored Properties
+public struct Move {
 
     /// The move's start square.
     public var origin: Square
@@ -19,14 +17,11 @@ public struct Move: Hashable, CustomStringConvertible {
     /// The move's end square.
     public var target: Square
 
-    // MARK: - Initializers
+}
+
+extension Move {
 
     /// Create a move with origin and target squares.
-    public init(origin: Square, target: Square) {
-        self.origin = origin
-        self.target = target
-    }
-
     public init(_ origin: Square, _ target: Square) {
         self.origin = origin
         self.target = target
@@ -39,13 +34,17 @@ public struct Move: Hashable, CustomStringConvertible {
     }
 
     /// A castle move for `color` in `direction`.
+    /// This operation performs no check as to whether the castle is 
+    /// legal for the particular position it may be executed on.
     public init(castle color: Color, side: Board.Side) {
         let rank: Rank = color.isWhite ? 1 : 8
         self = Move(origin: Square(file: .e, rank: rank),
                     target: Square(file: side == .kingside ? .g : .c, rank: rank))
     }
 
-    // MARK: - Computed Properties and Functions
+}
+
+extension Move {
 
     /// The move's change in file.
     public var fileChange: Int {
@@ -103,7 +102,7 @@ public struct Move: Hashable, CustomStringConvertible {
         return target.rank > origin.rank
     }
 
-    /// Return `true` if the move is a knight jump two spaces horizontally and one space vertically, 
+    /// Return `true` iff the move is a knight jump two spaces horizontally and one space vertically,
     /// or two spaces vertically and one space horizontally.
     public var isKnightJump: Bool {
         let fileChange = abs(self.fileChange)
@@ -136,12 +135,7 @@ public struct Move: Hashable, CustomStringConvertible {
 
     /// Returns a bool whether the move reaches the end rank for `color`.
     public func reachesEndRank(for color: Color) -> Bool {
-        return self.target.rank == Rank.init(endFor: color)
-    }
-
-    /// The hash value.
-    public var hashValue: Int {
-        return origin.hashValue + (target.hashValue << 6)
+        return self.target.rank == Rank.ending(for: color)
     }
 
     /// Returns a move with the target and origin of `self` reversed.
@@ -160,12 +154,11 @@ public struct Move: Hashable, CustomStringConvertible {
 
     /// Returns `true` if `self` is castle move for `color`.
     ///
-    /// - parameter color: The color to check the rank against. If `nil`, the rank can be either 1 or 8. The default
-    ///                    value is `nil`.
+    /// - parameter color: The color to check the rank against. If `nil`, the rank can be either 1 or 8. The default value is `nil`.
     public func isCastle(for color: Color? = nil) -> Bool {
         let startRank = origin.rank
         if let color = color {
-            guard startRank == Rank(startFor: color) else { return false }
+            guard startRank == Rank.starting(for: color) else { return false }
         } else {
             guard startRank == 1 || startRank == 8 else { return false }
         }
@@ -184,16 +177,32 @@ public struct Move: Hashable, CustomStringConvertible {
         return (old, new)
     }
 
-    // MARK: - Protocol Conformance
+}
+
+extension Move: Hashable {
+
+    /// The hash value.
+    public var hashValue: Int {
+        return origin.hashValue + (target.hashValue << 6)
+    }
+
+}
+
+
+extension Move: CustomStringConvertible {
 
     /// A textual representation of `self`.
     public var description: String {
         return "origin: \(origin), target: \(target)"
     }
 
+}
+
+extension Move: Equatable {
+
     /// Returns `true` if both moves are the same.
     public static func == (lhs: Move, rhs: Move) -> Bool {
         return lhs.origin == rhs.origin && lhs.target == rhs.target
     }
-
+    
 }

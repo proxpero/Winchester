@@ -7,15 +7,20 @@
 //
 
 /// A chess game player.
-public struct Player: Equatable, CustomStringConvertible {
+public struct Player {
 
-    // MARK: Stored Properties
-
+    /// The `Kind` of `self`, whether `Human` or `Computer`
     public var kind: Kind
+
+    /// The name of the player.
     public var name: String?
+
+    /// The `ELO` value of the player.
     public var elo: UInt?
 
-    // MARK: Initializers
+}
+
+extension Player {
 
     /// Create an instance of `Player`
     ///
@@ -41,36 +46,38 @@ public struct Player: Equatable, CustomStringConvertible {
         self.init(name: name, kind: kind, elo: num)
     }
 
-    // MARK: Computed Properties and Functions
+}
 
+extension Player: CustomStringConvertible {
+
+    /// The string representation of `self`
     public var description: String {
         return "Player(kind: \(kind), name: \(name), elo: \(elo))"
     }
 
-    // MARK: Equatable Conformance
+}
 
+
+extension Player: Equatable {
+
+    /// Equatable protocol conformance
     public static func == (lhs: Player, rhs: Player) -> Bool {
         return true
     }
+
 }
 
-// MARK: -
-// MARK: Player.Kind
 
 extension Player {
 
     /// A kind of player, whether `.human` or `.computer`.
-    public enum Kind: String, CustomStringConvertible {
-
-        // MARK: Cases
+    public enum Kind: String {
 
         /// A Human player.
         case human = "Human"
 
         /// A Computer player
         case computer = "Computer"
-
-        // MARK: Public Computed Properties
 
         /// Returns `true` if `self` is a human player.
         public var isHuman: Bool {
@@ -82,18 +89,11 @@ extension Player {
             return self == .computer
         }
 
-        public var description: String {
-            return rawValue
-        }
     }
+
 }
 
-// MARK: -
-// MARK: Player.Kind + PGN
-
 extension Player.Kind {
-
-    // MARK: Public Initializers
 
     /// Initialize an instance of `Player.Kind` from a pgn tag. Defaults to
     /// `.human`
@@ -106,4 +106,14 @@ extension Player.Kind {
         }
         self = .human
     }
+
+}
+
+extension Player.Kind: CustomStringConvertible {
+
+    /// A string representation of `self`
+    public var description: String {
+        return rawValue
+    }
+
 }

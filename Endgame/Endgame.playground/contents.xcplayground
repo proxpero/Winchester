@@ -6,5 +6,6 @@
         <page name='Board'/>
         <page name='Position'/>
         <page name='Game'/>
+        <page name='Move'/>
     </pages>
 </playground>

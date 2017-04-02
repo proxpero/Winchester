@@ -9,7 +9,10 @@
 /// A bitmap of sixty-four bits suitable for storing squares for various pieces, where
 /// the first bit refers to `Square.A1` and the last (64th) bit refers to `Square.H8`.
 public struct Bitboard {
+
+    // The UInt64 value of `self`
     fileprivate var _value: UInt64
+
 }
 
 extension Bitboard: RawRepresentable {
@@ -27,8 +30,6 @@ extension Bitboard: RawRepresentable {
         }
     }
 
-    // MARK: - Initializers
-
     /// Convert from a raw value of `UInt64`.
     public init(rawValue: UInt64) {
         self._value = rawValue
@@ -37,6 +38,15 @@ extension Bitboard: RawRepresentable {
 }
 
 extension Bitboard: ExpressibleByIntegerLiteral {
+
+    /// `ExpressibleByIntegerLiteral` conformance
+    public init(integerLiteral value: UInt64) {
+        self._value = value
+    }
+
+}
+
+extension Bitboard {
 
     /// Create an empty bitboard.
     public init() {
@@ -53,16 +63,14 @@ extension Bitboard: ExpressibleByIntegerLiteral {
         self.init(squares: locations.map(Square.init(location:)))
     }
 
-    public init(integerLiteral value: UInt64) {
-        self._value = value
-    }
+}
 
-    // MARK: - Subscripts
+extension Bitboard {
 
     /// The `Bool` value for the bit at `square`.
     ///
     /// - complexity: O(1).
-    subscript(square: Square) -> Bool {
+    public subscript(square: Square) -> Bool {
         get {
             return intersects(Bitboard.lookupTable[square.rawValue])
         }
@@ -88,24 +96,12 @@ extension Bitboard: ExpressibleByIntegerLiteral {
         }
     }
 
-    // MARK: - Computed Properties and Functions
-
-    /// Returns `true` if `self` intersects `other`.
-    public func intersects(_ other: Bitboard) -> Bool {
-        return rawValue & other.rawValue != 0
-    }
-
-    /// Returns the ranks of `self` as eight 8-bit integers.
-//    public func ranks() -> [UInt8] {
-//        return (0 ..< 8).map { UInt8((rawValue >> ($0 * 8)) & 255) }
-//    }
+    // MARK: - Transformations
 
     /// Swaps the bits between the two squares.
     public mutating func swap(_ first: Square, _ second: Square) {
         (self[first], self[second]) = (self[second], self[first])
     }
-
-    // MARK: - Transformations
 
     /// Returns `self` flipped horizontally.
     public func flippedHorizontally() -> Bitboard {
@@ -152,7 +148,24 @@ extension Bitboard: ExpressibleByIntegerLiteral {
 
 }
 
-// MARK: - Helpers
+extension Bitboard: CustomStringConvertible {
+
+    /// A String representation of `self`.
+    public var description: String {
+        let num = String(rawValue, radix: 16)
+        let str = repeatElement("0", count: 16 - num.characters.count).joined(separator: "")
+        return "Bitboard(0x\(str + num))"
+    }
+}
+
+extension Bitboard: Hashable {
+
+    /// The hash value.
+    public var hashValue: Int {
+        return rawValue.hashValue
+    }
+
+}
 
 extension UInt64 {
     /// The number of 1s in the binary representation of `self`
